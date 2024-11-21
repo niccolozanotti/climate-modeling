@@ -1,0 +1,40 @@
+name: Build and Publish PDF
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow when changes are pushed to the `main` branch
+  workflow_dispatch:  # Allow manual triggering from the Actions tab
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up LaTeX environment and build the PDF
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+          args: -interaction=nonstopmode
+          extra_packages: biber  # Ensure biber is available for bibliography management
+
+      # Step 3: Rename the generated PDF to `notes.pdf`
+      - name: Rename output PDF
+        run: |
+          mv main.pdf notes.pdf
+
+      # Step 4: Deploy the PDF to a separate branch (`pdf`)
+      - name: Deploy to PDF branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: pdf   # Specify the branch to publish to
+          publish_dir: .        # Publish the current directory
+          force_orphan: true    # Use an orphan branch for clean publishing
+          keep_files: false     # Replace existing files in the branch
+          commit_message: "Update pdf version of the notes"
