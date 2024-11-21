@@ -2,7 +2,7 @@
 
 # Name of the main LaTeX file (without .tex extension)
 MAIN_FILE="main"
-OUTPUT_PDF="climate-modeling.pdf"
+OUTPUT_PDF="notes.pdf"
 
 
 # Clean up old auxiliary and output files
