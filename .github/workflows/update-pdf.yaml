@@ -15,20 +15,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up LaTeX environment and build the PDF
-      - name: Compile LaTeX
-        uses: xu-cheng/latex-action@v2
-        with:
-          root_file: main.tex
-          args: -interaction=nonstopmode
-          extra_packages: biber  # Ensure biber is available for bibliography management
-
-      # Step 3: Rename the generated PDF to `notes.pdf`
-      - name: Rename output PDF
+      # Step 2: Set up LaTeX environment
+      - name: Install LaTeX
         run: |
-          mv main.pdf notes.pdf
+          sudo apt-get update
+          sudo apt-get install -y texlive-full biber
 
-      # Step 4: Deploy the PDF to a separate branch (`pdf`)
+      # Step 3: Make `compile.sh` executable and run it
+      - name: Compile LaTeX document with custom script
+        run: |
+          chmod +x ./compile.sh
+          ./compile.sh
+
+      # Step 4: Deploy the PDF to the `pdf` branch
       - name: Deploy to PDF branch
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -37,4 +36,4 @@ jobs:
           publish_dir: .        # Publish the current directory
           force_orphan: true    # Use an orphan branch for clean publishing
           keep_files: false     # Replace existing files in the branch
-          commit_message: "Update pdf version of the notes"
+          commit_message: "Update notes.pdf"
