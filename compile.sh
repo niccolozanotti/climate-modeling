@@ -7,7 +7,7 @@ OUTPUT_PDF="notes.pdf"
 
 # Clean up old auxiliary and output files
 echo "Cleaning up old auxiliary files..."
-rm -f ${MAIN_FILE}.{aux,bbl,bcf,blg,log,lot,out,toc,run.xml,synctex.gz}
+rm -f ${MAIN_FILE}.{aux,bbl,bcf,blg,log,lot,out,toc,run.xml,synctex.gz,fls,fdb_latexmk}
 
 # Compile LaTeX document (first pass)
 echo "Running pdflatex (first pass)..."
