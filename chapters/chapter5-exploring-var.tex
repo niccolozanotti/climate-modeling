@@ -1,3 +1,6 @@
+% Updated 2024-11-25 18.19 
+% source: Climate modeling notes EXPLORING +SST
+
 \chapter{Exploring Variability}
 %slides 14
 Horel and Wallace, 1981: their article was the first moment where people started looking at time series of monthly average values. People started to put together El Nino and southern oscillations: the role of the ocean was emerging. The EOF became the perfect instrument to do that: with the EOF you can decompose all the dataset on how they project (EOF gives the complete decomposition of the data):
@@ -50,7 +53,7 @@ run an atm model where we see the mean SST for the entire simulation of the mode
 
 So they built a strategy to do that: you start with a basic model and you add a perturbation to it. This will lead you to a comparison between one system with the perturbation and the other one without the perturbation, which is called the control system or the reference. Comparing the two systems I obtained, I'll gain the effect of the perturbation I applied. 
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 212353.png}
     \caption{the fourth from the top is the paper}
@@ -59,17 +62,17 @@ So they built a strategy to do that: you start with a basic model and you add a 
 They did two perturbations and looked at the difference: the model would create a series of anomalies propagating. You create anticyclones in the north and the south of the anomaly. This fact provides an intense investigation of how the monthly scale can predict monthly anomalies. We are taking the difference between two strongly nonlinear simulations, so we are stretching the fact that we can still see the difference. 
 
 This means that the relation of the two simulations is quite linear so that the effect of perturbations can be identified. In detail, consider the geopotential at 300 mbar (high atmosphere), it is the streamfunction of the flow. 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 212453.png}
     \caption{Enter Caption}
-    \label{fig:enter-label}
+    \label{fig:figure 1.7}
 \end{figure}
 The one on top is the control simulations, the middle one is the perturbation experiment (with SST in the Pacific) and the bottom one is the difference between the two. 
 Most of them are concentrated in the North Pacific, related to the SST anomaly in the equatorial Pacific. Note that when you look at the total field the differences are small but still exist.
 This was the first evidence that if you have perturbation that will have an impact, that creates a deviation from normal conditions.  
 
-fig 9 is a section at the equator between 6N and 6S 
+Figure \ref{fig:figure 1.7} is a section at the equator between 6N and 6S 
 the arrows give the sense of circulation; in the difference, you see the extra rising air over the SST (central part or graph). This paper shows that the way SST is acting on the atmosphere is affecting the water circulation, especially increasing the vertical motion over the areas of increased SST. Why exactly air go up?
 
 People decided to set up a special project called AMIP, an atmospheric model intercomparison project, based on the idea that SST is important but we have many models, expecting the SST in different ways, so how we could compare them? 
@@ -77,7 +80,7 @@ It was already clear that because of the sensitivity not only of the initial con
 We know that if we change a little bit initial conditions in any of these models, the evolution is slightly different, and also the response of SST it is; meaning that you have to do different experiments and confront them statistically. 
 
 They aren't using idealizing perturbation of the SST but the observed SST month by month. So it was designed a protocol in which all the people participating in the project, could run the models using the same dataset.  
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 212548.png}
     \caption{AMIP results for mean sea level pressure}
@@ -90,7 +93,7 @@ The SST control is very effective in the tropical regions and in the mid-latitud
 
 Internal variation (for example, what will happen at 15 o'clock next month) beyond the range of initial conditions cannot be predicted.
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 204551.png}
     \caption{AMIP result for precipitations }
@@ -102,7 +105,7 @@ The standard deviation is very small over the ocean, meaning the SST is controll
 In general, it's much more difficult than the dynamical field, because precipitations are much more difficult than other dynamics since they are driven by physical processes so you need to describe convection and turbulence very well. Other problems are linked with getting the observation and spatial correlation that is difficult. We get good data only recently, especially thanks to satellite like TRIMM that allow us to make estimates of precipitation also over the ocean. 
 
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 210633.png}
     \caption{all the models participating in the comparison and the observations are the black line}
@@ -114,41 +117,78 @@ If your balance at the top is not zero the model will cool or warm over 200-300 
 (b) disaster. clouds. that shows clouds are difficult. ??
 
 
+
 This kind of result grew in people's determination to insert clouds in models because do not consider them to represent the issue of credibility. 
 
 
-
 \subsection{General circulation model }
-it takes 5-6 years to take experiments that have valid results. 100 years--> climate simulation. what about six months? a climate ex is an experiment in which you try to get equilibrium in external forces (radiation longer timescales, ocean in shorter), once you consider couple modles you have 2 initial conditions: the timescale of their influences is different: the initial conditions of the ocean stay there for a couple of months between 12-15 months. using realistic. seasonal scale: as long as you have initial conditions you get influence, in longer timescales you need a third external source: greenhouse? determine the initial condition has been one of the most seached topics. satelliting sounding in situ stations. you can see that data do not cover uniformally the planet: not homogeneous, they all concentrate in europe. What is the optimal consentration of stations? maximum information with minimum distribution. the problem is that the decision process is almost never dictated by scientific reasons. 
-Ocean has been a blackhole for a long time. --> oscean observing system. the green dots are chain of intrument measuring temperature and currents at various steps known as TAO. these are captureted in the area od ENDSO--> sistematic capture of observation. the other things are ARGO floats: instruments bouyands at specific depths. every 10 days they change bouyancy and go up measuring temperature, going to another position. 
-these data that you have must be filled in both space and time. I have to find some estimates on the given time in the given area: first thing you can interpolate and fill in the between. the equations are statements of everything you know of the atmosphere: can we use them all to interpolate? --> data simulation is the generic name for this process of estimating space.time evo of the evolution in spacetime of atm and ocean states. the idea is that i'll have physically consistent things. You'll try to minimize the weights of estimation and observations. data simulations sistems allow us to have data on the atm, they are used for forecasting.
-re-analysis: comparing all the data sets in the past 50 years with a single ?? we now have hourly data starting from 1949 until today.  use the info you have to modify the model--> data simulation, you then can use this "new state" as the initial condition for a new simulation. step by step you get a sequence of best estimate states of data simulation. both the model and the data simulation tecnique will change over the years . 2024 cannot be compared on an analysis done on 2010. because of the cut i didn't use all the info arrived after the cut (from satellites), we do the simulation without changing system or model--> re-analysis like ERA5. 
+In the models, there are some variables called prognostic (so they are expressed under time derivative, so they are in the left part of the equation), for atmospheric models, these are temperature, winds and water vapor; while for the ocean models, these are currents, temperature and salinity. Radiation instead, is computed from these variables so it is called a diagnostic variable.
+The only way to change temperature and salinity in the ocean is by the interaction between the atmosphere and the ocean. 
 
-\subsection{Ocean transport}
-another property that is essential for climate sim but is not a conserved property, is how transport. climate is in part restoring balance in tropics and pole regions. there is an excess rad energy in the equatorial region and a deficit in the polar region. the tropics receive more energy than what they receive. that is ocena transport, done by the atmosphere but the ocean distributes it. 
-
-
-slide 15 different curves are different ocean re-analysis. black lines are observations. 
-in the simulation model slide 16. the observations are the point above, all the lines are model simulations. all the models are underestimating transports. you can manipulate dissipation, turbolence, parameters you can control. you try to optimize the distance between model and observations. 
-
-
-AMOC circulation in the meridional. it is a part of the global circ of the ocean that starts with the deep water in the Antartica. 2 places where water goes in North atlantic and ?? the hole is closed at the top by surface circulation. in the depth the water goes down. if you stop the production (by freshening the North Atlantic --> increase precipitation), the water will be denser without going down, the transport of heat will "stop". 
-
-
-slide 22, the plot1 shows the days in which the forecast stopped being useful. in 2020 we reache 7 day--> deterministic limit was pushed from day 5-day 7. this was for deterministic forecast. an ensamble approach. plot2 probabilistic statements beyond that day. deterministic forecast will be with no grey area, prob forecast is more statistical. more observation and then stat analysis. satellite date are measuting emitted radiation transformed in temperature. this t data was ingjected in the data simulation--> massive improvement. our systems are not efficient enough to treat the analysis of everyday. 
-
-errors. I can improve the initial conditions and the model. as the model goes on the error that matter is in the model, iproving the model you improve the medium mode, improving the initial condition you improve short timescale forecast. slide 25 this is the kind of variability you get, some forecasts are completly different: this is the idea of probabilistic forecasts, you take and ensamble and mix statistics with dynamical systems theory. 
-
-
-%slides 20: atmospheric numerical models
-
-As for the atmospheric models wind, temperature, and water vapor are prognostic variables because they are under time derivative (left part of the equation of motion). Radiation instead, is computed from these variables so it is called a diagnostic variable.
-Instead for ocean models, the prognostic ones are currents, temperature, and salinity. The only way to change temperature and salinity is with the interaction between the atmosphere and the ocean. 
 Independently from which numerical methods, finite differencing or spectral, we use, we need grids. 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 213227.png}
     \caption{Evolution of different models}
     \label{fig:enter-label}
 \end{figure}
 As we can see from the picture above, FAR had a resolution of 500 km for finite differencing and T21 for the spectral method. Now instead we are able to reach a resolution of 30km x 30km and doing that made us capable of starting to detail the oceans. 
+
+It takes 5-6 years to collect all the info to have valid results to insert in the Assessment Report, a document that analyzes the state of the art of the science, collecting all the knowledge gained so far. 
+If you want to do forecasting you want your model to follow exactly the observations. To do that, your initial conditions are important because for the atmospheric models they last 2-3 weeks, while for the oceans they last 12-50 weeks. 
+
+Some problems are derived from the observations since they do not cover all over the world uniformly and especially they are concentrated in the continents (which is the best density of station for the observations is still endless discussion, since they are expensive; probably the best thing you can do is to have maximum information whit the minimum station distribution). 
+
+Really interesting is the ocean observing system which was possible to build thanks to the development in the knowledge of ENSO. 
+\begin{itemize}
+    \item TAO anchorage system to the sea floor in the equator measuring temperature
+    \item  ARGO FLOATS float on a systematic depth and every 10 days they change their buoyancy and rise up recording the profile of different variables, after that they go down again 
+    \item tidal station across the coast of the continents to measure sea level 
+\end{itemize}
+
+Finally, with all this data collected, you have to fill them in both space and time, creating a physically consistent field of observations around the globe. Since everything you know is in the equations, you will use the models to do the simulations with different techniques developed through the years. 
+
+One important thing to take into consideration is that you have to take into account the ocean transport. It plays an important role in the climate system since it restores the imbalance of heat between tropics and polar regions. In particular, there is an excess of radiation energy in the equatorial region and a deficit in the polar region. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{uploads/image8.png}
+    \caption{Climatological global heat transport and fresh-water transport: the different curves are different ocean re-analysis and black lines are observations}
+    \label{fig:enter-label}
+\end{figure}
+
+In the picture below the observations are the point and all the lines are model simulations. All the models are underestimating transports.
+This graph shows us the main important thing in data assimilation: you have to reduce as better as possible, the distance between observations and models. 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{uploads/image9.png}
+    \caption{Time mean meridional heat transports for the Atlantic Ocean with different models}
+    \label{fig:enter-label}
+\end{figure}
+
+Another important aspect that must be taken into consideration is the AMOC, Atlantic meridional overturning circulation. It is a part of the global circulation of the ocean that starts with the deep water in the North Atlantic where cold waters sink towards the bottom (due to its high salinity that promotes high density). 
+Controlling the AMOC helps scientists to understand if this process really happens and how effective it is. 
+If you stop the production of dense water, for example by freshening the North Atlantic with an increase of precipitation, all the AMOC will become weaker. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{uploads/image3.png}
+    \caption{NCAR doesn't really stress this phenomenon described above, despite the fact it follows observations quite well}
+    \label{fig:enter-label}
+\end{figure}
+
+In recent years, scientists have developed new modes of investigation concerning simulations, experiments, and theories together. Also, they improved forecasting skills, helping them to improve the quality of simulations, specifically in the number of days in which the forecast stopped being useful. 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{uploads/image5.png}
+    \caption{Improvement in forecasting skills}
+    \label{fig:enter-label}
+\end{figure}
+
+Last but not least, different models have similar patterns of errors. This is a problem because even if the mean of a variable is correct, I had to consider realistic variability from it. If I improve the initial conditions, I'll improve the short timescale forecast; while if I improve the model, I'll improve the medium timescale forecast. 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{uploads/image7.png}
+    \caption{Example of mean errors in comparison different models}
+    \label{fig:enter-label}
+\end{figure}

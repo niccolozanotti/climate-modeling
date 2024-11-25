@@ -1,3 +1,6 @@
+% Updated 2024-11-25 18.30 
+% source: Climate modeling notes
+
 \chapter{Fundamental Equations}
 \section{Introduction}\label{introduction}
 
@@ -74,7 +77,7 @@ planetary vorticity \(f\) is linearized as \(f=f_0 + \beta y\), where
 To describe the governing equation of the atmosphere and eventually of
 the ocean we have to understand how we write the rate of change with
 time of this fluid. This problem was solved by considering the fact that
-the rate of change in the fluid cannot be seen as arate of change with
+the rate of change in the fluid cannot be seen as rate of change with
 respect to a fixed system of coordinate because the system is moving
 with the fluid itself. Therefore, first we have to find a way to
 describe the change taking into account the moving system of
@@ -153,11 +156,11 @@ but the volume is arbitrary, so it must be that
 
 is valid locally.
 
-We have still at our disposal the conservation of thermodynamical energy and so we can also use
+We have still at our disposal the conservation of thermodynamical energy and so we can also use the first law of thermodynamics for a gas, that is a statement of internal energy, where $C_v$ is the specific heat for air at constant volume and $T$ is the temperature in Kelvins.
 
 \[C_v\frac{D T}{Dt} = -p\frac{D }{Dt}\left(\frac{1}{\rho}\right)+ Q\]
 
-where we included the temperature and heating/cooling term \(Q\). The state variable are then linked by the state equation
+where we included the temperature and heating/cooling term \(Q\) (which is the net heat gain or loss to the external sources, for example the solar insolation, heating or cooling due to long wave radiation, latent heating due to condansation of water vapor into liquid water, and sensible heating due to conduction and convection). The state variable are then linked by the state equation
 
 \[p = \rho R T\]
 
@@ -170,8 +173,7 @@ We can use the equation of state to write the energy equation ( or the temperatu
 yielding the alternative forms ( since \(c_p = c_v +R\)),
 
 \[c_p\frac{D T}{Dt}  - \frac{1}{\rho}\frac{D p}{Dt} = Q\]
-
-For adiabatic processes \(Q=0\) and so
+For adiabatic processes \(Q=0\) (for many purpose atmospheric and oceanic motions can be considered essentially adiabatic. However, for climate studies, the assumption of exclusively adiabatic processes is not appropiate since the amount of heat added or lost to a unit volume of air or water over a long period of time can be substantial) and so
 
 \[\begin{aligned}
 &c_p\frac{D T}{Dt}  - \frac{1}{\rho}\frac{D p}{Dt} = 0\\
@@ -237,7 +239,27 @@ In geostrophic balance:
 \end{itemize}
 However, on small scales (e.g., tornadoes, boundary layers), friction and other forces become important, so geostrophic balance is less accurate. Near the Equator, The Coriolis parameter ($f$) approaches zero, making the geostrophic balance invalid.
 
-
+\paragraph{Advective derivative in rotating coordinates.} A vector in spherical coordinates is:
+$$\mathbf{u}=\hat{i}u+\hat{j}v+\hat{k}w$$
+but the unit vectors move in a rotating frame, so the advective derivative of a vector is given by: 
+\begin{equation}\label{eq.adv der in rotating}
+    \frac{Du}{Dt}=\frac{Du}{Dt}\hat{i}+\frac{Dv}{Dt}\hat{j}+\frac{Dw}{Dt}\hat{k}+u\frac{D\hat{i}}{Dt}+v\frac{D\hat{j}}{Dt}+w\frac{D\hat{k}}{Dt}
+\end{equation}
+\paragraph{Coriolis Factors}
+The Coriolis forces derives from the conservation of angular momentum.
+$$\frac{d}{dt}\left(R_A(\Omega R_A+u)\right)=0$$
+or 
+$$2\Omega R_A\frac{dR_A}{dt}+u\frac{dR_A}{dt}+R_A\frac{du}{dt}=0$$
+rearraging 
+$$\frac{du}{dt}=(2\Omega R_A+u)\frac{dR_A}{dt}$$
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-21 164025.png}
+    \caption{Coriolis factors}
+    \label{fig:coriolis}
+\end{figure}
+The Coriolis components then are $2\Omega\sin\phi$ and $2\Omega\cos\phi$. For the horizontal and vertical components respectively:
+$f=2\Omega\sin\phi$
 
 \subsection{Summary of fundamental
 equations}\label{summary-of-fundamental-equations}
@@ -395,32 +417,240 @@ The perturbation equations link the restoring forces to wave properties:
     \item The continuity equation ensures mass conservation, connecting velocity and density perturbations.
     \item The thermodynamic equation relates temperature, pressure and density perturbations
 \end{enumerate}
-Imposing the hydrostatic approximation from the beginning would mean putting to zero from the start the time derivative of $w$ in the momentum equation in the vertical. This basically is equivalent to say that we are removing the explicit dependence of the vertical velocity on time and therefore the 
+Imposing the hydrostatic approximation from the beginning would mean putting to zero from the start the time derivative of $w$ in the momentum equation in the vertical. This basically is equivalent to say that we are removing the explicit dependence of the vertical velocity on time and therefore we will get waves similar to the Boussinesq approximation. The hydrostatic approximation eliminates vertical propagating sound waves, but the Lamb waves still exists.
 
 
-\paragraph{Advective derivative in rotating coordinates}
+\section{Homogeneous flows}\label{homogeneous-flows}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width = .7 \textwidth]{./figs/GD/shw.png}
+\caption{}
+\label{}
+\end{figure}
 
 
-\paragraph{Vertical coordinates}
-The original vertical coordinate was the Z coordinate that is simply the
-geometric height. However because of the hydrostatic balance it was thought
-convenient to use the pressure as a vertical coordinate. This choice as the
-problem that the surface pressure intersects the surface especially over
-mountains creating problems numerically in the definition of the boundary
-condition.
-Phillips (1957) proposed to use a normalised pressure coordinate, $\sigma=\frac{p}{p_s}$
+The motion of the atmosphere is most appropriately described by
+three-dimensional equations that describes the horizontal and vertical
+motion of the fluid, however a lot can be understood by considering a
+simpler system that consider the motion of a free surface of a inviscid,
+homogeneous and incompressible fluid. These equations are variously
+referred to as one-level primitive equations or the shallow water
+equation.
+
+The system is described in Fig. \texttt{fig:4}. It is an homogenous
+layer of fluid covering the entire spherical planet. We have included a
+bottom topography \(h(x,y)\) and a deformation of the free surface
+\(\eta(x,y)\). The convention is such positive deformation of the
+surface are increasing the depth of the fluid, whereas positive
+deformation of the bottom are decreasing it.
+
+We have introduced here cartesian coordinates \((x,y)\) such that
+\(dx \approx a \cos\theta d \lambda\) and \(dy \approx a d\theta\), we
+will also define \(f= 2\Omega \sin\theta\), then the incompressible
+equations of motion can be written as
+
+\[
+\begin{aligned}
+\frac{\partial u}{\partial t} &= -u \frac{\partial u}{\partial x} -v \frac{\partial u}{\partial y} + f v -\frac{1}{\rho}\frac{\partial p}{\partial x} \\
+\frac{\partial v}{\partial t} &= -u \frac{\partial v}{\partial x} -v \frac{\partial v}{\partial y} - f u -\frac{1}{\rho}\frac{\partial p}{\partial y}  \\
+\frac{\partial w}{\partial t} &= -u \frac{\partial w}{\partial x} -v \frac{\partial w}{\partial y} + g -\frac{1}{\rho}\frac{\partial p}{\partial z}  \\
+&\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} = 0
+\end{aligned}
+\]
+
+If the aspect ratio \(\delta \approx H/L\) is small then hydrostatic
+balance is maintained to order \(\delta^2\) and so
+
+\[\frac{\partial p}{\partial z} = - \rho g + O(\delta^2)\]
+
+because the density is constant we can integrate it from 0 to \(z\) and
+get
+
+\[p = -\rho g (H_0+ \eta -z) + p_0\]
+
+where we have used the boundary condition at the top
+\(p(x,y,H_0 +\eta) = p_0\).
+
+The horizontal pressure gradients are independent of \(z\)
+
+\[\begin{aligned}
+\frac{\partial p}{\partial x} = \rho g \frac{\partial \eta}{\partial x}\\
+\frac{\partial p}{\partial y} = \rho g \frac{\partial \eta}{\partial y}
+\end{aligned}\]
+
+because the horizontal accelerations are independent of z, than also the
+velocities are independent of z, if they are so at the beginning. This
+is in fact a consequence of the Taylor-Proudman theorem applied to a
+homogeneous fluid. We can then write the horizontal momentum equations
+
+\[\begin{aligned}
+\frac{\partial u}{\partial t} &= -u \frac{\partial u}{\partial x} -v \frac{\partial u}{\partial y} + f v -g\frac{\partial \eta}{\partial x} \\
+\frac{\partial v}{\partial t} &= -u \frac{\partial v}{\partial x} -v \frac{\partial v}{\partial y} - f u -g\frac{\partial \eta}{\partial y}  \\
+\end{aligned}\]
+
+Because \(u\) and \(v\) are independent of \(z\) allows us to integrate
+vertically the divergence equation from the surface \(h(x,y)\) to an
+height \(z\)
+
+\[w(x,y,z,t) = -z\left(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}\right) + \omega(x,y,t)\]
+
+The kinematic condition for the bottom can be written as
+
+\[\frac{D }{Dt}{(z-h)} = 0\]
+
+or
+
+\[w(x,y,h,t) =  u\frac{\partial h}{\partial x} + v\frac{\partial h}{\partial y}\]
+
+so the function \(\omega\) is
+
+\[\omega(x,y,t) = u\frac{\partial h}{\partial x} + v\frac{\partial h}{\partial y} + h \left(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}\right)\]
+
+then the vertical velocity can be written as
+
+\[w(x,y,z,t) = (h-z)\left(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}\right) + u\frac{\partial h}{\partial x} + v\frac{\partial h}{\partial y}\]
+
+Using now the kinematic boundary condition at the top (\(z=H_0+\eta\))
+
+\[w(x,y,H_0+\eta,t) = \left(\frac{\partial }{\partial t} + u\frac{\partial }{\partial x} + v\frac{\partial }{\partial y}\right)(H_0+\eta)\]
+
+combining the last two equation we get an equation for the height
+
+\[\frac{\partial \eta}{\partial t} + \frac{\partial }{\partial x}(H_0+\eta -h)u + \frac{\partial }{\partial y}(H_0+\eta -h)v = 0\]
+
+and so we can now write the complete equations, introducing the total
+depth of the fluid \(H=H_0+\eta -h\):
+
+\[\begin{aligned}
+\frac{\partial u}{\partial t} &= -u \frac{\partial u}{\partial x} -v \frac{\partial u}{\partial y} + f v -g\frac{\partial H}{\partial x} \\
+\frac{\partial v}{\partial t} &= -u \frac{\partial v}{\partial x} -v \frac{\partial v}{\partial y} - f u -g\frac{\partial H}{\partial y}  \\
+\frac{\partial H}{\partial t} &= - \frac{\partial (u H)}{\partial x} - \frac{\partial (v H)}{\partial y} \\
+\end{aligned}\]
+Linearizing around a state of rest, constant rotation:
+\begin{align*}
+    \frac{\partial u}{\partial t}-fv=-g\frac{\partial\eta}{\partial x}\\
+    \frac{\partial v}{\partial t}+fv=-g\frac{\partial\eta}{\partial y}\\
+    \frac{\partial\eta}{\partial t}=-H_0\left(\frac{\partial u}{\partial x}+\frac{\partial v}{\partial y}\right)
+\end{align*}
+the solutions are, respectively:
+\begin{align*}
+    u(x,y,t)=\text{Re}\left[\tilde{u}\sin(ly)e^{i(kx-\omega t)}\right] \\
+    v(x,y,t)=\text{Re}\left[\tilde{v}\sin(ly)e^{i(kx-\omega t)}\right]\\
+    \eta(x,y,t)=\text{Re}\left[\tilde{\eta}\sin(ly)e^{i(kx-\omega t)}\right]
+\end{align*}
+two modes\footnote{mode in this context refers to a specific solution or pattern of motion that satisfies the governing equations of the flow, under certain boudaries or initial conditions.}, a stationary mode and a gravity mode (Poincare' modes): $\omega=0$ and $\omega^2=f^2+gH_0(k^2+l^2)$
+
+
+\subsection{\texorpdfstring{The vorticity equation on the
+\(\beta\)-plane}{The vorticity equation on the \textbackslash beta-plane}}\label{the-vorticity-equation-on-the-beta-plane}
+
+The spherical geometry maybe cumbersome without adding much the
+conceptual discussions, so it may be convenient to introduce cartesian
+coordinates \((x,y)\) such that \(dx \approx a \cos\theta d \lambda\)
+and \(dy \approx a d\theta\), we will also define
+\(f= 2\Omega \sin\theta\), then we obtain equation formally identical to
+the Cartesian equation described previously
+
+\[\begin{aligned}
+\frac{\partial u}{\partial t} &= -u \frac{\partial u}{\partial x} -v \frac{\partial u}{\partial y} + f v -g\frac{\partial \eta}{\partial x} \\
+\frac{\partial v}{\partial t} &= -u \frac{\partial v}{\partial x} -v \frac{\partial v}{\partial y} - f u -g\frac{\partial \eta}{\partial y} \\
+&\frac{\partial u}{\partial x}+\frac{\partial v}{\partial y} = 0 \\
+\end{aligned}\]
+
+where we have kept the pressure terms, though they are zero in this case
+( h is a constant) as a placeholder. In vector notation (all vectors are
+two-dimensional)
+
+\[\frac{\partial \mathbf{v}}{\partial t} = - (\mathbf{v} \cdot \nabla)\mathbf{v} - f(\hat{k}\times \mathbf{v}) - \nabla \eta\]
+
+using the vector identity
+
+\[\frac{1}{2}\nabla(A\cdot A) = (A \cdot\nabla)A + A\times(\nabla\times A)\]
+
+or
+
+\[\frac{1}{2}\nabla(\mathbf{v}\cdot \mathbf{v}) = (\mathbf{v} \cdot\nabla)\mathbf{v} + \mathbf{v}\times(\nabla\times \mathbf{v})\]
+
+so substituting in the equation
+
+\begin{equation}\label{eq.21}
+    \frac{\partial \mathbf{v}}{\partial t} = -(\zeta + f) \hat{k}\times \mathbf{v} -\nabla(\eta+\frac{1}{2}|\mathbf{v}^2|)
+\end{equation}
+
+(for 2-dimensional flows \(\nabla \times \mathbf{v} = \zeta \hat{k}\)).
+
+and to express more clearly the components
+
+\[\begin{aligned}
+\frac{\partial u}{\partial t} &= (\zeta +f) v -\frac{\partial }{\partial x}(\eta+\frac{1}{2}|\mathbf{v}^2|)\\
+\frac{\partial v}{\partial t} &= -(\zeta +f) u -\frac{\partial }{\partial y}(\eta+\frac{1}{2}|\mathbf{v}^2|)
+\end{aligned}\]
+
+By taking the curl of eq.\ref{eq.21} we obtain an equation for the vorticity:
+
+\[\begin{aligned}
+\frac{\partial \zeta}{\partial t} &= -\frac{\partial }{\partial x}(\zeta +f) u -\frac{\partial }{\partial y}(\zeta +f) v  \\
+&-\frac{\partial }{\partial x} \frac{\partial }{\partial y}(p+\frac{1}{2}|\mathbf{v}^2|) +\frac{\partial }{\partial y}\frac{\partial }{\partial x}(p+\frac{1}{2}|\mathbf{v}^2|) \\
+&=  -\frac{\partial }{\partial x}(\zeta +f) u -\frac{\partial }{\partial y}(\zeta +f) v = -\mathbf{v}\cdot\nabla(\zeta +f)
+\end{aligned}\]
+
+where we have used the non divergence condition
+\(\frac{\partial u}{\partial x}+\frac{\partial v}{\partial y}=0\) in the
+last step. Once again, this is the equation for the conservation of
+total vorticity where we can see that the relative vorticity is a sort
+of additional Coriolis effect (or alternatively that the Coriolis term
+is a source of vorticity). Because of the $\beta$-plane $f=f_0+\beta y$: 
+\begin{equation}\label{Barotropic equation}
+    \frac{\partial\zeta}{\partial t}=-u\frac{\partial\zeta}{\partial x}-v\frac{\partial\zeta}{\partial y}-\beta v
+\end{equation}
+that is the non-divergent barotropic vorticity equation. And the potential vorticity:
+\begin{equation}\label{eq.potential vorticity}
+    \frac{D}{Dt}(\zeta +f)=0
+\end{equation}
+
+\(f= 2\Omega \sin(\theta)\) is the Coriolis coefficient, that is the
+vertical component of the Earth planetary vorticity. 
+
+In the new coordinates \((x,y)\) for longitude and latitude, the
+streamfunction and the vorticity then are
+
+\[u=-\frac{\partial \psi}{\partial y}\qquad v=\frac{\partial \psi}{\partial x} \qquad
+\zeta = \frac{\partial x}{\partial x} -\frac{\partial u}{\partial y}=\nabla^2\psi\]
+
+introducing the Jacobian operator
+
+\[J(A,B) = \frac{\partial A}{\partial x}\frac{\partial B}{\partial y} - \frac{\partial A}{\partial y}\frac{\partial B}{\partial x}\]
+
+we obtain a single equation for the streamfunction
+
+\[\frac{\partial }{\partial t}\nabla^2\psi  + J(\psi, \nabla^2\psi +f_0 + \beta y) = 0\]
+that represents the quasi-geostrophic potential vorticity.
+
+
+
+\section{Rossby waves}
+Rossby waves or planetary waves are large-scale waves that arise in a rotating fluid, such as the Earth's atmosphere or oceans, due to the variation of the Coriolis parameter $f$ with latitude. In particular, they are caused by the $\beta$-effect, i.e. $\beta=\frac{\partial f}{\partial y}=\frac{2\Omega\cos\phi}{a}$. These waves typically have very large horizontal wavelengths and govern large-scale motions in the atmosphere and oceans, their restoring force is the variation of the Coriolis force with latitude. Rossby waves are much slower than other atmospheric or oceanic waves, such as gravity or sound waves.
+
+Linearizing around a basic state $U$: 
+\begin{equation}
+    \frac{\partial\zeta'}{\partial t}+U\frac{\partial\zeta'}{\partial x}-\beta\nu'=0
+\end{equation}
+the solutions are: 
+\begin{equation}
+    \psi(x,y,t)=\text{Re}\left[\tilde{\psi}\sin(ly)e^{i(kx-\omega t)}\right]
+\end{equation}
+as $$\zeta=\nabla^2\psi=-(k^2+l^2)\psi$$
+with $u=-il\psi$ and $\nu=ik\psi$
+the dispertion relation is $$\omega=Uk-\frac{k\beta}{(k^2+l^2)}$$
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-19 143432.png}
-    \caption{Pressure coordinates vs sigma coordinates: $\sigma=\frac{p-p_T}{p_s-p_T}$}
+    \includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-21 162828.png}
+    \caption{Rossby waves}
     \label{fig:enter-label}
 \end{figure}
-\paragraph{Hybrid coordinates}
-It is a sigma coordinates close to the ground, but smoothly transform into a
-pressure coordinate far from the ground
 
-\paragraph{Vertical Advection}%check
-\begin{equation}\label{eq.vertical advection}
-    \left(\sigma\frac{\partial U}{\partial\sigma}\right)=\alpha_k
-\end{equation}
+
+
+
 

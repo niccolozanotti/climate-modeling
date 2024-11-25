@@ -10,6 +10,8 @@
  
 % frontispiece 
 \usepackage{layout/frontespizio}
+
+
 \usepackage[pages=some]{background}
 
 \begin{document}
@@ -25,8 +27,8 @@
 \topskip0pt
 \vspace*{\fill}
 The contents of these notes stem from the course of Climate System Modeling taught by Prof. \textbf{Antonio Navarra}\footnote{\href{https://www.cmcc.it/people/navarra-a}{CMCC}, \href{https://www.unibo.it/sitoweb/antonio.navarra/en}{Unibo}} at University of Bologna for the academic year 2024/2025 and from his notes available at \href{https://wanderer.cmcc.it}{wanderer.cmcc.it}\footnote{
-        If prompted, use the credentials: \{ \texttt{user}: \texttt{cmcc}  ,
-        \texttt{psw}: \texttt{pD8phJg3e76J} \} }. 
+	If prompted, use the credentials: \{ \texttt{user}: \texttt{cmcc}  ,
+	\texttt{psw}: \texttt{pD8phJg3e76J} \} }.
 
 The source code is available on \href{https://github.com/niccolozanotti/climate-modeling/}{Github}.
 \vspace*{\fill}
@@ -42,16 +44,18 @@ The source code is available on \href{https://github.com/niccolozanotti/climate-
 %%%%%%%%%%%%%%%%%%%% OUR VERSION %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\include{chapters/1.Physical description of climate system}
-% \include{chapters/2.Fundamental Equations}
-% \include{chapters/3.Numerical methods used in atmospheric models}
-\include{chapters/4.Ocean Models}
-%\include{chapters/4.1Climate Models}
-%\include{chapters/5.Exploring Variability}
-%\include{chapters/6.SST forcing}
-%\include{chapters/7.Earth System Model}
-%\include{chapters/8.Theory of symmetric circulation}
+\input{chapters/chapter1a-intro}
+\input{chapters/chapter1b-circulation}
+\input{chapters/chapter2-fund-eqs}
+\input{chapters/chapter3-numerical-methods}
+\input{chapters/chapter4a-climate-models}
+\input{chapters/chapter4b-ocean-models}
+\input{chapters/chapter5-exploring-var}
+\input{chapters/chapter6-sst-forcing}
+\input{chapters/chapter7-earth-system-models}
+\input{chapters/chapter8-theory-simm-circ}
 
+\input{chapters/appendixA}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%% GLOBAL DYNAMICS CONTENTS %%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -87,5 +91,6 @@ The source code is available on \href{https://github.com/niccolozanotti/climate-
 %%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \printbibliography
+\addcontentsline{toc}{chapter}{Bibliography}
 
 \end{document}
