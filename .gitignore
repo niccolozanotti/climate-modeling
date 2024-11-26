@@ -6,6 +6,13 @@
 ## latexindent.pl backup files
 *.bak0
 *.bak1
+*.bak2
+*.bak3
+*.bak4
+*.bak5
+*.bak6
+*.bak7
+*.bak8
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
