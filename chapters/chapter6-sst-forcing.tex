@@ -1,5 +1,5 @@
-% Updated 2024-11-26 23.30 
-% source: Climate modeling notes EXPLORING +SST
+% Updated 2024-11-29 15.34
+% source: Climate modeling notes 
 
 \chapter{SST Forcing}
 One of the primary ways climate forcing impacts SSTs is through changes in radiative energy balance. For instance, increasing greenhouse gas concentrations trap outgoing longwave radiation, causing the Earth’s surface, including the oceans, to warm. Oceans absorb more than 90\% of this excess heat, resulting in widespread SST increases. The effects are not uniform, as ocean dynamics influence regional variations in warming. For example, the Western Pacific Warm Pool retains more heat due to strong stratification, while upwelling regions, such as the eastern Pacific, may experience slower warming due to the cooling effects of vertical mixing and horizontal ocean currents.
@@ -100,7 +100,7 @@ However interesting things happen when the heating varies in x, and it is locali
 
 
 An idealized case can be given by
-\begin{figure}[h!]
+\begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/22image.png}
 	\label{fig:enter-label}
@@ -113,7 +113,7 @@ AUDIO 33'
 In 1979 Grose and Hoskins published a paper describing an investigation that has been conducted of the steady response to orography as described by the linearized shallow-water equations on the sphere.
 Results have been obtained for both idealized and realistic climatological mean zonal flows when perturbed by simple isolated mountains.
 
-\begin{figure}[h!]
+\begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/19image.png}
 	\caption{Equations on the sphere}
@@ -214,3 +214,43 @@ Teleconnections, or long-distance climate influences, can arise from dynamical c
 
 Atmospheric anomalies tend to grow along gradients, where temperature or pressure contrasts enhance the instability and amplify the response to heating. This gradient-based growth underpins many of the patterns observed in teleconnections and regional responses to SST anomalies.
 
+bacause of difference in the SST, extra convection, extra precipitations, if systematic--> response equivalent to rossby waves showed in slide 25.
+atm is linear or nonlinear? for synoptic part the linear stat method were unable to match numerical methods--> in synoptic timecales you should need nonlinear systm, in longer timescales (when we look for steady sol), we concentrate on average over long periods--> time means, are they linear or not?
+
+there was a debate either if these timescales were enough to describe anomalies.
+
+rowell 1995. if the ocean has so much impact on the atmosphere (Lorenz result on predicatability (predict over two weeks)were known). If we can predict the ocean, we can redict atm snomalies for much longer timesccales. how strong is the ocean in manipulating the atm anomalies? --> potrntial predictability.
+
+
+system caotic: variability internal (implicit in dyn of the system as a fluid system) and external (response to what a system gives to ext forcing factors), ignoring that everythng might be coupled--> boundary of SST creating an effective forcing. how srong is the capacity of SSt in generating anomalies?--> pot predictab
+if thw control is strong, strong predict  in SST means i know what happens in atm
+how the atm will responde if i give you the SST of the next 6 months? two parts: one that is there even if sst is constant(int), one due to the variation of sst (external).
+pot.var: how much of the tot variance is described by the first or second one? if the system is insensitive to the forcing, even if i give you the perfect sst, i will not be able to predict it. the idea is the following: two ensembles (slide 32)
+
+
+the system is caotic i can explore the variability changing initial conditions of the system. imposing an SST, every run sees the same sst but interprets it in different ways. because of caotic nature of atm, they will have different evolutions over time, they though internally represent the same sst variation: there must be a way of extracting from this set the info separating the internal var from each run. So same external forced prescribed by SST. if you use one model you might have errors connected to that model--> to get rid of that, you make more models.
+
+analysis of variance: ANOVA (slide 33) the ration between the two sigmas is important to determine the influence of sst or what. each grid points I have time series and realizations, I'm averaging (all the high frequency fluctuations will compensate (smoother timescales), the things the are in common are ?? $\mu_i$ mean over the ensempble of every grid point, take every ensempble and average them. the variance of the ensemble mean is the sst variance. average is over the ensemble modes, while variance is over time
+sigma sst variance 29' AUDIO
+
+this gives us a way to estimate the two components of the variance.
+
+
+the ratio is the potential predictability slide 35.
+
+potential predictability of precipitation. the entire variance is explained by sst var (the ensemble means is explaining the variance) or all the grids give the same response--> SST can control tropical precipitations very well. in mid lat the things get shaky. Precipitations generate heat.
+
+hosk and curr result heat--> anomalies in mid lat
+if the source of climate var is in the tropics, i'll be okay.
+AUDIO
+chasing seasonal predictions.
+
+monsoonal circ are not completely controlled by sst variability.
+
+
+
+observations have only one realization: can i have an ensemble mean?
+slide 38. monthly serie of SST this way.
+
+plot of potential pred: vr of SSt pver the tot var, normalized to be 1. slide 39. using the entire sst. we expect it on the tropic: SST controls most of the variance in the upper layer.
+We can choose to use the tropical SST--> slide 40. mid latitudes are difficult.
