@@ -1,29 +1,42 @@
-% Updated 2024-11-25 19.36 
+% Updated 2024-11-30 15.40 
 % source: Climate modeling notes
 
 \chapter{Climate Models}
-We will use the shallow water equation, but in order to have a realistic case, we need to put it on the sphere. We start from the usual equation, for convenience we introduce the geopotential $\Phi=gH$:
+We will use the shallow water equation, but to have a realistic case, we need to put it on the sphere. We start from the usual equation, for convenience we introduce the geopotential $\Phi=gH$:
 \begin{align}
 	\frac{\partial u}{\partial t}=-u\frac{\partial u}{\partial x}-v\frac{\partial u}{\partial y}+fv-\frac{\partial \Phi}{\partial x} \\
 	\frac{\partial v}{\partial t}=-u\frac{\partial v}{\partial x}-v\frac{\partial v}{\partial y}-fu-\frac{\partial \Phi}{\partial y} \\
 	\frac{\partial \Phi}{\partial t}=-\frac{\partial u\Phi}{\partial x}-\frac{\partial v\Phi}{\partial y}
 \end{align}
-Let's use $U=u\cos\phi$, $V=v\cos\phi$, $\vec{V}=\hat{i}U+\hat{j}V$. Until now all the methods we have introduced are designed to give us instruments to simulate and march in the future the atmosphere and the oceans and, probably, much more. What is the difference between all these applications ?
-\begin{enumerate}
-	\item Forecasts: The target is the instantaneous state of the system (atmosphere/oceans …) We start at a specific moment that we try to specify as accurately as we can and we want desperately to stay close to the state of the system for as long as we can.
-	\item Climate: The target is the statistics of the system. We want to reproduce its statistical distributions and the initial condition may not be so important, in fact we could start at rest.
-\end{enumerate}
-\paragraph{Forcing} Which factors drive the evolution in both cases ?
-\begin{enumerate}
-	\item Forecasts: The internal dynamics of the atmosphere/ocean is the dominant factor as the initial condition is modified and carried in the future by the processes that we have seen. Conservation properties becomes progressively more important as the range of the forecasts becomes longer.
-	\item Climate: The statistics is influenced by the external forcing and the structure (composition) of the atmosphere and the ocean. For a given external forcing a certain statistics (hopefully only one) will develop in equilibrium with the forcing and a given composition. Conservation properties are important.
-\end{enumerate}
+Let's use $U=u\cos\phi$, $V=v\cos\phi$, $\vec{V}=\hat{i}U+\hat{j}V$. Until now all the methods we have introduced are designed to give us instruments to simulate and march the atmosphere and the oceans and, probably, much more.
+What is the difference between all these applications?
+\begin{itemize}
+	\item Forecast (the target is the instantaneous state of the system)
+	      We start at a specific moment that we try to specify as accurately as we can and we want desperately to stay close to the state of the system for as long as we can.
+	      Here the main forcing is the internal dynamic of the atmosphere and the ocean. The conservation properties becomes progressively more important as the range of the forecasts becomes longer.
+	\item Climate (the target is the statistics of the system)
+	      We want to reproduce its statistical distributions and the initial condition may not be so important, in fact we could start at rest.
+\end{itemize}
+Here the main forcing are the external forcing and the structure (composition) of the atmosphere and the ocean. Conservation properties are important.
+
+
 \section{Radiative Model}
-The radiation wavefront is essentially flat when it reaches the Earth orbit, therefore it distributes its energy unequally on the planet surface.
-\begin{equation}\label{e.radiation}
-	4\pi R^2F_S=S\pi R^2(1-a)
-\end{equation}
-The planetary albedo $a$ is about $0.3$, and the solar constant conventional value is $1361$ W/m$^2$.
+Firstly, we have to take into consideration the fact that there must be preserved balance between absorbed solar radiation and emitted planetary radiation.
+To compute the absorbed radiation we have to take into consideration the Solar constant $S_{0}$ which is the energy per unit of area and time that reaches a perpendicular surface placed at a distance of 1 astronomical unit. Therefore, the energy incident on the planet is given by the product of the solar constant and the area that the planet exposes to the incident radiation perpendicularly to it (as shown in Figure \ref{fig: fig1})
+It is called shadow area and it is approximately $\pi R^2$ where R is the radius of the planet taken into consideration.
+Given that the absorbed radiation is equal to $S_{0}= \pi R^2$
+This absorbed radiation during all day is distributed along the entire planet, so along the entire sphere $4\pi R^2$; so that it becomes $S_{0}= \frac{\pi R^2}{4\pi R^2}=\frac{S_{0}}{4}$
+
+Furthermore, it must be kept in mind that not all the incident radiation is absorbed; part of it will be reflected. The measure of a planet's reflectivity is called albedo.
+So that $\frac{S_{0}}{4} (1-\alpha)$ is the real absorbed radiation.
+The planetary albedo $a$ is about $0.3$, and the solar constant conventional value is $1361$ W/m$^2$
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/47image.png}
+	\caption{Enter Caption}
+	\label{fig: fig1}
+\end{figure}
+.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-19 154224.png}
@@ -31,12 +44,16 @@ The planetary albedo $a$ is about $0.3$, and the solar constant conventional val
 	\label{fig:enter-label}
 \end{figure}
 then
-\begin{align*}
+\begin{align*}\label{eq1}
 	F_S=\frac{S(1-a)}{4}                            \\
 	\sigma T^4= \frac{S(1-a)}{4} \,\,\text{S-B Law} \\
 	T=\left(\frac{S(1-a)}{4\sigma}\right)^{1/4}
 \end{align*}
-with $S=1361$, $a=0.3$ and $\sigma=5.67 \, \, 10^{-8}$, turns out that $T_S=254\text{K}=-18°\text{C}$. This is not the surface temperature that we at the surface, it is considerably colder.However satellite observations are giving us the observed long wave outgoing radiative flux
+with $S=1361$, $a=0.3$ and $\sigma=5.67 \, \, 10^{-8}$, turns out that $T_S=254\text{K}=-18°\text{C}$.
+In \ref{eq1} $\sigma T^4$ is the emitted radiation by a blackbody at temperature T due to Stephan Boltzmann law.
+It can therefore be concluded that the Earth-atmosphere system cannot be simply considered as a black body emitting at the temperature of the Earth's surface, since part of the emitted radiation is absorbed by the atmosphere itself. In this sense, the Earth's surface temperature does not reflect that of a black body in equilibrium with the incident solar radiation. However, the emission temperature obtained in this way is in good agreement with the temperature of the tropopause. The reason for this is that the tropopause represents the limit above which there is no significant absorption of infrared radiation, so the system, as seen from the tropopause, can indeed be approximated as a black body in terms of emission, in equilibrium with the incident solar radiation.
+
+Satellite observations are giving us the observed long wave outgoing radiative flux
 from the planet outside the atmosphere. In fact it is so detailed that we have seen this flux geographically distributed over the all surface. Its global average is $226\, \, \text{W/m}^2$ from ERA5. With the satellite observations, we can came up with an equation with the observed long wave outgoing radiative flux geographically distributed all over the surface. $OLR_{mean}$ stands for Outgoing Longwave Radiation.
 We can use that flux to find the corresponding temperature:
 $$\sigma T^4=OLR_{mean}\Longrightarrow T=\left(\frac{OLR}{\sigma}\right)^{1/4}$$
@@ -60,7 +77,7 @@ $\alpha$ is the albedo, $\tau$ is transmissivity. The equation for the surface b
 \begin{equation}\label{eq.surface balance}
 	\epsilon (1-\alpha)S+4\sigma T_a^4=4\sigma T_S^4
 \end{equation}
-where $\epsilon$ is a factor accounting for possible absorption of the atmosphere at solar radiation, $(1-\alpha)S$ (quantità di radiazione solare che riesce ad essere catturata dall'atmosfera) is carried from the atmosphere, $4\sigma T_a^4$ is emitted by the atmosphere and $4\sigma T_S^4$ emitted by the surface.
+where $\epsilon$ is a factor accounting for possible absorption of the atmosphere at solar radiation, $(1-\alpha)S$  is carried from the atmosphere, $4\sigma T_a^4$ is emitted by the atmosphere and $4\sigma T_S^4$ emitted by the surface.
 $T_a$ is the atmospheric temperature and $T_S$ the surface temperature.
 
 
@@ -89,6 +106,8 @@ Lets’ look at different situations.
 	      $$F_S=476 \,\text{W/m}^2 \quad F_a=238 \, \text{W/m}^2$$
 	      $$T_S= 302 \,\text{K}\approx 28°\text{C} \quad T_a=254 \, \text{K}\approx -19°\text{C}$$
 \end{enumerate}
+
+
 \textcolor{RoyalBlue}{Opacity}: greenhouse work CHECKKKK.
 \subsection{Three-layer atmosphere}
 %If you are in continuous conditions the net flux between the fluxes up and down and the heating is proportional to the flux divergent that is the net balance between the 2 level is different
@@ -129,13 +148,16 @@ The factor that is the change of $OLR$ that corresponds to the change of opacity
 	R\approx-\Delta OLR
 \end{equation}
 \subsection{Many more layers}
-Radiative equilibrium for 26 levels, with a realistic radiation calculation and observed components gases, with transmissivity and absorption coefficients ($T$ profile with vertical coordinate $p$).
+What about if we consider atmosphere composed by many more layers?
+In Figure \ref{fig:fig2} is shown a radiative equilibrium for 26 levels, with a realistic radiation calculation and observed components gases, with transmissivity and absorption coefficients ($T$ profile with vertical coordinate $p$).
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 130113.png}
+
 	\caption{the black line corresponds to the observations; the blue to the component of the atmosphere, it decreases with $T$ but in the stratosphere it changes inclination; the orange is without the ozone, responsable for the change of the slope in the stratosphere; the green one is without the water meaning that most of the opacity of the atmosphere disappears suddently, at the bottom $T$ is very cold; red without ozone and water, isotherm basically there is no atmosphere.}
-	\label{fig:enter-label}
+	\label{fig:fig2}
 \end{figure}
+
 The stratosphere is not still, we have convection: some of energy of the layer is brought up by radiation where it must be dispased?? by radiation So radiative equilibrium is possible but it must be modified. So these errors must be eliminated by radiation????? %martiii che cazz hai scritto dc
 The most important thing of water vapor is cooling $\rightarrow$ radiative convective equilibrium.
 

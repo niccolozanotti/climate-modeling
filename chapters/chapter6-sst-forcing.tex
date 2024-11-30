@@ -1,5 +1,5 @@
-% Updated 2024-11-29 15.34
-% source: Climate modeling notes 
+% Updated 2024-11-30 15.52
+% source: Climate modeling notes EXPLORING +SST
 
 \chapter{SST Forcing}
 One of the primary ways climate forcing impacts SSTs is through changes in radiative energy balance. For instance, increasing greenhouse gas concentrations trap outgoing longwave radiation, causing the Earth’s surface, including the oceans, to warm. Oceans absorb more than 90\% of this excess heat, resulting in widespread SST increases. The effects are not uniform, as ocean dynamics influence regional variations in warming. For example, the Western Pacific Warm Pool retains more heat due to strong stratification, while upwelling regions, such as the eastern Pacific, may experience slower warming due to the cooling effects of vertical mixing and horizontal ocean currents.
@@ -33,8 +33,8 @@ In equation \ref{eq. 2.1} D is the divergence and it is equal to
 \begin{equation}
 	D=u_x + v_y = w_z = \frac{\partial w}{\partial z}
 \end{equation}
-and the last term is the advection.
 
+where $\frac{\partial w}{\partial z}$ is the vertical derivative of the vertical velocity and the last term of \ref{eq. 2.1} is the advection.
 
 If we linearize \ref{eq. 2.1}, all the nonlinear terms will be thrown away so that
 \begin{equation}\label{eq 2.3}
@@ -45,14 +45,20 @@ If we linearize \ref{eq. 2.1}, all the nonlinear terms will be thrown away so th
 \end{equation}
 
 The equation \ref{eq 2.3} stresses that vorticity evolves due to these two terms.
-Assuming steady motion
+Assuming steady motion, meaning vertical derivative of vertical velocity bust be balanced by the advection
+
 \begin{equation}
 	f \frac{\partial w}{\partial z} = \beta v
 \end{equation}
-
+If I integrate top - bottom this equation, I'll obtain
 What about the atmosphere?
-We need to use a shallow water equation centered at the equation, this means in beta plane approximation.
+\begin{equation}
+	\beta V = f(w_{\text{top}} - w_{\text{bottom}})
 
+\end{equation}
+where V is the vertical average of v.
+This shows that meridional motion must be balanced by vertical velocity if you are in a steady state.
+In the atmosphere we need to use a shallow water equation centered at the equation, this means in beta plane approximation.
 \begin{equation}
 	u_z- fv = -g \frac{\partial u}{\partial x}
 \end{equation}
@@ -95,25 +101,60 @@ If we assume zonally independent motions that are no dependent from x \ref{2.11}
 We could solve this equation by eliminating momentum forcing (X,Y)=0 and considering the heating located at a special latitude away from the equator.\\[0.5 cm]
 
 What is the response of the atmosphere?
-SLIDE 8-9 AUDIO
-However interesting things happen when the heating varies in x, and it is localized as the observation of precipitation shows. The precipitation in the mid-latitude is aligned along the preferred path of developing storms, the storm tracks. This precipitation is due to the rising of warm, moist air due to the baroclinic instabilities in the westerly current of the mid-latitudes. Precipitation linked to the baroclinic storm tracks in Winter can be seen from the East coast of North America elongating into Europe and the Mediterranean and from the Asian Far East into the Pacific Ocean. The Summer monsoonal precipitations of the South Asian Monsoon over India and Indochina, of the West Africa Monsoon, and of the weaker North American Monsoon are clearly visible. In general, major convective centers are present over South America and over the Maritime Continent.
+The bottom panel of Figure \ref{fig: fig2.1} is the upper flow: the stationary response is asymmetric in longitude, and two kinds of equatorial waves (Kelvin and Rossby) develop. Because of this asymmetry, their shapes are different.
+Contour lines give the pressure pattern and you're creating two cyclones north and south.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/24image.png}
+	\caption{Enter Caption}
+	\label{fig: fig2.1}
+\end{figure}
 
+Look that we didn't put any forcing in the equations above, but the heating is creating vortices both in the low and upper levels, which will have consequences. The heating is centered a little bit off the equator but the cyclones are shifted in a more. So the dynamics is that there is a motion due to the heating, but because of the dynamic compensation between divergence and vorticity, in the upper level divergence is compensated by the creation of this cycles.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/23image.png}
+	\caption{Enter Caption}
+	\label{fig: fig 2}
+\end{figure}
+
+
+As you can see from Figure \ref{fig: fig 2}, the arrows are getting into the heating region, because the air is rising there.
+So the pattern is: here there is heating. air is coming into the heating region, goes up, and then goes out. It's not a simple pattern due to the presence of cyclones.
+This famous paper shows for the first time, the fact that stationary heating sources provide a stationary response that has a very large scale
+
+However interesting things happen when the heating varies in x, and it is localized as the observation of precipitation shows.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/25image.png}
+	\caption{Enter Caption}
+	\label{fig:enter-label}
+\end{figure}
+\\
 
 An idealized case can be given by
-\begin{figure}[htp!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/22image.png}
 	\label{fig:enter-label}
 \end{figure}
 
-What about if I assume a basic state, meaning a rest atmosphere, and do the same operations as before? Imposing specific boundary conditions led us to a kinematic condition telling us that if air is heating near a mountain, this air does not go inside the mountain but the flow will go above it. This phenomenon stresses that mountains are a steady source of vorticity.
 
-AUDIO 33'
+
+
+\\What about if I assume a basic state, meaning a rest atmosphere, and do the same operations as before? Imposing specific boundary conditions led us to a kinematic condition telling us that if air is heating a mountain, this air does not go inside the mountain but the flow will go above it. This phenomenon stresses that mountains are a steady source of vorticity.
+
+If we think at steady motions in the atmosphere there are two main places where you can find
+\begin{itemize}
+	\item steady heating (equator)
+	\item response to the forcing of vorticity of the mountain (mid latitude)
+\end{itemize}
 
 In 1979 Grose and Hoskins published a paper describing an investigation that has been conducted of the steady response to orography as described by the linearized shallow-water equations on the sphere.
 Results have been obtained for both idealized and realistic climatological mean zonal flows when perturbed by simple isolated mountains.
 
-\begin{figure}[htp!]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/19image.png}
 	\caption{Equations on the sphere}
@@ -124,11 +165,16 @@ where $\zeta$ is the absolute vorticity, D the divergence, $\Phi$
 the average height of the fluid multiplied by the gravitational constant g, $\varphi$ the deviation of the free surface from that height multiplied by g and $\varphi^*$ the height of the orography multiplied by g. The latitude and longitude are denoted by $\theta$ and $\lambda$ with $\mu = \sin \theta$. The variables U and V are respectively the zonal and the meridional velocities multiplied by $\cos \theta$.
 
 
-The two scientists want to transform equations in Figure \ref{fig: fig 2.1} in a steady state, to have it they need forcing (external from the system and not described dynamically) and they have to eliminate the time derivative substituting it with the dissipative term.
+The two scientists want to transform equations in Figure \ref{fig: fig 2.2}  in a steady state, to have it they need forcing (external from the system and not described dynamically) and they have to eliminate the time derivative substituting it with the dissipative term.
 In particular, the forcing here is represented by $\varphi^*$ because scientists arbitrarily impose it.
-AUDIO 48' POMEE
-
-
+They use spectral models to solve shallow water equations, the orography $\varphi^*$ had to be expressed in spherical harmonics and if you do that you'll start to have Gibbs oscillations (Figure \ref{fig:fig 2.5})
+Because of the spherical harmonics you get Gibbs waves in both meridional and zonal directions, that is particular evident in South America.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/26image.png}
+	\caption{model earth orography shown in polar stereographic projections}
+	\label{fig:fig 2.5}
+\end{figure}
 
 
 \subsection{What is the mechanism by which SST is affecting climate?}
@@ -213,44 +259,3 @@ The implications of anomalous heating differ significantly between regions. For 
 Teleconnections, or long-distance climate influences, can arise from dynamical causes over intermediate timescales (e.g., months). They are often linked to SST variability and heating-induced circulation changes. However, the assumption of a simple atmospheric basic state limits these analyses because real-world atmospheric states are far more complex.
 
 Atmospheric anomalies tend to grow along gradients, where temperature or pressure contrasts enhance the instability and amplify the response to heating. This gradient-based growth underpins many of the patterns observed in teleconnections and regional responses to SST anomalies.
-
-bacause of difference in the SST, extra convection, extra precipitations, if systematic--> response equivalent to rossby waves showed in slide 25.
-atm is linear or nonlinear? for synoptic part the linear stat method were unable to match numerical methods--> in synoptic timecales you should need nonlinear systm, in longer timescales (when we look for steady sol), we concentrate on average over long periods--> time means, are they linear or not?
-
-there was a debate either if these timescales were enough to describe anomalies.
-
-rowell 1995. if the ocean has so much impact on the atmosphere (Lorenz result on predicatability (predict over two weeks)were known). If we can predict the ocean, we can redict atm snomalies for much longer timesccales. how strong is the ocean in manipulating the atm anomalies? --> potrntial predictability.
-
-
-system caotic: variability internal (implicit in dyn of the system as a fluid system) and external (response to what a system gives to ext forcing factors), ignoring that everythng might be coupled--> boundary of SST creating an effective forcing. how srong is the capacity of SSt in generating anomalies?--> pot predictab
-if thw control is strong, strong predict  in SST means i know what happens in atm
-how the atm will responde if i give you the SST of the next 6 months? two parts: one that is there even if sst is constant(int), one due to the variation of sst (external).
-pot.var: how much of the tot variance is described by the first or second one? if the system is insensitive to the forcing, even if i give you the perfect sst, i will not be able to predict it. the idea is the following: two ensembles (slide 32)
-
-
-the system is caotic i can explore the variability changing initial conditions of the system. imposing an SST, every run sees the same sst but interprets it in different ways. because of caotic nature of atm, they will have different evolutions over time, they though internally represent the same sst variation: there must be a way of extracting from this set the info separating the internal var from each run. So same external forced prescribed by SST. if you use one model you might have errors connected to that model--> to get rid of that, you make more models.
-
-analysis of variance: ANOVA (slide 33) the ration between the two sigmas is important to determine the influence of sst or what. each grid points I have time series and realizations, I'm averaging (all the high frequency fluctuations will compensate (smoother timescales), the things the are in common are ?? $\mu_i$ mean over the ensempble of every grid point, take every ensempble and average them. the variance of the ensemble mean is the sst variance. average is over the ensemble modes, while variance is over time
-sigma sst variance 29' AUDIO
-
-this gives us a way to estimate the two components of the variance.
-
-
-the ratio is the potential predictability slide 35.
-
-potential predictability of precipitation. the entire variance is explained by sst var (the ensemble means is explaining the variance) or all the grids give the same response--> SST can control tropical precipitations very well. in mid lat the things get shaky. Precipitations generate heat.
-
-hosk and curr result heat--> anomalies in mid lat
-if the source of climate var is in the tropics, i'll be okay.
-AUDIO
-chasing seasonal predictions.
-
-monsoonal circ are not completely controlled by sst variability.
-
-
-
-observations have only one realization: can i have an ensemble mean?
-slide 38. monthly serie of SST this way.
-
-plot of potential pred: vr of SSt pver the tot var, normalized to be 1. slide 39. using the entire sst. we expect it on the tropic: SST controls most of the variance in the upper layer.
-We can choose to use the tropical SST--> slide 40. mid latitudes are difficult.

@@ -1,9 +1,9 @@
-% Updated 2024-11-29 15.36
+% Updated 2024-11-30 15.39
 % source: Climate modeling notes
 
 \chapter{Fundamental Equations and processes}
 \section{Fundamental Equations}
-\subsection{Introduction}\label{introduction}
+\subsection{Introduction\label{introduction}}
 
 Sample citation of \cite{Richardson1922}.
 
@@ -667,7 +667,7 @@ Different climate models incorporate all the complex physical processes occurrin
 The radiation that heats and cools the climate system can be divided into two parts: solar radiation (shortwave) and terrestrial radiation (longwave).
 All gases emit and absorb radiation, and each chemical element or combination of elements has a distinct spectrum indicating at which electromagnetic wavelengths its emissions occur. In some cases, the emission may be confined to narrow portions of the electromagnetic spectrum rather than being a smoothly varying function of wavelength. This phenomenon of distinct, discrete emission spectra results from the emission of radiation as an electron moves from one orbit around an atomic nucleus to another orbit closer to the nucleus. If the atom is excited by absorbing energy, then the electron can go to a higher (outer) discrete orbit.
 As electrons return to the inner orbits, emission occurs in the ultraviolet part of the spectrum, producing the emission spectra. If electrons return to intermediate orbits instead of higher orbits, the emission is in the visible part of the spectrum; for the outer orbits, the emission is in the infrared.
-Suppose radiational energy enters an atomic or molecular gas and is absorbed. In that case, it can increase the atomic or molecular energy levels by the same amount of energy involved in the emission. This absorption can be just as discrete or selective as the emission. Thus, if radiation entering a gas cannot excite the atoms or molecules in any energy form, then the radiational energy will not be absorbed or emitted in the gas.\\
+So far we have discussed only the emission of energy from a gas, not the absorption of energy. Suppose radiational energy enters an atomic or molecular gas and is absorbed. In that case, it can increase the atomic or molecular energy levels by the same amount of energy involved in the emission. This absorption can be just as discrete or selective as the emission. Thus, if radiation entering a gas cannot excite the atoms or molecules in any energy form, then the radiational energy will not be absorbed or emitted in the gas.\\
 
 
 In the Earth's atmosphere, ozone, carbon dioxide, and water vapor are very important triatomic molecules that both emit and absorb radiation in certain parts of the electromagnetic spectrum that affect the climate system.
@@ -694,8 +694,8 @@ For the Earth, the approximate global mean surface temperature is 293 K, which y
 Much of the fundamental physics governing radiation transfer is embodied in the following two laws:
 \begin{itemize}
 	\item Lambert's law, which provides a formulation for the decrease in intensity of radiation of a given wavelength as the radiation passes through a given amount of absorbing gas
-	      $$\frac{d}{dz}[I]=Ik\rho$$
-	      where $k$ is the absorption coefficient, $\rho$ is the density of the layer, and $I$ is the radiance, defined as the energy per unit time per  unit area per unit solid angle $d\omega$
+	      $$\frac{d}{dz}[I]=-Ik\rho$$
+	      where $k$ is the absorption coefficient (which tells us what kind of mass is preset), $\rho$ is the density of the layer, and $I$ is the radiance, defined as the energy per unit time per  unit area per unit solid angle $d\omega$
 
 	\item Kirchhoff's law, states that there is a proportionality between radiative absorptivity and emissivity of a gas at the same temperature for any wavelength. A good absorber of radiation at some wavelength is also a good emitter of radiation at the same wavelength.
 
@@ -703,19 +703,32 @@ Much of the fundamental physics governing radiation transfer is embodied in the 
 \end{itemize}
 
 
-??
-%The formula above shows the relationship between intensity from some given direction, unit solid angle do, and the surface, such that integration over $\theta$ of the hemisphere above the horizontal surface yields the flux, $F$, arriving from all angles 
-The flux arriving from all angles:
+The \ref{fig:relat} shows the relationship between intensity from some given direction, unit solid angle $d\omega$, and the surface,
+\begin{wrapfigure}{R}{0.38\textwidth}
+	\begin{center}
+		\includegraphics[width=0.22\textwidth]{uploads/imageIw.png}
+	\end{center}
+	\caption{Relationship between intensity}
+	\label{fig:relat}
+\end{wrapfigure}
+
+such that integration over $\theta$ of the hemisphere above the horizontal surface yields the flux, $F$, arriving from all angles:
 \begin{equation}\label{eq 2}
-	\int(Icos\theta )\,d\omega
+	F=\int(Icos\theta )\,d\omega
 \end{equation}
 
-Dividing \ref{eq 2} by I and forming integrals over optical depth on either side yield
+Dividing \ref{eq 2} by $I$ and forming integrals over optical depth on either side yield
 $$\int \frac{dI}{I} = - \int k \rho \, dz$$ which becomes $$\ln \left( \frac{I}{I_0} \right) = - \int k \rho \, dz$$
 upon integrating the left-hand side.
 This can be written exponentially as $$I = I_0 e^{-\chi}$$
-where $\chi$ is the optical depth or optical pathlength and $$\tau = e^{-\chi}$$
-is the frictional transmission, indicating the fraction of the original radiance that get transmitted to optical depth within attenuating gas.
+
+$$\chi=\int k \rho \,dz $$
+
+
+where $\chi$ is the optical depth or optical path length (rate at which the radiance is degraded, if you move upward, at a certain point you get zero because you have traveled enough to absorb all the radiation)  and
+$$\tau = e^{-\chi}$$
+is the frictional transmission, indicating the fraction of the original radiance that get transmitted to optical depth within attenuating gas. If $\chi=1$, then $\tau=0.37$ , which means the initial intensity $I$ is decreased by a factor of $0.63$ , for normal atmospheric conditions $\chi$ in typically much less than $1$.
+
 
 For a blackbody, the emission is also described by Lambert's law with a different sign
 \begin{equation}\label{eq3}
@@ -729,29 +742,30 @@ or $$\pi B(T) = \sigma T^4$$
 The change of radiance at a point z is made up of two fluxes
 $$\frac{1}{\rho} \frac{dI}{dz} = -k (I - B(T))$$ where $kI$ is the absorption and $kB(T)$ is the emission.
 So the fractional absorption in a layer ($z$,$z_1$) is $$\tau(z, z_1) = \exp \left( - \int_{z_1}^z k \rho \, dz' \right)$$
-
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.4\linewidth]{uploads/16image.png}\quad\includegraphics[width=0.4\linewidth]{uploads/17image.png}
-	\caption{Enter Caption}
+	\includegraphics[width=0.35\linewidth]{uploads/16image.png}\quad\includegraphics[width=0.35\linewidth]{uploads/17image.png}
+	\caption{Non avevamo voglia di scriverli}
 	\label{fig:enter-label}
 \end{figure}
 
 
-\begin{figure}[htp!]
+
+
+\begin{figure}[htpb]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/18image.png}
 	\caption{Enter Caption}
 	\label{fig:enter-label}
 \end{figure}
 
-The solar radiation is a function of the zenith angle
+\paragraph{Solar radiation} The solar radiation is a function of the zenith angle
 $$\cos Z = \sin \varphi \sin \delta + \cos \varphi \cos \delta \cos H$$
 
-where $\phi$ is latitude, $\delta$ is solar declination, which is the angular distance of the sun north of the equator and varies from about 23.5° on June 22 to -23.5° on December 22 and H is the hour angle, which is the longitudinal distance from the point in question to the meridian of solar noon and therefore is 0 at any point experiencing solar noon.
-The solar flux, S, entering at the top of the atmosphere is a function of cos Z and the distance from the sun to the Earth, d, such that
+where $\varphi$ is latitude, $\delta$ is solar declination, which is the angular distance of the sun north of the equator and varies from about 23.5° on June 22 to -23.5° on December 22 and H is the hour angle, which is the longitudinal distance from the point in question to the meridian of solar noon and therefore is 0 at any point experiencing solar noon.
+The solar flux, $S$, entering at the top of the atmosphere is a function of $\cos Z$ and the distance from the sun to the Earth, $d$, such that
 $$S = S_0 f(d) \cos Z$$
-where $S_{0}$ is the so-called solar constant (the solar energy flux received at the outer atmosphere on a surface normal to the solar beam; known now not to be constant) and the factor f(d) is 1.0344 in early January and 0.9674 in July for the present astronomical conditions.
+where $S_{0}$ is the so-called solar constant (the solar energy flux received at the outer atmosphere on a surface normal to the solar beam; known now not to be constant) and the factor $f(d)$ is $1.0344$ in early January and $0.9674$ in July for the present astronomical conditions.
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/image12.png}
@@ -771,19 +785,20 @@ The largest contributors to the eating/cooling rates are water vapor, carbon dio
 The net heating/cooling is zero in the stratosphere because in the one-dimensional model, it is in radiative equilibrium. The troposphere shows a net radiative cooling that is compensated by the vertical transfer of sensible and latent heat from below by moist adiabatic convection. As suggested in Figure \ref{figl} water vapor is the strongest contributor to the troposphere cooling. In the stratosphere cooling due to water vapor, carbon dioxide and ozone is generally compensated by heating due to absorption of solar radiation by zone.
 
 \subsection{Moisture}
-It is the quantity of water vapor in the air and it can be specified in several ways, depending on which reference is used
+In order to discuss precipitation and cloud physics used in climate models, let's introduce basic concepts.
+\textit{Moisture} is the quantity of water vapor in the air and it can be specified in several ways, depending on which reference is used.
 \begin{itemize}
-	\item \textit{mixing ratio} ratio of the density of water vapor to the density of dry air
-	\item \textit{specific humidity} ratio concerning the density of moist air
-	\item \textit{relative humidity} ratio of the mixing ratio to the saturation mixing ratio
+	\item \textit{mixing ratio} ratio of the density of water vapor to the density of dry air $q=\frac{\rho_w}{\rho}$
+	\item \textit{specific humidity} ratio concerning the density of moist air, the density of water vapor over the total density of the air: $h=\frac{\rho_w}{q_w+\rho}$
+	\item \textit{relative humidity} ratio of the mixing ratio to the saturation mixing ratio $r=\frac{q}{q_s}$
 \end{itemize}
 The same as the continuity mass treatment, the changes in the amount of water vapor must be balanced by the moisture sources and sinks
-\begin{equation}\label{eq3}
-	\frac{\partial (\rho q)}{\partial t} + \nabla \cdot (\rho q \vec{v}) + \frac{\partial}{\partial z} (\rho q w) = M + \rho E
+\begin{equation}\label{eqmpis}
+	\frac{dq}{dt}= \frac{1}{\rho}M + E
 \end{equation}
 
-where M is the time rate change of water vapor per unit volume due to condensation or freezing (sinks of moisture) and E is the time rate of change of water vapor content per unit mass due to evaporation from the surface and sub-grid vertical and horizontal diffusion of moisture within the atmosphere (source of moisture).
-Often \ref{eq3} is written in flux form by combining with the continuity equation to obtain
+where M is the time rate change of water vapor per unit volume due to condensation or freezing (sinks of moisture) and E is the time rate of change of water vapor content per unit mass due to evaporation from the surface and sub-grid vertical and horizontal diffusion of moisture within the atmosphere (source of moisture). The first term on the right is a sink of moisture, the second is a source of moisture.
+Often \ref{eqmpis} is written in flux form by combining with the continuity equation to obtain
 
 \begin{equation}\label{eq4}
 	\frac{\partial (\rho q)}{\partial t} + \nabla \cdot (\rho q \vec{V}) + \frac{\partial (\rho q \omega)}{\partial z} = M + \rho E
@@ -795,7 +810,7 @@ If the atmosphere is saturated with moisture, then sensible heat can be added to
 The first law of thermodynamic must incorporate in the nonadiabatic term, this energy conversion process due to phase changes between liquid, solid, and gas.
 If the nonadiabatic process of conversion of water vapor to liquid water is the only energy source incorporated, the first law of thermodynamics becomes
 $$c_p \, dT + \frac{1}{\rho} \, dp = - L \, dqs$$
-The equation of state can be written like $$e = \rho_{W} RT$$ where e is the partial pressure for water vapor
+The equation of state can be written like $$e = \rho_{W} RT$$ where $e$ is the partial pressure for water vapor.
 Substituting in the previous equation, the mixing ratio becomes now
 \begin{equation}\label{eq2}
 	q\approx 0.622 \frac{e}{p}
@@ -810,8 +825,12 @@ $$\frac{1}{e_s} \frac{d e_s}{d T} = \frac{1}{q_s} \frac{d q_s}{d z} - \frac{1}{p
 The Clausius-Clapeyron equation relates the change in saturation vapor pressure to the latent heat involved in a phase change from water vapor to liquid water or from liquid water to ice. The most convenient form of this is $$\frac{1}{e_s} \frac{d e_s}{d T} = \frac{L}{R T^2}$$
 So we get $$\frac{d q_s}{d z} = \frac{L q_s}{R W T_2} \frac{d T}{d z} + \frac{g q_s}{R T}$$
 
-$$\frac{dT}{dz} = -\frac{g}{c_p} \left( 1 + \frac{L q_s}{R T} \right) \left( 1 + \frac{L^2 q_s}{c_p R W T_2} \right)^{-1}$$
-In this way, we will obtain the moist adiabatic lapse rate $\Gamma$, which is less than the adiabatic lapse rate defined earlier
+\begin{equation}\label{eq.adiabatic lapse rate}
+	\Gamma_m= \frac{dT}{dz} = -\frac{g}{c_p} \left( 1 + \frac{L q_s}{R T} \right) \left( 1 + \frac{L^2 q_s}{c_p R W T_2} \right)^{-1}
+\end{equation}
+In this way, we will obtain the moist adiabatic lapse rate $\Gamma_m$, which is less than the adiabatic lapse rate defined earlier: $$\Gamma=\frac{dT}{dz}=-\frac{k\rho g}{p}T$$
+
+
 
 \subsection{Clouds}
 They play a critical role in the radiation characteristics of the Earth's climate, but their radiative properties are not fully understood. In most climate models, the precipitation and convective aspects of the model are used to compute where clouds exist based on whether the atmosphere is near saturation and whether convection is occurring. You can use different parameters to explain that.
