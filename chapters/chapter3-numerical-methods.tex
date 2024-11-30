@@ -1,23 +1,27 @@
 \chapter{Numerical methods used in atmospheric models}
+\lastupdated{2024-11-30 18.44}{CMN}
+
 \section{Intro}
 In this chapter, following a short historical introduction on the development and use of numerical methods in atmospheric models, methods available for numerical solution of the differential equations governing the atmosphere will be briefly reviewed. Then, basic elements of the finite difference method for solving these equations will be introduced. Finally, the concept of stability of finite difference equations, and methods for testing the stability of such equations, will be discussed at some length.
 
-It is considered that Wilhelm Bjerknes (1904) was the first to point out that the future state of the atmosphere can in principle be obtained by an integration of differential equations which govern the behaviour of the atmosphere, using as initial values fields describing an observed state of the atmosphere. Such an integration performed using numerical methods is called numerical weather prediction. When, however, a numerical integration is performed starting from fictitious initial fields, it is called numerical simulation.
+It is considered that Wilhelm Bjerknes (1904) was the first to point out that the future state of the atmosphere can in principle be obtained by an integration of differential equations which govern the behavior of the atmosphere, using as initial values fields describing an observed state of the atmosphere. Such an integration performed using numerical methods is called numerical weather prediction. When, however, a numerical integration is performed starting from fictitious initial fields, it is called numerical simulation.
 
-A first practical attempt at a numerical weather predic­tion was made by Richardson. After very tedious and time-consuming computations, carried out mostly during the First World War, Richardson obtained a totally unacceptable result. Despite this, he described his method and results in a book (Richardson, 1922), and this is today one of the most famous in meteorology.
+A first practical attempt at a numerical weather prediction was made by Richardson. After very tedious and time-consuming computations, carried out mostly during the First World War, Richardson obtained a totally unacceptable result. Despite this, he described his method and results in a book (Richardson, 1922), and this is today one of the most famous in meteorology.
 
 The wrong result obtained by Richardson, and his estimate that 64,000 men are necessary to advance the calculations as fast as the weather itself is advancing, left some doubt as to whether the method would be of practical use. A number of developments that followed, however, improved the situation. Courant, Friedrichs and Lewy (1928) found that space and time increments in integrations of this type have to meet a certain stability criterion. Mainly due to the work of Rossby in the late 1930’s, it became understood that even a rather simple equation, that describing the conservation of absolute vorticity following the motion of air particles, suffices for an approximate description of large-scale motions of the atmosphere. Finally, in 1945, the first electronic computer ENIAC (Electronic Numerical Integrator and Computer) was constructed. The absolute vorticity conservation equation, and this first electronic computer, were used by Charney, Fjortoft and von Neumann in the late 1940’s for the first successful numerical forecast (Charney et al., 1950).
 
-Much faster computers, and improved understanding of computational problems, now also enable long-term integrations of the basic primitive equations. It is gener­ally considered that integration of the primitive equations enables easier incorporation of various physical processes than the integration of modified equations, that is, inte­gration of the divergence and vorticity equations. Thus, it is mostly the primitive equations that are used today for practical numerical forecasting by meteorological services. Charts obtained by numerical forecasting are used by synopticians in these services as the principal basis for decisions on forecasts issued for public use.
+Much faster computers, and improved understanding of computational problems, now also enable long-term integrations of the basic primitive equations. It is generally considered that integration of the primitive equations enables easier incorporation of various physical processes than the integration of modified equations, that is, integration of the divergence and vorticity equations. Thus, it is mostly the primitive equations that are used today for practical numerical forecasting by meteorological services. Charts obtained by numerical forecasting are used by synopticians in these services as the principal basis for decisions on forecasts issued for public use.
 
 A number of research groups have been actively engaged for more than a decade in development of models for the numerical simulation of the general circulation of the atmosphere. In such simulations starting from a fictitious initial state, e.g. an isothermal and motionless atmosphere, is often considered to be an advantage for the experiments. It enables a test of the ability of the computational and physical schemes of the model to simulate an atmosphere with statistical properties similar to those of the real atmosphere, with no, or not much, prior information on these properties.
 
-Numerical models are also very frequently developed for studies of some smaller-scale atmospheric phenomena. Foremost among these are studies of the cumulus convec­tion problem, and simulation of processes within the planetary boundary layer. In this text, however, we shall primarily have in mind the application of numerical methods to prediction and simulation of large-scale atmospheric motions.
+Numerical models are also very frequently developed for studies of some smaller-scale atmospheric phenomena. Foremost among these are studies of the cumulus convection problem, and simulation of processes within the planetary boundary layer. In this text, however, we shall primarily have in mind the application of numerical methods to prediction and simulation of large-scale atmospheric motions.
+
+
 
 \section{Methods for the numerical solution of the equation of motion}
 Numerical solution of the equations of motion today in most cases is performed using the grid point method. In this method a set of points is introduced in the region of interest and dependent variables are initially defined and subsequently computed at these points. This set of points is called the grid. The words mesh or lattice are also used. It is necessary to have the grid points at fixed locations in the horizontal. This means that, according to the Eulerian system of equations, space and time coordinates are chosen as independent variables.
 
-A number of attempts have been made to develop atmospheric models using an approach which is at least partly Lagrangian. Serious difficulties are encountered when a straightforward numerical integration of the Lagrangian system of equations is undertaken. However, it is possible to construct methods with some Lagrangianproperties ; for example, to have some or all of the compu­tation points moving with the fluid. In hydrodynamics a number of such methods have proved to be very useful, especially for some problems which are not amenable to treatment by a strictly Eulerian technique (e.g. Harlow and Amsden, 1971). However, in meteorology the per­formance of Lagrangian or semi-Lagrangian models that have so far been developed has not been quite satis­factory. A discussion of one way of constructing a Lagrangian model, and a review of earlier attempts, can be found in a paper by Mesinger (1971).
+A number of attempts have been made to develop atmospheric models using an approach which is at least partly Lagrangian. Serious difficulties are encountered when a straightforward numerical integration of the Lagrangian system of equations is undertaken. However, it is possible to construct methods with some Lagrangian properties ; for example, to have some or all of the compu­tation points moving with the fluid. In hydrodynamics a number of such methods have proved to be very useful, especially for some problems which are not amenable to treatment by a strictly Eulerian technique (e.g. Harlow and Amsden, 1971). However, in meteorology the per­formance of Lagrangian or semi-Lagrangian models that have so far been developed has not been quite satis­factory. A discussion of one way of constructing a Lagrangian model, and a review of earlier attempts, can be found in a paper by Mesinger (1971).
 
 Another possible approach is to express the spatial dependence of the variables in terms of a series of ortho­gonal functions, and then substitute this into the governing equations. In this way the equations reduce to a set of ordinary differential equations, so that the coefficients of the series can be computed as functions of time. This is the spectral method of solving the governing equations. Until relatively recently it was considered that in effi­ciency the spectral method could not be competitive with the grid point method. But the use of the fast Fourier transform has completely changed the situation and investigation of spectral methods is now the subject of intensive research.
 
@@ -863,7 +867,7 @@ In concluding this chapter we add, following Arakawa (1970), a few remarks regar
 The situation is different when we are now considering the gravity-inertia wave terms, governing the geostrophic adjustment process. This process is a result of the dispersion of high frequency waves. Use of a frequency-selective dissipative scheme will make these high frequency waves damp out at a faster rate, and thus accelerate the adjustment process, although the actual physical process is dispersive rather than dissipative. This gives an effect much the same as that of time filtering. Therefore, if we are only interested in the final result of the geostrophic adjustment process, dissipation in the gravity-inertia wave terms may be helpful, especially when the high frequency waves are predominantly unphysical. If we are interested in the high frequency waves themselves, the use of a dissipative scheme must, of course, be avoided.
 
 
-\section{Spectral Methods}
+\section{Spectral Methods}\label{sec:spectral method}
 Spectral methods are an approach to discretization, the main idea is to express my basic variables in terms of other functions.
 In some cases the use of finite differences is a simple and direct method to solve differential equations. However this is not the only method. There are other ways in which one can solve differential equations numerically using a special approach that is based on special functions. The main example of this approach is the usage of trigonometric functions within the context of the more general theory of Fourier analysis. Consider the Oscillation equation:
 \begin{equation}\label{eq:oscillation}
@@ -1002,7 +1006,7 @@ for each term $10^6$ coefficient will have to be computed.
 Horizontal motions are much stronger than vertical, therefore advection is much greater in the horizontal than in the vertical. In the two-dimensional model (the simplest) you treat the advection by using combinations on numerical schemes. The Arakawa Jacobian for instance, presents 3 different ways to modelize advection, you could sum them and weight them. If you have more variables you have more choices on how to distribute them in different places. Notice that staggered grid still garantees accuracy (the derivatives are in the right order). The problem is though with rotation, for instance the (E) grid tries to adjust $(u,v)$, in (B) $(u,v)$ are in the same place and $f_v$, $\frac{\partial u}{\partial t}$ is presented without errors. Waves are limited solutions of the equation, they occur in perturbation, (B) grid: $k$ is close to $1/d$. If $k$ moves at a certain speed for a certain $\lambda$ it will be distorted in the grid. A $\Phi$ field can be expressed with eigenfunctions, any perturbation of the string $f(x)$ can be written with a serie if $a_n$ exists. The Fourier serie for periodic function, for continuity you need to expand to Fourier transports. Spectral method idea: instead of solving a complex system we use a larger number of simpler problems. In the spectral world:
 $$u\rightarrow\sum u_k(t)e^{ikx}$$
 $$\frac{\partial}{\partial x}\rightarrow\text{multiplication}$$
-\section{Models on the sphere} \textit{Lecture10}
+\section{Models on the sphere}\label{Sec:models on the sphere} \textit{Lecture10}
 We will use the shallow water equation, but in order to have a realistic case, we need to put it on the sphere. We start from the usual equation of the homogeneous flow, also known as shallow water equation on the sphere. For convenience we introduce the geopotential $\Phi= gH$, representing the gravitational potential energy per unit mass related to height in the atmosphere.
 \begin{align}
 	\frac{\partial u}{\partial t}=-u\frac{\partial u}{\partial x}-v\frac{\partial u}{\partial y}+fv-\frac{\partial\Phi}{\partial x} \\
@@ -1095,7 +1099,7 @@ the equations of motion could be re-written as functions of $\Psi$, $\chi$ and $
 
 %fino a qui 
 
-
+\subsection{Spherical Harmonics}
 The Laplacian in spherical coordinates gives rise to Laplace equation: eq.\ref{eq.finitedivergence}=0, setting it up as a search for the eigenfunctions/eigenvalues requires to solve a Poisson equation with periodic boundary conditions in longitude and zero at the poles.
 \begin{equation}\label{eq.sphericalhar}
 	\frac{1}{a\cos^2\phi}\left(\frac{\partial^2Y}{\partial\lambda^2}+\cos\phi\frac{\partial}{\partial\phi}\left(\cos\phi\frac{\partial Y}{\partial\phi}\right)\right)=\sigma Y
@@ -1198,6 +1202,7 @@ we can arrange them in a plane.
 	\caption{Effects of truncation}
 	\label{fig:enter-label}
 \end{figure}
+Many climate have used a rhomboidal truncation, R, of 15 waves numbers, i.e., J=15, labeled R15. R15 gives a good approximation to the large-scale motions of the atmosphere but misses some of the smaller scale features. Increasing the resolution to R30 improves the representation to the original 2.5° data, while coarsening the resolution to R5 makes the pattern much too smooth. It is not clear which type of spectral truncation is best. if triangular truncation (T) is used, then certain scales are neglected. I resolution is sufficiently high, it may not make much form od truncation is used.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-17 205827.png}
@@ -1215,7 +1220,7 @@ Recalling eq.\ref{eq.vorticity} and \ref{eq.divergence}, the equation of motion 
 	\caption{equations of motion with vorticity and divergence}
 	\label{fig.eqmotion}
 \end{figure}
-after insertion the linear terms will transform in linear terms for the spherical coefficients, and the laplacians will also be easily done by the multiplication by the eigenvalues. We will need to treat the nonlinear terms $U\nabla^2\psi$, $V\nabla^2\psi$, $U\Phi'$, $V\Phi'$, $(U^2+V^2)/2$.
+after insertion the linear terms will transform in linear terms for the spherical coefficients, and the laplacians will also be easily done by the multiplication by the eigenvalues. We will need to treat the nonlinear terms $U\nabla^2\psi$, $V\nabla^2\psi$, $U\Phi'$, $V\Phi'$, $(U^2+V^2)/2$.  I don't really need all the details of these non linear terms, I only need the total impact on the tendency (so I need the entire piece). In this case. I need only the spectral coefficient od A, B, C and E. With the spectral coefficient of the non linear terms, I can discretize in time by choosing a time scheme, for example the leap-frog scheme.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-18 095232.png}
@@ -1235,7 +1240,7 @@ so the coefficients can be obtained by integrating the original (physical space)
 \begin{equation}
 	\Psi_k^j=\int_{-\pi/2}^{\pi/2}\cos\phi P_k^j(\sin\phi)d\phi\int_0^{2\pi}\Psi(\phi, \lambda)e^{ij\lambda}d\lambda
 \end{equation}
-where the first integral is the \textit{polynomial integration}, while the second is for the \textit{Fourier transform}.
+where the first integral is the \textit{polynomial integration}, while the second is for the \textit{Fourier transform} with dependency on the latitude, so must be done at every latitude over longitude. At the end you get a vector of numbers at any latitude, this is used to make the longitudinal integration and you obtain the coefficients.
 
 \begin{figure}[h]
 	\centering
@@ -1244,8 +1249,7 @@ where the first integral is the \textit{polynomial integration}, while the secon
 	\label{fig:gaussian grids}
 \end{figure}
 
-Numerically an integration is a summation, just like the derivatives are differences. However, we have freedom to choose the points and it can be shown that if the points are chosen in special points then the summation for polynomials is exact if enough points are selected. In the case of our models the integration is over latitudes, so we have
-to choose certain latitudes, these are known as \textit{Gaussian Latitudes}. The minimum number of points is a function of truncation order.
+Numerically an integration is a summation, just like the derivatives are differences. However, we have freedom to choose the points and it can be shown that if the points are chosen in special points then the summation for polynomials is exact if enough points are selected. In the case of our models the integration is over latitudes, so we have to choose certain latitudes, these are known as \textit{Gaussian Latitudes}. The minimum number of points is a function of truncation order.
 
 
 A Gaussian grid is a type of non-uniform grid designed to minimize numerical errors when integrating over latitude bands on a spherical surface. The key feature of a Gaussian grid is that the grid points are more concentrated at the poles (where more detailed information is often needed) and become sparser toward the equator $\rightarrow$ commonly used in spectral methods to represent variables (such as temperature or wind) in terms of spherical harmonics. The Gaussian grid is particularly useful when integrating over the Earth's spherical surface.
@@ -1255,7 +1259,7 @@ Spectral models are a class of numerical methods used in climate system modeling
 
 Spectral models represent physical variables (e.g., temperature, pressure, wind speed) as a sum of basic functions, which are typically \textit{Fourier series} (in the case of periodic domains) or \textit{spherical harmonics} (in the case of global models on a spherical surface like the Earth). This approach allows for highly accurate representations of large-scale patterns with relatively few computational elements.
 
-\paragraph{\textbf{How to construct a spectral model}:}
+\subsubsection{How to construct a spectral model}:
 \begin{itemize}
 	\item \textcolor{CadetBlue}{Governing Equations}: the physical equations that govern the climate system. For example, the governing equations for atmospheric dynamics are the \textit{Navier-Stokes equations} or \textit{primitive equations} (momentum, mass conservation, energy conservation).
 	\item \textcolor{CadetBlue}{Fourier or Spherical Harmonic Decomposition}: the physical fields are expanded in terms of a set of basis functions. For atmospheric and climate models on the Earth's surface, spherical harmonics are the most common. For a simpler system, Fourier transforms might be used for periodic domains (e.g., a wave equation on a flat domain).
@@ -1278,9 +1282,9 @@ The number of terms in the Fourier or spherical harmonic expansion is typically 
 	      where $L$ is the truncation level. The truncation level determines the maximum degree of spherical harmonics included in the model.
 \end{enumerate}
 
-\subsubsection{3. \textbf{Helmholtz theorem}}
+\subsubsection{3. Helmholtz theorem}
 In the spectral world, you can decompose the velocity field using the streamfunction and the geopotential $\rightarrow$ Helmholtz theorem, this will semplify our analysis as a  vector will transform as a vector changing its components, while a scalar will not change in different transformations. This theorem shows that you could represent a vector as function of two scalars (NB the gradient is a vector, see the Appendix\ref{app}). The vector is depending on the meridional gradient of the streamfunction and vertical of the geopotential. The atmospheric is almost rotational, you can take the curl of $V$ ($\nabla \times V$) that's vorticity, described as the laplacian of $\chi$ geopotential. If the geopotential $\chi$ is very small , then the atmosphere is dominated by the the streamfunction $\psi$. This describes very well the atmospheric circulation outside of the tropics, there $\chi$ becomes significant. The geopotential is the streamfunction of the flow, especially at 500-200 mbar, that give you the idea of the circulation. Geopotential is best for mid-latitudes, but if you see the streamfunction you'll see better and a part of the wind. Having both component you compute the streamfunction and the geopotential, you solve them using spectral method (for exemple), remember that the streamfunction is valid everywhere while geopotential only valid at a certain point.
-\subsubsection{4. \textbf{Spherical Harmonics}}
+\subsubsection{4. Spherical Harmonics}
 
 Spherical harmonics are mathematical functions defined on the surface of a sphere. They are particularly useful in climate modeling because the Earth is roughly spherical, and they naturally represent the angular components of a field. More details can be found in \ref{app:Spherical harmonics}.
 
@@ -1303,7 +1307,7 @@ Spherical harmonics are mathematical functions defined on the surface of a spher
 	      These coefficients are used to represent the field in terms of spherical harmonics.
 \end{itemize}
 
-\subsubsection{5. \textbf{Advantages and Challenges of Spectral Models}}
+\subsubsection{5. Advantages and Challenges of Spectral Models}
 
 \paragraph{\textbf{Advantages}:}
 Accuracy with fewer points: Spectral methods can represent large-scale features of the climate system (such as planetary waves, jet streams, etc.) very accurately with relatively few degrees of freedom (i.e., fewer spectral coefficients) compared to grid-based models $\rightarrow$ accuracy with fewer points. Also, for certain types of problems, spectral methods can be more efficient than finite difference methods because they avoid the need for fine grids over the entire domain $\rightarrow$ efficient computation.
@@ -1355,7 +1359,8 @@ water vapor and chemical tracers.
 	\caption{Lagrangian Methods}
 	\label{fig:lag method}
 \end{figure}
-In an Eulerian advection scheme an observer watches the world evolve around her at a fixed geographical point. Such schemes work well on regular Cartesian meshes (facilitating vectorization and parallelization of the resulting code), but often lead to overly restictive time steps due to considerations of computational stability. In a Lagrangian advection scheme an observer watches the world evolve around him as he travels with fluid particle. Such schemes can often use much larger time steps than Eulerian ones, but have the disadvantage that an initially regularly spaced set of particles will generally evolve to a highly irregularity spaced set at later times, and important features of the flow may consequently not be well represented. The idea behind semi-Lagrangian advection schemes is to try to get the best of both worlds: the regular resolution of Eulerian schemes and the enhanced stability of Lagrangian ones. This is achieved by using a different set of particles at each time step the set of particles being chosen such that they arrive exactly at the points of a regular Cartesianmesh at the end of the time step.
+In an Eulerian advection scheme an observer watches the world evolve around her at a fixed geographical point. Such schemes work well on regular Cartesian meshes (facilitating vectorization and parallelization of the resulting code), but often lead to overly restictive time steps due to considerations of computational stability. In a Lagrangian advection scheme an observer watches the world evolve around him as he travels with fluid particle. Such schemes can often use much larger time steps than Eulerian ones, but have the disadvantage that an initially regularly spaced set of particles will generally evolve to a highly irregularity spaced set at later times, and important features of the flow may consequently not be well represented. The idea behind semi-Lagrangian advection schemes is to try to get the best of both worlds: the regular resolution of Eulerian schemes and the enhanced stability of Lagrangian ones. This is achieved by using a different set of particles at each time step the set of particles being chosen such that they arrive exactly at the points of a regular Cartesian mesh at the end of the time step.
+
 \subsection{Semi-Lagrangian Methods}
 \begin{figure}[h!]
 	\centering
@@ -1363,9 +1368,37 @@ In an Eulerian advection scheme an observer watches the world evolve around her 
 	\caption{Semi-Lagrangian method}
 	\label{fig:enter-label}
 \end{figure}
-Considering
+Considering:
 $$\frac{dq}{dt}=\frac{\partial q}{\partial t}+U\frac{\partial q}{\partial x}=S(x,t)$$
 with $\frac{dx}{dt}=U(x,t)$
+
 Integrating along the trajectory A'C:
 $$q(x_m,t_n+\Delta t)=q(x_m-2\alpha_m,t_n-\Delta t)+2\Delta tS(x-\alpha_m,t_n)$$
-the displacement can be found solving $\alpha_m=\Delta tU(x-\alpha_m,t_n)$
+Assuming it is started at $-2\alpha m$ , and because it was transported by $(t_n - \Delta t)$ , the $S$ (source or sink term for q, where q will change along a trajectory only as a function of $S$) is computed at $t_n$ so at $\alpha_m$ .
+
+the displacement can be found solving:
+$$\alpha_m=\Delta tU(x-\alpha_m,t_n)$$
+and cosidering :
+$$q(x-2\alpha_m,t-\Delta t)$$ this quantity may not be at the grid point, I have to interpolate. This is preserving the trace and allow me to look at a long time step. This transported quantities are used in a passive way because it doesn't reflect immediately in the rest of the dynamic.
+
+\section{Vertical coordinates}
+The original vertical coordinate was the Z coordinate that is simply the
+geometric height. However, as the atmosphere is in hydrostatic balance, one could use the pressure as a vertical coordinate.
+$$(\lambda, \phi, z)\rightarrow(u,v,w) $$
+$$(\lambda, \phi, p)\rightarrow (u,v,\dot{p}=\omega)$$
+as $$\vec{\nabla}\cdot\vec{v}+\frac{\partial\omega}{\partial p}=0$$
+This implies to consider more layers in the vertical, each of these with different coefficients, then discretizing in the surface (in the making of models). However, spectral models require to have integrals over spheres: what happens if there are mountains? There will be boundary conditions.
+This choice hence as the
+problem that the surface pressure intersects the surface especially over
+mountains creating problems numerically in the definition of the boundary
+condition.
+Phillips (1957) proposed to use a normalised pressure coordinate, $\sigma=\frac{p}{p_s}$. The vertical velocity is now $\dot{\sigma}$. The spectral expansion might lead to bumps that propagate all the way up, they will create errors in the pressure gradient force. To have smoother bumps: another coordinate is introduced as in the figure \ref{fig:sigmababy}. As the grid is staggered also in the vertical, in this way we'll get half layers: NB gound level is always an half-level.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-19 143432.png}
+	\caption{Pressure coordinates vs sigma coordinates: $\sigma=\frac{p-p_T}{p_s-p_T}$}
+	\label{fig:sigmababy}
+\end{figure}
+\paragraph{Hybrid coordinates}
+It is a sigma coordinates close to the ground, but smoothly transform into a
+pressure coordinate far from the ground

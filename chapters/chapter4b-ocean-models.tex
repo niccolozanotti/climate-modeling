@@ -1,19 +1,30 @@
-% Updated 2024-11-25 19.38 
-% source: Climate modeling notes 
-
 \section{Ocean Models}
-\begin{figure}[h!]
+\lastupdated{2024-11-30 18.45 }{CMN}
+
+
+Similar equation to the atmosphere but with significant differences that lead to different scales for time and space
+but as for the atmosphere, the scales of primary importance are those that respond to low frequencies and larger scale motions; the time scales in the oceans are much longer than those in the atmosphere because of the greater thermal inertia, the horizontal length scales are 1/10 of the atmosphere. One measure of the relevant horizontal length scales is the radius of deformation L defined as the ratio of the phase speed of gravity waves c(gr) to the corioli's parameter:  \(L=Cgr/f\)
+The radiative flux is less complex.
+Water motion is constrained by bottom topography.
+the hydrostatic approximation is even better.
+sea water is nearly incompressible, so the equation of continuity can be abbreviated by eliminating the time change of density, although density variations are generally included as far as buoyancy effects are concerned. By eliminating the derivative of density, it becomes:
+
+\begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-21 225126.png}
 	\caption{Equations in ocean dynamics}
 	\label{fig:equations in ocean dyn}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-21 225410.png}
 	\caption{Boundary conditions}
 	\label{fig:boundary conditions}
 \end{figure}
+ice models are somewhat different from ocean models because it is not a fluid anymore but a solid, discontinuous in nature , varying in its distribution from one time period to another. in contrast to ocean and atmospheric models, whose calculations center on determine the properties of the water--air, sea ice have the primary goal of determine the location and each time step.  including ice thickness and aerial ice concentration. Calculation for climate oriented sea ice models can be divided into two categories, (1) calculations concerned with the thermodynamics of ice cover, the thickness and temperature structure of the ice, based on the principle of the conservation of energy(2) calculations concerned with ice dynamic.  determing the motion of the ice based on the conservation of momentum.
+(for more details on thermodynamics\&dynamics pag 129-146 book)
+River transport system
+is an importart
 Two possible grids: structured grids (cartesian, curvilinear) for global ocean, basin scale, coastal applications e.g. NEMO, MOM, ROMS, ecc; and unstructured grids, which domain is titled using more general geometrical shapes (triangles, ...) pieced together to optimally fit details of the geometry $\rightarrow$ tidal modelling, near shores, estuaries e.g. FVCOM, FESOM, MPAS, ecc.
 \subsubsection{Regular grids}
 \begin{itemize}
@@ -35,7 +46,7 @@ but for a given latitude they have a fixed resolution: to increase resolution ne
 \end{itemize}
 but they have unresolved issues with flows dominated by geostrophy and advection (characteristics of large-scale ocean flows), and they have spacially variable resolution-dependent physics (e.g. viscosity and diffusivity coefficients should really be resolution dependent).
 \paragraph{Adaptive Grids.} Unstructured meshes with a dynamically changing resolution responding to the nature of flow in time, they are very cool but very much in its infancy for ocean modeling approximations.
-\begin{figure}[h!]
+\begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.40\linewidth]{uploads/Screenshot 2024-11-21 235405.png}
 	\caption{Vertical Grids}
@@ -64,7 +75,7 @@ A different choice for the vertical coordinates can be done:
 	\item \textsc{advantages}: simple, "exactly isopycnal"
 	\item \textsc{disadvantages}: perform poorly where the ocean is less stratified (e.g. in shallow water); no resolution in an unstratified fluid; no mixed layer unless you tack one on; issues with entrainment.
 \end{itemize}
-\begin{figure}[h!]
+\begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-22 001323.png}
 	\caption{$z$, $\sigma$ and isopycnal coordinate systems}
@@ -76,7 +87,7 @@ A different choice for the vertical coordinates can be done:
 	\item\textsc{disadvantages}: high computational costs.
 \end{itemize}
 
-\begin{figure}[h!]
+\begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-22 000943.png}
 	\caption{Hybrid coordinates}
@@ -86,6 +97,8 @@ A different choice for the vertical coordinates can be done:
 \begin{centering}
 	"Eddy-resolving" at 1/10° is not enough to resolve ocean "weather"
 \end{centering}
+\\[0.25 cm]
+
 \textcolor{Blue}{Eddies} are swirling, circular movements of water in the ocean, resembling whirlpools, but they can vary greatly in size and duration. They are a fundamental aspect of ocean dynamics, transporting heat, nutrients, salt, and momentum across the ocean. Eddies often form due to shear instabilities (differences in velocity between layers), boundary currents (for instance Gulf Stream) and topography
 The horizontal resolution needed to resolve the first barolinic deformation radius with two grid points.
 \begin{itemize}
@@ -110,19 +123,17 @@ overflows - coastal processes - surface mixed layer processes
 	\item[] \textit{low resolution models}: the main problem is mesoscale eddies
 	\item[] \textit{high resolution models}: submesoscale eddies (fronts and filaments), internal wave mixing, details of flowtopography interactions
 \end{itemize}
-\begin{figure}[h!]
+
+\begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-22 104603.png}
-	\caption{Parametrization and eddie problems}
-	\label{fig:enter-label}
+	\includegraphics[width=0.4\linewidth]{uploads/Screenshot 2024-11-22 104603.png}\quad\includegraphics[width=0.35\linewidth]{uploads/Screenshot 2024-11-24 185214.png}
+	\caption{Fig.a: Parametrization and eddie problems. Fig.b: Major components of the model}
+	\label{...}
 \end{figure}
+
+
 \paragraph{Discretization} \textbf{COMMENT}.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-24 185214.png}
-	\caption{Major components of the model}
-	\label{fig:enter-label}
-\end{figure}
+
 
 
 \section{What do we do with climate models?}
@@ -206,14 +217,14 @@ The thermal wind relations link the variables:
 	f_0\frac{\partial\overline{u}}{\partial z}=-\frac{\partial\overline{\theta}}{\partial y} \\
 	\frac{\partial\overline{v}}{\partial y}=-\frac{\partial\overline{w}}{\partial z}
 \end{align}
-\begin{figure}[h!]
+\begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-22 202457.png}
 	\caption{Momentum Flux. The meridional transport of momentum depends on the meridional slant of the eddies.}
 	\label{fig:enter-label}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-24 185505.png}
 	\caption{Heat flux. The meridional transport of heat depends on the vertical slant of the eddies.}
@@ -235,7 +246,7 @@ Bjerknes observed that the sea surface temperatures (SSTs) in the eastern Pacifi
 He proposed that fluctuations in the Walker Circulation could trigger changes in the Southern Oscillation, setting off events associated with El Niño-Southern Oscillation (ENSO). Bjerknes described a feedback loop in which stronger easterly winds enhanced the upwelling of cold water in the east, intensifying the SST gradient and reinforcing the Walker Circulation. Conversely, weaker easterly winds reduced upwelling, diminished the SST gradient, and slowed the circulation. This mechanism explained the alternation between the warm El Niño phase, marked by a weakened Walker Circulation, and the normal cold state of the eastern Pacific associated with the high phase of the Southern Oscillation.
 
 Bjerknes’ insights established the foundation for modern understanding of ENSO, demonstrating how oceanic and atmospheric systems interact in a dynamic feedback loop to shape global climate patterns.
-\begin{figure}[h!]
+\begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-24 191635.png}
 	\caption{The Walker Circulation}
