@@ -4,15 +4,18 @@
     english
 ]{book} % The class file specifying the document structure
 
-\usepackage{layout/setup} % preamble with packages and layout
-\usepackage{theorems} % user-defined environments
-\usepackage{commands}  % here user-defined commands
- 
+\usepackage{setup/setup} % preamble with packages and layout
+\usepackage{setup/theorems} % user-defined environments
+\usepackage{setup/commands}  % here user-defined commands
+
+
+
+
 % frontispiece 
-\usepackage{layout/frontespizio}
+\usepackage{setup/frontespizio}
 
 
-\usepackage[pages=some]{background}
+%\usepackage[pages=some]{background}
 
 \begin{document}
 
@@ -55,7 +58,7 @@ The source code is available on \href{https://github.com/niccolozanotti/climate-
 \input{chapters/chapter7-earth-system-models}
 \input{chapters/chapter8-theory-simm-circ}
 
-\input{chapters/appendixA}
+% \input{chapters/appendixA}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%% GLOBAL DYNAMICS CONTENTS %%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

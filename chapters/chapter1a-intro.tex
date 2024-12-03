@@ -1,17 +1,20 @@
+\chapter{Physical description of the climate system}\label{ch:climate-system-description}
+\lastupdated{2024-12-02 23.47}{\chapterOneIntro}
 
-\chapter{Physical description of the climate system}
-\lastupdated{2024-11-27 22.39}{CapOne}
+\section{Atmosphere}\label{sec:atmosphere-description}
 
-Sample citation: \citet{Richardson1922}.
+\subsection{Composition}
 
-\section{Atmosphere}
-\subsection*{Composition}
+The atmosphere is a gaseous envelope that surrounds the Earth, acting as a protective envelope essential for life.
+It is composed of a mechanical mixture of several gases, with \emph{nitrogen} (\ce{N2}) being the most abundant (\qty{78}{\percent} of the volume of dry air),
+followed by \emph{oxygen} (\ce{O2}) \qty{20.95}{\percent}, \emph{argon} (\ce{Ar}) \qty{0.93}{\percent},
+and \emph{carbon dioxide} \ce{CO2} \qty{0.037}{\percent}.
+Trace gases like \emph{Neon} (\ce{Ne}), \emph{helium} (\ce{He}), \emph{methane} (\ce{CH4}), and hydrogen (\ce{H}) also contribute to its composition, along
+with varying amounts of water vapor, which depend on factors such as location, evaporation rates, and temperature.
 
-The atmosphere is a gaseous envelope that surrounds the Earth, acting as a protective envelope essential for life. It is composed of a mechanical mixture of several gases, with nitrogen being the most abundant (78\% of the volume of dry air), followed by oxygen (20.95\%), argon (0.93\%), and carbon dioxide (0.037\%). Trace gases like neon, helium, methane, and hydrogen also contribute to its composition, along with varying amounts of water vapor, which depend on factors such as location, evaporation rates, and temperature.
+This gaseous mixture is held to the Earth by gravity, which causes the atmosphere to exert a pressure. Near the surface, the pressure is greatest, approximately \qty{1.013e3}{\milli\bar} at sea level, and it decreases with altitude. This reduction in pressure reflects the compressibility of gases, making the atmosphere densest near the ground. This characteristic distinguishes the atmosphere from the ocean, where the density remains relatively uniform due to the near incompressibility of liquids.
 
-This gaseous mixture is held to the Earth by gravity, which causes the atmosphere to exert pressure. Near the surface, the pressure is greatest, approximately $1.013 \times 10^3 \, \mathrm{mb}$ at sea level, and it decreases with altitude. This reduction in pressure reflects the compressibility of gases, making the atmosphere densest near the ground. This characteristic distinguishes the atmosphere from the ocean, where the density remains relatively uniform due to the near incompressibility of liquids.
-
-\subsection*{The Vertical Temperature Gradient}
+\subsection{The Vertical Temperature Profile}
 
 The atmosphere exhibits a distinct temperature profile that changes with altitude and varies depending on the region and season. These variations define the layers of the atmosphere, each with unique characteristics and processes.
 
@@ -23,21 +26,35 @@ The atmosphere exhibits a distinct temperature profile that changes with altitud
 	\item \textbf{The Stratosphere}: Above the tropopause lies the stratosphere, a more stable layer where temperatures either remain constant or begin to rise with altitude. This increase is primarily due to the absorption of ultraviolet radiation by ozone molecules, which warms this part of the atmosphere. Unlike the troposphere, the stratosphere lacks the turbulence and weather systems associated with surface heating.
 
 	\item \textbf{The Thermosphere}:  the temperature continues to increase steadily with altitude. This layer is less influenced by surface-level processes and is instead heated by the absorption of high-energy solar radiation, making it the hottest layer of the atmosphere.
-
 \end{itemize}
 
-\begin{table}[h]
-	\begin{tabular}{llll}
-		                                                             & {\color[HTML]{010066} \textbf{Troposphere (sum/win)}} & {\color[HTML]{010066} \textbf{Tropopause}} & {\color[HTML]{010066} \textbf{Stratosphere}} \\ \cline{2-4}
-		\multicolumn{1}{l|}{{\color[HTML]{003532} \textbf{poles}}}   & 280 / 235                                             & 9 km: 230 / inversion (1.5/2 km)           & Slow Warming/ slow cooling                   \\
-		\multicolumn{1}{l|}{{\color[HTML]{003532} \textbf{midlat}}}  & 290 / 280                                             & 10 km: 220                                 & Slow Warming/ slow cooling                   \\
-		\multicolumn{1}{l|}{{\color[HTML]{003532} \textbf{tropics}}} & 300                                                   & 17 km: 190                                 & warming
-	\end{tabular}
+
+\begin{table}[h!]
+	\centering
+	\renewcommand{\arraystretch}{1.3} % Increase row spacing
+	\setlength{\tabcolsep}{4pt} % Adjust column spacing
+	\begin{tabularx}{\textwidth}{@{}lXlX@{}}
+		\toprule
+		\textbf{}                          & \textbf{Troposphere (sum/win)}          & \textbf{Tropopause}                                                                                & \textbf{Stratosphere}       \\
+		\midrule
+		\textcolor{teal}{\textbf{poles}}   & \qty{280}{\kelvin} / \qty{235}{\kelvin} & \qty{9}{\kilo\meter}: \qty{230}{\kelvin} / inversion (\qty{1.5}{\kilo\meter}/\qty{2}{\kilo\meter}) & Slow Warming / Slow Cooling \\
+		\textcolor{teal}{\textbf{midlat}}  & \qty{290}{\kelvin} / \qty{280}{\kelvin} & \qty{10}{\kilo\meter}: \qty{220}{\kelvin}                                                          & Slow Warming / Slow Cooling \\
+		\textcolor{teal}{\textbf{tropics}} & \qty{300}{\kelvin}                      & \qty{17}{\kilo\meter}: \qty{190}{\kelvin}                                                          & Warming                     \\
+		\bottomrule
+	\end{tabularx}
+	\caption{Temperature characteristics (expressed in \unit{\kelvin}) in different atmospheric layers.}
+	\label{tab:atm-temps-layer-latitude}
 \end{table}
 
-\subsection*{Regional and Seasonal Variations}
+\begin{figure}
+	\centering
+	\includegraphics[width = .5 \textwidth]{figs/temp-profile-dobson}
+	\caption{Atmospheric temperature profiles for different regions and season. Climatological average from~\citet{Dobson1968}.}\label{fig:temp-profile-dobson}
+\end{figure}
 
-Temperature profiles in the atmosphere are not uniform and vary significantly between regions and seasons.
+\subsection{Regional and Seasonal Variations}
+
+As one can grasp from~\fig{\ref{fig:temp-profile-dobson}} and from~\tabref{\ref{tab:atm-temps-layer-latitude}}, temperature profiles in the atmosphere are not uniform and vary significantly between regions and seasons.
 
 \begin{itemize}
 	\item \textbf{Polar regions:} In summer, temperatures near the surface reach about 280~K, decreasing gradually with height. In winter, surface temperatures can plummet to 235~K, but a slight increase often occurs at altitudes of 1.5--2 kilometers due to a phenomenon called temperature inversion. This inversion, caused by the cooling of surface air, reverses the usual trend of decreasing temperature with height.
@@ -45,27 +62,38 @@ Temperature profiles in the atmosphere are not uniform and vary significantly be
 	\item \textbf{Mid-latitudes:} The temperature profile combines characteristics of both polar and tropical regions, varying more noticeably between seasons.
 \end{itemize}
 
-\subsection*{The Role of Energy Processes}
+
+\subsubsection*{The Role of Energy Processes}
 
 The vertical temperature gradient in the atmosphere is maintained by complex energy processes, including the absorption and radiation of heat, convection, and interactions with the Earth's surface. These processes vary with latitude and season, creating the dynamic and layered structure of the atmosphere.
 
 Inversions, which occur when surface air cools significantly, disrupt the usual temperature gradient, particularly in the troposphere. These events highlight the intricate balance of energy transfer within the atmosphere and its impact on weather and climate.
 
-\subsubsection{Energy balances }
-All the energy that
-enters the earth’s climate system comes from the sun. A portion of this solar energy is absorbed in the
-Earth/atmospheric system and must be balanced with outgoing energy to maintain the equilibrium state.
-1
-Such outgoing energy is emitted by the earth surface, the oceans, the atmosphere, the ice. . . Since all the
-incoming radiation are the 342W m−2 and 107 W m−2 of that are reflected back to space, there must be
-235 W m−2 of terrestril radiation emitted to space for an equilibrium situation from three main sources:
-water vapor, CO2, clouds and earth’s surface. There is a sharp contrast in energy emitted by the sun and
-the earth, in fact the warmer the body is the shorter is the wavelength of its peak electromagnetic emission
-thus: the sun’s energy emission is in the wavelength range of 0.1-2 microm, centered on the visible portion of
-the electromagnetic spectrum, while the terrestrial’s is in the range of 4-40 microm, in the infrared portion
+\subsection{Energy balances}
+All the energy that enters the Earth’s climate system comes from the sun.
+A portion of this solar energy is absorbed in the Earth's climate system and must be balanced with
+outgoing energy to maintain the observed overall equilibrium state of the climate.
+Such outgoing energy is emitted by the Earth's surface, the oceans, the atmosphere, the ice, and all of its life forms.
+\fig{\ref{fig:global-mean-energy-budget}} contains a quantitative breakdown of the absorption, reflection and emission of
+globally and annually averaged solar and terrestrial radiation.
+\begin{figure}
+	\centering
+	\includegraphics[width = .7 \textwidth]{figs/global-mean-energy-budget-trenberth}
+	\caption{The global annual mean Earth’s energy budget for 2000–2005 (\unit{\watt.\meter^{-2}}). The broad arrows indicate
+		the schematic flow of energy in proportion to their importance. \\ Taken from~\citet{Trenberth2012}.}
+	\label{fig:global-mean-energy-budget}
+\end{figure}
+Since all the incoming radiation are the \qty{342}{\watt.\meter^{-2}} and \qty{107}{\watt m^{-2}} of that are reflected back to space, there must be
+\qty{235}{\watt.\meter^{-2}} of terrestrial radiation emitted to space for an equilibrium situation from three main sources:
+water vapor, \ce{CO2}, clouds and Earth’s surface.
+There is a sharp contrast in energy emitted by the sun and the Earth, in fact the warmer the body is the shorter is the wavelength of its peak electromagnetic emission
+thus: the sun’s energy emission is in the wavelength range of \qtyrange{0.1}{0.2}{\micro \m}, centered on the visible portion of
+the electromagnetic spectrum, while the terrestrial’s is in the range of \qtyrange{4}{40}{\micro \m}, in the infrared portion
 of the spectrum.
-The spatial and temporal distribution of the receipt of solar energy at the earth’s surface is dependent upon
-the earth’s annual revolution about the sun, its daily rotation about its axis and the tilt of its axis with
+
+
+The spatial and temporal distribution of the receipt of solar energy at the Earth’s surface is dependent upon
+the Earth’s annual revolution about the sun, its daily rotation about its axis and the tilt of its axis with
 respect to the plane of its orbit. When the Earth is in the portion of its orbit where the Northern Hemisphere
 is tilted toward the sun, the Northern Hemisphere receives the majority of direct sunlight and experiences
 summer, while the Southern Hemisphere experiences winter. Naturally, the reverse occurs when the Earth
@@ -150,7 +178,7 @@ Overall, sea ice is a vital component of Earth's climate system. It influences h
 important transfers of energy, mass, momentum occur between the oceans and the atmosphere and are greatly modified by the presence of sea ice.
 \subsection{Atmosphere}
 Wind forcing is a prime driver for upper ocean circulation and thereby impacts deep ocean circulation as well, and for sea ice thereby impacting its motions and location. In addition, air temperatures and moisture contribute to determining the energy fluxes across the interface between the atmosphere and surface, contributing to ice maintenance, growth and melt and to the temperature distribution in the ocean and water velocity.
-Fridtjorf Nanse noted that sea ice does not drift in the direction of the wind but at an angle of 20-40° to the right due to the earth’s rotation and speculated that the motions in the water beneath sea ice deviate even more; the motion of each water layer deviate slower and farther to the right to the layer above and Ekman proved it mathematically adding that these influence stops at a depth of about 200 m
+Fridtjorf Nanse noted that sea ice does not drift in the direction of the wind but at an angle of 20-40° to the right due to the Earth’s rotation and speculated that the motions in the water beneath sea ice deviate even more; the motion of each water layer deviate slower and farther to the right to the layer above and Ekman proved it mathematically adding that these influence stops at a depth of about 200 m
 
 \subsection{Ocean }
 it also has a significant impact on the other two components. It is essentially a limitless moisture source and supplies the majority of atmospheric water vapor. The ocean land contrast exerts a major control over the distribution of evaporation over the global precipitation. The thermal inertia of the ocean9 results in a much lesser seasonal temperature range at the open ocean surface than at a land surface or a sea ice surface.
