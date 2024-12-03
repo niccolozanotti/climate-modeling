@@ -60,7 +60,8 @@ rubber.cache
 ## Build tool directories for auxiliary files
 # latexrun
 latex.out/
-
+out/
+.idea/
 ## Auxiliary and intermediate files from other packages:
 # algorithms
 *.alg
