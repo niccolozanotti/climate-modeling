@@ -1,10 +1,9 @@
-name: Build and Publish PDF
+name: Build and Publish PDFs
 
 on:
   push:
     branches:
-      - main  # Trigger the workflow when changes are pushed to the `main` branch
-  workflow_dispatch:  # Allow manual triggering from the Actions tab
+      - main
 
 jobs:
   build-and-publish:
@@ -19,27 +18,32 @@ jobs:
       - name: Install LaTeX
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-full biber
+          sudo apt-get install -y texlive-full biber make
 
-      # Step 3: Make `compile.sh` executable and run it
-      - name: Compile LaTeX document with custom script
+      # Step 3: Compile notes.pdf using custom script
+      - name: Compile notes.pdf with custom script
         run: |
           chmod +x ./compile.sh
-          ./compile.sh
+          make notes
 
-      # Step 4: Copy the PDF to a temporary directory
-      - name: Prepare PDF for deployment
+      # Step 4: Compile overleaf.pdf using Makefile
+      - name: Compile overleaf.pdf
+        run: make overleaf
+
+      # Step 5: Copy the PDFs to a temporary directory
+      - name: Prepare PDFs for deployment
         run: |
           mkdir output
           mv notes.pdf output/
+          mv notes_overleaf.pdf output/
 
-      # Step 5: Deploy the PDF to the `pdf` branch
+      # Step 6: Deploy the PDFs to the `pdf` branch
       - name: Deploy to PDF branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: pdf   # Specify the branch to publish to
-          publish_dir: output   # Only deploy the output directory
+          publish_dir: output   # Deploy both PDFs
           force_orphan: true    # Use an orphan branch for clean publishing
           keep_files: false     # Replace existing files in the branch
-          commit_message: "Update notes.pdf"
+          commit_message: "Update PDFs (notes.pdf and notes_overleaf.pdf)"
