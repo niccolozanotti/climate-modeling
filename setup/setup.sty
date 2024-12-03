@@ -2,8 +2,9 @@
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 \usepackage{amsthm, amssymb, amsfonts}
 \usepackage{thmtools}
-\usepackage{graphicx}
-\usepackage{setspace}
+%\usepackage{graphicx}
+%\usepackage{setspace}
+\usepackage{pdfsync} % enables synctex
 \usepackage{geometry}
 \usepackage{float}
 \usepackage{hyperref}
@@ -16,7 +17,6 @@
     pdftitle={cm},
     pdfpagemode=FullScreen,
 }
-\usepackage{ifthen}
 \usepackage[english]{babel}
 \usepackage{framed}
 \usepackage[dvipsnames]{xcolor}
@@ -53,33 +53,16 @@
 \usepackage{enumitem}
 \usepackage{amsmath}
 \usepackage{bm}
-%\usepackage{todonotes}
 \usepackage{textcomp}
 \usepackage{subfigure}
-\usepackage{amssymb}
-
-%%%%% TIKZ GRAPHICAL PACKAGE %%%%%%%
-%\usepackage{tikz}
-%\usetikzlibrary{perspective}
-%\usetikzlibrary{3d}
-%\usetikzlibrary{arrows.meta,arrows}
-%\usetikzlibrary{chains}
-%\usetikzlibrary{positioning}
-%\usetikzlibrary{patterns}
-%
-%%%%%%%%%% CIRCUITKZ %%%%%%%%%%
-%
-%\usepackage{circuitikz}
-%\tikzset{
-%        vertical align/.style={
-%            baseline=-.5*(height("$+$")-depth("$+$"))
-%        }
-%        }
-%%% used for larger math symbols
+%\usepackage{amssymb}
 \usepackage{relsize}
+\usepackage{svg} %% include svg images 
+\usepackage{siunitx} % for SI Units
+\usepackage[version=4]{mhchem} % chemical formulas
+\usepackage{booktabs}
+\usepackage{tabularx}
 
-%% include svg images
-\usepackage{svg}
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
