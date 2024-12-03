@@ -1,9 +1,8 @@
 #!/usr/bin/make -f
-default:
-		./compile.sh
-pdf:
-		./compile.sh
-		open notes.pdf -a skim
+notes:
+		./compile.sh main notes
+overleaf:
+		./compile.sh overleaf notes_overleaf
 format:
 		latexindent -w main.tex \
         latexindent -w chapters/*.tex
