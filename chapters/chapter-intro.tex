@@ -1,9 +1,9 @@
 \chapter{Physical description of the climate system}\label{ch:climate-system-description}
 \lastupdated{2024-12-02 23.47}{\chapterOneIntro}
 
-\section{Atmosphere}\label{sec:atmosphere-description}
+\section{Atmosphere}\label{sec:atm-description}
 
-\subsection{Composition}
+\subsection{Atmospheric composition}\label{subsec:atm-composition]}
 
 The atmosphere is a gaseous envelope that surrounds the Earth, acting as a protective envelope essential for life.
 It is composed of a mechanical mixture of several gases, with \emph{nitrogen} (\ce{N2}) being the most abundant (\qty{78}{\percent} of the volume of dry air),
@@ -19,13 +19,15 @@ This gaseous mixture is held to the Earth by gravity, which causes the atmospher
 The atmosphere exhibits a distinct temperature profile that changes with altitude and varies depending on the region and season. These variations define the layers of the atmosphere, each with unique characteristics and processes.
 
 \begin{itemize}
-	\item \textbf{The Troposphere}: is the lowest layer, extending from the surface up to about 17 kilometers in the tropics and 8--9 kilometers in polar regions. In this layer, the temperature generally decreases with altitude at an average rate of $6.4^\circ \mathrm{C \, km^{-1}}$. This gradient arises because the surface absorbs heat from the sun and transfers it to the air above, while higher altitudes are farther from this heat source. The troposphere is also the region where most weather phenomena, including clouds and storms, occur, making it the most dynamic part of the atmosphere.
+	\item \textbf{The Troposphere}: is the lowest layer, extending from the surface up to about 17 kilometers in the tropics and
+	      \qtyrange{8}{9}{\kilo\meter} in polar regions.
+	\item In this layer, the temperature generally decreases with altitude at an average rate of \qty{6.4}{\celsius.\kilo\meter^{-1}}. This gradient arises because the surface absorbs heat from the sun and transfers it to the air above, while higher altitudes are farther from this heat source. The troposphere is also the region where most weather phenomena, including clouds and storms, occur, making it the most dynamic part of the atmosphere.
 
 	      At the upper boundary of the troposphere, known as the \textbf{tropopause}, the temperature reaches its minimum and remains constant for a short distance. In tropical regions, the tropopause is particularly cold, with temperatures dropping to about 190~K, marking one of the coldest points in the Earth's atmosphere.
 
 	\item \textbf{The Stratosphere}: Above the tropopause lies the stratosphere, a more stable layer where temperatures either remain constant or begin to rise with altitude. This increase is primarily due to the absorption of ultraviolet radiation by ozone molecules, which warms this part of the atmosphere. Unlike the troposphere, the stratosphere lacks the turbulence and weather systems associated with surface heating.
 
-	\item \textbf{The Thermosphere}:  the temperature continues to increase steadily with altitude. This layer is less influenced by surface-level processes and is instead heated by the absorption of high-energy solar radiation, making it the hottest layer of the atmosphere.
+	\item \textbf{The Thermosphere}: the temperature continues to increase steadily with altitude. This layer is less influenced by surface-level processes and is instead heated by the absorption of high-energy solar radiation, making it the hottest layer of the atmosphere.
 \end{itemize}
 
 
@@ -57,9 +59,9 @@ The atmosphere exhibits a distinct temperature profile that changes with altitud
 As one can grasp from~\fig{\ref{fig:temp-profile-dobson}} and from~\tabref{\ref{tab:atm-temps-layer-latitude}}, temperature profiles in the atmosphere are not uniform and vary significantly between regions and seasons.
 
 \begin{itemize}
-	\item \textbf{Polar regions:} In summer, temperatures near the surface reach about 280~K, decreasing gradually with height. In winter, surface temperatures can plummet to 235~K, but a slight increase often occurs at altitudes of 1.5--2 kilometers due to a phenomenon called temperature inversion. This inversion, caused by the cooling of surface air, reverses the usual trend of decreasing temperature with height.
+	\item \textbf{Polar regions:} In summer, temperatures near the surface reach about 280~K, decreasing gradually with height. In winter, surface temperatures can plummet to 235~K, but a slight increase often occurs at altitudes of \qty{1.5}{2}{\kilo\meter} due to a phenomenon called \emph{temperature inversion}. This inversion, caused by the cooling of surface air, reverses the usual trend of decreasing temperature with height.
 	\item \textbf{Tropical regions:} Surface temperatures remain relatively constant, averaging around 300~K. However, as altitude increases, the temperature drops sharply, reaching the coldest point at the tropopause (about 190~K).
-	\item \textbf{Mid-latitudes:} The temperature profile combines characteristics of both polar and tropical regions, varying more noticeably between seasons.
+	\item \textbf{Mid-latitudes:} The temperature pro\file combines characteristics of both polar and tropical regions, varying more noticeably between seasons.
 \end{itemize}
 
 
@@ -69,55 +71,85 @@ The vertical temperature gradient in the atmosphere is maintained by complex ene
 
 Inversions, which occur when surface air cools significantly, disrupt the usual temperature gradient, particularly in the troposphere. These events highlight the intricate balance of energy transfer within the atmosphere and its impact on weather and climate.
 
-\subsection{Energy balances}
+\subsection{Energy balances}\label{subsec:energy-balances}
 All the energy that enters the Earth’s climate system comes from the sun.
 A portion of this solar energy is absorbed in the Earth's climate system and must be balanced with
 outgoing energy to maintain the observed overall equilibrium state of the climate.
 Such outgoing energy is emitted by the Earth's surface, the oceans, the atmosphere, the ice, and all of its life forms.
-\fig{\ref{fig:global-mean-energy-budget}} contains a quantitative breakdown of the absorption, reflection and emission of
-globally and annually averaged solar and terrestrial radiation.
+
 \begin{figure}
 	\centering
 	\includegraphics[width = .7 \textwidth]{figs/global-mean-energy-budget-trenberth}
-	\caption{The global annual mean Earth’s energy budget for 2000–2005 (\unit{\watt.\meter^{-2}}). The broad arrows indicate
+	\caption{The mean global annual Earth’s energy budget for \qtyranged{2000}{2005}{} (\unit{\watt.\meter^{-2}}). The broad arrows indicate
 		the schematic flow of energy in proportion to their importance. \\ Taken from~\citet{Trenberth2012}.}
 	\label{fig:global-mean-energy-budget}
 \end{figure}
-Since all the incoming radiation are the \qty{342}{\watt.\meter^{-2}} and \qty{107}{\watt m^{-2}} of that are reflected back to space, there must be
-\qty{235}{\watt.\meter^{-2}} of terrestrial radiation emitted to space for an equilibrium situation from three main sources:
-water vapor, \ce{CO2}, clouds and Earth’s surface.
-There is a sharp contrast in energy emitted by the sun and the Earth, in fact the warmer the body is the shorter is the wavelength of its peak electromagnetic emission
-thus: the sun’s energy emission is in the wavelength range of \qtyrange{0.1}{0.2}{\micro \m}, centered on the visible portion of
-the electromagnetic spectrum, while the terrestrial’s is in the range of \qtyrange{4}{40}{\micro \m}, in the infrared portion
-of the spectrum.
+
+The Earth’s climate system is driven by a balance between incoming solar radiation and outgoing terrestrial radiation, as illustrated in Figure~\ref{fig:global-mean-energy-budget}. Of the \qty{341.3}{\watt\per\meter\squared} of solar radiation reaching the Earth, approximately \qty{23}{\watt\per\meter\squared} is reflected by the surface, \qty{79}{\watt\per\meter\squared} is reflected by clouds and the atmosphere, and the remaining \qty{161}{\watt\per\meter\squared} is absorbed by the Earth’s surface. Additionally, \qty{78}{\watt\per\meter\squared} of solar radiation is absorbed by the atmosphere. This leaves \qty{102}{\watt\per\meter\squared} of total reflected solar radiation being lost to space.
+
+For the Earth to maintain energy equilibrium, the outgoing terrestrial radiation must balance the net incoming radiation.
+Of the outgoing energy,~\qty{238.5}{\watt\per\meter\squared} is emitted as terrestrial radiation, comprising~\qty{187}{\watt\per\meter\squared}
+emitted directly by the atmosphere and~\qty{51.5}{\watt\per\meter\squared} emitted through the atmospheric window.
+
+At the surface,~\qty{396}{\watt\per\meter\squared} of terrestrial radiation is emitted, of which~\qty{333}{\watt\per\meter\squared}
+is returned as downwelling radiation due to greenhouse gas effects.
+The net upward loss includes~\qty{17}{\watt\per\meter\squared} transferred as thermals,~\qty{80}{\watt\per\meter\squared}
+through evapotranspiration, and~\qty{63}{\watt\per\meter\squared} lost as radiation.
+This intricate energy balance results in a slight net absorption of~\qty{0.9}{\watt\per\meter\squared},
+which contributes to ongoing global warming.
 
 
-The spatial and temporal distribution of the receipt of solar energy at the Earth’s surface is dependent upon
-the Earth’s annual revolution about the sun, its daily rotation about its axis and the tilt of its axis with
-respect to the plane of its orbit. When the Earth is in the portion of its orbit where the Northern Hemisphere
-is tilted toward the sun, the Northern Hemisphere receives the majority of direct sunlight and experiences
-summer, while the Southern Hemisphere experiences winter. Naturally, the reverse occurs when the Earth
-is in the opposite portion of its orbit, with the Southern Hemisphere tilted toward the sun.This accounts for
-the majority of the local seasonal changes in solar input. The largest seasonal differences in the amount of
-energy received from the sun occur at the poles, where the sun is above the horizon for six months of the
-year, then below the horizon for the following six months. The solar radiation input varies least from season
-to season in the tropics.
-
-\subsection{Influence of the ocean}(*) \textbf{The continentality effect} makes continental summers warmer and winters cooler than the adjacent ocean areas. The oceans have this effect because of their large heat storage capacity and because part of  the energy that they retain from solar input during the summer they return to the atmosphere in the forms of sensible and latent heat and longwave radiation the following winter. Conversely, the continents have the reverse effect, strengthening the seasonal temperature contrasts (that’s why siberia register much colder temperature than the north pole.)
-\newline \textbf{Ocean currents}: transport heat from low to high latitudes. (in the gulf stream of the north atlantic). This contributes to much higher winter air temperatures over mid-to high latitude oceans than over adjacent land areas at the same latitude.
+The spatial and temporal distribution of solar energy varies with Earth’s orbit, rotation, and axial tilt, leading to seasonal differences.
+Polar regions experience extreme seasonal contrasts due to prolonged periods of sunlight or darkness, while tropical regions
+maintain relatively consistent solar input year-round.
 
 
+The interaction between the Earth’s components—atmosphere, oceans, and ice—plays a crucial role in moderating the climate
+(see~\secref{\ref{sec:atm-ocean-ice-interconnections}}).
+The oceans, covering~\qty{71}{\percent} of Earth’s surface, act as a massive heat reservoir,
+redistributing solar energy from equatorial to polar regions through currents and atmospheric interactions.
+Sea ice, covering up to \qty{10}{\percent} of the ocean during winter, acts as both an insulator and a reflector,
+influencing energy exchanges and ocean circulation.
+These dynamics are further impacted by phenomena like the El Niño/Southern Oscillation (ENSO) and the North Atlantic Oscillation (NAO) (see e.g.~\secref{\ref{subsec:ocean-interconnections}}),
+which illustrate the interconnection of the climate system on regional and global scales
+(the so--called~\href{http://www.climate.gov/news-features/blogs/enso/what-are-teleconnections-connecting-earths-climate-patterns-global#:~:text=Teleconnections%20are%20significant%20relationships%20or,that%20span%20thousands%20of%20miles.}{teleconnections}).
 
 
 
-\subsection{The General Circulation of the Atmosphere}\label{chp:GeneralCirculation}
+%The spatial and temporal distribution of the receipt of solar energy at the Earth’s surface is dependent upon
+%the Earth’s annual revolution about the sun, its daily rotation about its axis and the tilt of its axis with
+%respect to the plane of its orbit.
+%When the Earth is in the portion of its orbit where the Northern Hemisphere
+%is tilted toward the sun, the Northern Hemisphere receives the majority of direct sunlight and experiences
+%summer, while the Southern Hemisphere experiences winter.
+%Naturally, the reverse occurs when the Earth
+%is in the opposite portion of its orbit, with the Southern Hemisphere tilted toward the sun.This accounts for
+%the majority of the local seasonal changes in solar input.
+%The largest seasonal differences in the amount of
+%energy received from the sun occur at the poles, where the sun is above the horizon for six months of the
+%year, then below the horizon for the following six months.
+%The solar radiation input varies least from season to season in the tropics.
 
-Since heated air tends to rise and low-level ait must flow in to replace the risen heated air, the relative heating and cooling of different areas in the Earth’s surface, plays a significant role in driving local winds and the large-scale atmospheric circulation.
+\subsection{Continental and Oceanic influence over surface temperature patters}
+\label{subsec:continentality-oceanic-effect-surface-temps}
+
+The temperature patterns over oceans and continents exhibit significant differences due to their distinct thermal properties and energy exchange mechanisms\footnote{Consider adding a reference figure}.
+Oceans, with their large heat storage capacity, act as thermal buffers, moderating temperature fluctuations.
+During summer, oceans absorb and store substantial solar energy, which is gradually released back into the atmosphere in winter as sensible heat, latent heat, and longwave radiation. This delayed energy release helps maintain relatively milder winters in regions adjacent to large water bodies.
+
+In contrast, continents exhibit a more pronounced \emph{continentality effect}, where the absence of significant heat storage results in greater seasonal temperature extremes. During summer, land surfaces heat up rapidly, leading to much warmer temperatures compared to nearby oceans. In winter, the lack of retained heat causes continental regions to cool quickly, creating colder temperatures. For example, Siberia experiences far harsher winters than the Arctic, despite their similar latitudes, due to this effect.
+Ocean currents further influence surface temperature patterns by redistributing heat from equatorial regions to higher latitudes. Currents like the Gulf Stream in the North Atlantic transport warm water toward mid-to-high latitudes, significantly elevating winter air temperatures over oceanic regions. This effect is evident in the relatively mild winters experienced in Western Europe, compared to the colder winters over land areas at similar latitudes in North America. Together, these oceanic and continental influences shape global climate and regional weather patterns.
+
+\subsection{A simple model of Atmospheric large-scale circulation: the three-cell structure}
+\label{subsec:three-cell-struct}
+
+Since heated air tends to rise and low-level air must flow in to replace the risen heated air, the relative heating and cooling of different areas in the Earth’s surface, plays a significant role in driving local winds and the large-scale atmospheric circulation.
 The atmospheric circulation can be sum up into two different contributes: the east-west motion of the Walker circulation and the north-south circulation of the
-three-cell structure: Hadley, Ferrel and polar cells. The Coriolis effect plays a crucial role in wind deflection to the right in the Northern Hemisphere and to the left in the Southern Hemisphere. explaining the formation of trade winds, westerlies, and polar easterlies.
+three-cell structure: Hadley, Ferrel and polar cells.
+The Coriolis effect plays a crucial role in wind deflection to the right in the Northern Hemisphere and to the left in the Southern Hemisphere. explaining the formation of trade winds, westerlies, and polar easterlies.
 
 \begin{enumerate}
-	\item - \textbf{The Walker circulation} refers to the equatorial Pacific and involves rising air over the region of Indonesia and descending air over the eastern Pacific. It was examined following the discovery of strong negative correlation between surface pressure anomalies in the two regions.
+	\item  \textbf{The Walker circulation} refers to the equatorial Pacific and involves rising air over the region of Indonesia and descending air over the eastern Pacific. It was examined following the discovery of strong negative correlation between surface pressure anomalies in the two regions.
 	      Variations in the strength of this circulation produce a large scale fluctuation with an irregular period, known as Southern Oscillation.
 
 	\item \textbf{Three-cell pattern}
@@ -141,7 +173,7 @@ In reality, the atmospheric circulation is more complex than the three-cell mode
 Monsoons involve additional complexities, including the influence of upper atmospheric circulations, such as the jet stream.
 The Asian monsoon, particularly over South Asia, is the most prominent example, crucial for regional agriculture and ecosystems. However, its dynamics are far more complex than those of simple land and sea breezes.
 
-\section{Oceans}
+\section{Oceans}\label{sec:oceans}
 Oceans, covering approximately 71\% of Earth's surface, play a crucial role in global climate systems by storing and transferring heat, nutrients, and momentum. The interaction between the atmosphere and oceans significantly impacts weather and climate patterns. These bodies of water contain an estimated 1,350 million cubic kilometers of water, predominantly found in the Pacific, Atlantic, Arctic, and Southern Oceans, with an average depth of about 4,000 meters.
 \newline Surrounding continents are continental shelves, shallow areas that extend outward for several kilometers before dropping sharply at the continental slope into the deep ocean floor. The ocean floor itself is varied, featuring features like underwater mountains, ridges, trenches, and smooth sedimentary basins.
 \newline The oceans redistribute solar energy from equatorial to higher latitudes. As water warms at low latitudes, it absorbs significant amounts of solar heat. This heat is released into the atmosphere in the form of latent heat and longwave radiation as water cools or condenses, influencing global atmospheric circulation. Ocean currents further distribute this heat, balancing regional temperatures and aiding in climate regulation.(*)
@@ -165,7 +197,7 @@ Coldest water (-0.25°C) near Antarctica due to sinking dense, salty water from 
 Ocean circulation is driven by temperature and salinity differences, influencing density and pressure. Surface currents are wind-driven, forming large gyres such as those in the Pacific and Atlantic Oceans. These gyres redistribute heat and nutrients, shaping regional climates and ecosystems. Deep ocean currents, part of the thermohaline circulation, involve the sinking of dense, cold water and the upwelling of warmer, nutrient-rich water, critical for sustaining marine life.
 Additionally, mesoscale eddies, swirling water masses, play a significant role in transporting momentum, heat, and nutrients horizontally and vertically, although their dynamics are not fully understood. These processes together illustrate the complex and vital role oceans play in regulating Earth's climate and supporting life.
 
-\section{Ice}
+\section{Sea ice}\label{sec:sea-ice}
 Sea ice covers about 7\% of Earth's oceans and plays a critical role in the global climate system, acting as a barrier between the atmosphere and the ocean. It forms when seawater cools below its freezing point, creating ice floes that are often cracked and shifted by environmental forces. Despite its compact appearance, sea ice is dynamic and never fully covers open water areas due to constant movement and deformation.
 In the Southern Hemisphere, sea ice extends seasonally from about 3 million \(km^2\) in summer to 18 million km² in winter, covering around 7\% of the Southern Ocean at its peak. The ice can reach as far as 60°S during winter, particularly in the Weddell and Ross Seas. However, it tends to be less compact compared to the Arctic, largely due to divergent winds and the influence of ocean currents. By contrast, in the Northern Hemisphere, sea ice ranges from 7 million \(km^2\) in summer to 15 million km² in winter, making up about 10\% of the ocean area during its maximum extent. The Arctic Ocean forms the core region of sea ice, with thick polar caps and thinner ice in surrounding seas like the Bering Sea and the Sea of Okhotsk. Ice can also drift into the North Atlantic through the Labrador and Greenland seas.
 The formation of sea ice depends on several factors. Salinity plays a crucial role, as higher salinity lowers the freezing point of seawater. In regions with salinity levels above 24.7\%, convective mixing occurs as dense, salty water sinks, delaying the freezing process. Under calm conditions, supercooling can allow water to remain liquid below its freezing point until ice crystals form, which then accelerate the freezing of surrounding water. As the ice thickens, it insulates the ocean below, reducing heat loss and slowing further growth.
@@ -174,13 +206,12 @@ Sea ice properties vary greatly between the Arctic and Antarctic regions. In the
 The movement of sea ice is also an important factor in ocean circulation and climate. In the Arctic, the Beaufort Gyre and the Transpolar Drift Stream transport ice across the Arctic Basin, eventually exiting through the Fram Strait into the North Atlantic. This ice contributes to cold currents like the East Greenland Current. In the Antarctic, ice drifts clockwise in the Weddell Sea, eventually melting in warmer waters and transporting freshwater to lower latitudes.
 Overall, sea ice is a vital component of Earth's climate system. It influences heat exchange between the ocean and atmosphere, regulates salinity and density in ocean waters, and contributes to the broader dynamics of polar and global ocean circulation. Its seasonal cycles and properties make it an essential focus for understanding climate change and its impacts.
 
-\section{Interconnections Atmosphere/ocean/ice}
+\section{Interconnections Atmosphere/Ocean\/Ice}\label{sec:atm-ocean-ice-interconnections}
 important transfers of energy, mass, momentum occur between the oceans and the atmosphere and are greatly modified by the presence of sea ice.
-\subsection{Atmosphere}
+\subsection{Atmosphere}\label{subsec:atmosphere-interconnections}
 Wind forcing is a prime driver for upper ocean circulation and thereby impacts deep ocean circulation as well, and for sea ice thereby impacting its motions and location. In addition, air temperatures and moisture contribute to determining the energy fluxes across the interface between the atmosphere and surface, contributing to ice maintenance, growth and melt and to the temperature distribution in the ocean and water velocity.
-Fridtjorf Nanse noted that sea ice does not drift in the direction of the wind but at an angle of 20-40° to the right due to the Earth’s rotation and speculated that the motions in the water beneath sea ice deviate even more; the motion of each water layer deviate slower and farther to the right to the layer above and Ekman proved it mathematically adding that these influence stops at a depth of about 200 m
-
-\subsection{Ocean }
+Fridtjorf Nanse noted that sea ice does not drift in the direction of the wind but at an angle of 20-40° to the right due to the Earth’s rotation and speculated that the motions in the water beneath sea ice deviate even more; the motion of each water layer deviate slower and farther to the right to the layer above and Ekman proved it mathematically adding that these influence stops at a depth of about 200 m~\citep[see e.g. Section 3.1 of][]{Zanotti2023}.
+\subsection{Ocean}\label{subsec:ocean-interconnections}
 it also has a significant impact on the other two components. It is essentially a limitless moisture source and supplies the majority of atmospheric water vapor. The ocean land contrast exerts a major control over the distribution of evaporation over the global precipitation. The thermal inertia of the ocean9 results in a much lesser seasonal temperature range at the open ocean surface than at a land surface or a sea ice surface.
 This creates a lesser atmospheric temperature range over open ocean than over land or sea ice, as cold winter air is warmed by the underlying ocean and warm summer air is cooled. Since the ocean also absorbs a significant amount of the atmosphere’s carbon dioxide (CO2), it helps to slow the buildup of atmospheric CO2.
 The oceans contribute significantly to the poleward transport of heat, by means of ocean currents. This transport influences the heat balances in both high and low latitudes and the average temperature gradient between the equator and the poles. The temperature distribution of the ocean surface is the prime determinant of the sea ice distribution, because, in general, ice forms where the water temperature has reached the freezing point. Similarly, the ocean salinity distribution is important to the formation of sea ice, because the salt content of the water affects the freezing temperature. Once ice is formed, warm currents entering an ice-covered region tend to melt the ice cover, and cold currents moving away from the ice region tend to carry ice with them.
