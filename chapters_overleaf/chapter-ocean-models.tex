@@ -1,6 +1,7 @@
 
 \chapter{Models}
-\lastupdated{2024-12-03 17.18 }{\chapterOceanClimModOverleaf}
+\lastupdated{2024-12-05 }{\chapterFourOceanModOverleaf}
+
 \section{Ocean models}
 The modeling of the world's oceans for climate purposes is similar in many respects to the modeling of the atmosphere in terms of physical laws. There are significant differences in that
 The time and space scales of relevance are different, the radiative flux considerations are more complex, and water motions are constrained by the ocean bottom topography.
@@ -87,72 +88,9 @@ Manabe and Wetherald in 1975, try to understand the effects of doubling $CO_2$ c
 	\caption{Enter Caption}
 	\label{fig:fig 51}
 \end{figure}
-\\
-\\
-\section{What are the factor that maintain the circulation?}
-Consider the vorticity budget, meaning that vorticity is conserved
-\begin{equation}
-	\frac{\partial \zeta}{\partial t} = - \vec{v} \cdot \nabla (\zeta + f)
-\end{equation}
-Introduce the zonal mean $A = 1 + \frac{1}{2\pi} \int_0^{2\pi} A \, d\lambda$
-and separate each field in two parts, zonal mean and deviation, such that equation above becomes
-\begin{equation}\label{equa}
-\frac{\partial}{\partial t} (\zeta + \zeta') = - (u + u') \frac{\partial}{\partial x} (\zeta + \zeta') - (v + v') \frac{\partial}{\partial y} (\zeta + \zeta' + f_0 + \beta y)
-\end{equation}
-
-If we zonally averaging again we'll obtain
-\begin{equation}\label{equationn}
-\frac{\partial \zeta}{\partial t} = - u \frac{\partial \zeta}{\partial x} - v \frac{\partial \zeta}{\partial y} - \beta v - \frac{\partial}{\partial y} (v' \zeta')
-\end{equation}
-Subtracting equation \ref{equationn} from \ref{equa} we get the equation for perturbation
-\begin{equation}
-	\frac{\partial \zeta'}{\partial t} = - u \frac{\partial \zeta'}{\partial x} - v' \frac{\partial \zeta}{\partial y} - \beta v' - \frac{\partial}{\partial x} (u' \zeta') - \frac{\partial}{\partial y} (v' \zeta' - v' \zeta')
-\end{equation}
-For small perturbation we can linearized $\frac{\partial \zeta'}{\partial t} = - u \frac{\partial \zeta'}{\partial x} - v' \frac{\partial \zeta}{\partial y} - \beta v'$
-
-
-
-Considering the zonal mean
-\begin{equation}
-	\frac{\partial \zeta}{\partial t} = - u \frac{\partial \zeta}{\partial x} - v \frac{\partial \zeta}{\partial y} - \beta v - \frac{\partial}{\partial y} (v' \zeta')
-\end{equation}
-knowing that the zonal mean of a total derivative in x is zero because of
-periodic boundary conditions, we get
-
-\begin{equation}
-	- \frac{\partial}{\partial y} \frac{\partial u}{\partial t} = - u \frac{\partial \zeta}{\partial x} - v \frac{\partial \zeta}{\partial y} - \beta v - \frac{\partial}{\partial y} (v' \zeta')
-\end{equation}
-
-
-
-
-Because it is not divergent, the mean meridional flow can be obtained from a
-streamfunction $v = \frac{\partial \psi}{\partial x}$
-such that
-
-\begin{equation}
-	- \frac{\partial}{\partial y} \frac{\partial u}{\partial t} = + u \frac{\partial}{\partial x} \frac{\partial u}{\partial y} - \frac{\partial}{\partial y} (v'\zeta')
-\end{equation}
-
-
-
-\\
-
-
-SLIDE 40 LECTURE 13
-
-
-
-
-
-
-
 
 
 \section{Ice models}
-\begin{center}
-	\textit{discllaimer: supercazzolona coming grom the book, prof.tonynavy didn't adress this question}
-\end{center}
 
 They are somewhat different from ocean models because it is not anymore a fluid but a solid, discontinuous in nature, varying in its distribution from one time period to another. In contrast to ocean and atmospheric models, whose calculations center on determining the properties of the water/air, with sea ice, the primary goal is to determine the location and each time step, ice thickness and aerial ice concentration.
 
@@ -166,7 +104,14 @@ The calculation for climate-oriented sea ice models can be divided into two cate
 \end{enumerate}
 (for more details on thermodynamics\&dynamics pag 129-146 book)
 
-\chapter{The River Transport} is often not incorporated into climate models. In the real world, the fresh water that flows in the ocean as Continental runoff affects the ocean salinity, and thereby the ocean density and current structure, as well as forming a vital link in the water cycle of the climate system.  The water balance model is usually  part of the land vegetation surface component of the overall model and takes into account land cover type, monthly average of precipitation, potential evapotranspiration and temperature. Soil characteristics and topography are also inputs. Runoff has both surface and subsurface components. eventually, the cumulative flow from the water transport model goes into the ocean.
+\chapter{The River Transport}
+
+It is an important aspect of the hydrologic cycle, although it is often not incorporated into climate models. In the real world, the fresh water that flows in the ocean as continental runoff affects the ocean salinity, and thereby the ocean density and current structure, as well as forming a vital link in the water cycle of the climate system.
+
+
+\\
+
+The water balance model is usually  part of the land vegetation surface component of the overall model and takes into account land cover type, monthly average of precipitation, potential evapotranspiration and temperature. Soil characteristics and topography are also inputs. Runoff has both surface and subsurface components. eventually, the cumulative flow from the water transport model goes into the ocean.
 
 \chapter{Grids}
 Two possible grids: structured grids (cartesian, curvilinear) for global ocean, basin scale, coastal applications e.g. NEMO, MOM, ROMS, ecc; and unstructured grids, which domain is titled using more general geometrical shapes (triangles, ...) pieced together to optimally fit details of the geometry $\rightarrow$ tidal modelling, near shores, estuaries e.g. FVCOM, FESOM, MPAS, ecc.
@@ -185,7 +130,7 @@ Two possible grids: structured grids (cartesian, curvilinear) for global ocean, 
 	\item irregular grids are designed to give more freedom to put spatial resolution where you want it
 	\item a common scheme is composed as a series of triangles = finite elements
 	\item by varying the size we can construct a non-uniform horizontal resolution over the computational domain
-%this should be irregular grids??
+	      %this should be irregular grids??
 	\item they are efficient owing to the fact that resolution can be tailored to need as a function of space
 	\item they can accurately represent highly irregular coastlines and topography (no need fro "staircase" coasts and topography)
 \end{itemize}
@@ -320,13 +265,13 @@ It is actually a misnomer, we should really talk about “sensitivity to initial
 Deterministic ideas dating to Newton and hyperdeterministic ideas by PS Laplace were put in discussion.
 \paragraph{Lorenz System}
 \begin{align}\label{eq.lorenz system}
-\frac{dx}{dt}=\sigma(y-x)\\
-\frac{dy}{dt}=x(\rho-z)-y\\
-\frac{dz}{dt}=xy-\beta z
+	\frac{dx}{dt}=\sigma(y-x) \\
+	\frac{dy}{dt}=x(\rho-z)-y \\
+	\frac{dz}{dt}=xy-\beta z
 \end{align}
 The solutions of this system represent the traveling waves around a cycle of constant latitude.
 \begin{align*}
-	\dot{x_j}=x_{j-1}(x_{j+1}-x_{j-2})-x_j+F \quad \text{for} \quad j=1,\dots,N\\
+	\dot{x_j}=x_{j-1}(x_{j+1}-x_{j-2})-x_j+F \quad \text{for} \quad j=1,\dots,N \\
 	x_{j-N}=x_{j+N}=x_j
 \end{align*}
 \section{Vorticity dynamics}
@@ -336,15 +281,15 @@ The solutions of this system represent the traveling waves around a cycle of con
 \end{equation}
 and introduce now the zonal mean:
 \begin{equation}\label{eq.zonal mean}
-\overline{A}=\frac{1}{2\pi}\int_0^{2\pi}Ad\lambda
+	\overline{A}=\frac{1}{2\pi}\int_0^{2\pi}Ad\lambda
 \end{equation}
 separate each field in zonal mean and deviation, $A=\overline{A}+A'$:
 $$\frac{\partial}{\partial t}(\overline{\zeta}+\zeta')=-(\overline{u}+u')\frac{\partial}{\partial x}(\overline{\zeta}+\zeta')-(\overline{v}+v')\frac{\partial}{\partial y}(\overline{\zeta}+\zeta'+f_0+\beta y)$$
 because it is tangent to the earth and it needs linearization, zonally averaging again:
 \begin{equation}\label{eq.average eq}
-\frac{\partial\overline{\zeta}}{\partial t}=-\overline{u}\frac{
-	\partial\overline{\zeta}
-}{\partial x}-\overline{v}\frac{\partial\overline{\zeta}}{\partial y}-\beta \overline{v}-\frac{\partial}{\partial y}\overline{v'\zeta'}
+	\frac{\partial\overline{\zeta}}{\partial t}=-\overline{u}\frac{
+		\partial\overline{\zeta}
+	}{\partial x}-\overline{v}\frac{\partial\overline{\zeta}}{\partial y}-\beta \overline{v}-\frac{\partial}{\partial y}\overline{v'\zeta'}
 \end{equation}
 because $\overline{A}=0$, subtracting this equation from the first we get e equation for the perturbation. Note that because in the non-divergent case exist a streamfunction, then $v=\psi_x$ so $\overline{v}=0$ for the periodic boudary conditions:
 $$\frac{\partial\zeta'}{\partial t}=-\overline{u}\frac{\partial\zeta'}{\partial x}-v'\frac{\partial\overline{\zeta}}{\partial y}-\beta v'-\frac{\partial}{\partial x}(u'\zeta')-\frac{\partial}{\partial y}(v'\zeta'-\overline{v'\zeta'})$$ for small perturbation we can linearise it:
@@ -357,7 +302,7 @@ because it is not divergent, the mean meridional ow can be obtained from a strea
 $$-\frac{\partial}{\partial y}\frac{\partial\overline{u}}{\partial t}=+\overline{u}\frac{\partial}{\partial x}\frac{\partial\overline{u}}{\partial y}-\frac{\partial}{\partial y}\overline{v'\zeta'}$$
 averaging again and remembering that the x-derivative of a zonally averages quantity is zero we get:
 \begin{align*}
-	\frac{\partial\overline{u}}{\partial t}=\overline{v'\zeta'}\\
+	\frac{\partial\overline{u}}{\partial t}=\overline{v'\zeta'} \\
 	\frac{\partial\overline{u}}{\partial t}=-\frac{\partial}{\partial y}\overline{v'u'}
 \end{align*}
 This relation shows that the acceleration of the mean flow is caused by the meridional fluxes of momentum. A similar relation can be found for the mean zonal temperature linked to the eddy heat flux. The relation between eddies and jet streams holds also in the three-dimensional case in the Quasi-geostrophic approximation. In this case however we have also non zero
@@ -365,12 +310,12 @@ zonal meridional and vertical velocity $(v,w)$.
 $$\frac{\partial\overline{u}}{\partial t}=f_0\overline{v}-\frac{\partial}{\partial y}\overline{v'u'}$$
 we can then find similar relations for the zonal mean of the temperature:
 \begin{equation}\label{eq.zonal mean of temperature}
-\frac{\partial\overline{\theta}}{\partial t}=-N^2\overline{w}-\frac{\partial}{\partial y}\overline{v'\theta'}
+	\frac{\partial\overline{\theta}}{\partial t}=-N^2\overline{w}-\frac{\partial}{\partial y}\overline{v'\theta'}
 \end{equation}
 The thermal wind relations link the variables:
 \begin{align}\label{eq.thermal wind}
-f_0\frac{\partial\overline{u}}{\partial z}=-\frac{\partial\overline{\theta}}{\partial y}\\
-\frac{\partial\overline{v}}{\partial y}=-\frac{\partial\overline{w}}{\partial z}
+	f_0\frac{\partial\overline{u}}{\partial z}=-\frac{\partial\overline{\theta}}{\partial y} \\
+	\frac{\partial\overline{v}}{\partial y}=-\frac{\partial\overline{w}}{\partial z}
 \end{align}
 \begin{figure}[htp!]
 	\centering

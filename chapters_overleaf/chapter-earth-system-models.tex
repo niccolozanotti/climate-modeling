@@ -2,101 +2,197 @@
 % source: Climate modeling notes 
 
 \chapter{Earth System Models}%slides 16 e 17
-\lastupdated{2024-12-02 15.28 }{\chapterSevenEarthModOverleaf}
+\lastupdated{2024-12-05}{\chapterSevenEarthModOverleaf}
 
-until now we've been working with atm models mostly. primitive exercises on ocean models. bc of the role sst was playing, ocean models had to be coupled with atm models. pp didn't stop there.
-what about vegetation? i can consider it as external forcing.
+Earth System Models have evolved from basic atmospheric simulations to complex, integrated frameworks that include oceans, land, vegetation, and greenhouse gases. These models are essential for understanding the nonlinear dynamics of climate change and for making reliable projections about future conditions. By incorporating both natural and anthropogenic forcings, ESMs provide a robust tool for addressing pressing questions about climate variability and potential future scenarios.
 
-CO2 is so well mixed that it doesn't matter where you are, you see true values. Remember $\tau\approx 0.58$ in radiative processes, half of it is caused by CO2.  Can we set up a model that helps us quantify the raising of CO"? This is now an external forcing: it includes the ocean, sst is not external anymore. My odel will still have a portion of internal forcing including ocean coupled var, and the external now is CO2.
+Until recently, climate studies predominantly relied on atmospheric models, with only preliminary experiments involving ocean models. However, the significant influence of sea surface temperature (SST) on atmospheric processes necessitated the integration of ocean models with atmospheric models. This coupling led to the emergence of Earth System Models (ESMs), which aim to simulate the dynamic interactions between various components of the Earth system. Early models considered vegetation and certain atmospheric gases as external forcings. However, as climate science advanced, external forcings were redefined to include anthropogenic influences like greenhouse gas concentrations, while other previously external factors, such as ocean dynamics, became integral components of the coupled model.
+For example, $CO_2$ is well-mixed in the atmosphere, meaning its concentration is nearly uniform globally. $CO_2$ is a major contributor to radiative forcing, with approximately 58\% of the radiative effect attributed to it.
+Quantifying the rise in $CO_2$ requires models capable of simulating its interactions with the ocean, land, and atmosphere. In this model SST should not be considered as external forcing, that now becomes the $CO_2$.
 
-big oscillations in the past are ice cores.
-
-CO2 is not the only one: CH4, the graph is in part per bilion.  emission is increasing, not coming from combustion but by cuttle farms, extracting industries with leakagis that are diminushing. also rice production.
-
-climate projections: stone and weaver 2000. given certain social economics hypothesis we have models that predict climate. slide 7. a warmer tem and coolder are equiprob b. redefined what is cold or warm, c. climate change will displace much more warmer than colder over the year. it will not just shift, it will change the character, nonlinear change, that's why we need a model.
-this was set up by control run: CO2 present value, increase every year of 1\% then run until eq is reaches double CO2, 4 times CO2 until you reach stab cond. model in a state in which ocean is in eq with atm, otherwise it will drift towards a model with one preferred.
-
-discussing climate change: what do we expect to find in increasing greenhouse gases. increasing the opacity increases the temperature of the surface, wht about the rest?
-you can hypothesis: slide 7. character of fluctuation will change over a mean (means you have same density and same blabla). otherwise you can change many more variables (c). Looking at sT you get a certain prob distr, but looking at precipitation for exe, you get a different one.
-How do you design a numerical experiment to investigate the changes?
-1. control run --> ref experiment
-2. perturbation: changing something
-3. go up and stabilize, until you reach a new state (2CO2 or 4CO2) and see the change.
-you need very long integration to get the stable climate change and start the increasing.
-energetically you need the balance  in the entire system to get equilibrium: the initial conditions have to be in balance otherwise ill get a drift.
-
-
-Starting from the ocean at rest, it takes 4 years to stabilize the circulation of the ocean.
-Initial time also called "spin up": initialisation slide 10
-
-to check variability we will have eof analysis. slide 12 is the resutl: first EOF in teh control integration.
-slide 13 one of the first evidence to the distribution of warming. two major char: amplification of warming in the polar regions and over the continents. continents and polar reg tend to reach more strongly. changing radiation balance temperature on the surface change immediately, ocean is different, warming will be much worse, it is a heat source. eventually will warm up with a long timescales. it is a moderator absorping heat
-
-slide 14. increasing the carbon dioxide you can see the shift, panel low right.
-
-there was a pioneering exercise. the processes of the land are an important component in models. if climate char are changing, the characteristic of veg will change: 15 veg types, according to precipitations and temperature you get a certain type. at this moment it became clear that it was not just gases, but particles that have impact on temperatue and climate. areosols for instance have an effect that depends on the size. smaller sizes increase the albedo. calculating the balance of the effect of the components is treaky. you must have these components to have a valuable description. the microphysiscs is the place where the microscopic things come into account.
-they realized that coupling daily was not enought--> hourly coupling (earth-atm and ocean-atm).
-
-equilibrium climate sensibility 2.2-2.5 in the past. if climate sesn depends on basic temperature, increasing it doesn't mean that climate sensibility will stay the same. slide 17: at present time you start with the scenarios. these are usually based on population and economics assumptions. how much decrease depends on how much the shift north will be, depends on how much greenhouse gases you'll put. increase between 15-20\% in precipitation. amplifications of warming.
-no ci in the poles slide 19.
-
-biochemical models. the biological component of the climate system will interact with the carbon emission. emission how does it become concentration?
-greenhouse gases as external forcing but what we really know are emissions: what percentage of it stays as concentration and doesn't go away in the biological system. what part of these will be absopted, which goes in the biochemical system and so on.
-
-the challenge is to descibe the fluxes.
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/co2image.png}
+	\caption{Monthly mean $CO_2$ at Mauna Loa}
+	\label{fig:enter-label}
+\end{figure}
+Methane ($CH_4$) emissions are increasing and are measured in parts per billion. Unlike CO$_2$, which is primarily emitted from combustion processes, CH$_4$ emissions arise from livestock (e.g., cattle farming), agricultural practices (e.g., rice paddies), industrial activities, including leaks in extraction industries.
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/ch4.png}
+	\caption{Emissions of $CH_4$ in part per billion.}
+	\label{fig:enter-label}
+\end{figure}
+Ice cores provide critical data on past climate oscillations, revealing historical CO$_2$ and CH$_4$ concentrations. These records show the natural variability of greenhouse gases over millennia, serving as a baseline for assessing the impacts of recent anthropogenic emissions.\\
 
 
 
-land and ocean are two big bilogical system.
-\paragraph{chemical composition of the Ocean}
-part of the carbon dioxide will be absorbed until there will be balancein the layer of the atmosphere. the moment carbon is not in equilibrium ocean will emit carbon ?? REC
 
-there are processes putting removal processes in the sediments. flux in the ocean has to deal with all of these sort of processes.
+To project future climate conditions, models incorporate assumptions about socioeconomic scenarios that dictate greenhouse gas emissions. Stone and Weaver\cite{St200} work highlighted that climate change would not merely shift temperature distributions but would fundamentally alter their characteristics, leading to nonlinear alterations, underscoring the need for comprehensive modeling frameworks.
 
-all of this is put together in the carbon cycle: flux of carbon in the different reservoirs.
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/nonlinclimatechange.png}
+	\caption{Comparison on linear and nonlinear interpretations of the projection of climate change.}
+	\label{fig:clim model}
+\end{figure}
+In the fig\ref{fig:clim model} a) represents a situation where warm and cold temperatures are equiprobables, b) redefines what is cold or warm, c) climate change will displace much more warmer than colder over the year.
 
-organic and inorganic transformation of carbon. there is a carbon cycle on land too, that close on vegetation.
-green area releasing co2, red absorbing co2 slide 26.
+\section{Expectations with increasing greenhouse gases}
+Climate projections often begin with control runs:
+\begin{enumerate}
+	\item initialization: start with current atmospheric $CO_2$ levels. This is also referred to as \textit{control run} (reference experiment). A baseline simulation under current climate conditions, ensuring initial energy balance in the system.
+	\item Incremental forcing: increase $CO_2$ concentration by 1\% annually until it doubles or quadruples relative to the baseline (2xCO$_2$, 4xCO$_4$). This is referred to as a \textit{perturbation experiment}, introducint changes and allowing the system to evolve until the new equilibrium is reached, tracking the stabilization process, ensuring that energy balances across the system.
+	\item Equilibrium simulation: run the model until a stable equilibrium is reached, ensuring the ocean and atmosphere are in balance: the system must stabilize energetically. This avoids "drift," where the model might otherwise converge toward unrealistic or biased states. The atmosphere typically stabilizes more quickly, while ocean circulation requires longer timescales, often 4 years to stabilize circulation.
+\end{enumerate}
+Predictive models requires accurate initial conditions obtained
+from observations via constrained estimation methods “data
+assimilation”. Climate models requires equilibrated atmosphere and ocean, therefore a spin-up period is usually used. Spin-up is the time taken for an ocean/atmosphere model to reach a state of statistical equilibrium under the applied forcing.\\
 
-because of combustion of co2 oxygen is decreasing. the concentration of ox deoends on the temperature of water: warm water low oxygen. creating anoxic zone is biological activities remove the entire amount of oxygen.
 
-nitrogen cycle. limiting nutrient as iron (needed in low quantities but needed) non ne ha parlato
+Increasing greenhouse gas concentrations enhance atmospheric opacity, trapping more longwave radiation. This effect leads to a rise in surface temperatures, what about the other variables?
 
-phosporous cycle
+Changes beyond surface warming will change the character of climatic fluctuations, not just the mean temperature (panel c) of \ref{fig:clim model}. This includes shifts in the distribution and variability of other variables, such as precipitation and atmospheric circulation.
 
 
-ocean acidification. lowe range means more acidity slide 35. fish catching as a proxy of the amount --> not very precise
 
-annual mean chlorofille concentration: you see the bulk of geological activity, food chain es healthy ecc. subtropical gyres are basically deserts.
-two kind of corals: warm water corals are very sensitive in pacific too warm coral dies.
-for every portion of the elements i can write a conservation equation:
+Analyzing changes in variability is crucial. For example, EOF analysis is used to identify dominant modes of variability within the control integration. This helps differentiate natural variability from anthropogenic impacts.
+\paragraph{Characteristics of warming}
+Warming is more pronounced in polar regions due to feedback mechanisms like ice-albedo interactions and changes in heat transport. Land areas warm faster than oceans due to lower heat capacity and less mixing compared to water bodies. Oceans act as heat sinks, absorbing significant portions of excess energy. However, this occurs over longer timescales, delaying the full extent of warming. Surface warming occurs rapidly on land and polar regions, while oceanic warming unfolds over decades or longer.
+
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/imagewarming.png}
+	\caption{One of the first evidence to the distribution of warming.}
+	\label{fig:warming}
+\end{figure}
+
+Model outputs often present:
+\begin{itemize}
+	\item Control run variability: baseline distributions of temperature, precipitation and other variables to compare against perturbed states.
+	\item Amplification and shifts: evidence of stronger warming trends over polar regions and continents
+	\item Ocean response: visual representations of delayed oceanic warming compared to surface or land responses.
+\end{itemize}
+\section{Expanding the complexity of climate modeling}
+\paragraph{Pioneering exercises in Earth System Modeling} If climate characteristics are changing, it means that the characteristics of vegetation will change. For example, 15 vegetation classifications emerge based on temperature and precipitation. As climate changes, vegetation responses must be integrated into the model. \\
+
+Particles, such as aerosols, also influence temperature and climate. Their effects depend on particle size, with smaller aerosols increasing albedo. Modeling aerosol effects requires intricate calculations and includes microphysics, where microscopic processes play a significant role.
+
+Coupling components at higher frequencies—shifting from daily to hourly exchanges between Earth-atmosphere and ocean-atmosphere—became necessary for accurate simulations.
+
+\paragraph{Equilibrium climate sensitivity} Equilibrium Climate Sensitivity (ECS) is historically estimated at 2.2-2.5°C, ECS measures the temperature response to CO$_2$ doubling. ECS may evolve with baseline temperatures, complicating future predictions (if climate sensitivity depends on basic temperature, increasing it doesn't mean that climate sensibility will stay the same). However, as baseline temperatures rise, ECS may also evolve, making linear assumptions inadequate. Modern climate projections, driven by socioeconomic scenarios, aim to quantify these nonlinear changes, such as shifts in precipitation patterns (15–20\% increase) and polar amplification of warming.
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/climatescenarios.png}
+	\caption{Climate scenarios including social economics assumptions}
+	\label{fig:clim scenarios}
+\end{figure}
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.35\linewidth]{uploads/precipitations.png}\quad \includegraphics[width=0.35\linewidth]{uploads/sea ice.png}
+	\caption{Precipitation anomalies (\%) and sea ice concentrations (\%)}
+	\label{fig:enter-label}
+\end{figure}
+
+\section{Carbon and Biogeochemical cycles}
+Some definitions:
+\begin{itemize}
+	\item \textit{Geochemistry:} studies the chemical composition of the Earth and the cycling of its chemical elements and major compounds that circulate between the natural reservoirs of the outer envelope lithosphere, atmosphere, hydrosphere and biosphere.
+	\item \textit{Biogeochemistry: } studies the effects of living organisms on chemical composition and cycling.
+	\item \textit{Biogeochemical cycles:} studies the transport and cyclic transformation of chemical elements (or compounds) inuenced by the activity of living organisms.
+\end{itemize}
+\paragraph{Chemical composition of the ocean} The chemical composition of the ocean is driven by air-sea exchange: dissolution in air or in surface waters (where solubility is given by the products of partial pressure and the solubility coefficient, which is different for each gas and de-(in-)creases with in-(de-)creasing water temperature); by atmospheric deposition; by accumulation of terrestrial inputs and by removal through marine sediments.
+
+\subsection{The Carbon cycle}
+Carbon is the defining element of organic matter: virtually all organisms are based predominantly on carbon compounds, it is present in all reservoirs: biosphere, hydrosphere, atmosphere and lithosphere. Atmospheric components CO$_2$ and methane (CH$_4$) are greenhouse-gases, the latter being less abundant (\~100x), but more effective (20x), but also unstable (turnover time \~10y).
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.4\linewidth]{uploads/greenhouse situa.png}
+	\caption{Greenhouse effect affects radiative balance. Greenhouse gases act as external forcing but what we are really interested in are emissions: what percentage of CO$_2$ stays as concentration and doesn't go away in the biological system? What part of these will be absopted, which goes in the biochemical system and so on.
+		A certain portion of the emission will be digested by the system, the extra will go into the atmospheric concentration, the net result is to have a model much more difficult to understand and model.}
+	\label{fig:enter-label}
+\end{figure}
+Carbon is also found in transformed sedimentary rocks from marine sediments. Inorganic forms in the ocean are separated into dissolved (DIC) and particulate (PIC), including calcareous structural material originating from plankton, corals and shells.
+
+The carbon cycle, an integral part of Earth System Models (ESMs), includes fluxes among the atmosphere, ocean, and land. Carbon dioxide absorption occurs until equilibrium between the atmosphere and ocean is reached. Processes like sediment removal also play roles in long-term carbon storage. Vegetation acts as both a source and a sink for CO$_2$, dynamically interacting with atmospheric concentrations.\\
+
+
+
+The interplay of carbon with other cycles (e.g., nitrogen and phosphorus) further complicates these models. The equations governing these systems combine advection, diffusion, and biogeochemical reactions, often expressed as:
 $$\frac{\partial C}{\partial t}=\vec{v}\cdot \nabla C=Sources-Sinks$$
-which fraction of the emission will be absorbed--> model.
 
-a certain portion of the emission will be digested by the system, the extra will go into the atmospheric concentration, the net result is to have a model much more difficult to understand and model.
+\paragraph{Oxygen cycle}
+Oxygen is the most abundant
+element in the Earth’s crust and
+second most abundant in the
+ocean. Its presence is due to imbalance of
+photosynthesis and respiration,
+guaranteed by the deposition of
+organic compounds in sediments,
+where they can not be oxidised. Oxygen is toxic to anaerobic
+organisms and at high concentrations even to aerobic ones. Cyanobacteria were the first organism to perform photosynthesis, in the "Great Oxygenation Event". Oxygen is produced by the splitting of the water molecules in photosynthesis, approximately half of this production occurs in the ocean. Dissolved oxygen supply is high
+in the surface ocean due to air-sea exchange and
+photosynthesis. It is reduced in the intermediate layer due to consumption, particularly at low to mid latitudes. It generally increases again in the deep ocean where it is supplied by deep water
+formation and barely consumed.\\
+[0.2cm]
 
-Basically there is atm model, ocean model, sea ice, horography. all connected earth system model
+
+Subtropical gyres, vast regions of rotating ocean currents, are often described as the deserts of the ocean due to their low biological productivity. These gyres are characterized by warm, nutrient-poor waters that limit phytoplankton growth and, in turn, reduce the primary production essential for sustaining marine food webs. Despite their low productivity, these regions play a significant role in global biogeochemical cycles by acting as carbon sinks, absorbing atmospheric CO$_2$ and sequestering it in the ocean interior over long timescales.\\
+
+Ocean acidification, a direct consequence of increasing CO$_2$ concentrations, poses a profound threat to marine ecosystems, including those in subtropical gyres. As the ocean absorbs more CO$_2$, it forms carbonic acid, lowering the pH of seawater and increasing its acidity. This shift affects the carbonate chemistry of the ocean, impairing the ability of calcifying organisms, such as corals and certain plankton species, to build and maintain their calcium carbonate structures. Warm-water corals, for instance, are particularly vulnerable; when combined with rising temperatures, acidification leads to widespread coral bleaching and mortality.
+
+
+
+
+These changes are not uniform and depend on regional factors, but the overall trend toward more acidic and nutrient-depleted subtropical gyres highlights the intertwined impacts of climate change on ocean dynamics and marine life. Understanding these processes is essential for predicting the future health of ocean ecosystems and their role in regulating Earth’s climate.\\
+[0.2cm]
+
+There's a wide range of approaches to the marine ecosystem models, such as eulerian/lagrangian modelling, individual based models, food-web models, dynamic size spectrum models and so on. \\
+
+We can write a more detailed dynamic equation for biogeochemical tracers, as the change of biogeochemical concentrations in the ocean interior is given by: advection, diffusion (turbulent and molecular, the latter is usually neglectible), biogeochemical sources and sinks (production, losses, vertical movements:
+\begin{equation}
+	\frac{\partial C}{\partial t}=-\vec{v}\cdot\nabla C+K\nabla^2 C+\frac{\partial C}{\partial t}\big|_{bgc}
+\end{equation}
+in its simplest form, biogeochemical changes are assumed proportional to the tracer concentration, where $r$ may be a function of other state variables:
+$$\frac{\partial C}{\partial t}\big|_{bgc} =rC$$
+
+
+An \textbf{Earth System Model (ESM)} needs to take into account atmospheric dynamics, ocean dynamics, cryosphere, hydrography, atmospheric chemistry, terrestrial ecosystem, marine ecosystem.
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Earth system model.png}
 	\caption{Earth system model}
 	\label{fig:enter-label}
 \end{figure}
-dynamical equation for biogeochemical tracers. lagrangian models folloing the ox, car, nitr, phos, cycles. advection + diffusion caused by concentration changes + rate of change in concentration due to biogeochemical processes, you can make this proportional to the concentration $rC$.
 
-complexity of the models has increased enormously slide 40. three sources of complex:
-1. increase resolution (horizontally or vertically) means more variables to compute, significantly reduce the amount of numerical dissipations (introduced by numerical methods) increasing resolution --> free,
-
-
-how good are these models? slide 44 from satellites (left) and model (right). the deeper you go the more chlorofille you get.
-
-cmcc earth system model for CMIP6: projectrs that are coordinating the same scenarios from all over the world.
+\subsection{Complexity and model evaluation}
+Advancements in ESMs have dramatically increased complexity due to:
+\begin{enumerate}
+	\item Higher resolution (spatial and temporal, horizontally and vertically), enhancing model accuracy but demanding greater computational resources: more variables to compute, but increasing resolutions means more degree of freedom.
+	\item Inclusion of biogeochemical tracers for carbon, nitrogen, and phosphorus cycles.
+	\item Expanding interactions among components like sea ice, topography, and biological systems.
+\end{enumerate}
+Model performance is evaluated against satellite observations, revealing improved simulation fidelity over time, especially in capturing chlorophyll distributions and carbon fluxes.
 \begin{figure}[htpb]
 	\centering
-	\includegraphics[width=0.5\linewidth]{uploads/CMCC model.png}
+	\includegraphics[width=0.4\linewidth]{uploads/goodmodels.png}
+	\caption{How good are these models, from satellites (left) and model (right).}
+	\label{fig:enter-label}
+\end{figure}
+
+
+Efforts like the CMIP6 project coordinate global climate scenarios, extending from pre-industrial times (850 CE) to future projections (2100 CE). These simulations consider volcanic eruptions, orbital variations, historical land-use changes.
+Models predict that both land and ocean systems, traditionally acting as carbon sinks, may transition into sources as emissions continue. These insights highlight the necessity of understanding and mitigating anthropogenic impacts on Earth's climate systems.
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.4\linewidth]{uploads/CMCC model.png}
 	\caption{CMCC Earth System model for CMIP6}
 	\label{fig:enter-label}
 \end{figure}
-people tried to simulate the past from 850 to 2100 CE. on this timescales you should include vulcanic eruption, orbital change, historical change of land use. there is none emission of carbon dioxide.
 
-fluxes of carbon between ocean, land slide 53. if >0 source, if <0 sink. both land and ocean in this model will become sources
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/sources.png}
+	\caption{Fluxes of carbon between ocean and land, if above $0\rightarrow$ source. In this model both land and ocean become sources of carbon fluxes}
+	\label{fig:enter-label}
+\end{figure}

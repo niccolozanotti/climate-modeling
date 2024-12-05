@@ -2,10 +2,9 @@
 % source: Climate modeling notes EXPLORING +SST
 
 \chapter{Exploring Variability}
-\lastupdated{2024-12-02 15.40 }{\chapterFiveExploringSSTOverleaf}
+\lastupdated{2024-12-05}{\chapterFiveExploringSSTOverleaf}
 
-%slides 14
-Horel and Wallace, 1981: their article was the first moment where people started looking at time series of monthly average values. People started to put together El Nino and southern oscillations: the role of the ocean was emerging. The EOF became the perfect instrument to do that: with the EOF you can decompose all the dataset on how they project (EOF gives the complete decomposition of the data):
+Horel and Wallace, 1981: their article was the first moment where people started looking at time series of monthly average values. People started to put together El Nino and southern oscillations: the role of the ocean was emerging. The EOF became the perfect instrument to do that: with the EOF you can decompose all the dataset on how they project (EOF gives the complete decomposition of the data), check \ref{app} for more details:
 $$X=U\Sigma V^T$$
 where $U$ is the matrix of the patterns, $V$, the matrix of the coefficients. When you plot the time coefficient of the first EOF, correlating the time series with the pressure all over the hemisphere, remote connections start to appear. The connections have different signs, like a wave was emerging from the pacific and propagating in the northen hemisphere.
 \begin{figure}[htp!]
@@ -14,15 +13,29 @@ where $U$ is the matrix of the patterns, $V$, the matrix of the coefficients. Wh
 	\caption{Horel and Wallace (1981)}
 	\label{fig:1981}
 \end{figure}
-This prompt was a systematic view with a month timescale variability: they used EOF to analyze 500 mbar data within a month's variability. Are 4 EOFs appearing during the analysis, the matrix had 45 columns (time series). As shown below, these patterns are a succession of positive and negative signs. In picture 16\% of variance: reconstructing the timeserie using only that mode, the total variance of that mode will be 16\% of the variance, or, having 45 modes, construct one by change, the change that it will look close to that one is 16\%.
+This prompt was a systematic view with a month timescale variability: they used EOF to analyze 500 mbar data within a month's variability.
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.4\linewidth]{uploads/Screenshot 2024-11-15 155150.png}
+	\includegraphics[width=0.45\linewidth]{uploads/Screenshot 2024-11-15 155150.png}
 	\caption{Correlation coefficients}
 	\label{fig:correlation coeff}
 \end{figure}
-There was a network of connections disappearing beyond the synoptic view, beyond monthly timescales there's a network of connections. Synoptic variation was understood as an instability of the basic flow. You will reach a nonlinear balance if the instability grows very much outside the linear regime, and this could happen in a time series of a week/ten days.
-When you try to connect variability in the ocean with the variability in the atmosphere you get a pattern like the one below (slide 15).
+There are 4 EOFs appearing during the analysis, the matrix had 45 columns (time series). As shown above \ref{fig:correlation coeff}, these patterns are a succession of positive and negative signs. In picture 16\% of variance: reconstructing the timeserie using only that mode, the total variance of that mode will be 16\% of the variance, or, having 45 modes, construct one by change, the change that it will look close to that one is 16\%.
+
+There was a network of connections disappearing beyond the synoptic view, beyond monthly timescales there's a network of connections.
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.4\linewidth]{uploads/imageexploringvar.png}
+	\caption{Connected variability in the ocean and in the atmosphere}
+	\label{fig:conn var}
+\end{figure}
+Synoptic variation was understood as an instability of the basic flow. Nonlinear balance is reached if the instability grows very much outside the linear regime, and this could happen in a time series of a week/ten days.
+When you try to connect variability in the ocean with the variability in the atmosphere you get a pattern like the figure \ref{fig:conn var}.
+
+
+
+
+
 
 The idea came forward that at least a part of this teleconnection must be connected to the Ocean. There's a lot of variability in the ocean at monthly timescales. The figure below \ref{fig:SST VAR} shows deviations from seasonal timescales: a lot of variability at monthly timescales. The figure also shows the strongest El Nino ever recorded in 1993 and in 1998 another El Nino.
 \begin{figure}[htpb]
@@ -43,13 +56,17 @@ The right figure of \ref{fig:SST VAR} represents a modern analysis of SST variab
 \end{figure}
 In figure \ref{fig:first two modes}: the top one of El Nino, EOF cannot separate one phenomenon from the other: there are mathematical constraints (i.e. to be orthogonal to each other). In the following  years, people try to make variations to address some of the problems. EOFs are very sensitive to where the variability is concentrated. As you go to higher modes, you get more structure for two main reasons: modes are getting more complicated and EOFs have to be orthogonal to each other because of their construction. Everything is dominated by the large variations in the equatorial zone, and this variation in the North Pacific is relatively weighted less (here is very uniform but something is going on). Later it was discovered to be the Pacific decayed oscillation.
 
-All of these evidences were statistics, there is no reason to believe in causation. In order to demonstrate that is the SST creating those oscillations, use a climate model: you have to design an experiment. I have evidence from experiments that SST is connected to the anomaly in the atmosphere, what should I do? I need to design a numerical, that is a  simulation of climate using the model.
+\section{Designing a model for variability}
+All of these evidences were statistics, there is no reason to believe in causation. In order to demonstrate that it is the SST that forms those oscillations, we need to use a climate model and design an experiment.
+From evidence of past experiments it is clear that SST is connected to anomaly in the atmosphere, how should we design a model?
+
+We want to design a numerical method, that is a  simulation of climate using the model.
 For instance, we would like to see the evolution in time of SST and we have a dataset from 1880.
-Considering just the atmosphere, you need initial data in the model and boundary conditions in the ground (topography stressing the presence of mountains, it is not necessary to consider vegetation because it is part of the length scheme of the model, but we need a land-see mask stressing where are lands, oceans and ice). You have to take into account the temperature of the ocean, in this case, SST (integrating forward in time will get a simulation in data). If you want to see the impact of the SST on the atmosphere you change the model inducing a disturbance (for example, changing the boundary conditions at the surface) and you get the monthly mean of SST. This type of experiment is called a prescribed experiment.
+Considering just the atmosphere, you need initial data in the model and boundary conditions in the ground (topography stressing the presence of mountains, it is not necessary to consider vegetation because it is part of the length scheme of the model, but we need a land-see mask stressing where are lands, oceans and ice). You have to take into account the temperature of the ocean, in this case, SST (integrating forward in time will get a simulation in data). If you want to see the impact of the SST on the atmosphere you change the model inducing a disturbance (for example, changing the boundary conditions at the surface) and you get the monthly mean of SST. This type of experiment is called a \textit{prescribed experiment}.
 
 run an atm model where we see the mean SST for the entire simulation of the model (temperature at 2 m is part of the atm problem). artificially increasing --> putting a perturbation in some areas slide 21.  ????
 
-So they built a strategy to do that: you start with a basic model and you add a perturbation to it. This will lead you to a comparison between one system with the perturbation and the other one without the perturbation, which is called the control system or the reference. Comparing the two systems I obtained, I'll gain the effect of the perturbation I applied.
+So they built a strategy to do that: you start with a basic model and you add a perturbation to it. This will lead you to a comparison between one system with the perturbation and the other one without the perturbation, which is called the control system or the reference. Comparing the two systems, you'll gain the effect of the perturbation you applied.
 
 \begin{figure}[htp!]
 	\centering
@@ -190,6 +207,3 @@ Last but not least, different models have similar patterns of errors. This is a 
 	\caption{Example of mean errors in comparison different models}
 	\label{fig:enter-label}
 \end{figure}
-
-
-
