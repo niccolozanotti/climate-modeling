@@ -1,23 +1,24 @@
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage[english]{babel}
 \usepackage{amsthm, amssymb, amsfonts}
 \usepackage{thmtools}
-%\usepackage{graphicx}
-%\usepackage{setspace}
 \usepackage{pdfsync} % enables synctex
 \usepackage{geometry}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,
-    urlcolor=magenta,
-    citecolor=blue,
-    pdftitle={cm},
-    pdfpagemode=FullScreen,
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,
+	urlcolor=magenta,
+	citecolor=blue,
+	pdftitle={cm},
+	pdfpagemode=FullScreen,
 }
-\usepackage[english]{babel}
 \usepackage{framed}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{environ}
@@ -30,18 +31,18 @@
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY OPTIONS
 %----------------------------------------------------------------------------------------
-\usepackage[style=authoryear,
-            backend=biber,
-            natbib=true,
-            maxcitenames=2,
-            mincitenames=1,
-            dashed=false,
-            isbn=false,
-            url=false,
-            eprint=false,
-            doi=false,
-            uniquelist=minyear % prevent issue for references of the same first author (even in different years)
-            ]{biblatex}
+\RequirePackage[style=authoryear,
+	backend=biber,
+	natbib=true,
+	maxcitenames=2,
+	mincitenames=1,
+	dashed=false,
+	isbn=false,
+	url=false,
+	eprint=false,
+	doi=false,
+	uniquelist=minyear % prevent issue for references of the same first author (even in different years)
+]{biblatex}
 \addbibresource{bibliography.bib} % The filename of the bibliography
 
 
@@ -55,7 +56,6 @@
 \usepackage{bm}
 \usepackage{textcomp}
 \usepackage{subfigure}
-%\usepackage{amssymb}
 \usepackage{relsize}
 \usepackage{svg} %% include svg images 
 \usepackage{siunitx} % for SI Units
