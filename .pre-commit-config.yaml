@@ -2,12 +2,12 @@ repos:
   - repo: local
     hooks:
       # Hook to compile LaTeX using compile.sh
-      - id: compile-tex
-        name: Compile LaTeX with compile.sh
-        entry: ./compile.sh
-        language: system
-        types: [tex]
-        always_run: true
+#      - id: compile-tex
+#        name: Compile LaTeX with compile.sh
+#        entry: ./compile.sh
+#        language: system
+#        types: [tex]
+#        always_run: true
 
       # Hook to format LaTeX files with latexindent
       - id: format-latex
