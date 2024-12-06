@@ -215,14 +215,19 @@ Looking at the zonal profile of the clouds, it is evident that major concentrati
 
 
 \section{Oceans}
-Oceans, covering approximately \qty{71}{\percent} of Earth's surface, play a crucial role in global climate systems by storing and transferring heat, nutrients, and momentum. The interaction between the atmosphere and oceans significantly impacts weather and climate patterns. These bodies of water contain an estimated 1,350 million cubic kilometers of water, predominantly found in the Pacific, Atlantic, Arctic, and Southern Oceans, with an average depth of about 4,000 meters.
+Oceans, covering approximately \qty{71}{\percent} of Earth's surface, play a crucial role in global climate systems by storing and transferring heat, nutrients, and momentum. The interaction between the atmosphere and oceans significantly impacts weather and climate patterns. These bodies of water contain an estimated \qty{1350e6}{\kilo\meter\cubed} of water, predominantly found in the Pacific, Atlantic, Arctic, and Southern Oceans, with an average depth of about \qty{4000}{\meter}.
 \newline Surrounding continents are continental shelves, shallow areas that extend outward for several kilometers before dropping sharply at the continental slope into the deep ocean floor. The ocean floor itself is varied, featuring features like underwater mountains, ridges, trenches, and smooth sedimentary basins.
-\newline The oceans redistribute solar energy from equatorial to higher latitudes. As water warms at low latitudes, it absorbs significant amounts of solar heat. This heat is released into the atmosphere in the form of latent heat and longwave radiation as water cools or condenses, influencing global atmospheric circulation. Ocean currents further distribute this heat, balancing regional temperatures and aiding in climate regulation.(*)
-\paragraph{Composition.} Seawater is not just water but a mixture containing various dissolved salts, with an average salinity of 35 grams per kilogram of water. This salinity largely comes from chloride, sodium, and sulfate, accounting for the majority of dissolved material. Salinity levels, however, vary globally. The Arctic Ocean shows lower salinity ($\sim$ \qty{29}{\percent}),
-influenced by melting ice and freshwater inflows, while the subtropical Atlantic has some of the highest salinities ($\sim$ \qty{37.5}{\percent}), due to high evaporation and low precipitation. These variations affect density, which in turn drives ocean circulation and temperature dynamics.
+\newline The oceans redistribute solar energy from equatorial to higher latitudes. As water warms at low latitudes, it absorbs significant amounts of solar heat. This heat is released into the atmosphere in the form of latent heat and longwave radiation as water cools or condenses, influencing global atmospheric circulation. Ocean currents further distribute this heat, balancing regional temperatures and aiding in climate regulation (see e.g.~\secref{\ref{subsec:ocean-influence}}).
+
+\subsection{Oceanic Composition}\label{subsec:ocean-composition}
+Seawater is not just water but a mixture containing various dissolved salts, with an average salinity of 35 grams per kilogram of water. This salinity largely comes from chloride, sodium, and sulfate, accounting for the majority of dissolved material. Salinity levels, however, vary globally. The Arctic Ocean shows lower salinity ($\sim$ \qty{29}{\percent}),
+influenced by melting ice and freshwater inflows, while the subtropical Atlantic has some of the highest salinity ($\sim$ \qty{37.5}{\percent}), due to high evaporation and low precipitation. These variations affect density, which in turn drives ocean circulation and temperature dynamics.
 Overall, oceans are not only a storage medium for heat and nutrients but also critical in redistributing energy across the planet, moderating climate, and supporting ecosystems. Their interaction with atmospheric processes underscores their integral role in Earth's environmental systems.
-\paragraph{Temperatures profiles.}
-\subparagraph{Surface Temperatures:}
+
+\subsection{Thermal structure}\label{subsec:temperature-profile}
+
+For a more in-depth analysis of the Thermal structure of the Ocean see e.g. \href{https://wanderer.cmcc.it/chp65chap.html#the-thermal-structure-of-the-ocean}{here}\footnote{Goal: include the analysis in the notes.}.
+\subsubsection{Surface temperature}
 Range: \qty{-1}{\celsius} (polar regions) to \qtyranged{20}{30}{\celsius} (tropics).
 Seasonality: temperatures align in east-west zonal patterns, with exceptions like:
 \begin{itemize}
@@ -230,7 +235,14 @@ Seasonality: temperatures align in east-west zonal patterns, with exceptions lik
 	\item Gulf Stream: transports warm water northeast, moderating European climates.
 \end{itemize}
 
-\subparagraph{Temperature with Depth:}
+\subsubsection{Vertical temperature}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.45\textwidth]{figs/ocean-temp-vertical-profile}
+	\caption{Ocean temperature by depth.}
+	\label{fig:ocean-temp-vertical-profile}
+\end{figure}
+
 \begin{itemize}
 	\item Mixed Layer (\qtyranged{0}{30}{\meter} in summer):
 	      warmed by sunlight and mixed by winds.
@@ -241,30 +253,17 @@ Seasonality: temperatures align in east-west zonal patterns, with exceptions lik
 	\item Coldest water (\qty{-0.25}{\celsius}) near Antarctica due to sinking dense, salty water from surface cooling and sea ice formation.
 \end{itemize}
 
-\begin{wrapfigure}{R}{0.5\textwidth}
-	\begin{center}
-		\includegraphics[width=0.3\textwidth]{uploads/Ocean T.png}
-	\end{center}
-	\caption{Ocean temperature diagram (unprecised values on the $y$-axis)}
-	\label{}
-\end{wrapfigure}
-
-
-
 Ocean circulation is driven by temperature and salinity differences, influencing density and pressure. Surface currents are wind-driven, forming large gyres such as those in the Pacific and Atlantic Oceans. These gyres redistribute heat and nutrients, shaping regional climates and ecosystems. Deep ocean currents, part of the thermohaline circulation\footnote{\url{https://rwu.pressbooks.pub/webboceanography/chapter/9-8-thermohaline-circulation/}}, involve the sinking of dense, cold water and the upwelling of warmer, nutrient-rich water, critical for sustaining marine life.
-Additionally, mesoscale eddies, swirling water masses, play a significant role in transporting momentum, heat, and nutrients horizontally and vertically, although their dynamics are not fully understood. These processes together illustrate the complex and vital role oceans play in regulating Earth's climate and supporting life.
-\begin{figure}[htbp]
+Additionally, mesoscale eddies, swirling water masses (\fig{\ref{fig:water-masses-atlantic}}), play a significant role in transporting momentum, heat, and nutrients horizontally and vertically, although their dynamics are not fully understood. These processes together illustrate the complex and vital role oceans play in regulating Earth's climate and supporting life.
+\begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth]{uploads/atlocean.png}
+	\includegraphics[width=0.6\linewidth]{figs/water-masses-atlantic}
 	\caption{The major water masses of the Atlantic Ocean}
-	\label{fig:enter-label}
+	\label{fig:water-masses-atlantic}
 \end{figure}
-\\
-[0.1cm]
 
-\subsection{The salinity structure of the ocean }
-The salinity structure of the oceans is shown in Figure \ref{fig:fig1}.  The top panel shows the salinity near the surface at a nominal depth of
-5m. We notice that there is a complex structure with low salinity
+\subsection{The salinity structure of the ocean}\label{subsec:ocean-salinity-structure}
+The salinity structure of the oceans is shown in \fig{\ref{fig:ocean-salinity}}.  The top panel shows the salinity near the surface at a nominal depth of \qty{5}{\meter}. We notice that there is a complex structure with low salinity
 (fresher) waters at the poles and progressively more saline water moving towards the Equator, but then salinity decreases again at the equator. It is probably instructive to look at the latitudinal distribution of the precipitation. We can notice that the peaks of precipitation in the midlatitude and at the Equator are correlated with the low-salinity areas, whereas the subtropical regions are regions of strong evaporation, whose signature is the high salinity of the surface waters.
 
 The Pacific Ocean is fresher than the Atlantic or even the Indian Ocean.
@@ -273,20 +272,20 @@ marginal seas like the Mediterranean and the Persian Gulf. These areas
 are evaporative basins that produce water so saline that it dominates
 over the temperature effect and becomes denser so that we can find
 Mediterranean water below the surface.
-\begin{wrapfigure}{R}{0.5\textwidth}
-	\begin{center}
-		\includegraphics[width=0.48\textwidth]{uploads/26image.png}
-	\end{center}
-	\caption{Salinity structure}
-	\label{fig:fig1}
-\end{wrapfigure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.45\textwidth]{figs/ocean-salinity5m}
+	\hfill
+	\includegraphics[width=0.49\textwidth]{figs/ocean-salinity1000m}
+	\caption{Global ocean salinity level at \qty{5}{\meter} and \qty{1000}{m}, respectively (From \CMCCreanalysis).}
+	\label{fig:ocean-salinity}
+\end{figure}
 
-The effect of the precipitation is less visible at the deeper depth pf
-1000m (bottom panel), where the ocean tends to be fresher and more
+The effect of the precipitation is less visible at the deeper depth of \qty{1000}{\meter} (bottom panel of \fig{\ref{fig:ocean-salinity}}), where the ocean tends to be fresher and more
 uniform. We are using here the same scale to give a feeling of the
 changes in salinity, except for the Atlantic and the east Indian Ocean,
-the salinity is around 34 psu.
+the salinity is around \qty{34}{\psu}.
 The effect of the runoff from major river systems is visible along the
 Atlantic coast of South America where the Amazon river discharges and in the Bay of Bengal and around Indochina from the run-off the major rivers there, the Ganges and the Mekong.
 
@@ -296,68 +295,71 @@ the scale. The oceans are remarkably uniform and the salinity deviations are rea
 
 
 
-Looking at the North Atlantic (figures below) we notice that
+Looking at the North Atlantic (see \fig{\ref{fig:salinity-different-detphs-cmcc}}) we notice that
 there is a strong salinity gradient along the North American Coast that
 follows roughly the pattern of the temperature gradient shown below. Strong temperature gradients are presumably to be
 connected to the existence of currents, but we will need to check the
-density, depending on the salinity later, to be sure. \\
+density, depending on the salinity later, to be sure.
+Anyway, \fig{\ref{fig:salinity-different-detphs-cmcc}} is giving a strong indication of the existence of something
+remarkable and intense along the western boundary of the Atlantic ocean.
 
-\begin{minipage}{0.45\textwidth}\label{fig:fig4}
-	\includegraphics[width=0.9\textwidth]{uploads/27image.png}
-\end{minipage}
-\begin{minipage}{0.45\textwidth}
-	\includegraphics[width=0.9\textwidth]{uploads/28image.png}
-\end{minipage}\\
-[0.1 cm]
-Anyway,
-this picture is giving a strong indication of the existence of something
-remarkable and intense along the western boundary of the Atlantic ocean. \\
-
-
-\begin{minipage}{0.45\textwidth}\label{fig:fig4}
-	\includegraphics[width=0.9\textwidth]{uploads/29image.png}
-\end{minipage}
-\begin{minipage}{0.4\textwidth}
-	\includegraphics[width=0.9\textwidth]{uploads/30image.png}
-\end{minipage}\\
+\begin{figure}
+	\centering
+	\includegraphics[width=0.46\textwidth]{figs/salinity-2200m-cmcc}
+	\hfill
+	\includegraphics[width=0.46\textwidth]{figs/salinity-4200m-cmcc}
+	\vspace{1em}
+	\includegraphics[width=0.46\textwidth]{figs/salinity-3200m-cmcc}
+	\hfill
+	\includegraphics[width=0.46\textwidth]{figs/salinity-5200m-cmcc}
+	\caption{Salinity distribution in the North Atlantic at different depths from \CMCCreanalysis. The four panels represent depths at \qty{2200}{\meter}, \qty{3200}{m}, \qty{4200}{\meter}, and \qty{4200}{\meter}, respectively.}
+	\label{fig:salinity-different-detphs-cmcc}
+\end{figure}
 
 
-A similar situation exist in the North Pacific along the Japan coast and
-therefore we can start to suspect that this has to do with the presence
-of the continental boundary.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.52\textwidth]{figs/salinity-us-east-coast-5m}
+	\hfill
+	\includegraphics[width=0.45\textwidth]{figs/salinity-japan-5m}
+	\caption{Salinity at \qty{5}{\meter} level in North Atlantic, next to the US East Coast (left) and in the North Pacific offshore Japan's East coast. From \CMCCreanalysis.}
+	\label{fig:salinity-us-east-coast-japan}
+\end{figure}
+A similar situation exists in the North Pacific along the Japan coast (see \fig{\ref{fig:salinity-us-east-coast-japan}})
+and therefore we can start to suspect that this has to do with the presence of the continental boundary.
 
 The previous analysis of the temperature is giving us hints of a strong
 vertical structure of the oceans, so it may be useful to look at the
-vertical distribution somewhat more in detail. The figures above show the same section North-South section of along the longitude of 25W, roughly in the middle of the Atlantic Ocean.
+vertical distribution somewhat more in detail. \fig{\ref{fig:salinity-vertical-25W}} shows the same section North-South section of along the longitude of \ang{25}W, roughly in the middle of the Atlantic Ocean.
 The salinity follows a similar pattern as the temperature with a
 strong gradient approximately at the thermocline, the high salinity is
-confined in thin; layers at the surface, but some interesting behaviour
+confined in thin layers at the surface, but some interesting behaviour
 is visible below. In the Northern Hemisphere we can see the
 Mediterranean water penetrates at depth and actually protruding under the fresher water of Antarctic origin that is colder, but because is
 fresher floats over the Mediterranean water. Really cold Antarctic water reaches the bottom, filling the abyssal plains of the basin.
 
-\begin{figure}[htpb!]
+\begin{figure}
 	\centering
-	\includegraphics[width = 0.5 \textwidth]{uploads/31image.png}
-	\caption{North-South Salinity section at 25W longitude.}
-	\label{fig:fig6}
+	\includegraphics[width = 0.7 \textwidth]{figs/salinity-vertical-25W}
+	\caption{Vertical salinity profile section at \ang{25}W longitude.From \CMCCreanalysis.}
+	\label{fig:salinity-vertical-25W}
 \end{figure}
 
 The Mediterranean waters are clearly visible in a longitude-depth
-section (Figure \ref{fig:fig6}). The saline mediterranean water sinks
-to about 1000m because it is warmer than the Atlantic but much more
+section (Figure \ref{fig:salinity-vertical-25W}). The saline mediterranean water sinks
+to about \qty{1000}{\meter} because it is warmer than the Atlantic but much more
 saline so it is denser and it reaches an equilibrium depth at about
-1000m.
+\qty{1000}{\meter}.
 
-\begin{figure}[htpb!]
+\begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth]{uploads/32image.png}
-	\caption{The vertical structure of the Pacific Ocean}
-	\label{fig:fig7}
+	\includegraphics[width=0.7\linewidth]{figs/salinity-vertical-25N}
+	\caption{Horizontal Salinity profile section at \ang{25}N latitude.From \CMCCreanalysis.}
+	\label{fig:salinity-horizontal-25N}
 \end{figure}
 
-
-The vertical structure of the Pacific Ocean (Figure \ref{fig:fig7}) is
+The vertical structure of the Pacific Ocean (Figure \ref{fig:salinity-horizontal-25N} shows the salinity along the horizontal
+\ang{25}N line) is
 different and what we see is a situation where salinity is slowly
 varying getting fresher toward the surface, with the thin saline water
 in the subtropics a clear signature of the equatorial upwelling and the
@@ -365,82 +367,93 @@ Antarctic water filling the abyssal plains. The Indian Ocean is similar
 to the Pacific South of the Equator but North of the Equator at this
 longitude is fresher.
 
-\begin{figure}[htpb!]
+\begin{figure}
 	\centering
-	\includegraphics[width = 0.4 \textwidth]{uploads/33image.png}
-	\caption{As in Fig. \ref{fig:fig7} but for 90E longitude}
-	\label{fig: fig8}
+	\includegraphics[width = 0.7 \textwidth]{figs/salinity-vertical-90E}
+	\caption{As in \fig{\ref{fig:salinity-horizontal-25N}} but for \ang{90}E longitude.From \CMCCreanalysis.}
+	\label{fig:salinity-vertical-90E}
 \end{figure}
 
-The Indian Ocean (Figure \ref{fig: fig8}) shown here as a section
-cutting essentially through the Bay of Bengal, shows a similar strong
+The Indian Ocean  cut as a section cutting essentially through the Bay of Bengal as shown in \fig{\ref{fig:salinity-vertical-90E}}, shows a similar strong
 stratification, but there are only weak signs of an equatorial upwelling
 of cold water.
-
-
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.7 \textwidth]{figs/salinity-vertical-equator}
+	\caption{Horizontal Salinity profile section at the equator. From \CMCCreanalysis.}
+	\label{fig:salinity-vertical-equator}
+\end{figure}
 
 We can gain more insights in the equatorial structure by looking at a
-longitudinal section along the Equator in the Pacific (Figure \ref{fig:fig9}). Here we see the general difference between the
+longitudinal section along the Equator in the Pacific (see \fig{\ref{fig:salinity-vertical-equator}}). Here we see the general difference between the
 Atlantic and the Pacific, but we also see that the salinity is following
 the slant of the equatorial thermocline and the equatorial upwelling in
 the East Pacific. The effect of the major precipitation center of ITCZ
 in the West Pacific is visible in fresh water at the surface in the
 West.
 
-\subsection{Influence of the ocean}
+\subsection{Influence of the ocean}\label{subsec:ocean-influence}
 
-\paragraph{The continentality effect}
-It makes continental summers warmer and winters cooler than the adjacent ocean areas. The oceans have this effect because of their large heat storage capacity and because part of  the energy that they retain from solar input during the summer they return to the atmosphere in the forms of sensible and latent heat and longwave radiation the following winter. Conversely, the continents have the reverse effect, strengthening the seasonal temperature contrasts
+The \emph{continentality effect} makes continental summers warmer and winters cooler than the adjacent ocean areas.
+The oceans have this effect because of their large heat storage capacity and because part of the energy that they retain from
+solar input during the summer they return to the atmosphere in the forms of sensible and latent heat and longwave radiation the following winter.
+Conversely, the continents have the reverse effect, strengthening the seasonal temperature contrasts
 
-\paragraph{Ocean currents}
+\subsection{Ocean currents}\label{subsec:ocean-currents}
+
 They can transport heat from low to high latitudes. (in the Gulf Stream of the North Atlantic). This contributes to much higher winter air temperatures over mid-to-high latitude oceans than over adjacent land areas at the same latitude.
 
-\paragraph{The overall basin
-	circulation}\label{the-overall-basin-circulation}
+\subsubsection{The overall basin circulation}\label{subsubsec:overall-basin-circulation}
 
-The surface currents of the Atlantic ocean are shown in Figure \ref{fig:fig10}. As we might have suspected from the temperature coast that reaches all the way across the North Atlantic to Europe, the Gulf Stream. Strong currents are also visible in the Equatorial area
+The surface currents of the Atlantic ocean are shown in Figure \ref{fig:surface-circulation-atlantic-ocean}. As we might have suspected from the temperature coast that reaches all the way across the North Atlantic to Europe, the Gulf Stream. Strong currents are also visible in the Equatorial area
 where they connect to the mid-latitude circulation forming a large circular system, the Subtropical Gyre. The South Atlantic has a similar gyre in the subtropical region, but at higher latitudes we can notice a strong westerly current cutting all along the basin, essentially along a latitude line between 40S and 50S.
 
-\begin{figure}[htpb]
+\begin{figure}
 	\centering
-	\includegraphics[width = 0.4 \textwidth]{uploads/35image.png}
-	\caption{The surface currents of the Atlantic ocean} \label{fig:fig10}
+	\includegraphics[width = 0.4 \textwidth]{figs/surface-circulation-atlantic-ocean}
+	\caption{The surface circulation of the Atlantic Ocean, shown as streamlines whose color and thickness are indicating the speed of the current in \unit{\meter \per\second}.}
+	\label{fig:surface-circulation-atlantic-ocean}
 \end{figure}
 
-The North Pacific surface circulation is shown in Figure \ref{fig:fig11}. We can notice here again a strong current along the Western boundary of the basin that than feed into a basin wide gyre that connects to the equatorial circulation. The boundary current, known her as the Kuroshio Current, is very narrow and intense along the Japan coast, as it is also the case of the Gulf Stream in the Atlantic, and it tapers into a wide system of streams and eddies into the open ocean.
+The North Pacific surface circulation is shown in Figure \ref{fig:surface-circulation-north-pacific-ocean}. We can notice here again a strong current along the Western boundary of the basin that than feed into a basin wide gyre that connects to the equatorial circulation. The boundary current, known her as the Kuroshio Current, is very narrow and intense along the Japan coast, as it is also the case of the Gulf Stream in the Atlantic, and it tapers into a wide system of streams and eddies into the open ocean.
 
 It is possible to see also local system, like the small gyre off the Alaskan coast and similar circulation in the marginal seas, like the Sea of Okhotsk, near the Siberian coast. Their presence is remarkable as we are looking here at climatological averages over more than 40 years and so they are stable and persistent features. This is another reminder of how even relatively smaller feature in the ocean can be climatologically persistent over many years.
 
-\begin{figure}[htpb]
+\begin{figure}
 	\centering
-	\includegraphics[width = 0.4 \textwidth]{uploads/i36mage.png}
-	\caption{The North Pacific surface circulation} \label{fig:fig11}
+	\includegraphics[width = 0.4 \textwidth]{figs/surface-circulation-north-pacific-ocean}
+	\caption{The surface circulation of the North Pacific Ocean, shown as streamlines whose color and thickness are indicating
+		the speed of the current in \unit{\meter \per\second}.}
+	\label{fig:surface-circulation-north-pacific-ocean}
 \end{figure}
 
-The circulation of the South Pacific Ocean is shown in Figure \ref{fig:fig12}. The subtropical gyre is visible also here, but there is a weak indication of a western intensification current in the West pacific, close to the coasts of Australia and New Zealand. The strong high latitude current that we have seen in the Atlantic is also present here end evidently connect to the other basin through the Drake Passage, that is the Straits between South America and Antarctica.
+The circulation of the South Pacific Ocean is shown in Figure \ref{fig:surface-circulation-south-pacific-ocean}.
+The subtropical gyre is visible also here, but there is a weak indication of a western intensification current in the West pacific, close to the coasts of Australia and New Zealand.
+The strong high latitude current that we have seen in the Atlantic is also present here end evidently connect to the other basin through the Drake Passage, that is the Straits between South America and Antarctica.
 
-\begin{figure}[htpb]
+\begin{figure}
 	\centering
-	\includegraphics[width = 0.5 \textwidth]{uploads/37image.png}
-	\caption{The circulation of the South Pacific Ocean} \label{fig:fig12}
+	\includegraphics[width = 0.5 \textwidth]{figs/surface-circulation-south-pacific-ocean}
+	\caption{The surface circulation of the South Pacific Ocean, shown as streamlines whose color and thickness are
+		indicating the speed of the current in \unit{\meter \per\second}.}
+	\label{fig:surface-circulation-south-pacific-ocean}
 \end{figure}
 
-The Indian Ocean circulation is shown in Figure \ref{fig:fig13}. The Indian Ocean is confined by continental masses in the north, so it is mostly composed of the equatorial region and the midlatitudes are all in the Southern Hemisphere. The subtropical gyre is present, together with features North of Madagascar. A boundary current develops on the African coast, The westerly current in the southern mid-latitudes is visible also here, strong and with a vigorous eddy field.
+The Indian Ocean circulation is shown in \fig{\ref{fig:surface-circulation-indian-ocean}}. The Indian Ocean is confined by continental masses in the north, so it is mostly composed of the equatorial region and the midlatitudes are all in the Southern Hemisphere. The subtropical gyre is present, together with features North of Madagascar. A boundary current develops on the African coast, The westerly current in the southern mid-latitudes is visible also here, strong and with a vigorous eddy field.
 
-\begin{figure}[htpb]
+\begin{figure}
 	\centering
-	\includegraphics[width = 0.35\textwidth]{uploads/38image.png}
-	\caption{The Indian Ocean circulation} \label{fig:fig13}
+	\includegraphics[width = 0.45\textwidth]{figs/surface-circulation-indian-ocean}
+	\caption{The surface circulation of the Indian Ocean, shown as streamlines whose color and thickness are indicating the speed of the current in \unit{\meter \per\second}.}
+	\label{fig:surface-circulation-indian-ocean}
 \end{figure}
 
 At this point we can suspect that there is probably a continuous ring of currents around Antarctica and this can be confirmed by the bottom panel of Figure \ref{fig:fig13}  that shows the entire extent around a
 longitude circle of the current, known as the Antarctic Circumpolar
 Current. It is a strong, highly turbulent system that connects all the
 Ocean Basins.
-\\
 
-\subparagraph{The equatorial
-	circulation}
+\subsubsection{The equatorial circulation}
 
 The Equator is a special place for the atmosphere and so it is a special
 place also for the Oceans. The circulation in this area is strongly
@@ -449,39 +462,42 @@ by both westerly and easterly currents and by special behaviours right
 at the Equator line. Futhermore, it is also very different from ocean to
 ocean.
 
-The equatorial current system in the Pacific Ocean is shown in Figure \ref{fig:fig14}. It is a complex system composed of two easterly
+The equatorial current system in the Pacific Ocean is shown in Figure \ref{fig:surface-circulation-equatorial-pacific-ocean}. It is a complex system composed of two easterly
 currents, the North and South Equatorial currents, sandwiching the
 westerly Equatorial countercurrent. It is possible to notice that at the
 Equator the currents are strongly easterly and diverging, leading to the
 emergence of upwelling at the Equator by Ekman transport.
 
-\begin{figure}[htpb]
+\begin{figure}
 	\centering
-	\includegraphics[width = 0.4 \textwidth]{uploads/39image.png}
-	\caption{The equatorial current system in the Pacific Ocean} \label{fig:fig14}
+	\includegraphics[width = 0.6 \textwidth]{figs/surface-circulation-equatorial-pacific-ocean}
+	\caption{The surface circulation of the Equatorial Pacific Ocean, shown as streamlines whose color and thickness are indicating the speed of the current in \unit{\meter \per\second}.}
+	\label{fig:surface-circulation-equatorial-pacific-ocean}
 \end{figure}
 
 The complexity of the equatorial current system can be further
 appreciated by looking at the vertical section of the zonal current at
 the Equator. A strong westerly current below the
 surface, slanting from the West Pacific to the East Pacific, is visible
-at depth between 200 and 300m. The speed is in excess of 1 m/s and it
+at depth between 200 and 300m. The speed is in excess of \qty{1}{\meter \per \second} and it
 gets progressively shallower in the East.
 
 It is however part of an alternation of westerly and easterly currents
 that become progressively weaker as they get deeper. They are centered
-almost perfectly at the Equator, as it can be seen in Figure \ref{fig:fig16}. The latitudinal position of the undercurrent is very tightly controlled by rotational effects and it precisely tracks the position of the equatorial line.
+almost perfectly at the Equator, as it can be seen in Figure \ref{fig:vertical-section-zonal-current-equator}.
+The latitudinal position of the undercurrent is very tightly controlled by rotational effects and it precisely tracks the position of the equatorial line.
 
-\begin{figure}[htpb]
+\begin{figure}
 	\centering
-	\includegraphics[width = 0.4 \textwidth]{uploads/40image.png}
-	\caption{Alternation of westerly and easterly currents} \label{fig:fig16}
+	\includegraphics[width = 0.4 \textwidth]{figs/vertical-section-zonal-current-equator}
+	\caption{Alternation of westerly and easterly currents. The vertical section of the zonal current at the Equator in the Global Ocean from the surface to \qty{1000}{\meter}. Units are \unit{\meter \per \second}.}
+	\label{fig:vertical-section-zonal-current-equator}
 \end{figure}
 
-The equatorial Atlantic Ocean surface circulation (Figure 1.14). It is possible to see the easterly South Equatorial
-Current that is straddling the Equator between 5S and 5N. The North
-equatorial Countercurrent is westerly and it covers the area between 5N
-and 10N, and the weaker North Equatorial Current is located at northern
+The equatorial Atlantic Ocean surface circulation (\fig{\ref{fig:surface-current-equatorial-atlantic}}).
+It is possible to see the easterly South Equatorial Current that is straddling the Equator between \ang{5}S and \ang{5}N.
+The North equatorial Countercurrent is westerly and it covers the area between \ang{5}N
+and \ang{10}N, and the weaker North Equatorial Current is located at northern
 latitudes. The equatorial flow is divergent and also in this case we can
 presume the existence of upwelling at the Equator. A strong coastal
 current is visible as the Guinea Current, in the Gulf of Guinea. The
@@ -489,14 +505,21 @@ South Equatorial Current feeds into the North Brazilian Current that
 then flows northward along the South America coast, taking different
 names as it finally emerges as the Caribbean Current in the Caribbean
 sea.
-\begin{figure}[htpb!]
+\begin{figure}
 	\centering
-	\includegraphics[width=0.45\linewidth]{uploads/41image.png}\quad \includegraphics[width=0.3\linewidth]{uploads/42.png}
-	\caption{The equatorial Atlantic Ocean surface circulation and the structure of currents and undercurrents}
-	\label{fig:fig17}
+	\includegraphics[width=0.45\linewidth]{figs/surface-current-equatorial-atlantic}
+	\caption{The equatorial Atlantic current systems at the surface. Units are \unit{\meter \per \second}.}
+	\label{fig:surface-current-equatorial-atlantic}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{figs/section-zonal-current-160W}
+	\caption{Structure of currents and undercurrents as latitude-depth section of the zonal current at the Equator for the Pacific Ocean at \ang{160}{W} longitude from the surface to \qty{1000}{m}.
+		Units are \unit{\meter \per \second}.}
+	\label{fig:section-zonal-current-160W}
 \end{figure}
 A similar structure of alternating westerly and easterly undercurrents
-exist also in the equatorial Atlantic (Figure 1.14), but it
+exist also in the equatorial Atlantic (\fig{\ref{fig:surface-current-equatorial-atlantic}}), but it
 is weaker and only the first westerly maximum is well visible. It is
 also slanting towards the East, but the maximum is reached more towards
 the western boundary of the basin with respect to the Pacific Ocean. The
@@ -504,31 +527,37 @@ deeper easterly jets are also much less weaker. The undercurrents jets
 are essentially absent in the Indian Ocean.
 
 
-\paragraph{The Gulf Stream}\label{the-gulf-stream}
+\subsubsection{The Gulf Stream}\label{subsubsec:the-gulf-stream}
 
 The current system of the Gulf Stream is one of the major feature of the
 global ocean circulation.
 
 
-\subparagraph{The Kuroshio}\label{the-kuroshio}
+\subsubsection{The Kuroshio}\label{subsubsec:the-kuroshio}
 
 The current system of the Kuroshio is one of the major features of the
-global ocean circulation.
+global ocean circulation\footnote{Figures to cite.}.
 
 
-\begin{figure}[htpb!]
+\begin{figure}
 	\centering
-	\includegraphics[width = 0.30 \textwidth]{uploads/44.png}\quad \includegraphics[width = 0.35\textwidth]{uploads/43.png}
-	\caption{The Kuroshio on the left and Gulf Stream on the right} \label{fig:}
+	\includegraphics[width = 0.44 \textwidth]{figs/kuroshio-surface-circulation}
+	\hfill
+	\includegraphics[width = 0.55\textwidth]{figs/gulf-stream-surface}
+	\caption{On the left, the circulation of the Kuroshio at the surface, shown as streamlines whose color and thickness are indicating the speed of the current.\\
+		On the right The circulation of the Gulf Stream at the surface, shown as streamlines whose color and thickness are indicating the speed of the current, for both measured in
+		\unit{\meter \per \second}.}
+	\label{fig:kuroshio-surface-circulation-gulf-stream-surface}
 \end{figure}
 
-\begin{figure}[htpb!]
+\begin{figure}
 	\centering
-	\includegraphics[width = 0.45 \textwidth]{uploads/45.png}\quad \includegraphics[width = 0.35\textwidth]{uploads/46.png}
-	\caption{The upwelling zones on the left and the Somali current on the right.} \label{fig:upwelzone}
+	\includegraphics[width = 0.53 \textwidth]{figs/upwelling-zones-east-pacific}
+	\hfill
+	\includegraphics[width = 0.44\textwidth]{figs/somali-current-summer}
+	\caption{On the left The upwelling zones in the East Pacific. The streamlines color is proportional to temperature and the thickness is indicating the speed of the current in \unit{\meter \per \second}.\\
+		The seasonal variation of the Somali current in Summer. The arrows color is proportional to temperature, units are \unit{\meter \per \second}.} \label{fig:upwelzone-somali}
 \end{figure}
-
-
 
 
 \section{Ice}
@@ -546,8 +575,7 @@ Overall, sea ice is a vital component of Earth's climate system. It influences h
 Important transfers of energy, mass, momentum occur between the oceans and the atmosphere and are greatly modified by the presence of sea ice.
 
 \subsection{Atmosphere effect}\label{subsec:atmosphere-interconnections}
-%Wind forcing is a prime driver for upper ocean circulation and thereby impacts deep ocean circulation as well, and for sea ice thereby impacting its motions and location. In addition, air temperatures and moisture contribute to determining the energy fluxes across the interface between the atmosphere and surface, contributing to ice maintenance, growth and melt and to the temperature distribution in the ocean and water velocity.
-%Fridtjorf Nanse noted that sea ice does not drift in the direction of the wind but at an angle of \qtyranged{20}{40}{\degree} to the right due to the Earth’s rotation and speculated that the motions in the water beneath sea ice deviate even more; the motion of each water layer deviate slower and farther to the right to the layer above and Ekman proved it mathematically adding that these influence stops at a depth of about $200$ m.
+
 Wind forcing is a prime driver for upper ocean circulation and thereby impacts deep ocean circulation as well, and for sea ice thereby impacting its motions and location. In addition, air temperatures and moisture contribute to determining the energy fluxes across the interface between the atmosphere and surface, contributing to ice maintenance, growth and melt and to the temperature distribution in the ocean and water velocity.
 Fridtjorf Nanse noted that sea ice does not drift in the direction of the wind but at an angle of \qtyranged{20}{40}{\degree}to the right due to the Earth’s rotation and speculated that the motions in the water beneath sea ice deviate even more; the motion of each water layer deviate slower and farther to the right to the layer above and Ekman proved it mathematically adding that these influence stops at a depth of about 200 m~\citep[see e.g. Section 3.1 of][]{Zanotti2023}.
 

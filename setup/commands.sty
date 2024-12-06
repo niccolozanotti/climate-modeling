@@ -32,6 +32,12 @@
 \newcommand{\tens}[2]{\mat{#1}:#2}     % tensor
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% SIUNITX %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareSIUnit[quantity-product = \,]{\psu}{psu}
+\newcommand{\qtyranged}[3]{\qtyrange[range-phrase = {--}]{#1}{#2}{#3}} % \qtyranged{<left range>}{<right range>}{<unit>}, e.g. 1-2 km
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%% SOURCE FILES %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\chapterOneIntro}{\href{https://github.com/niccolozanotti/climate-modeling/blob/main/chapters/chapter-intro.tex}{chapter-intro.tex}}
@@ -58,12 +64,6 @@
 \newcommand{\chapterEightSymmCircOverleaf}{\href{https://github.com/niccolozanotti/climate-modeling/blob/main/chapters_overleaf/chapter-theory-simm-circ.tex}{chapter-theory-simm-circ.tex}}
 \newcommand{\chapterAppendixAOverleaf}{\href{https://github.com/niccolozanotti/climate-modeling/blob/main/chapters_overleaf/appendixA.tex}{appendixA.tex}}
 
-%% overleaf file links
-% \newcommand{\linkcapOne}{https://www.overleaf.com/8651717182zbgpcgxnyyrf#1f178a}
-% \ifthenelse{\equal{#2}{CMN}}{\href{https://www.overleaf.com/2946211155ywbsnmcwgkch#ced009}{Climate Modeling Notes}}{}%
-% \ifthenelse{\equal{#2}{CapOne}}{\href{\linkcapOne}{ONLYCAP1}}{}%
-% \ifthenelse{\equal{#2}{Exploring+SST}}{\href{https://www.overleaf.com/9489923428tdrxnycrvfbp#42adc6}{Exploring+SST}}{}%
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%% MISCELLANEA %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -74,10 +74,9 @@
 		{\footnotesize\textcolor{gray}{%
 				Last updated: #1 \\
 				Source file: #2
-				}}
+			}}
 	\end{flushright}
 	\vspace{1em} % Space after the timestamp
 }
 
-
-\newcommand{\qtyranged}[3]{\qtyrange[range-phrase = {--}]{#1}{#2}{#3}} % \qtyranged{<left range>}{<right range>}{<unit>}, e.g. 1-2 km
+\newcommand{\CMCCreanalysis}{\href{http://c-glors.cmcc.it/index/index.html}{CMCC reanalysis}}
