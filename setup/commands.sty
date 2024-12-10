@@ -30,6 +30,8 @@
 \newcommand{\tabref}[1]{Table~#1}
 \newcommand{\mat}[1]{\mathbf{#1}}      % matrix
 \newcommand{\tens}[2]{\mat{#1}:#2}     % tensor
+\renewcommand{\vec}[1]{\ifmmode\bm{#1}\else\ensuremath{\bm{#1}}\fi} %vector
+\newcommand{\unitv}[1]{\bm{\hat{#1}}}  % unit vector
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%% SIUNITX %%%%%%%%%%%%%%%%%%%%%%%
@@ -67,6 +69,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%% MISCELLANEA %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newcommand{\lastupdated}[2]{%
 	% Parameters: #1 : YYYY-MM-DD HH:MM
 	\begin{flushright}
