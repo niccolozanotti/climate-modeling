@@ -1,6 +1,3 @@
-% Updated 2024-11-26 23.30 
-% source: Climate modeling notes EXPLORING +SST
-
 \chapter{Exploring Variability}
 \lastupdated{2024-12-05}{\chapterFiveExploringSSTOverleaf}
 
@@ -22,13 +19,15 @@ This prompt was a systematic view with a month timescale variability: they used 
 \end{figure}
 There are 4 EOFs appearing during the analysis, the matrix had 45 columns (time series). As shown above \ref{fig:correlation coeff}, these patterns are a succession of positive and negative signs. In picture 16\% of variance: reconstructing the timeserie using only that mode, the total variance of that mode will be 16\% of the variance, or, having 45 modes, construct one by change, the change that it will look close to that one is 16\%.
 
-There was a network of connections disappearing beyond the synoptic view, beyond monthly timescales there's a network of connections.
+There was a network of connections disappearing beyond the synoptic view.
 \begin{figure}[htp!]
 	\centering
 	\includegraphics[width=0.4\linewidth]{uploads/imageexploringvar.png}
 	\caption{Connected variability in the ocean and in the atmosphere}
 	\label{fig:conn var}
 \end{figure}
+
+
 Synoptic variation was understood as an instability of the basic flow. Nonlinear balance is reached if the instability grows very much outside the linear regime, and this could happen in a time series of a week/ten days.
 When you try to connect variability in the ocean with the variability in the atmosphere you get a pattern like the figure \ref{fig:conn var}.
 
@@ -54,6 +53,8 @@ The right figure of \ref{fig:SST VAR} represents a modern analysis of SST variab
 	\caption{First two modes}
 	\label{fig:first two modes}
 \end{figure}
+
+
 In figure \ref{fig:first two modes}: the top one of El Nino, EOF cannot separate one phenomenon from the other: there are mathematical constraints (i.e. to be orthogonal to each other). In the following  years, people try to make variations to address some of the problems. EOFs are very sensitive to where the variability is concentrated. As you go to higher modes, you get more structure for two main reasons: modes are getting more complicated and EOFs have to be orthogonal to each other because of their construction. Everything is dominated by the large variations in the equatorial zone, and this variation in the North Pacific is relatively weighted less (here is very uniform but something is going on). Later it was discovered to be the Pacific decayed oscillation.
 
 \section{Designing a model for variability}
@@ -64,23 +65,26 @@ We want to design a numerical method, that is a  simulation of climate using the
 For instance, we would like to see the evolution in time of SST and we have a dataset from 1880.
 Considering just the atmosphere, you need initial data in the model and boundary conditions in the ground (topography stressing the presence of mountains, it is not necessary to consider vegetation because it is part of the length scheme of the model, but we need a land-see mask stressing where are lands, oceans and ice). You have to take into account the temperature of the ocean, in this case, SST (integrating forward in time will get a simulation in data). If you want to see the impact of the SST on the atmosphere you change the model inducing a disturbance (for example, changing the boundary conditions at the surface) and you get the monthly mean of SST. This type of experiment is called a \textit{prescribed experiment}.
 
-run an atm model where we see the mean SST for the entire simulation of the model (temperature at 2 m is part of the atm problem). artificially increasing --> putting a perturbation in some areas slide 21.  ????
+
+Run an atmospheric model using prescribed mean SSTs for the entire duration of the simulation. Within this framework, you can introduce an artificial perturbation to the SST in specific regions to observe its effects. For instance, the temperature at 2 meters above the surface (a standard atmospheric variable) is influenced by these SST changes, making it part of the atmospheric problem. By modifying the boundary conditions, such as increasing SSTs in certain areas, the model can reveal the resulting atmospheric responses to these changes.
+
+
 
 So they built a strategy to do that: you start with a basic model and you add a perturbation to it. This will lead you to a comparison between one system with the perturbation and the other one without the perturbation, which is called the control system or the reference. Comparing the two systems, you'll gain the effect of the perturbation you applied.
 
-\begin{figure}[htp!]
+\begin{figure}[htpb]
 	\centering
-	\includegraphics[width=0.4\linewidth]{uploads/Screenshot 2024-11-20 212353.png}
+	\includegraphics[width=0.35\linewidth]{uploads/Screenshot 2024-11-20 212353.png}
 	\caption{the fourth from the top is the paper}
 	\label{fig:enter-label}
 \end{figure}
 They did two perturbations and looked at the difference: the model would create a series of anomalies propagating. You create anticyclones in the north and the south of the anomaly. This fact provides an intense investigation of how the monthly scale can predict monthly anomalies. We are taking the difference between two strongly nonlinear simulations, so we are stretching the fact that we can still see the difference.
 
 This means that the relation of the two simulations is quite linear so that the effect of perturbations can be identified. In detail, consider the geopotential at 300 mbar (high atmosphere), it is the streamfunction of the flow.
-\begin{figure}[htp!]
+\begin{figure}[htpb]
 	\centering
 	\includegraphics[width=0.4\linewidth]{uploads/Screenshot 2024-11-20 212453.png}
-	\caption{Enter Caption}
+	\caption{A section at the equator between 6N and 6S }
 	\label{fig:figure 1.7}
 \end{figure}
 The one on top is the control simulations, the middle one is the perturbation experiment (with SST in the Pacific) and the bottom one is the difference between the two.
@@ -90,15 +94,15 @@ This was the first evidence that if you have perturbation that will have an impa
 Figure \ref{fig:figure 1.7} is a section at the equator between 6N and 6S
 the arrows give the sense of circulation; in the difference, you see the extra rising air over the SST (central part or graph). This paper shows that the way SST is acting on the atmosphere is affecting the water circulation, especially increasing the vertical motion over the areas of increased SST. Why exactly air go up?
 
-People decided to set up a special project called AMIP, an atmospheric model intercomparison project, based on the idea that SST is important but we have many models, expecting the SST in different ways, so how we could compare them?
+People decided to set up a special project called AMIP, an Atmospheric Model Intercomparison Project, based on the idea that SST is important but we have many models, expecting the SST in different ways, so how we could compare them?
 It was already clear that because of the sensitivity not only of the initial conditions but also to perturbation, it is not enough one simulation.
 We know that if we change a little bit initial conditions in any of these models, the evolution is slightly different, and also the response of SST it is; meaning that you have to do different experiments and confront them statistically.
 
 They aren't using idealizing perturbation of the SST but the observed SST month by month. So it was designed a protocol in which all the people participating in the project, could run the models using the same dataset.
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.4\linewidth]{uploads/Screenshot 2024-11-20 212548.png}
-	\caption{AMIP results for mean sea level pressure}
+	\includegraphics[width=0.45\linewidth]{uploads/Screenshot 2024-11-20 212548.png}\quad \includegraphics[width=0.45\linewidth]{uploads/Screenshot 2024-11-20 204551.png}
+	\caption{a)AMIP results for mean sea level pressure. b)AMIP result for precipitations.}
 	\label{fig:enter-label}
 \end{figure}
 As for the mean sea level pressure measured in winter between 1979 and 1988, despite the fact the ensemble means and the observed mean seem to be similar, there is an error of 14 mbar (good or bad depends on what you have to do).
@@ -108,12 +112,6 @@ The SST control is very effective in the tropical regions and in the mid-latitud
 
 Internal variation (for example, what will happen at 15 o'clock next month) beyond the range of initial conditions cannot be predicted.
 
-\begin{figure}[htp!]
-	\centering
-	\includegraphics[width=0.4\linewidth]{uploads/Screenshot 2024-11-20 204551.png}
-	\caption{AMIP result for precipitations }
-	\label{fig:enter-label}
-\end{figure}
 
 
 The standard deviation is very small over the ocean, meaning the SST is controlling precipitations.
@@ -122,21 +120,27 @@ In general, it's much more difficult than the dynamical field, because precipita
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.4\linewidth]{uploads/Screenshot 2024-11-20 210633.png}
+	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 210633.png}
 	\caption{all the models participating in the comparison and the observations are the black line}
-	\label{fig:enter-label}
+	\label{fig:9}
 \end{figure}
 All the models agree on the zonal wind, it means that the dynamics of zonal wind is easy. All the variations you see are how the model is formulated, you start to see differences because different formulation has a big impact, so how people choose to represent them has an impact on the result.
 If your balance at the top is not zero the model will cool or warm over 200-300 years
 
-(b) disaster. clouds. that shows clouds are difficult. ??
+In the figure \ref{fig:9} the panel (b) is a disaster: clouds. That shows clouds are difficult to model.
 
 
 
 This kind of result grew in people's determination to insert clouds in models because do not consider them to represent the issue of credibility.
 
 
-\subsection{General circulation model }
+\section{General circulation model }
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.4\linewidth]{uploads/image8.png}
+	\caption{Climatological global heat transport and fresh-water transport: the different curves are different ocean re-analysis and black lines are observations}
+	\label{fig:enter-label}
+\end{figure}
 In the models, there are some variables called prognostic (so they are expressed under time derivative, so they are in the left part of the equation), for atmospheric models, these are temperature, winds and water vapor; while for the ocean models, these are currents, temperature and salinity. Radiation instead, is computed from these variables so it is called a diagnostic variable.
 The only way to change temperature and salinity in the ocean is by the interaction between the atmosphere and the ocean.
 
@@ -163,29 +167,27 @@ Really interesting is the ocean observing system which was possible to build tha
 
 Finally, with all this data collected, you have to fill them in both space and time, creating a physically consistent field of observations around the globe. Since everything you know is in the equations, you will use the models to do the simulations with different techniques developed through the years.
 
+
 One important thing to take into consideration is that you have to take into account the ocean transport. It plays an important role in the climate system since it restores the imbalance of heat between tropics and polar regions. In particular, there is an excess of radiation energy in the equatorial region and a deficit in the polar region.
-
-\begin{figure}[htp!]
+\begin{figure}[htpb]
 	\centering
-	\includegraphics[width=0.4\linewidth]{uploads/image8.png}
-	\caption{Climatological global heat transport and fresh-water transport: the different curves are different ocean re-analysis and black lines are observations}
-	\label{fig:enter-label}
-\end{figure}
-
-In the picture below the observations are the point and all the lines are model simulations. All the models are underestimating transports.
-This graph shows us the main important thing in data assimilation: you have to reduce as better as possible, the distance between observations and models.
-\begin{figure}[htp!]
-	\centering
-	\includegraphics[width=0.4\linewidth]{uploads/image9.png}
+	\includegraphics[width=0.34\linewidth]{uploads/image9.png}
 	\caption{Time mean meridional heat transports for the Atlantic Ocean with different models}
-	\label{fig:enter-label}
+	\label{fig:12}
 \end{figure}
+In the picture below \ref{fig:12} the observations are the point and all the lines are model simulations. All the models are underestimating transports.
+This graph shows us the main important thing in data assimilation: you have to reduce as better as possible, the distance between observations and models.
+
+
+
+
+
 
 Another important aspect that must be taken into consideration is the AMOC, Atlantic meridional overturning circulation. It is a part of the global circulation of the ocean that starts with the deep water in the North Atlantic where cold waters sink towards the bottom (due to its high salinity that promotes high density).
 Controlling the AMOC helps scientists to understand if this process really happens and how effective it is.
 If you stop the production of dense water, for example by freshening the North Atlantic with an increase of precipitation, all the AMOC will become weaker.
 
-\begin{figure}[htp!]
+\begin{figure}[htpb]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/image3.png}
 	\caption{NCAR doesn't really stress this phenomenon described above, despite the fact it follows observations quite well}
@@ -193,17 +195,17 @@ If you stop the production of dense water, for example by freshening the North A
 \end{figure}
 
 In recent years, scientists have developed new modes of investigation concerning simulations, experiments, and theories together. Also, they improved forecasting skills, helping them to improve the quality of simulations, specifically in the number of days in which the forecast stopped being useful.
-\begin{figure}[htp!]
+\begin{figure}[htpb]
 	\centering
-	\includegraphics[width=0.4\linewidth]{uploads/image5.png}
+	\includegraphics[width=0.35\linewidth]{uploads/image5.png}
 	\caption{Improvement in forecasting skills}
 	\label{fig:enter-label}
 \end{figure}
 
 Last but not least, different models have similar patterns of errors. This is a problem because even if the mean of a variable is correct, I had to consider realistic variability from it. If I improve the initial conditions, I'll improve the short timescale forecast; while if I improve the model, I'll improve the medium timescale forecast.
-\begin{figure}[htp!]
+\begin{figure}[htpb]
 	\centering
-	\includegraphics[width=0.5\linewidth]{uploads/image7.png}
+	\includegraphics[width=0.4\linewidth]{uploads/image7.png}
 	\caption{Example of mean errors in comparison different models}
 	\label{fig:enter-label}
 \end{figure}

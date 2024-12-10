@@ -1,6 +1,6 @@
 
 \chapter{Climate Models}
-\lastupdated{2024-12-05}{\chapterFourClimModOverleaf}
+\lastupdated{2024-12-10}{\chapterFourClimModOverleaf}
 
 We will use the shallow water equation, but to have a realistic case, we need to put it on the sphere. We start from the usual equation, for convenience we introduce the geopotential $\Phi=gH$:
 \begin{align}
@@ -50,11 +50,11 @@ The planetary albedo $a$ is about $0.3$, and the solar constant conventional val
 \end{figure}
 then
 \begin{align*}\label{eq1}
-	F_S=\frac{S(1-a)}{4}                            \\
-	\sigma T^4= \frac{S(1-a)}{4} \,\,\text{S-B Law} \\
+	F_S=\frac{S(1-a)}{4}                              \\
+	\sigma T^4= \frac{S(1-a)}{4} \qquad\text{S-B Law} \\
 	T=\left(\frac{S(1-a)}{4\sigma}\right)^{1/4}
 \end{align*}
-with $S=1361$, $a=0.3$ and $\sigma=5.67 \, \, 10^{-8}$, turns out that $T_S=254\text{K}=-18°\text{C}$.
+with $S=1361$, $a=0.3$ and $\sigma=5.67 \, \, 10^{-8}$, turns out that $T_S=254\text{K}=-18\text{°C}$.
 From Stefan Bolzmann Law, $\sigma T^4$ is the emitted radiation by a blackbody at temperature $T$; as $T_S$ found this way is inaccurate, it can be concluded that the Earth-atmosphere system cannot be simply considered as a black body emitting at the temperature of the Earth's surface, since part of the emitted radiation is absorbed by the atmosphere itself. In this sense, the Earth's surface temperature does not reflect that of a black body in equilibrium with the incident solar radiation. However, the emission temperature obtained in this way is in good agreement with the temperature of the tropopause. The reason for this is that the tropopause represents the limit above which there is no significant absorption of infrared radiation, so the system, as seen from the tropopause, can indeed be approximated as a black body in terms of emission, in equilibrium with the incident solar radiation.
 
 Satellite observations are giving us the observed long wave outgoing radiative flux
@@ -84,6 +84,8 @@ The two- and three-layer atmosphere models are simplified frameworks to study Ea
 In the two-layer model, the Earth's surface absorbs solar radiation and emits infrared radiation, which is partially absorbed and re-emitted by greenhouse gases in the atmosphere. This re-emission back toward the surface enhances warming, maintaining an energy balance where incoming solar energy equals outgoing infrared radiation.
 
 The three-layer model adds complexity by including an upper atmospheric layer (e.g., stratosphere), where radiation escapes to space. It considers energy transfer between the surface, middle atmosphere (troposphere), and upper atmosphere, capturing how each layer absorbs, emits, and redistributes radiation. The effective radiating level (ERL)—the altitude from which most radiation escapes to space—shifts higher with increased greenhouse gases, warming the surface while cooling upper layers.
+
+
 These models illustrate key processes like vertical temperature profiles, with temperatures decreasing with altitude in the troposphere; radiative-convective equilibrium, balancing energy absorption, emission, and convection. They also depict climate sensitivity, showing how increased greenhouse gases amplify the greenhouse effect and raise surface temperatures.
 By simplifying Earth's energy flows, these models provide insights into how atmospheric layers interact and how greenhouse gases affect global warming.
 \subsection{Two-layer atmosphere}
@@ -113,16 +115,16 @@ this the solution in terms of the fluxes.
 \end{figure}
 Lets’ look at different situations.
 \begin{enumerate}
-	\item First assume the atmosphere does not absorb the solar radiation ($\epsilon = 1$): the atmosphere is totally transparent to solar radiation; and the transmissivity of the atmosphere is 0.0, no emission from the atmosphere:
+	\item First assume the atmosphere does not absorb the solar radiation ($\epsilon =1$): the atmosphere is totally transparent to solar radiation; and the transmissivity of the atmosphere is 0.0, no emission from the atmosphere:
 	      $$F_S=\frac{S(1-\alpha)}{4}=238 \,\text{W/m}^2 \,\,\text{and}\,\, F_a=0$$
 	      that is the same balance as before when we didn't account for atmosphere
 	\item Let’s allow now for some absorption of terrestrial radiation and the transmissivity of the atmosphere is 0.5:
 	      $$F_S= 396 \,\text{W/m}^2 \quad F_a=158 \, \text{W/m}^2$$
-	      $$T_S= 289 \,\text{K}\approx 15°\text{C} \quad T_a=230 \, \text{K}\approx -43°\text{C}$$
+	      $$T_S= 289 \,\text{K}\approx 15\text{°C} \quad T_a=230 \, \text{K}\approx -43\text{°C}$$
 	      meaning that even with less than 0.5, the presence of atmosphere will give $T$ above 0°C. Opacity of the atmosphere is what makes possible the liquid water.
 	\item Assume a very opaque atmosphere the transmissivity is 1.0:
 	      $$F_S=476 \,\text{W/m}^2 \quad F_a=238 \, \text{W/m}^2$$
-	      $$T_S= 302 \,\text{K}\approx 28°\text{C} \quad T_a=254 \, \text{K}\approx -19°\text{C}$$
+	      $$T_S= 302 \,\text{K}\approx 28\text{°C} \quad T_a=254 \, \text{K}\approx -19\text{°C}$$
 \end{enumerate}
 
 
@@ -178,7 +180,7 @@ When greenhouse gas concentrations increase, the atmosphere becomes more opaque 
 Radiative forcing describes how changes in atmospheric composition (opacity) affect the Earth's radiation budget by altering $OLR$. It quantifies the change in Earth's energy balance caused by a specific perturbation, such as an increase in greenhouse gases. The reduction of $OLR$ due to higher greenhouse gas opacity leads to positive radiative forcing, indicating an energy surplus, initiating global warming and affecting the climate system through feedback mechanisms; while negative radiative forcing results in cooling. \\
 
 
-Radiative forcing initiates changes in Earth's climate system, which are then amplified or dampened by feedback mechanisms, such as the water vapor feedback (positive). The relationship between radiative forcing and global temperature change is encapsulated in the concept of climate sensitivity, often expressed as the temperature increase for a doubling of $CO_2$.
+Radiative forcing initiates changes in Earth's climate system, which are then amplified or dampened by feedback mechanisms, such as the water vapor feedback (positive). The relationship between radiative forcing and global temperature change is encapsulated in the concept of climate sensitivity, often expressed as the temperature increase for a doubling of $CO_2$ (see later on).
 
 \begin{figure}[htpb]
 	\centering
@@ -235,14 +237,14 @@ In the Radiative-Convective Equilibrium framework, convection and radiation inte
 	\caption{Radiative Convective equilibrium}
 	\label{fig:enter-label}
 \end{figure}
-\subsection{Radiative forcing}
+\section{Radiative forcing}
 Radiative forcing measures the change in energy balance in the Earth's climate system due to external factors (forcings). It quantifies the difference between the incoming solar radiation absorbed by the Earth and the outgoing infrared radiation emitted back to space.
 
 
-Radiative forcing is a commonly used metric for assessing climate change mechanisms: compared to calculations of surface temperature change, it is a relatively straightforward calculation. It allows a more quantifiable and robust comparison of climate change mechanisms between models. The adjusted radiative forcing has been adopted by the Kyoto Protocol and IPCC (Intergovernmental Panel on Climate Change) process; they defined it as \textit{‘the change in net irradiance at the tropopause after allowing stratospheric temperatures to readjust to radiative equilibrium’}. The global-mean radiative forcing ($\Delta F$) can be simply related to the equilibrium global-mean surface temperature change ($\Delta T$) by the simple formula $\Delta T=\lambda\Delta F$ which $\lambda$ is the climate sensitivity parameter.\\
+Radiative forcing is a commonly used metric for assessing climate change mechanisms: compared to calculations of surface temperature change, it is a relatively straightforward calculation. It allows a more quantifiable and robust comparison of climate change mechanisms between models. The adjusted radiative forcing has been adopted by the Kyoto Protocol and IPCC (Intergovernmental Panel on Climate Change) process; they defined it as \textit{‘the change in net irradiance at the tropopause after allowing stratospheric temperatures to readjust to radiative equilibrium’}. The global-mean radiative forcing ($\Delta R$) can be simply related to the equilibrium global-mean surface temperature change ($\Delta T$) by the simple formula $\Delta T=\lambda\Delta R$ which $\lambda$ is the climate sensitivity parameter.\\
 
 
-RF is defined as the instantaneous perturbation in net radiative flux at the tropopause exerted by a change in a component of the radiative budget,
+RF is defined also as the instantaneous perturbation in net radiative flux at the tropopause exerted by a change in a component of the radiative budget,
 with surface temperature and tropospheric state maintained in their
 unperturbed state. The term “radiative forcing” has been employed in the IPCC Assessments to denote an externally imposed perturbation in the radiative energy budget of the Earth’s climate system.
 Such a perturbation can be brought about by secular changes in the
@@ -257,7 +259,7 @@ The principal elements of the radiative forcing concept are summarised below:
 \begin{enumerate}
 	\item In the one-dimensional radiative-convective model framework, the surface and troposphere are closely coupled, behaving as a single thermodynamic system under the joint control of radiative and convective processes, with a specied lapse rate determining the thermal structure. The stratospheric state is determined by the radiative equilibrium condition. The stratosphere and troposphere irradiances are together constrained by the requirement that the top of the atmosphere net total irradiance (i.e., radiative energy absorbed minus that emitted by the Earth’s entire climate system) must be zero at equilibrium. In applying the forcing concept to arbitrary spatial and seasonal time-scales, as opposed to the global annual mean, it has been assumed (WMO, 1992; SAR) that the stratosphere is in radiative-dynamical (rather than radiative) equilibrium.
 	\item The stratosphere is a \textit{fast response system} which, in response to an imposed radiative perturbation, comes into equilibrium on a time-scale (about a few months) that is much more rapid than the surface-troposphere system (typically decades) (Hansen et al., 1997a; Shine and Forster, 1999). The latter is a \textit{slow response system} owing principally to the thermal inertia of the oceans.
-	\item When a perturbation is applied (such as increases in well-mixed greenhouse gases), there is an \textit{instantaneous} change in irradiances that is manifest in general as a radiative imbalance (forcing) at the surface, tropopause and the top of the atmosphere. The rapid thermal re-equilibration of the stratosphere leads to an alteration of the radiative imbalance imposed on the surface- troposphere system (WMO, 1992), thereby yielding an \textit{adjusted} forcing (SAR). The surface and troposphere, operating in a \textit{slow response mode}, are still in a process of adjustment while the stratosphere has already reached its new equilibrium state. The SAR points out the clear distinction existing between the \textit{instantaneous and adjusted} forcings.
+	\item When a perturbation is applied (such as increases in well-mixed greenhouse gases), there is an \textit{instantaneous} change in irradiances that manifests in general as a radiative imbalance (forcing) at the surface, tropopause and the top of the atmosphere. The rapid thermal re-equilibration of the stratosphere leads to an alteration of the radiative imbalance imposed on the surface- troposphere system (WMO, 1992), thereby yielding an \textit{adjusted} forcing (SAR). The surface and troposphere, operating in a \textit{slow response mode}, are still in a process of adjustment while the stratosphere has already reached its new equilibrium state. The SAR points out the clear distinction existing between the \textit{instantaneous and adjusted} forcings.
 
 \end{enumerate}
 \begin{wrapfigure}{R}{0.5\textwidth}
@@ -314,7 +316,7 @@ The change is essentially constant, but we have not taken into consideration the
 	\caption{Greenhouse feedback from Manabe 1981}
 	\label{fig:enter-label}
 \end{figure}
-\paragraph{Water vapor feedback} Water vapor feedback is one of the most significant and well-understood feedback mechanisms in the Earth's climate system. It is a positive feedback that amplifies the warming caused by increased greenhouse gas concentrations.
+\subsection{Water vapor feedback} Water vapor feedback is one of the most significant and well-understood feedback mechanisms in the Earth's climate system. It is a positive feedback that amplifies the warming caused by increased greenhouse gas concentrations.
 An initial radiative forcing (for instance an increase in $CO_2$) generates a response in the surface temperature
 \begin{equation}
 	\Delta T_0=\frac{\Delta R}{\lambda_0}
@@ -339,12 +341,15 @@ The strength of water vapor feedback varies by region. It is most pronounced in 
 In nature, as in a complex GCM, water vapor tends to increase as the air temperature warms. The main reason for this is that the saturation-specific humidity (i.e. how much water vapor the air can hold) increases strongly with temperature. We can parameterize this effect in the column model by insisting that the relative humidity remain fixed as the column warms. In the radiative-convective model, the relative water vapor adjusts rapidly.
 \begin{figure}[htpb]
 	\centering
-	\includegraphics[width=0.38\linewidth]{uploads/image112.png}
+	\includegraphics[width=0.28\linewidth]{uploads/image112.png}
 	\caption{Relative water vapor in radiative-convective model.}
 	\label{fig:enter-label}
 \end{figure}
+
+
+
 The increasing temperature raises the saturation pressure allowing more water vapor to be present in the atmosphere. The previous perturbed experiment did not take into account this effect: it was basically a no-feedback simulation. To take into account the water-vapor feedback we have to constrain the model to keep its relative humidity fixed.\\
-NB. Relative humidity is overall constant, specific humidity drops quickly with height and water vapor feedback increases the temperature or $\sim 2$°C.
+NB. Relative humidity is overall constant, specific humidity drops quickly with height and water vapor feedback increases the temperature of $\sim 2$°C.
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[width=0.4\linewidth]{uploads/23.png}
@@ -354,7 +359,7 @@ NB. Relative humidity is overall constant, specific humidity drops quickly with 
 
 
 
-The Equilibrium Climate Sensitivity, the temperature at the
+Equilibrium Climate Sensitivity: the temperature at the
 ground increases due to an increase of $CO_2$. $T$ of the new experiment is $2.98$ K, compare to the no-feedback experiment value of $1.31$ K. The gain
 $$g=\frac{ECS}{ECS_{nofeedback}}>2$$
 Water vapor feedback doubles the warming of the ground, this was the major result by Manabe and

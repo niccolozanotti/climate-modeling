@@ -1,8 +1,5 @@
-% Updated 2024-11-29 15.32
-% source: Climate modeling notes 
-
 \chapter{Earth System Models}%slides 16 e 17
-\lastupdated{2024-12-05}{\chapterSevenEarthModOverleaf}
+\lastupdated{2024-12-10}{\chapterSevenEarthModOverleaf}
 
 Earth System Models have evolved from basic atmospheric simulations to complex, integrated frameworks that include oceans, land, vegetation, and greenhouse gases. These models are essential for understanding the nonlinear dynamics of climate change and for making reliable projections about future conditions. By incorporating both natural and anthropogenic forcings, ESMs provide a robust tool for addressing pressing questions about climate variability and potential future scenarios.
 
@@ -196,3 +193,66 @@ Models predict that both land and ocean systems, traditionally acting as carbon 
 	\caption{Fluxes of carbon between ocean and land, if above $0\rightarrow$ source. In this model both land and ocean become sources of carbon fluxes}
 	\label{fig:enter-label}
 \end{figure}
+In climate system modeling, one of the primary tools is the 3D model that provides a comprehensive representation of various environmental systems. This model allows us to observe what happens in different regions of the Earth, including complex areas like the deep ocean. A challenge in working with these models is identifying patterns, as each component—whether species, ecosystems, or regions—follows unique behavior or patterns. These patterns can vary significantly, making it difficult to predict or generalize. However, once these patterns are understood, we can better strategize interventions or "fixes" to mitigate negative effects.
+
+Since climate models often involve simulating multiple scenarios based on different assumptions and variables, it's essential to consider a variety of possible outcomes. One key measure in these simulations is radiative forcing, a value that quantifies the energy imbalance in the climate system caused by factors like greenhouse gas emissions. The radiative forcing value for each scenario is represented by the last two digits (e.g., \textbf{0.36}, \textbf{0.41}, etc.), which correspond to specific scenarios or pathways of emissions. Even though many combinations of factors may lead to the same radiative forcing value, understanding how these different scenarios play out is crucial in assessing their impacts.
+
+A significant factor in determining the outcomes of climate models is the amount of \textbf{greenhouse gases (GHGs)} in the atmosphere. The more GHGs present, the stronger the overall climate response. For example, the \textbf{RCP 2.6} scenario, which involves significant emission reductions, requires \textbf{negative emissions} (i.e., removing carbon from the atmosphere) after 2050–2060 in order to limit global temperature increases to \textbf{2°C}.
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/predictions.png}
+	\caption{Enter Caption}
+	\label{fig:enter-label}
+\end{figure}
+
+One of the direct consequences of global warming is the increase in temperature, which affects various oceanic processes. For example, an increase in temperature can lead to a decrease in dissolved oxygen levels in the ocean. Warmer waters can hold less oxygen, which has serious implications for marine life. Additionally, nitrate levels are expected to decline due to changes in the ocean's biological production. The reduction in nutrient availability results in lower oxygen production, further exacerbating the oxygen depletion in marine ecosystems.
+
+\paragraph{Equilibration and Feedbacks}
+
+In equilibration experiments, we simulate the effects of stopping emissions and assess how the system reacts. For instance, if emissions were to stop, the concentration of greenhouse gases in the atmosphere would stabilize, and the system would eventually reach a new equilibrium. However, it takes time for the temperature to stabilize, and there is typically a time lag of 10–15 years before equilibrium is reached. The full impact of warming may take 15–20 years to manifest, reflecting the cumulative effect of past emissions. This delay is akin to a Green's function, where the system's response to a perturbation is integrated over time.
+
+This phenomenon of committed warming means that even if emissions were reduced immediately, the Earth would continue to warm for some time due to the inertia in the climate system. Ensemble runs are often used in these experiments to explore a range of possible outcomes, with each run representing a different set of initial conditions or assumptions.
+
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/eqexperiments.png}
+	\caption{Equilibration experiments}
+	\label{fig:enter-label}
+\end{figure}
+
+
+\section{Digital Twins}
+The concept of Digital Twins has gained significant popularity in recent years. A digital twin is a virtual model of a physical system, designed to simulate and predict the behavior of that system. This approach is increasingly used in fields like climate modeling to understand complex processes without needing direct physical experimentation. The idea is to create an interconnected feedback loop where the digital model receives real-time information from the physical system, allowing for better prediction and control.
+
+
+A \textit{digital model} serves as a mathematical representation of a physical system informed by real-world data and experiments. These models aim to produce predictions that closely align with actual observations, improving forecasting capabilities and providing a more accurate representation of the Earth’s systems. A \textit{digital shadow} represents the continuous real-time data flow that informs and updates the model.
+
+In contrast, a digital twin is a completely integrated system, it goes beyond just simulating behavior; it integrates real-time feedback and allows for some level of control over the physical system. However, when it comes to the Earth system, we are still far from achieving a fully integrated digital twin due to the sheer complexity and scale of the planet’s processes.
+
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.5\linewidth]{uploads/digital twins.png}
+	\caption{Digital world}
+	\label{fig:enter-label}
+\end{figure}
+
+\subsection{Enabling Technologies}
+Climate modeling increasingly relies on enabling technologies—tools and innovations that enhance the ability to model complex systems. These technologies might include new ways of gathering observational data, improving the accuracy and resolution of models, or developing better computational methods for simulating climate processes. Unlike basic knowledge, enabling technologies facilitate progress by providing the infrastructure and tools needed to make climate predictions more accurate and actionable.
+
+One focus is the use of non-conventional sources of observation. Traditional data sources like ground-based measurements or satellite observations are valuable but may have limitations. By exploring new types of observations, such as those from new sensors or alternative platforms, we can improve the quality of the models and increase their robustness.
+
+\section{Climate Ensembles}
+In climate modeling, we work with ensemble models, which involve running simulations under different initial conditions and assumptions. Given that there is inherent uncertainty in predicting the exact future state of the climate, these ensembles help capture the range of possible outcomes.
+
+One of the key challenges is understanding and managing the uncertainty that comes with internal climate variability. While external factors like greenhouse gas emissions are relatively predictable, internal variability (e.g., ocean currents, volcanic activity) is much harder to forecast accurately. This uncertainty affects the predictions, and we typically express it in terms of standard deviation within the ensemble. The spread in the model outputs reflects the uncertainty in predicting specific outcomes, such as temperature rise or the rate of ice sheet melting.
+
+
+
+The uncertainty surrounding climate sensitivity—the Earth's response to changes in greenhouse gas concentrations—is a significant factor in climate projections. Even though we have a general idea of the climate's response, there are still unknowns, particularly when it comes to regional effects or extreme events. This uncertainty is not just physical, but also depends on the emission scenario chosen. Different emission pathways lead to different climate futures, making the exact trajectory difficult to pin down. Some models predict rapid warming, while others may show slower changes, reflecting this uncertainty.
+
+
+
+Ultimately, the challenge of climate modeling goes beyond just predicting specific scenarios. It's more about understanding \textbf{climate risks}—the potential for large-scale, unpredictable changes that could result from different emission scenarios. While we can predict trends like ice sheet melting or temperature increases, the exact timing and scale are much more difficult to determine. The unpredictability of these changes makes climate risk a significant concern, and it highlights the importance of uncertainty management in climate modeling.
+
+
+
