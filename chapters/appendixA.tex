@@ -3,48 +3,92 @@
 \lastupdated{2024-12-09}{\chapterAppendixA}
 
 \section{Vector calculus}\label{sec:vector-calc}
-\subsection{Curl}\label{subsec:curl}
-The curl of a vector field measures the tendency of the field to induce rotation around a point, or how much the field ``circulates'' locally.
-It is a vector operation applied to a vector field, and the result is another vector field. Mathematically, for a vector field $\vec{F}=(F_x, F_y, F_z)$ the curl is:
-\begin{equation}
-	\curl{\vec{F}}=
-	\begin{vmatrix}
-		\unitv{\imath}              & \unitv{\jmath}              & \unitv{k}                   \\
-		\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
-		F_x                         & F_y                         & F_z
-	\end{vmatrix}
-	\label{eq:curl-def}
-\end{equation}
-
-$\unitv{\imath}, \unitv{\jmath}, \unitv{k}$ are the unit vectors in the $x,y,z$ directions.
-The curl results in a vector field whose direction indicates the axis of rotation (using the right-hand rule), and whose magnitude indicates the strength of the rotation.  The curl represents the amount and direction of rotational motion or "swirl" in the field. In fluid dynamics, a region of nonzero curl corresponds to vorticity, where fluid particles rotate.
 
 \subsection{Gradient}\label{subsec:gradient}
-The gradient measures the rate and direction of the steepest increase of a scalar field. It is a vector operation applied to a scalar field, and the result is a vector field. Mathematically, for a scalar field $f(x,y,z)$:
+The gradient measures the rate and direction of the steepest increase of a scalar field.
+It is a vector operation applied to a scalar field, and the result is a vector field.
+Mathematically, for a scalar field $\psi(x,y,z)$ the gradient is defined as (in cartesian coordinates):
 \begin{equation}
-	\grad{f}=\left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right)
+	\grad{\psi}=\left( \partialx{\psi}, \partialy{\psi}, \partialz{\psi}\right)
 	\label{eq:gradient-def}
 \end{equation}
-The gradient points in the direction where the scalar field $f$ increases most rapidly.. The magnitude of the gradient gives the rate of increase in that direction. In thermodynamics, the gradient of temperature describes the direction and rate of heat flow. The result of a gradient is always a vector.
-\begin{itemize}
-	\item The curl tells you about rotational behavior in a vector field.
-	\item The gradient gives you the direction and rate of steepest ascent in a scalar field.
-\end{itemize}
+The gradient points in the direction where the scalar field $f$ increases most rapidly.
+The magnitude of the gradient gives the rate of increase in that direction.
+In thermodynamics, the gradient of temperature describes the direction and rate of heat flow.
+The result of a gradient is a vector.
+
+The gradient operator in the usual earth spherical coordinate system described in~\secref{\ref{subsec:spherical-coordinate-systems}} reads
+\begin{equation}
+	\grad{\psi} = \frac{1}{r} \partialphi{\psi} \unitv{e}_{\phi} +
+	\frac{1}{r \cos \phi} \partiallambda{\psi} \unitv{e}_{\lambda} +
+	\partialz{\psi}\unitv{k}
+	\label{eq:gradient-spherical-coords}
+\end{equation}
 
 \subsection{Divergence}\label{subsec:divergence}
 In vector calculus, divergence measures the rate at which a vector field spreads out or converges at a given point.
 It quantifies how much the field ``diverges'' from or ``converges'' into a region.
-For a \textbf{vector field} $\vec{F}=(F_x,F_y,F_z)$ the divergence is defined as:
+For a \textbf{vector field} $\vec{\psi}=(\psi_x,\psi_y,\psi_z)$ the divergence is defined as (in cartesian coordinates):
 \begin{equation}
-	\diverg{\vec{F}}=\frac{\partial F_x}{\partial x}+\frac{\partial F_y}{\partial y}+\frac{\partial F_z}{\partial z}
+	\diverg{\vec{\psi}}= \partialx{\psi_x} + \partialy{\psi_y} + \partialz{\psi_z} \, .
 	\label{eq:divergence-def}
 \end{equation}
-Divergence Positive ($\diverg{\vec{F}}>0$ the field is ``spreading out'' or ``expanding'' at a point.
-Example: A source emitting fluid, such as water spraying out of a fountain.
-Divergence Negative ($\diverg{\vec{F}}<0$) the field is ``converging'' or ``contracting'' at a point.
-Example: A sink where fluid flows inward, such as water draining into a hole.
-Zero Divergence ($\diverg{\vec{F}}=0$) the field is neither expanding nor contracting, often indicating incompressible flow.
-Example: Steady, non-divergent flow like incompressible fluid flow.
+In the usual earth spherical coordinates system
+of~\secref{\ref{subsec:spherical-coordinate-systems}},~\eq{\ref{eq:divergence-def}} for a vector field
+$\vec{\psi} = (\psi_{\phi}, \psi_{\lambda}, \psi_{z})$ reads
+\begin{equation}
+	\diverg{\vec{\psi}} = \frac{1}{r \cos \phi} \partiallambda{\psi_{\lambda}} +
+	\frac{1}{r \cos \phi} \partialphi{\psi_{\phi}} +
+	\partialz{\psi_z} \, .
+	\label{eq:divergence-spherical-coords}
+\end{equation}
+A positive divergence, i.e. $\diverg{\vec{\psi}}>0$, indicates a fields that is ``spreading out'' or ``expanding'' at a point.
+An example might be that of a source emitting fluid, such as water spraying out of a fountain.
+On the other hand $\diverg{\vec{\psi}}<0$) means the field is ``converging'' or ``contracting'' at a point.
+For instance, take a sink where fluid flows inward, such as water draining into a hole.
+Finally, $\diverg{\vec{\psi}}=0$ describes a field that is neither expanding nor contracting,
+often indicating an incompressible flow.
+An example is a steady incompressible flow of a fluid.
+
+
+\subsection{Curl}\label{subsec:curl}
+The curl of a vector field measures the tendency of the field to induce rotation around a point, or how much the field ``circulates'' locally.
+It is a vector operation applied to a vector field, and the result is another vector field.
+For a \textbf{vector field} $\vec{\psi}=(\psi_x,\psi_y,\psi_z)$ the curl is defined as (in cartesian coordinates):
+\begin{equation}
+	\curl{\vec{\psi}}=
+	\begin{vmatrix}
+		\unitv{\imath}              & \unitv{\jmath}              & \unitv{k}                   \\
+		\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+		\psi_x                      & \psi_y                      & \psi_z
+	\end{vmatrix}
+	\label{eq:curl-def}
+\end{equation}
+In the usual earth spherical coordinates system
+of~\secref{\ref{subsec:spherical-coordinate-systems}},~\eq{\ref{eq:curl-def}} for a vector field
+$\vec{\psi} = (\psi_{\phi}, \psi_{\lambda}, \psi_{z})$ reads
+\begin{equation}
+	\curl{\vec{\psi}} =
+	\frac{1}{r \cos\phi}
+	\begin{vmatrix}
+		\unitv{e}_\phi & r \cos\phi \, \unitv{e}_\lambda   & \unitv{k}                   \\
+		\partialphi{}  & \frac{\partial}{\partial \lambda} & \frac{\partial}{\partial z} \\
+		\psi_{\phi}    & r \cos\phi \, \psi_{\lambda}      & \psi_{z}
+	\end{vmatrix}
+	\label{eq:curl-spherical-coords-det}
+\end{equation}
+Expanding~\eq{\ref{eq:curl-spherical-coords-det}} gives:
+\begin{equation}
+	\curl{\vec{\psi}}=
+	\unitv{k} \frac{1}{r \cos\phi} \left[ \partiallambda{\psi_{\phi}} - \partialphi{} (\psi_{\lambda} \cos\phi) \right]
+	+ \unitv{e}_\phi \frac{1}{r} \left( \partiallambda{\psi_z} - \partialz{\psi_{\lambda}} \right)
+	+ \unitv{e}_\lambda \frac{1}{r} \left( \partialz{\psi_{\phi}} -  \partialphi{\psi_{z}}\right)
+	\label{eq:curl-spherical-coords}
+\end{equation}
+The curl outputs a vector field whose direction indicates the axis of rotation (using the right-hand rule),
+and whose magnitude indicates the strength of the rotation.
+The curl represents the amount and direction of rotational motion or ``swirl'' in the field.
+In fluid dynamics, a region of nonzero curl corresponds to vorticity, where fluid particles rotate.
 
 \section{Spherical harmonics}
 \label{sec:spherical-harmonics}
