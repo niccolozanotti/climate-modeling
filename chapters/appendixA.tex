@@ -6,20 +6,25 @@
 \subsection{Curl}\label{subsec:curl}
 The curl of a vector field measures the tendency of the field to induce rotation around a point, or how much the field ``circulates'' locally.
 It is a vector operation applied to a vector field, and the result is another vector field. Mathematically, for a vector field $\vec{F}=(F_x, F_y, F_z)$ the curl is:
-\[
-	\nabla\times \vec{F}=
+\begin{equation}
+	\curl{\vec{F}}=
 	\begin{vmatrix}
 		\unitv{\imath}              & \unitv{\jmath}              & \unitv{k}                   \\
 		\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
 		F_x                         & F_y                         & F_z
 	\end{vmatrix}
-\]
+	\label{eq:curl-def}
+\end{equation}
+
 $\unitv{\imath}, \unitv{\jmath}, \unitv{k}$ are the unit vectors in the $x,y,z$ directions.
 The curl results in a vector field whose direction indicates the axis of rotation (using the right-hand rule), and whose magnitude indicates the strength of the rotation.  The curl represents the amount and direction of rotational motion or "swirl" in the field. In fluid dynamics, a region of nonzero curl corresponds to vorticity, where fluid particles rotate.
 
 \subsection{Gradient}\label{subsec:gradient}
 The gradient measures the rate and direction of the steepest increase of a scalar field. It is a vector operation applied to a scalar field, and the result is a vector field. Mathematically, for a scalar field $f(x,y,z)$:
-\[\nabla f=\left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right)\]
+\begin{equation}
+	\grad{f}=\left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right)
+	\label{eq:gradient-def}
+\end{equation}
 The gradient points in the direction where the scalar field $f$ increases most rapidly.. The magnitude of the gradient gives the rate of increase in that direction. In thermodynamics, the gradient of temperature describes the direction and rate of heat flow. The result of a gradient is always a vector.
 \begin{itemize}
 	\item The curl tells you about rotational behavior in a vector field.
@@ -30,12 +35,15 @@ The gradient points in the direction where the scalar field $f$ increases most r
 In vector calculus, divergence measures the rate at which a vector field spreads out or converges at a given point.
 It quantifies how much the field ``diverges'' from or ``converges'' into a region.
 For a \textbf{vector field} $\vec{F}=(F_x,F_y,F_z)$ the divergence is defined as:
-\[\nabla\cdot \vec{F}=\frac{\partial F_x}{\partial x}+\frac{\partial F_y}{\partial y}+\frac{\partial F_z}{\partial z}\]
-Divergence Positive ($\nabla\cdot \vec{F}>0$ the field is "spreading out" or "expanding" at a point.
+\begin{equation}
+	\diverg{\vec{F}}=\frac{\partial F_x}{\partial x}+\frac{\partial F_y}{\partial y}+\frac{\partial F_z}{\partial z}
+	\label{eq:divergence-def}
+\end{equation}
+Divergence Positive ($\diverg{\vec{F}}>0$ the field is ``spreading out'' or ``expanding'' at a point.
 Example: A source emitting fluid, such as water spraying out of a fountain.
-Divergence Negative ($\nabla\cdot \vec{F}<0$) the field is "converging" or "contracting" at a point.
+Divergence Negative ($\diverg{\vec{F}}<0$) the field is ``converging'' or ``contracting'' at a point.
 Example: A sink where fluid flows inward, such as water draining into a hole.
-Zero Divergence ($\nabla\cdot \vec{F}=0$) the field is neither expanding nor contracting, often indicating incompressible flow.
+Zero Divergence ($\diverg{\vec{F}}=0$) the field is neither expanding nor contracting, often indicating incompressible flow.
 Example: Steady, non-divergent flow like incompressible fluid flow.
 
 \section{Spherical harmonics}
@@ -195,6 +203,19 @@ EOF and PCs (Principal Component Analysis) are the same techniques mathematicall
 \]
 In $\mat{U}$ are the eigenfunctions associated to the covariant, in $\mat{\Sigma}$ the eigenvalues.
 
+When you have a time serie of data, you should organize them in some order: a matrix where every row ($1\leq j\leq n$) is a time variation, hence every vector is a space variation of some place in the same tame:
+\[
+	\mat{X}=\left[\mat{X_1, X_2,\dots, X_n} \right]
+\]
+\[
+	\mat{S}=\frac{1}
+	{1-n}\mat{X}\mat{X}^T
+\]
+on the diagonal of $\mathbf{S}$, you have the same location (covariance relation), every other element is the covariance of two different locations (it defines how two locations are connected in time): $$\text{Tr}(\mathbf{S})=\sum\sigma^2$$. It becomes a correlation matrix if divided by the standard deviations of the locations. $\mathbf{XX^T}$ as symmetric, meaning the eigenvalues are positive and eigenvectors are orthogonal. The eigenvectors represent the EOF. The single value decomposition tells us that any matrix can be written in terms of 2 different other orthogonal matrices: $\mathbf{X}=U\Sigma V^T$. I could simply take the data matrix and compute the SVD:
+\[x(i)=\sum_i\vec{u_i}\sigma_iv_i\]
+how much covariance the pattern $u$ of EOF corresponding to the singular value decomposition  is responsable for:
+\[\mu_i=\frac{\sigma_i^2}{\displaystyle\sum_{i=1}^{n}\sigma_i^2}\]
+
 \subsection{Eigenvalue decomposition $\rightarrow$ Singular Value Decomposition}
 \label{subsec:svd}
 It helps to understand what is the weight of the $\vec{u_i}$ component in the $\vec{x}$ dataset.
@@ -230,6 +251,13 @@ Higher EOF means more zero lines, meaning more oscillations.
 	\item thinking of EOF as oscillations
 \end{itemize}
 
+\subsection{Variance}\label{subsec:variance}
+The variance of the data $\mat{X}$ is defined as
+\begin{equation}
+	\sigma^2 = \displaystyle\sum_{i=1}^n\frac{(x-\overline{x})^2}{n}
+	\label{eq:variance-def}
+\end{equation}
+
 \subsection{Covariance}\label{subsec:covariance}
 Basically it is a straight multiplication.
 It's a statistical measure that indicates the degree to which two random variables change together. If two variables tend to increase or decrease in tandem then $\text{COV}>0$; if one tends to increase while the other decreases, then $\text{COV}<0$.
@@ -251,3 +279,110 @@ $\sigma_i$ are the standard deviations.
 	\item $r=-1$  perfect \textunderscore{negative} linear relation
 	\item $r=0$ no linear relation
 \end{itemize}
+
+
+\section{Space-time splittings}\label{sec:space-time-splittings}
+The dominant shape of the global circulation suggests that some understanding can be gained from splitting the physical fields into larger and smaller portions using appropriate averages. At a first inspection, the flow is seen as a predominant circumpolar vortex with superposed fluctuations in space and time. The longitudinal direction is also known as the “zonal” direction, therefore the average over longitude is known as the zonal averaging
+
+\subsection{Zonal means}\label{subsec:zonal-mean}
+The zonal mean of a quantity A is defined as the average over longitudes.
+Commonly used symbols in the literature are the overbar $\overline{u}$ or square brackets [u],
+the first is most frequently encountered in the theoretical and modeling literature whereas the second is most commonly used in observational and diagnostics works.
+In the following, we will denote the zonal mean of a field $A$ as:
+\begin{equation}
+	\zonmean{A} = \frac{1}{2\pi}\int_0^{2\pi} A \dxOne
+	\label{eq:zonal-mean-def}
+\end{equation}
+so that the entire field can be decomposed into
+\begin{equation}
+	A = \zonmean{A}+ A^*
+	\label{eq:field-zonal-mean-decomp}
+\end{equation}
+where $A^*$ is the deviation from the zonal mean.
+The average has the properties that \( \zonmean{\zonmean{A}} = \zonmean{A}\) and \(\zonmean{A^*}=0\).
+
+When a stream function can be defined, the average zonal mean meridional
+velocity is zero:
+\begin{equation}
+	\zonmean{v} = \frac{1}{2\pi}\int_0^{2\pi} v \, dx=\frac{1}{2\pi}\int_0^{2\pi} \frac{\partial \psi}{\partial x} \, dx=0
+	\label{eq:zonal-mean-v}
+\end{equation}
+This is a consequence of the more general result that the zonal mean of
+any quantity that is a longitude derivative is zero.
+
+\subsection{Time means}\label{subsec:time-mean}
+The time mean is defined simply as the average over a length of time.
+As for the zonal mean (\eq{\ref{eq:zonal-mean-def}}), multiple symbols are employed.
+Here we denote the time mean of a field $A$ with:
+\begin{equation}
+	\timemean{A} = \frac{1}{T}\int_0^{T} A \dt
+	\label{eq:time-mean-def}
+\end{equation}
+so that the total field is
+\begin{equation}
+	A = \timemean{A} + A'
+	\label{eq:field-time-mean-decomp}
+\end{equation}
+The deviations from the zonal means are called ``eddy'' components. An
+eddy that obeys a dispersion relation is a ``wave''.
+
+\subsection{Higher order quantities}\label{subsec:higher-order-means}
+
+The averages can be used to decompose higher-order quantities. For
+instance using zonal means a quadratic correlation of the form \(A B\)
+can be decomposed as
+\begin{equation}
+	A B = (\zonmean{A}+A^*)(\zonmean{B}+B^*) = A^*B^* + \zonmean{A} B^*+ A^*\zonmean{B} + \zonmean{A}\zonmean{B}
+	\label{eq:decomp-AB-zonal}
+\end{equation}
+If we take the zonal mean of~\eq{\ref{eq:decomp-AB-zonal}}, i.e.~the second order mean of $AB$,
+we end up with the following decomposition:
+\begin{equation}
+	\zonmean{AB}= \zonmean{A^*B^* + \zonmean{A} B^* + A^* \zonmean{B} + \zonmean{A}\zonmean{B}} =
+	\zonmean{A}\zonmean{B} + \zonmean{A^*B^*}
+	\label{eq:decomp-AB-zonal-2nd-ord}
+\end{equation}
+where the mix terms disappear as $\zonmean{A^*} = 0$.
+
+We can refine the splitting by considering the time average splitting of
+the zonal terms:
+\begin{equation}
+	= \timemean{[A]} + [A]'
+	A^* = \timemean{A}^* + A'^*
+\end{equation}
+These terms represent the stationary symmetric circulation, the
+transient symmetric circulation and the stationary deviation from the
+zonal means (``asymmetries'') and the transient asymmetries.
+Inserting these relations into Eq. \ref{eq:decomp-AB-zonal-2nd-ord} we get
+\begin{equation}
+	= (\timemean{[A]} + [A]')(\timemean{[B]} + [B]') + [A^*B^*]
+\end{equation}
+the time mean of the terms linear in the time deviation will average
+again to zero (this time with respect the time mean) and we finally get
+\begin{equation}
+	\overline{[AB]}) = \timemean{[A]}\timemean{[B]} + \overline{[A]'[B]'} + \overline{[A^*B^*]}
+\end{equation}
+The decompositions are not unique. We have first performed the split in
+the zonal mean and then the split in the time mean, considering a split
+only in the eddy part:
+\begin{equation}
+	A^* =    \timemean{A}^* + A'^*
+\end{equation}
+we would get
+\begin{equation}
+	\zonmean{\timemean{AB}} = \timemean{[A]}\timemean{[B]} +  [\timemean{A}^*\timemean{B}^*]+[\overline{A'^*B'^*}]
+\end{equation}
+where the first term is the contribution of the mean meridional
+circulation, the second is the contribution of the time-mean
+(standing) eddies and the last one is the contribution of the
+transient eddies. This kind of decomposition is therefore a useful instrument but
+requires always consideration of the hypothesis formulated in the
+initial design. Another consideration is that they depend on the
+specific kind of averaging that is used. There is little choice in the
+zonal mean, being fixed by the geometry, but we have much more choices
+in the case of the time mean. Results will depend on the length of the
+time averaging period and on the original frequency of the data. Time
+mean and second-order quantities calculated over daily will differ from
+the same quantities calculated over time series of weekly or monthly
+data. There is no \emph{correct} choice, each one will offer a different
+glimpse in the data from a chosen perspective.

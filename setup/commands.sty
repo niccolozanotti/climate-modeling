@@ -10,29 +10,38 @@
 %%%%%%%%%%%%%%%%% MATHEMATICAL %%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\dx}{\,\mathrm{d}\bm{x}}
-\newcommand{\dhOne}{ \,\mathrm{d}h}
+\newcommand{\dt}{\,\mathrm{d}t}
 \newcommand{\dxOne}{\,\mathrm{d}x}
+\newcommand{\dhOne}{ \,\mathrm{d}h}
 \newcommand{\dS}{\,\mathrm{d}S}
 \newcommand{\totalt}{\frac{\mathrm{d}}{\mathrm{dt}}}
+\newcommand{\totald}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
 \newcommand{\timed}[1]{\frac{\mathrm{d} #1}{\mathrm{d}t}}
 \newcommand{\partialt}[1]{\frac{\partial #1}{\partial t}}
 \newcommand{\partialx}[1]{\frac{\partial #1}{\partial x}}
+\newcommand{\partialy}[1]{\frac{\partial #1}{\partial y}}
+\newcommand{\partialz}[1]{\frac{\partial #1}{\partial z}}
 \newcommand{\materiald}[1]{\frac{\mathrm{D} #1}{\mathrm{D}t}}
 \newcommand{\objmateteriald}[1]{\frac{\mathcal{D} #1}{\mathcal{D}t}}
 \newcommand{\flux}{\mathcal{F}}
 \newcommand{\jump}[1]{ \{\{#1\}\} }
 \newcommand{\avg}[1]{ [[#1]] }
 \newcommand{\eq}[1]{Equation~#1}
-\newcommand{\mean}[1]{\hat{#1}}
+\newcommand{\timemean}[1]{\overline{#1}} %time mean
+\newcommand{\zonmean}[1]{[#1]} %zonal mean
 \newcommand{\fig}[1]{Figure~#1}
 \newcommand{\secref}[1]{Section~#1}
 \newcommand{\chapref}[1]{Chapter~#1}
 \newcommand{\tabref}[1]{Table~#1}
 \newcommand{\mat}[1]{\mathbf{#1}}      % matrix
 \newcommand{\tens}[2]{\mat{#1}:#2}     % tensor
+
+% Vector calculus
 \renewcommand{\vec}[1]{\ifmmode\bm{#1}\else\ensuremath{\bm{#1}}\fi} %vector
 \newcommand{\unitv}[1]{\bm{\hat{#1}}}  % unit vector
-
+\newcommand{\grad}[1]{\bm{\nabla} #1}
+\newcommand{\curl}[1]{\bm{\nabla} \times #1}
+\newcommand{\diverg}[1]{\bm{\nabla} \cdot #1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%% SIUNITX %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

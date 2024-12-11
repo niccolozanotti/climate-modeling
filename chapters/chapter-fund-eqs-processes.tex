@@ -1,243 +1,332 @@
-% Updated 2024-11-30 15.39
-% source: Climate modeling notes
 
-\chapter{Fundamental Equations and processes}
-\lastupdated{2024-11-30 15.39}{\chapterTwoEqsProc}
+\chapter{Fundamental equations and processes}
+\label{ch:fundamental-eqs-processes}
 
-\section{Fundamental Equations}
-\subsection{Introduction\label{introduction}}
-
-The atmosphere is in motion and it is a continuous mixing and clashing
-of vortices and structures, but when it is averaged over a long period
-of time (fig.{\ref{fig:ERA5-wind200}}) it shows a remarkable simple structure.
-The figure shows the wind at an approximate level of about 12km, that is
-considered to be in the free atmosphere, far from the influence of the
-ground. The circulation is a large vortex around the pole that shows
-small oscillation in latitudes, especially pronounced over North America
-and the Asian Pacific Coast. The flow is therefore predominantly in the
-East-West direction, with a relatively small component in the meridional
-direction. The \emph{circumpolar vortex} has been one of the first
-structures to be recognized when plentiful observations of the upper air
-flow became available, but it provided some of the intriguing questions
-that drove the development of geophysical fluid dynamics to this time,
-some of them have not been completely understood. What is maintaining
-this peculiar circulation? Which factor determines the amplitude and
-location of the undulations in meridional direction? Some of these
-question will be addressed in these chapter.
-
-\begin{figure}[htpb]
-	\centering
-	\includegraphics[width=0.35\linewidth]{uploads/Screenshot 2024-11-18 114256.png}
-	\caption{ERA5-wind 200}
-	\label{fig:ERA5-wind200}
-\end{figure}
+\lastupdated{2024-12-06}{\chapterTwoEqsProc}
 
 
-\subsection{Coordinate systems}\label{coordinate-systems}
 
-\paragraph{Spherical Coordinates}\label{spherical-coordinates}
+The atmosphere and the ocean are both vast and dynamic systems that behave as fluids under the influence of a rotating planet. Although their physical properties differ—air being compressible and water being nearly incompressible—their motions can be described using the principles of fluid dynamics. These principles form the basis for understanding and predicting a wide range of phenomena, from local weather patterns to global climate dynamics.
 
+In this chapter, we explore the fundamental equations that govern the behavior of these fluid systems. Starting from the basic conservation laws of momentum, mass, and energy, we show the governing equations for atmospheric and oceanic motion. Due to the complexity of these systems, certain approximations are often applied to make these equations tractable. These approximations include the hydrostatic approximation, the shallowness approximation, and the neglect of specific higher-order terms. Such simplifications allow us to focus on the dominant processes and forces shaping the dynamics of the atmosphere and the ocean.
+
+We will discuss the mathematical framework and coordinate systems used to describe these systems, followed by the equations of motion and key approximations. Later sections will delve into the physical processes such as radiation, moisture, and hydrology that interact with the dynamics of the atmosphere and ocean.
+
+\section{Background}\label{sec:intro-fund-eqs-processes}
+
+\subsection{The Earth spherical coordinates system}
+\label{subsec:spherical-coordinate-systems}
 The most commonly used coordinate system for the analysis of the
 atmosphere and the oceans is a spherical coordinate system attached to
-the rotating Earth (Fig. \ref{fig:coordinate system3d} ). The spherical coordinates are
-slightly different from the usual mathematical ones as the latitude is
-measured from the equator and therefore it can take negative values. The
-longitude is running west to east.
+the rotating Earth (\fig{\ref{fig:3d-coordinate-sys}}). The spherical coordinates are
+slightly different from the usual mathematical ones as the latitude $\phi$ is
+measured from the equator and therefore it can take negative values.
+The longitude $\lambda$ is running west to east.
 
-The longitude is also known as the ``zonal'' direction whereas the
-latitude is also known as the "meridional" direction. Winds are
-identified by the direction they are coming from, so a "westerly" wind
-is coming \emph{from} the West and an "easterly" wind is coming from the
+The longitude is also known as the \textbf{zonal} direction whereas the
+latitude is also known as the \textbf{meridional} direction.
+Winds are identified by the direction they are coming from, so a \emph{westerly} wind
+is coming \emph{from} the West and an \emph{easterly} wind is coming \emph {from} the
 East.
 
-This coordinate system is rotating with the Earth and therefore it
-generates force terms in any dynamical equation expressed in this system
-of coordinate, the Coriolis terms.
-
-\begin{figure}[htpb]
+Hereafter we will denote with $\vec{\Omega} = \Omega \unitv{k}$ Earth's angular velocity vector, with $\Omega \simeq \qty{7.29e-5}{\radian \per \second}$.
+Since this reference frame is rotating, it is necessary to add force terms in the dynamical equations (see Coriolis terms in~\eq{\ref{eq:momentum-eq-atm}}).
+\begin{figure}
 	\centering
-	\includegraphics[width=0.4\linewidth]{uploads/Screenshot 2024-11-18 114156.png}
-	\caption{Coordinate system}
-	\label{fig:coordinate system3d}
+	\includegraphics[width=0.8\textwidth]{figs/3d-coordinate-sys}
+	\caption{3D Spherical coordinate system.}
+	\label{fig:3d-coordinate-sys}
 \end{figure}
 
-\subsubsection{The Beta-plane}\label{the-beta-plane}
+\subsection{Rates of change of fluid properties over time: Eulerian vs Lagrangian description}\label{subsec:eulerian-lagrangian-derivative}
 
-It is sometimes convenient to shift coordinate system if the latitudinal
-extension of the motion is not too great with respect to the motion
-parameters as they are expressed in the adimensional numbers. When this
-is possible, a tangent coordinate system is applied at a specific
-latitude \(\phi_0\) and the resultant Cartesian coordinates system is
-called the \(\beta\)-plane. Usually symbols \((x,y)\) are used in this
-case for the zonal and meridional coordinate. In the \(\beta\)-plane the
-planetary vorticity \(f\) is linearized as \(f=f_0 + \beta y\), where
-\(\beta = \frac{\partial f}{\partial y}({\phi_0})\).
+In fluid dynamics, there are two primary perspectives for describing the motion of fluids and their properties: the Eulerian and the Lagrangian.
 
-\subsubsection{Advective derivative}\label{Sec:Adv}
+The \textbf{Eulerian description} focuses on specific points in space through which the fluid flows.
+Changes in fluid properties, such as velocity, temperature, or pressure, are observed at these fixed spatial locations over time.
+This is analogous to standing on a bridge and watching water flow underneath.
+This perspective is often used in large-scale atmospheric and oceanic studies.
 
-To describe the governing equation of the atmosphere and eventually of
-the ocean we have to understand how we write the rate of change with
-time of this fluid. This problem was solved by considering the fact that
-the rate of change in the fluid cannot be seen as rate of change with
-respect to a fixed system of coordinate because the system is moving
-with the fluid itself. Therefore, first we have to find a way to
-describe the change taking into account the moving system of
-restaurants. These can be done by using a concept developed in the 19th
-century by Euler that is called "advective derivative" that can be
-obtained from a total derivative of the property,
+In contrast, the \textbf{Lagrangian description} follows individual fluid parcels as they move through space and time.
+It tracks changes in the properties experienced by these parcels.
+This is akin to floating along with the current in a boat and observing changes in the surrounding environment.
+This perspective is particularly useful when studying transport and mixing in fluids, such as pollutant dispersion or cloud formation.
 
-\[\frac{d \phi}{dt} = \frac{\partial \phi}{\partial t} + \frac{\partial x}{\partial t}\frac{\partial \phi}{\partial x} + \frac{\partial y}{\partial t}\frac{\partial \phi}{\partial y}+\frac{\partial z}{\partial t}\frac{\partial \phi}{\partial z} = \frac{\partial \phi}{\partial t} + \mathbf{v}\cdot\nabla\phi\]
+The connection between these two perspectives is captured by the \textbf{advective derivative} - also know as \emph{material derivative} or
+\emph{Lagrangian derivative} - which describes the rate of change of a property $\phi= \phi(\bm{x},t)$ as seen from the perspective of a moving fluid parcel.
+It combines the local rate of change (Eulerian derivative) and the transport of the property due to the fluid motion (advection).
+Mathematically, the advective derivative is expressed as:
+\begin{equation}
+	\materiald{\phi} = \frac{\partial \phi}{\partial t} + \bm{u} \cdot \nabla \phi
+	\label{eq:material-derivative}
+\end{equation}
+where:
+\begin{itemize}
+	\item $\materiald{\phi}$ is the advective derivative, representing the total rate of change of $\phi$ in a moving frame;
+	\item $\frac{\partial \phi}{\partial t}$ is the Eulerian derivative, capturing the local rate of change of $\phi$ at a fixed location;
+	\item $\bm{u} \cdot \nabla \phi$ is the advection term, representing the transport of $\phi$ by the fluid velocity $\bm{u}$.
+\end{itemize}
+\begin{pf}{
+		To compute the total rate of change of a fluid property $\phi$ we have to consider it is
+		evolving both in time $t$ and in space $\bm{x}$ (the fluid is moving), therefore
+		\begin{equation}
+			\frac{\partial \phi}{\partial t} + \frac{\partial x}{\partial t}\frac{\partial \phi}{\partial x} + \frac{\partial y}{\partial t}\frac{\partial \phi}{\partial y}+\frac{\partial z}{\partial t}\frac{\partial \phi}{\partial z} = \frac{\partial \phi}{\partial t} + \bm{u}\cdot\nabla\phi
+			\label{eq:total-derivative}
+		\end{equation}
+		where we have recovered \eq{\ref{eq:material-derivative}}.
+	}
+\end{pf}
 
-and so it can be defined as
 
-\[\frac{D \varphi}{Dt} =\frac{\partial \varphi}{\partial t} + \mathbf{v}\cdot\nabla\varphi\]
+\section{Primitive equations}
+\label{sec:primitive-equations}
 
-in this way the moving fluid can be described by derivatives with
-respect the "fixed" coordinate system, i.e. the Eulerian description.
-The alternative description of the observer moving with fluid is known
-as the "Lagrangian" description.
+The motion of a physical system is governed by conservation laws: conservation of momentum (\eq{\ref{eq:momentum-eq-atm}}),
+mass (\eq{\ref{eq:continuity-equation}}) and energy (\eq{\ref{eq:thermal-energy-conservation}}).
+The conservation of momentum equation will identify the forces acting on the system.
+The conservation of energy will identify the processes capable of changing the energy of the system, i.e.~thermodynamical processes.
+
+\subsection{Momentum equation}
+\label{subsec:momentum-equation-atm}
+
+The first set of fundamental equations that we encounter is the conservation of momentum, which, for a geophysical
+fluid correspond to the \textbf{Navier-Stokes equations}.
+The Navier-Stokes equations describe the motion of fluid substances like air and water.
+They account for forces due to pressure, viscosity, and external forces such as gravity.
+This set of equations is key to understanding how winds, ocean currents, and other flows evolve due to internal and external forces.
+In the rotating reference frame described in~\secref{\ref{subsec:spherical-coordinate-systems}}
+the aforementioned governing equations, written along three coordinates longitude $\lambda$, latitude $\phi$
+and vertical direction $z$, read:
+\begin{subequations}
+	\begin{align}
+		\materiald{u} -\frac{uv \tan{\phi}}{r} +  \frac{uw}{r}  & = -\frac{1}{\rho r \cos{\phi}}\frac{\partial p}{\partial \lambda} + fv - \hat{f}w + F_\lambda \\
+		\materiald{v} -\frac{u^2 \tan{\phi}}{r} +  \frac{vw}{r} & = -\frac{1}{\rho r }\frac{\partial p}{\partial \phi} - fu  + F_\phi                           \\
+		\materiald{w} -\frac{u^2+v^2}{r}                        & = -\frac{1}{\rho }\frac{\partial p}{\partial z} -g +\hat{f}u + F_z
+	\end{align}
+	\label{eq:momentum-eq-atm}
+\end{subequations}
+where $ \vec{u} = (u, v, w)$ is the fluid's velocity along the $\lambda, \phi, z$ directions
+\begin{subequations}
+	\begin{align}
+		u & = a\cos{\phi\frac{\partial \lambda}{\partial t}} \\
+		v & = a \frac{\partial \phi}{\partial t}             \\
+		w & = \frac{\partial z}{\partial t}
+	\end{align}
+	\label{eq:velocity-spherical-coord}
+\end{subequations}
+and the advective derivative~(\eq{\ref{eq:material-derivative}}) in spherical coordinates reads:
+\begin{equation}
+	\materiald{} = \frac{\partial }{\partial t} + \frac{u}{a\cos{\phi}}\frac{\partial }{\partial \lambda} +\frac{v}{a}\frac{\partial }{\partial \phi} + w\frac{\partial }{\partial z} \, \cdot
+	\label{eq:advective-derivative-spherical}
+\end{equation}
 
 
+Because a is the Earth's mean radius, z is height above the Earth's surface, and
+$r = a + z$, it follows that for the atmospheric heights under consideration, $z \ll a$ and
+$r$ generally can be replaced by $a$. This is known as the \emph{shallowness
+	approximation}, because it results from the relatively shallow depth of the atmosphere
+compared to the Earth's radius.
+Also, since in climate-oriented general circulation
+models the motions of primary interest have characteristic horizontal space scales of
+hundreds to thousands of \unit{\kilo\meter} and velocities on the order of \qty{10}{\meter\per\second}, we can simplify
+\eq{\ref{eq:momentum-eq-atm}} further by eliminating several of the generally less-significant terms,
+such as $\hat{f}w, \hat{f}u$ and $\frac{u^2+v^2}{r}$ by assuming $g$ is constant.
+In this approximations~\eq{\ref{eq:momentum-eq-atm}} simplifies to~\citep{Washington2005}:
+\begin{subequations}
+	\begin{align}
+		\materiald{u} - v\left(f +  \frac{u \tan{\phi}}{a}\right) & = -\frac{1}{ a \cos{\phi}}\frac{1}{\rho}\frac{\partial p}{\partial \lambda} + F_\lambda \label{eq:momentum-shallow-u} \\
+		\materiald{v} + u\left( f + \frac{u \tan{\phi}}{a}\right) & = -\frac{1}{a}\frac{1}{\rho}\frac{\partial p}{\partial \phi}  + F_\phi   \label{eq:momentum-shallow-v}                \\
+		\materiald{w}                                             & = -\frac{1}{\rho }\frac{\partial p}{\partial z} -g  + F_z  \, \cdot \label{eq:momentum-shallow-w}
+	\end{align}
+	\label{eq:momentum-eq-atm-shallow}
+\end{subequations}
 
-\subsection{Equation of motion} %this section comes from lecture6 
-The motion of a physical system is governed by conservation laws: conservation of momentum, mass and energy. The conservation of momentum equation will identify the forces acting on the system. The conservation of energy will identify the processes capable of changing the energy of the system, i.e. thermodynamical processes.
-The equation governing the motion of the atmosphere can be written as:
+The second term on the left-hand side of~\eq{\ref{eq:momentum-shallow-u}} represents the Coriolis force and the centrifugal force in the rotating reference frame of the Earth.
+$f$ is the Coriolis parameter, which depends on the latitude $\phi$ and is given by $f=2\Omega\sin\phi$.
+The Coriolis force is proportional to the velocity and acts perpendicular to the motion of the fluid, deflecting the
+fluid in different directions depending on the hemisphere.
+Note that the Coriolis term arises due to the rotation of the Earth, which introduces an apparent force in a rotating reference frame.
+This term depends explicitly on the latitude because of how the Earth's rotation affects the direction and magnitude of the Coriolis
+effect at different points on the Earth's surface.
+The Coriolis force explicitly depends on the sine of the latitude, as the projection of $\Omega$ onto the local horizontal plane is
+$\Omega\sin\phi$ (the latitude $\phi$ determines the angle between the Earth's rotational axis and the local vertical.
+$\Omega$ is the angular velocity vector of Earth's rotation, it points along the axis of rotation (towards the North Pole). At the Equator $\phi=0°$ the Coriolis effect is perpendicular to $\Omega$ and has a max horizontal effect. At the poles ($\phi=\pm 90°$) the effect aligns with $\Omega$, and only the vertical motion is affected.
 
-\[\begin{aligned}
-		 & \frac{D u}{Dt} -\frac{uv \tan{\phi}}{r} +  \frac{uw}{r} = -\frac{1}{\rho r \cos{\phi}}\frac{\partial p}{\partial \lambda} + fv - \hat{f}w + F_\lambda \\
-		 & \frac{D v}{Dt} -\frac{u^2 \tan{\phi}}{r} +  \frac{vw}{r} = -\frac{1}{\rho r }\frac{\partial p}{\partial \phi} - fu  + F_\phi                          \\
-		 & \frac{D w}{Dt} -\frac{u^2+v^2}{r} = -\frac{1}{\rho }\frac{\partial p}{\partial z} -g +\hat{f}u + F_z                                                  \\
-	\end{aligned}\]
+On the right side of all the three equations~\ref{eq:momentum-eq-atm-shallow} we find the pressure gradient force in the
+longitudinal (first) and latitudinal (second) directions, which drives fluid motion
+due to differences in pressure.
+The terms $F_{\lambda}$, $F_{\phi}$ and $F_{z}$ represent an \emph{additional force} term that could represent any other forcing acting on the fluid parcel in the longitudinal, latitudinal and vertical direction.
+It might include friction, external forces, or any other model-specific forces not accounted for in the other terms.
 
-the \(f=2\Omega \sin{\phi}\) and \(\hat{f} = 2\Omega\cos{\phi}\) terms arise from the rotating spherical coordinate system that we have chosen, other terms are generated by the spherical geometry. Some of them are small and traditionally they can be neglected, so that we arrive at the system
+The term $\frac{u\tan\phi}{a}$ present in~\eq{\ref{eq:momentum-shallow-u}} accounts for the centrifugal force resulting
+from the Earth's rotation.
+Here, $u$ is the east-west velocity, $\phi$ is the latitude, and $a$ is the Earth's radius.
+The centrifugal force is stronger near the equator, and this term adjusts the Coriolis effect to account for that.
+$\frac{\partial p}{\partial\lambda}$ indicates how pressure changes as you move longitudinally, i.e. east or west.
+The term $a\cos\phi$ accounts for the spherical geometry of the Earth and the fact that distances between lines of longitude vary with latitude (they are widest at the Equator and shrink towards the poles). This term describes the acceleration due to the horizontal pressure gradient in the longitudinal direction, with the pressure gradient force causing flow from regions of higher to lower pressure.
 
-\[\begin{aligned}
-		 & \frac{D u}{Dt} - v\left(f +  \frac{u \tan{\phi}}{a}\right)  = -\frac{1}{\rho a \cos{\phi}}\frac{\partial p}{\partial \lambda}   + F_\lambda \\
-		 & \frac{D v}{Dt} + u\left( f + \frac{u \tan{\phi}}{a}\right)  = -\frac{1}{\rho a}\frac{\partial p}{\partial \phi}  + F_\phi                   \\
-		 & \frac{D w}{Dt}  = -\frac{1}{\rho }\frac{\partial p}{\partial z} -g  + F_z                                                                   \\
-	\end{aligned}\]
+The term $\frac{v\tan\phi}{a}$ in~\eq{\ref{eq:momentum-shallow-v}} is the centrifugal force term in the north-south direction,
+considering Earth's curvature.
+$\frac{p}{\phi}$ represents the pressure gradient in the latitude direction, and it drives motion from high to low pressure.
 
-where we have also used the \emph{Shallowness Approximation} by assuming \(r = a +z \approx a\), where \(a\) is the Earth radius.
+As for the vertical direction,~\eq{\ref{eq:momentum-shallow-w}}, the the vertical component of the Coriolis force is negligible
+because $\Omega$ is nearly parallel to the vertical axis in most regions.
+In rotating systems like the atmosphere or oceans, vertical Coriolis terms are often ignored.
+Gravity acts downward and opposes the upward motion.
 
-However the advective derivative must be expressed in spherical cordinates
 
-\[\frac{D }{Dt} = \frac{\partial }{\partial t} + \frac{u}{a\cos{\phi}}\frac{\partial }{\partial \lambda} +\frac{v}{a}\frac{\partial }{\partial \phi} + w\frac{\partial }{\partial z}\]
+The system of equations~\ref{eq:primitive-equations} is not closed: there are 5 variables but only 3 equations.
+Therefore additional relationships need to be found to close the system.
+As we shall now see, the fundamental conservation laws allow to do that.
 
-so that the velocity components are
+\subsection{Mass conservation}\label{subsec:mass-conservation}
 
-\[\begin{aligned}
-		 & u = a\cos{\phi\frac{\partial \lambda}{\partial t}} \\
-		 & v = a \frac{\partial \phi}{\partial t}             \\
-		 & w = \frac{\partial z}{\partial t}
-	\end{aligned}\]
-
-These equations govern the mechanical behaviour of the atmosphere, and we will see in a different form, also of the ocean. There three forces in action: pressure gradient, rotation via the Coriolis force and gravity.
-
-The equation are not complete,we have three equation but five variables, so we need to find the missing relations. We are using the basic conservation principles, the latter equations describe the conservation
-of momentum, we can exploit the conservation of mass. The mass of the fluid must be conserved locally, because there are now sinks or sources in the atmosphere itself, so we want to write the mass of a volume of
+The mass of the fluid must be conserved locally, because there are now sinks or sources in the atmosphere itself, so we want to write the mass of a volume of
 atmosphere fixed in space as
-
-\[M = \int_V  \rho \,dV\]
-
+\[
+	M = \int_V  \rho \,dV
+\]
 the mass in the volume can only change if there is a flux of mass at surface \(S\),
-
-\[\frac{\partial }{\partial t} \int_V  \rho \,dV = -\int_S \rho\mathbf{v}\cdot n \, dS\]
-
+\[
+	\frac{\partial }{\partial t} \int_V  \rho \,dV = -\int_S \rho \, \bm{u}\cdot n \, dS
+\]
 using the divergence theorem however we have
-
-\[\frac{\partial }{\partial t} \int_V  \rho \,dV = -\int_V \nabla\cdot(\rho\mathbf{v}) \,dV\]
-
+\[
+	\frac{\partial }{\partial t} \int_V  \rho \,dV = -\int_V \nabla\cdot(\rho\bm{u}) \,dV
+\]
 because the volume is not changing with time we can bring the derivative inside the integral and we get
-
-\[\int_V  \frac{\partial \rho}{\partial t}+\nabla\cdot(\rho\mathbf{v}) \,dV = 0\]
-
+\[
+	\int_V  \frac{\partial \rho}{\partial t}+\nabla\cdot(\rho\bm{u}) \,dV = 0
+\]
 but the volume is arbitrary, so it must be that
-
-\[\frac{\partial \rho}{\partial t}+\nabla\cdot(\rho\mathbf{v}) = 0\]
-
+\begin{equation}
+	\frac{\partial \rho}{\partial t}+\nabla\cdot(\rho\bm{u}) = 0
+	\label{eq:continuity-equation}
+\end{equation}
 is valid locally.
 
-We have still at our disposal the conservation of thermodynamical energy and so we can also use the first law of thermodynamics for a gas, that is a statement of internal energy, where $C_v$ is the specific heat for air at constant volume and $T$ is the temperature in Kelvins.
+The \textbf{conservation of mass} or \textbf{continuity equation}~\ref{eq:continuity-equation} ensures that the mass is
+conserved in the system expresses how the density of air or water changes over time due to processes like flow and diffusion.
+In particular, $\nabla\cdot(\rho\vec{v})$ represents the divergence of the mass flux, which accounts for the movement of the mass.
 
-\[c_v\frac{D T}{Dt} = -p\frac{D }{Dt}\left(\frac{1}{\rho}\right)+ Q\]
-
-where we included the temperature and heating/cooling term \(Q\) (which is the net heat gain or loss to the external sources, for example the solar insolation, heating or cooling due to long wave radiation, latent heating due to condansation of water vapor into liquid water, and sensible heating due to conduction and convection). The state variable are then linked by the state equation
-
-\[p = \rho R T\]
-
+\subsection{First law of thermodynamics}\label{subsec:thermal-energy-conservation}
+We have still at our disposal the conservation of thermodynamical energy and so we can also use the first law of thermodynamics for a gas,
+that is a statement of internal energy, where $c_v$ is the specific heat for air at constant volume and $T$ is the temperature in Kelvins:
+\begin{equation}
+	c_v\materiald{T} = -p\materiald{}\left(\frac{1}{\rho}\right)+ Q
+	\label{eq:thermal-energy-conservation}
+\end{equation}
+where we included the temperature and heating/cooling term \(Q\) (which is the net heat gain or loss to the external sources, for example the solar insolation, heating or cooling due to long wave radiation, latent heating due to condansation of water vapor into liquid water, and sensible heating due to conduction and convection).
+The state variables are then linked by the~\textbf{equation of state} for an ideal gas
+\begin{equation}
+	p = \rho R T
+	\label{eq:ideal-atm-equation-state}
+\end{equation}
 where \(R\) is the gas constant for dry air.
 
-We can use the equation of state to write the energy equation (or the temperature equation) in a different form,
-
-\[c_v\frac{D T}{Dt} = -p\frac{D }{Dt}\left(\frac{R T}{p}\right)+ Q = -R\frac{D T}{Dt} + \frac{RT}{p}\frac{D p}{Dt} + Q\]
-
-yielding the alternative forms ( since \(c_p = c_v +R\)),
-
-\[c_p\frac{D T}{Dt}  - \frac{1}{\rho}\frac{D p}{Dt} = Q\]
+We can now use~\ref{eq:ideal-atm-equation-state} to write the energy equation~\ref{eq:thermal-energy-conservation}
+(or the temperature equation) in a different form,
+\[
+	c_v\materiald{T} = -p\materiald{}\left(\frac{R T}{p}\right)+ Q = -R\materiald{T} + \frac{RT}{p}\materiald{p} + Q
+\]
+or (since for an ideal gas $c_p = c_v +R$),
+\[
+	c_p\materiald{T}  - \frac{1}{\rho}\materiald{p} = Q
+\]
 For many purpose atmospheric and oceanic motions can be considered essentially adiabatic. However, for climate studies, the assumption of exclusively adiabatic processes is not appropriate since the amount of heat added or lost to a unit volume of air or water over a long period of time can be substantial. For adiabatic processes \(Q=0\):
-
-\[\begin{aligned}
-		 & c_p\frac{D T}{Dt}  - \frac{1}{\rho}\frac{D p}{Dt} = 0        \\
-		 & \frac{c_p}{T}\frac{D T}{Dt} -\frac{R}{p}\frac{D p}{Dt} = 0   \\
-		 & \frac{D }{Dt}\log{T} - \frac{R}{c_p}\frac{D }{Dt}\log{p} = 0
-	\end{aligned}\]
-
+\[
+	\begin{aligned}
+		 & c_p\materiald{T}  - \frac{1}{\rho}\materiald{p} = 0        \\
+		 & \frac{c_p}{T}\materiald{T} -\frac{R}{p}\materiald{p} = 0   \\
+		 & \materiald{}\log{T} - \frac{R}{c_p}\materiald{}\log{p} = 0
+	\end{aligned}
+\]
 integrating it we get
-
 \[\log{T/T_0} - \log{\left(\frac{p}{p_0}\right)^{R/c_p}} = \text{const}\]
-
 or
-
-\[\frac{T}{T_0}\left(\frac{p_0}{p}\right)^{R/c_p} = \text{const}\]
-
+\begin{equation}
+	\frac{T}{T_0}\left(\frac{p_0}{p}\right)^{R/c_p} = \text{const}
+	\label{eq:T-T0-adiabatic}
+\end{equation}
 so the quantity, known as \emph{potential temperature}
-
-\[\theta = T\left(\frac{p_0}{p}\right)^{R/c_p}\]
-
+\begin{equation}
+	\theta = T\left(\frac{p_0}{p}\right)^{R/c_p}
+	\label{eq:potential-temperature-def}
+\end{equation}
 is conserved in adiabatic processes and the thermodynamics equation can be written as
+\begin{equation}
+	\materiald{\theta} = Q \, \cdot
+	\label{eq:potential-temp-rate}
+\end{equation}
+\eq{\ref{eq:potential-temp-rate}} quantifies the rate of change of a scalar quantity
+(like temperature or moisture) for a fluid parcel moving through space.
+The source term $Q$ could represent a source of energy or mass, such as heat from the sun or moisture added by evaporation.
+In the context of a weather or climate model, this would represent how temperature (or another variable)
+changes as the air parcel moves and as energy is gained or lost.
 
-\[\frac{D \theta}{Dt} = Q\]
-
-\paragraph{Hydrostatic balance.}
+\subsection{Hydrostatic balance}\label{subsec:hydrostatic-balance}
 Under the action of gravity the vertical component of the pressure
 gradient force balances the action of gravity, resulting in very small
 vertical acceleration
-
-\[\frac{\partial p}{\partial z} =  -g \rho\]
-
-then if we take the vertical derivative of the eq. \texttt{Eq:logT}
-
-\[\frac{1}{T_0}\frac{d T}{dz}\left(\frac{p_0}{p}\right)^{R/c_p} -\frac{p_0}{p^2}\frac{R}{c_p}\frac{T}{T_0}\left(\frac{p_0}{p}\right)^{R/c_p-1}\frac{d p}{dz} = 0\]
-
+\[
+	\frac{\partial p}{\partial z} =  -g \rho
+\]
+then if we take the vertical derivative of~\eq{\ref{eq:T-T0-adiabatic}}
+\[
+	\frac{1}{T_0}\frac{d T}{dz}\left(\frac{p_0}{p}\right)^{R/c_p} -\frac{p_0}{p^2}\frac{R}{c_p}\frac{T}{T_0}\left(\frac{p_0}{p}\right)^{R/c_p-1}\frac{d p}{dz} = 0
+\]
 simplifying
-
-\[\frac{d T}{dz} -\frac{p_0}{p^2}\frac{R}{c_p}T\left(\frac{p_0}{p}\right)^{-1}\frac{d p}{dz} = 0\]
-
+\[
+	\frac{d T}{dz} -\frac{p_0}{p^2}\frac{R}{c_p}T\left(\frac{p_0}{p}\right)^{-1}\frac{d p}{dz} = 0
+\]
 or
+\[
+	\frac{d T}{dz} -\frac{1}{p}\frac{R}{c_p}T\frac{d p}{dz} = \frac{d T}{dz} +g\rho\frac{1}{p}\frac{R}{c_p}T = 0
+\]
+but using the equation of state~\ref{eq:ideal-atm-equation-state}
+\begin{equation}
+	\frac{d T}{dz} = -\frac{g}{c_p}
+	\label{eq:adiabatic-lapse-rate}
+\end{equation}
+yields the temperature gradient with height under adiabatic
+conditions and when the hydrostatic balance is valid.
+This is known as the \emph{adiabatic lapse rate}; for sea-level dry air at \qty{0}{\celsius} $c_p \simeq \qty{1000}{\joule \per \kilo\gram \per \kelvin}$, thus we
+get an estimate of it
+\begin{equation}
+	\frac{g}{c_p} = \qty{10}{\celsius \per \kilo\meter} \, \cdot
+	\label{eq:adiabatic-lapse-rate-value}
+\end{equation}
+Under this assumptions there is a linear drop in temperature with height.
 
-\[\frac{d T}{dz} -\frac{1}{p}\frac{R}{c_p}T\frac{d p}{dz} = \frac{d T}{dz} +g\rho\frac{1}{p}\frac{R}{c_p}T = 0\]
+If we integrate over height $z$, assuming isothermal atmosphere, we get an exponential density $\rho$ and pressure $p$ decay
+with height:
+\begin{equation}
+	p(z)=p_0 \exp{\left(- \frac{RT}{g}z\right)} \, \cdot
+	\label{eq:pressure-profile-isothermal-atm}
+\end{equation}
 
-but using the equation of state
 
-\[\frac{d T}{dz} = -\frac{g}{c_p}\]
-
-that gives how the temperature change with height under adiabatic
-conditions and when the hydrostatic balance is valid. This is known as
-the \emph{adiabatic lapse rate}. If I assume:
-$$C_p= 1000;   \frac{-g}{C_p} =10°C/km$$
-the temperature must drops linearly with height.
-
-If we integrate over height $z$, assuming isothermal atmosphere, we get an exponential trend over density $\rho$ and pressure $p$, which drops with height (because of the perfect gas law):
-$$p(z)=p_0 e^{\frac{-RT}{g}z}$$
-\paragraph{Geostrophic balance.} Geostrophic balance is the balance between Coriolis Force and the horizontal component of the pressure gradient force.
+\subsection{Geostrophic balance}\label{subsec:geostrophic-balance}
+Geostrophic balance is the balance between Coriolis Force and the horizontal component of the pressure gradient force.
+Under this assumptions, equations~\ref{eq:momentum-shallow-u} and~\ref{eq:momentum-shallow-v} become, respectively
+\citep{Gill1982}:
+\begin{align}
+	f v & = \frac{1}{\rho} \partialx{p}                 \\
+	f u & = - \frac{1}{\rho} \partialy{p} \totald{f}{x}
+\end{align}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 195919.png}
-	\caption{Geostrophic balance}
-	\label{fig:enter-label}
+	\includegraphics[width=0.9\textwidth]{figs/geostrophic-balance}
+	\caption{
+		Geostrophic winds follow a counterclockwise path in the Northern Hemisphere (and a clockwise path in the Southern Hemisphere) along the isobars of low pressure cells (cyclones).
+		Geostrophic winds follow a a clockwise path in the Northern Hemisphere (and a counterclockwise path in the Southern Hemisphere) along the isobars of high pressure cells (anti-cyclones).
+		Taken from \href{http://integrate.mutz.science}{INTEGRATE Teaching Package}.}
+	\label{fig:geostrophic-balance}
 \end{figure}
 The pressure gradient force (PGF) pushes air or water from high pressure to low pressure. The Coriolis force deflects the motion to the right in the Northern Hemisphere and to the left in the Southern Hemisphere. In geostrophic balance, these forces are equal in magnitude and opposite in direction. The geostrophic balance assumes the flow is steady and does not accelerate, so it neglects the effects of inertia. This balance is most accurate for large-scale motions (e.g., planetary or synoptic scales) where friction and other forces are negligible. Vertical motions are typically much smaller than horizontal motions and are neglected in geostrophic balance.
-
+\begin{equation}
+	\vec{v} = \unitv{k} \times \frac{1}{f \rho} \grad p
+\end{equation}
 In geostrophic balance:
 \begin{itemize}
 	\item Air or water flows parallel to the isobars (lines of constant pressure) or contours of constant geopotential height.
@@ -245,140 +334,88 @@ In geostrophic balance:
 \end{itemize}
 However, on small scales (e.g., tornadoes, boundary layers), friction and other forces become important, so geostrophic balance is less accurate. Near the Equator, The Coriolis parameter ($f$) approaches zero, making the geostrophic balance invalid.
 
-\paragraph{Advective derivative in rotating coordinates.} A vector in spherical coordinates is:
-$$\mathbf{u}=\hat{i}u+\hat{j}v+\hat{k}w$$
-but the unit vectors move in a rotating frame, so the advective derivative of a vector is given by:
-\begin{equation}\label{eq.adv der in rotating}
-	\frac{Du}{Dt}=\frac{Du}{Dt}\hat{i}+\frac{Dv}{Dt}\hat{j}+\frac{Dw}{Dt}\hat{k}+u\frac{D\hat{i}}{Dt}+v\frac{D\hat{j}}{Dt}+w\frac{D\hat{k}}{Dt}
-\end{equation}
-\paragraph{Coriolis Factors}
+%\subsubsection{Advective derivative in rotating coordinates.}
+%A vector in spherical coordinates is:
+%\[
+%	\bm{u} = u \unitv{\imath} + v \unitv{\jmath}+ w \unitv{k}
+%\]
+%but the unit vectors move in a rotating frame, so the advective derivative of a vector is given by:
+%\begin{equation}
+%	\materiald{\vec{u}}=\materiald{u}\unitv{\imath}+\materiald{v}\unitv{\jmath}+\frac{Dw}{Dt}\unitv{k}+u\frac{D\unitv{\imath}}{Dt}+v\frac{D\unitv{\jmath}}{Dt}+w\frac{D\unitv{k}}{Dt}
+%	\label{eq:adv-derivative-rotating-frame}
+%\end{equation}
+
+\subsubsection{Coriolis Factors}\label{subsubsec:coriolis-factors}
 The Coriolis forces derives from the conservation of angular momentum.
-$$\frac{d}{dt}\left(R_A(\Omega R_A+u)\right)=0$$
+\[\materiald{}\left(R_A(\Omega R_A+u)\right)=0\]
 or
-$$2\Omega R_A\frac{dR_A}{dt}+u\frac{dR_A}{dt}+R_A\frac{du}{dt}=0$$
+\[2\Omega R_A\frac{dR_A}{dt}+u\frac{dR_A}{dt}+R_A\materiald{u}=0\]
 rearraging
-$$\frac{du}{dt}=(2\Omega R_A+u)\frac{dR_A}{dt}$$
+\[\materiald{u}=(2\Omega R_A+u)\frac{dR_A}{dt}\]
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.35\linewidth]{uploads/Screenshot 2024-11-21 164025.png}
 	\caption{Coriolis factors}
-	\label{fig:coriolis}
+	\label{fig:coriolis-factors}
 \end{figure}
 The Coriolis components then are $2\Omega\sin\phi$ and $2\Omega\cos\phi$. For the horizontal and vertical components respectively:
 $f=2\Omega\sin\phi$.
 
-\subsection{Summary of fundamental
-	equations-}\label{summary-of-fundamental-equations}
+\subsection{The full set of governing equations for the atmosphere}
+\label{subsec:governing-eqs-atm}
 
-Summarizing our discussion, the fundamental equation that describe the
-motion of the atmosphere are considered in the following approximations:
-\begin{itemize}
-	\item Hydrostatic approximation
-	\item Shallow fluid approximation. The vertical coordinate $r$ is sustituted by $a+z(a>>z)$ except in differentiation
-	\item Neglecting metric terms involving vertical velocity $w$
-\end{itemize}
-The first approximation is independent, the second and the third must be applied together. These primitive (non hydrostatic) equations are:
-\[\begin{aligned}
-		 & \frac{D u}{Dt} - v\left(f +  \frac{u \tan{\phi}}{a}\right)  = -\frac{1}{ a \cos{\phi}}\frac{1}{\rho}\frac{\partial p}{\partial \lambda}   + F_\lambda                                                     \\
-		 & \frac{D v}{Dt} + u\left( f + \frac{u \tan{\phi}}{a}\right)  = -\frac{1}{a}\frac{1}{\rho}\frac{\partial p}{\partial \phi}  + F_\phi                                                                        \\
-		 & \frac{D w}{Dt}  = -\frac{1}{\rho }\frac{\partial p}{\partial z} -g  + F_z \label{Eq:PrimEq}                                                                                                               \\
-		 & \frac{D \theta}{Dt} = Q                                                                                                                                                                                   \\
+The full set of governing equations (Equations~\ref{eq:momentum-eq-atm-shallow},~\ref{eq:potential-temp-rate},~\ref{eq:continuity-equation} and~\ref{eq:ideal-atm-equation-state})
+under the approximations described in~\secref{\ref{subsec:momentum-equation-atm}}
+(shallowness condition, neglect of $w$ terms) can now be written as\footnote{The hydrostatic condition is not enforced
+	for the system~\ref{eq:primitive-equations-full}.}:
+\begin{subequations}
+	\begin{align}
+		 & \materiald{u} - v\left(f +  \frac{u \tan{\phi}}{a}\right)  = -\frac{1}{ a \cos{\phi}}\frac{1}{\rho}\frac{\partial p}{\partial \lambda}   + F_\lambda                                                      \\
+		 & \materiald{v} + u\left( f + \frac{u \tan{\phi}}{a}\right)  = -\frac{1}{a}\frac{1}{\rho}\frac{\partial p}{\partial \phi}  + F_\phi                                                                         \\
+		 & \materiald{w}  = -\frac{1}{\rho }\frac{\partial p}{\partial z} -g  + F_z \label{Eq:PrimEq}                                                                                                                \\
+		 & \materiald{\theta} = Q                                                                                                                                                                                    \\
 		 & \frac{\partial \rho}{\partial t}+\frac{1}{a\cos{\phi}}\left[ \frac{\partial }{\partial \lambda}(\rho u) + \frac{\partial }{\partial \phi}(rv\cos{\phi} )\right] +\frac{\partial }{\partial z}(\rho w) = 0 \\
 		 & p = \rho R T
-	\end{aligned}\]
+	\end{align}
+	\label{eq:primitive-equations-full}
+\end{subequations}
+where we have expanded the divergence in spherical coordinates (see~Appendix~\ref{subsec:divergence}.).
 
-where we have used the divergence in spherical coordinates.
+These equations are still not closed because we will need to express the heating/cooling term \(Q\) and the friction terms \(F\)
+as a function of the state variables.
+This will require a theory of the processes that drive them.
+Where \(R= \qty{287}{\joule \per\kilo\gram \per \kelvin}\) is the gas constant for dry air and
+\(c_p \simeq \qty{1.005}{\joule \per \gram \per \kelvin}\) is the specific heat at constant pressure, \(c_v = \qty{0.718}{\joule \per \gram \per \kelvin}\) is the specific heat at constant volume, \(\kappa = \frac{R}{c_p}\) and \(\gamma=c_p/c_v\) is their ratio.
 
-These equations are still not closed because we will need to express the heating/cooling term \(Q\) and the friction terms \(F\) as a function of the state variables. This will require a theory of the processes that drive them. Where \(R=287.052874 J \quad \text{kg}^{-1} \text{K}^{-1}\) is the gas constant for dry air and \(c_p = 1.005\) is the specific heat at constant pressure, \(c_v = 0.718\) is the specific heat at constant volume, \(\kappa = \frac{R}{c_p}\) and \(\gamma=c_p/c_v\) is their ratio.
+\subsection{$\beta$-plane approximation}
+\label{subsec:beta-plane-primitive}
 
-\subsection{Simplified equations-}\label{summary-of-fundamental-equations}
+It can be convenient to shift the coordinate system when the latitudinal extent of motion is small relative to motion parameters expressed in adimensional numbers. In such cases, a tangent coordinate system is applied at a specific latitude \(\phi_0\), resulting in a Cartesian \(\beta\)-plane with zonal and meridional coordinates \((x, y)\).
 
-\textit{*domanda: Cri perchè abbiamo le eq. semplificate e poi riprendiamo quelle intere per parlare delle Nav.Sto.?*}
+On the \(\beta\)-plane, the planetary vorticity (see \eq{\ref{}}) \(f\) is linearized as \(f = f_0 + \beta y\), where \(\beta = \frac{\partial f}{\partial y}(\phi_0)\). The northward displacement \(y = a(\phi - \phi_0)\) represents deviation from the reference latitude.
 
-For theoretical and idealized studies the set of equation projected on the \(\beta\)-plane is also used. The $\beta$-plane approximation is a simplified model used in geophysical fluid dynamics to account the variation of the Coriolis parameter $f$ with latitude, in this approximation $f$ is linearized around a reference latitude such that $f\approx f_0+\beta y$ with $y=a(\phi-\phi_0)$ is the northward displacement from the reference latitude. With the $\beta$-plane approximation, no rotation, no sphericity, neglecting the meridional coordinates , the equations become:
-
-\[\begin{aligned}
-		 & \frac{D u}{Dt} - fv  = -\frac{1}{\rho}\frac{\partial p}{\partial x}   + F_x \\
-		 & \frac{D v}{Dt} + fu = -\frac{1}{\rho}\frac{\partial p}{\partial y}  + F_y   \\
-		 & \frac{D w}{Dt}  = -\frac{1}{\rho }\frac{\partial p}{\partial z} -g  + F_z   \\
-		 & \frac{D \theta}{Dt} = Q                                                     \\
-		 & \frac{\partial \rho}{\partial t}+\nabla\cdot(\rho\mathbf{v}) = 0            \\
-		 & p = \rho R T
-	\end{aligned}\]
-
-and the gradient operator is the cartesian operator
-
-\[\nabla = \frac{\partial }{\partial x} + \frac{\partial }{\partial y} + \frac{\partial }{\partial z}\]
-
-and the advective derivative is then
-
-\[\frac{D }{Dt} = \frac{\partial }{\partial t} + u\frac{\partial }{\partial x} + v\frac{\partial }{\partial y} + w\frac{\partial }{\partial z}\]
-
-The first set of fundamental equations that we encounter is the conservation of Momentum (\textbf{Navier-Stokes equations)}.\\
-The Navier-Stokes equations describe the motion of fluid substances like air and water. They account for forces due to pressure, viscosity, and external forces such as gravity. This set of equations is key to understanding how winds, ocean currents, and other flows evolve due to internal and external forces. In a rotating frame of reference, specifically describing the motion of a fluid (e.g. the atmosphere or ocean currents) the principal equation can be declined in the different directions: longitude, latitude and vertical directions.
-
-The left-hand side of the equations begins with material derivative of the velocity components ($u$ in the east-west direction, associated with longitude; $v$ north-south velocity component, associated with latitude, $w$ is the vertical velocity component).
-The material derivative includes both the local rate of change and the advection (transport) of the velocity. This term tells us how the velocity of a fluid parcel changes over time, taking into account both temporal changes and the movement of the parcel.
-
-The second term on the left represents the Coriolis force and the centrifugal force in the rotating reference frame of the Earth. $f$ is the Coriolis parameter, which depends on the latitude $\phi$ and is given by $f=2\Omega\sin\phi$ where $\Omega$ is the angular velocity of the Earth and $\phi$ is the latitude. The Coriolis force is proportional to the velocity and acts perpendicular to the motion of the fluid, deflecting the fluid in different directions depending on the hemisphere.
-
-On the right side of the equations we find the pressure gradient force in the longitudinal (first) and latitudinal (second) directions, which drives fluid motion due to differences in pressure. The terms $F_{\lambda}$, $F_{\phi}$ and $F_{z}$ represent an additional force term that could represent any other forces acting on the fluid parcel in the longitudinal, latitudinal and vertical direction. It might include friction, external forces, or any other model-specific forces not accounted for in the other terms.\\
-
-Let's now focus on them one by one.
-\begin{equation}
-	\frac{Du}{Dt}-v\left(f+\frac{u\tan\phi}{a}\right)=-\frac{1}{a\cos\phi}\frac{1}{\rho}\frac{\partial p}{\partial\lambda}+F_{\lambda}
-\end{equation}
-The term $\frac{u\tan\phi}{a}$ accounts for the centrifugal force resulting from the Earth's rotation. Here, $u$ is the east-west velocity, $\phi$ is the latitude, and $a$ is the Earth's radius. The centrifugal force is stronger near the equator, and this term adjusts the Coriolis effect to account for that.
-$\frac{\partial p}{\partial\lambda}$ is the derivative of pressure with respect to longitude ($\lambda$), indicating how pressure changes as you move east or west. The term $a\cos\phi$ accounts for the spherical geometry of the Earth and the fact that distances between lines of longitude vary with latitude (they are widest at the Equator and shrink towards the poles). This term describes the acceleration due to the horizontal pressure gradient in the longitudinal direction, with the pressure gradient force causing flow from regions of higher to lower pressure.
-\begin{equation}
-	\frac{Dv}{Dt}+u\left(f+\frac{v\tan\phi}{a}\right)=-\frac{1}{a}\frac{1}{\rho}\frac{\partial p}{\partial\phi}+F_{\phi}
-\end{equation}
-The term $\frac{v\tan\phi}{a}$ is the centrifugal force term in the north-south direction, considering Earth's curvature. $\frac{p}{\phi}$ represents the pressure gradient in the latitude direction, and it drives motion from high to low pressure.
+This approximation simplifies geophysical fluid dynamics equations by neglecting rotation, sphericity, and certain meridional coordinates.
+The equations~\ref{eq:primitive-equations-full} projected onto the \(\beta\)-plane simplify to
+\begin{align}
+	 & \materiald{u} - f v  = -\frac{1}{\rho}\frac{\partial p}{\partial x}   + F_x \\
+	 & \materiald{v} + f u = -\frac{1}{\rho}\frac{\partial p}{\partial y}  + F_y   \\
+	 & \materiald{w}  = -\frac{1}{\rho }\frac{\partial p}{\partial z} -g  + F_z    \\
+	 & \materiald{\theta} = Q                                                      \\
+	 & \frac{\partial \rho}{\partial t}+\nabla\cdot(\rho\bm{u}) = 0                \\
+	 & p = \rho R T \, .
+\end{align}
 
 
-Note that the Coriolis term arises due to the rotation of the Earth, which introduces an apparent force in a rotating reference frame. This term depends explicitly on the latitude because of how the Earth's rotation affects the direction and magnitude of the Coriolis effect at different points on the Earth's surface. The Coriolis force explicitly depends on the sine of the latitude, as the projection of $\Omega$ onto the local horizontal plane is $\Omega\sin\phi$ (the latitude $\phi$ determines the angle between the Earth's rotational axis and the local vertical. $\Omega$ is the angular velocity vector of Earth's rotation, it points along the axis of rotation (towards the North Pole). At the Equator $\phi=0°$ the Coriolis effect is perpendicular to $\Omega$ and has a max horizontal effect. At the poles ($\phi=\pm 90°$) the effect aligns with $\Omega$, and only the vertical motion is affected.
-
-In the \textbf{vertical direction}:
-%check if these are correct
-\begin{equation}
-	\frac{Dw}{Dt}=-\frac{1}{\rho}\frac{\partial p}{\partial z}-g+F_z
-\end{equation}
-While the Coriolis force primarily affects horizontal motion, the vertical component of the Coriolis force is negligible because $\Omega$ is nearly parallel to the vertical axis in most regions. In rotating systems like the atmosphere or oceans, vertical Coriolis terms are often ignored. $g$ acts downward and opposes upward motion.
-\\
-
-
-The equation
-\begin{equation}
-	\frac{D\theta}{Dt}=Q
-\end{equation}
-
-says that the rate of change of $\theta$ (the material derivative) experienced by a fluid parcel moving through space is equal to the source term $Q$. This equation describes the rate of change of a scalar quantity (like temperature or moisture) \textbf{for a fluid parcel} moving through space. The term $Q$ could represent a source of energy or mass, such as heat from the sun or moisture added by evaporation. In the context of a weather or climate model, this would represent how temperature (or another variable) changes as the air parcel moves and as energy is gained or lost.
-This equation is a general form for describing the time evolution of a scalar quantity (like T or moisture) in a moving fluid, where the change in that quantity is driven by external sources or sinks.
-\\
-
-
-
-The \textbf{conservation of mass} or \textbf{continuity equation }ensures that the mass is conserved in the system. For the atmosphere or the ocean, it expresses how the density of air or water changes over time due to processes like flow and diffusion.
-\begin{equation}
-	\frac{\partial\rho}{\partial t}+\nabla\cdot(\rho\vec{v})=0
-\end{equation}
-$\nabla\cdot(\rho\vec{v})$ represents the divergence of the mass flux, which accounts for the movement of the mass.
-\\
-The last one is the equation of state for atmospheric or oceanic models links pressure, density and temperature of the fluid. The \textbf{ideal gas law} is typically used:
-\begin{equation}
-	p=\rho RT
-\end{equation}
-
-\subsection{Linear solutions}
+\section{Linear solutions to the primitive equations}\label{sec:linear-solutions}
 We look for solution that describe small oscillation away from a basic state, in this case assumed in hydrostatic balance with constant wind of velocity $u$, and I'm looking at deviation from this basic state:
 \begin{equation}
 	\frac{\partial p_0}{\partial z}=-g\rho_0=-\frac{gp_0}{RT_0}
 \end{equation}
 With the further assumption of isotherm atmosphere we can integrate to get:
 \begin{equation}
-	p_0(z)=p_Re^{-z/H}
+	p_0(z)=p_R \exp{(-z/H)}
 \end{equation}
-and $H=\frac{RT_0}{g}$ is the scale height. \\
+and $H=\frac{RT_0}{g}$ is the scale height.
 
 
 As we have seen, the primitive equations are a system of nonlinear partial differential equations governing fluid motion on a rotating sphere. These include momentum equations, continuity (mass conservation), thermodynamic equations and the equation of state. Since solving the full nonlinear system is often impractical, the system is linearized to analyze small deviations (or perturbations) from a reference state (steady flow or a state of rest). Assume the flow can be separated into a basic state and a perturbation:
@@ -391,7 +428,7 @@ As we have seen, the primitive equations are a system of nonlinear partial diffe
 The resulting linearized primitive equations describe how perturbations evolve over time and space (linear equations are obtained for the prime variables neglecting all terms quadratic in perturbation).
 For instance, the pressure gradient becomes:
 \begin{equation}
-	\frac{1}{\rho_0+\rho'}\nabla(p_0+p')+g\hat{k}\approx\frac{1}{\rho_0+\rho'}\nabla p'+g\hat{k}=\frac{1}{\rho_0}\frac{1}{1+\frac{\rho'}{\rho_0}}\nabla p'+g\hat{k}=\frac{1}{\rho_0}\nabla p'+g\hat{k}
+	\frac{1}{\rho_0+\rho'}\nabla(p_0+p')+g\unitv{k}\approx\frac{1}{\rho_0+\rho'}\nabla p'+g\unitv{k}=\frac{1}{\rho_0}\frac{1}{1+\frac{\rho'}{\rho_0}}\nabla p'+g\unitv{k}=\frac{1}{\rho_0}\nabla p'+g\unitv{k}
 \end{equation}
 and the potential temperature:
 $$
@@ -422,8 +459,8 @@ We take the equations for perturbation:
 
 %slides 24-29 LEC6 non le ha molto cagate
 Basically to find solutions, assume the perturbations take the form of plane waves:
-$$\mathbf{u'}(x,t)=\hat{\mathbf{u}}e^{i(\mathbf{k}\cdot\mathbf{x}-\omega t)}$$
-where $\mathbf{\hat{u}}$ is the amplitude of the perturbation, $\mathbf{k}$ is the wavevector, $\omega$ the angular velocity. Substituing this kind of wave into the linearized equations leads to a dispersion relation, which relates $\omega$ to $\mathbf{k}$ and the physical parameters of the system (Coriolis, ...).
+\[\bm{u'}(x,t)=\unitv{\bm{u}}e^{i(\bm{k}\cdot\bm{x}-\omega t)}\]
+where $\bm{\unitv{u}}$ is the amplitude of the perturbation, $\bm{k}$ is the wavevector, $\omega$ the angular velocity. Substituing this kind of wave into the linearized equations leads to a dispersion relation, which relates $\omega$ to $\bm{k}$ and the physical parameters of the system (Coriolis, ...).
 The perturbation equations link the restoring forces to wave properties:
 \begin{enumerate}
 	\item The momentum equations describe how velocity perturbations interact with pressure gradients and Coriolis forces.
@@ -433,16 +470,7 @@ The perturbation equations link the restoring forces to wave properties:
 Imposing the hydrostatic approximation from the beginning would mean putting to zero from the start the time derivative of $w$ in the momentum equation in the vertical. This basically is equivalent to say that we are removing the explicit dependence of the vertical velocity on time and therefore we will get waves similar to the Boussinesq approximation. The hydrostatic approximation eliminates vertical propagating sound waves, but the Lamb waves still exists.
 
 
-\section{Homogeneous flows}\label{homogeneous-flows}
-
-\begin{figure}[htpb]
-	\centering
-	\includegraphics[width=0.5\linewidth]{uploads/image732864.png}
-	\caption{Homogeneous flow}
-	\label{fig:homo}
-\end{figure}
-
-
+\section{Homogeneous flows}\label{sec:homogeneous-flows}
 
 The motion of the atmosphere is most appropriately described by
 three-dimensional equations that describes the horizontal and vertical
@@ -451,8 +479,14 @@ simpler system that consider the motion of a free surface of a inviscid,
 homogeneous and incompressible fluid. These equations are variously
 referred to as one-level primitive equations or the \textit{shallow water
 	equations}.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{uploads/image732864.png}
+	\caption{Homogeneous flow}
+	\label{fig:homogeneous-flow}
+\end{figure}
 
-The system is described in Fig. \ref{fig:homo}, it is an homogenous
+The system is described in~\fig{\ref{fig:homogeneous-flow}}, it is an homogenous
 layer of fluid covering the entire spherical planet. We have included a
 bottom topography \(h(x,y)\) and a deformation of the free surface
 \(\eta(x,y)\). The convention is such positive deformation of the
@@ -511,7 +545,7 @@ height \(z\)
 
 The kinematic condition for the bottom can be written as
 
-\[\frac{D }{Dt}{(z-h)} = 0\]
+\[\materiald{}{(z-h)} = 0\]
 
 or
 
@@ -576,33 +610,34 @@ where we have kept the pressure terms, though they are zero in this case
 ($h$ is a constant) as a placeholder. In vector notation (all vectors are
 two-dimensional)
 
-\[\frac{\partial \mathbf{v}}{\partial t} = - (\mathbf{v} \cdot \nabla)\mathbf{v} - f(\hat{k}\times \mathbf{v}) - \nabla \eta\]
+\[\frac{\partial \bm{u}}{\partial t} = - (\bm{u} \cdot \nabla)\bm{u} - f(\unitv{k}\times \bm{u}) - \nabla \eta\]
 
-using the vector identity\footnote{For a general vector $\mathbf{A}$: \[\frac{1}{2}\nabla(A\cdot A) = (A \cdot\nabla)A + A\times(\nabla\times A)\]}
+using the vector identity\footnote{For a general vector $\bm{A}$: \[\frac{1}{2}\nabla(A\cdot A) = (A \cdot\nabla)A + A\times(\nabla\times A)\]}
 
 
-\[\frac{1}{2}\nabla(\mathbf{v}\cdot \mathbf{v}) = (\mathbf{v} \cdot\nabla)\mathbf{v} + \mathbf{v}\times(\nabla\times \mathbf{v})\]
+\[\frac{1}{2}\nabla(\bm{u}\cdot \bm{u}) = (\bm{u} \cdot\nabla)\bm{u} + \bm{u}\times(\nabla\times \bm{u})\]
 so substituting in the equation
 
-\begin{equation}\label{eq.21}
-	\frac{\partial \mathbf{v}}{\partial t} = -(\zeta + f) \hat{k}\times \mathbf{v} -\nabla(\eta+\frac{1}{2}|\mathbf{v}^2|)
+\begin{equation}
+	\frac{\partial \bm{u}}{\partial t} = -(\zeta + f) \unitv{k}\times \bm{u} -\nabla(\eta+\frac{1}{2}|\bm{u}^2|)
+	\label{eq.21}
 \end{equation}
 
-(for 2-dimensional flows \(\nabla \times \mathbf{v} = \zeta \hat{k}\)).
+(for 2-dimensional flows \(\nabla \times \bm{u} = \zeta \unitv{k}\)).
 
 and to express more clearly the components
 
 \[\begin{aligned}
-		\frac{\partial u}{\partial t} & = (\zeta +f) v -\frac{\partial }{\partial x}(\eta+\frac{1}{2}|\mathbf{v}^2|)  \\
-		\frac{\partial v}{\partial t} & = -(\zeta +f) u -\frac{\partial }{\partial y}(\eta+\frac{1}{2}|\mathbf{v}^2|)
+		\frac{\partial u}{\partial t} & = (\zeta +f) v -\frac{\partial }{\partial x}(\eta+\frac{1}{2}|\bm{u}^2|)  \\
+		\frac{\partial v}{\partial t} & = -(\zeta +f) u -\frac{\partial }{\partial y}(\eta+\frac{1}{2}|\bm{u}^2|)
 	\end{aligned}\]
 
 By taking the curl of eq.\ref{eq.21} we obtain an equation for the vorticity (as it will be discussed in Sec.\ref{Sec:models on the sphere}:
 
 \[\begin{aligned}
-		\frac{\partial \zeta}{\partial t} & = -\frac{\partial }{\partial x}(\zeta +f) u -\frac{\partial }{\partial y}(\zeta +f) v                                                                                          \\
-		                                  & -\frac{\partial }{\partial x} \frac{\partial }{\partial y}(p+\frac{1}{2}|\mathbf{v}^2|) +\frac{\partial }{\partial y}\frac{\partial }{\partial x}(p+\frac{1}{2}|\mathbf{v}^2|) \\
-		                                  & =  -\frac{\partial }{\partial x}(\zeta +f) u -\frac{\partial }{\partial y}(\zeta +f) v = -\mathbf{v}\cdot\nabla(\zeta +f)
+		\frac{\partial \zeta}{\partial t} & = -\frac{\partial }{\partial x}(\zeta +f) u -\frac{\partial }{\partial y}(\zeta +f) v                                                                                  \\
+		                                  & -\frac{\partial }{\partial x} \frac{\partial }{\partial y}(p+\frac{1}{2}|\bm{u}^2|) +\frac{\partial }{\partial y}\frac{\partial }{\partial x}(p+\frac{1}{2}|\bm{u}^2|) \\
+		                                  & =  -\frac{\partial }{\partial x}(\zeta +f) u -\frac{\partial }{\partial y}(\zeta +f) v = -\bm{u}\cdot\nabla(\zeta +f)
 	\end{aligned}\]
 
 where we have used the non divergence condition
@@ -616,7 +651,7 @@ is a source of vorticity). Because of the $\beta$-plane $f=f_0+\beta y$:
 \end{equation}
 that is the non-divergent barotropic vorticity equation. And the potential vorticity:
 \begin{equation}\label{eq.potential vorticity}
-	\frac{D}{Dt}(\zeta +f)=0
+	\materiald{}(\zeta +f)=0
 \end{equation}
 
 \(f= 2\Omega \sin(\theta)\) is the Coriolis coefficient, that is the
@@ -713,34 +748,35 @@ The \ref{fig:relat} shows the relationship between intensity from some given dir
 \end{wrapfigure}
 
 such that integration over $\theta$ of the hemisphere above the horizontal surface yields the flux, $F$, arriving from all angles:
-\begin{equation}\label{eq 2}
+\begin{equation}
 	F=\int(Icos\theta )\,d\omega
+	\label{eq 2}
 \end{equation}
 
 Dividing \ref{eq 2} by $I$ and forming integrals over optical depth on either side yield
-$$\int \frac{dI}{I} = - \int k \rho \, dz$$ which becomes $$\ln \left( \frac{I}{I_0} \right) = - \int k \rho \, dz$$
+\[\int \frac{dI}{I} = - \int k \rho \, dz\]
+which becomes
+\[\ln \left( \frac{I}{I_0} \right) = - \int k \rho \, dz\]
 upon integrating the left-hand side.
-This can be written exponentially as $$I = I_0 e^{-\chi}$$
-
-$$\chi=\int k \rho \,dz $$
-
-
+This can be written exponentially as
+\[I = I_0 e^{-\chi}\]
+\[\chi=\int k \rho \,dz \]
 where $\chi$ is the optical depth or optical path length (rate at which the radiance is degraded, if you move upward, at a certain point you get zero because you have traveled enough to absorb all the radiation)  and
-$$\tau = e^{-\chi}$$
+\[\tau = e^{-\chi}\]
 is the frictional transmission, indicating the fraction of the original radiance that get transmitted to optical depth within attenuating gas. If $\chi=1$, then $\tau=0.37$ , which means the initial intensity $I$ is decreased by a factor of $0.63$ , for normal atmospheric conditions $\chi$ in typically much less than $1$.
 
-
 For a blackbody, the emission is also described by Lambert's law with a different sign
-\begin{equation}\label{eq3}
+\begin{equation}
 	dI = B(T) k \rho \, dz
+	\label{eq3}
 \end{equation}
 
 Integrating \ref{eq3} over a hemisphere, the Stefan-Boltzmann law is then obtained
-$$\int_0^{2\pi} B(T) \cos \theta \, d\omega = \sigma T^4$$
-or $$\pi B(T) = \sigma T^4$$
+\[\int_0^{2\pi} B(T) \cos \theta \, d\omega = \sigma T^4\]
+or \[\pi B(T) = \sigma T^4\]
 
 The change of radiance at a point z is made up of two fluxes
-$$\frac{1}{\rho} \frac{dI}{dz} = -k (I - B(T))$$ where $kI$ is the absorption and $kB(T)$ is the emission.
+\[\frac{1}{\rho} \frac{dI}{dz} = -k (I - B(T))\] where $kI$ is the absorption and $kB(T)$ is the emission.
 So the fractional absorption in a layer ($z$,$z_1$) is $$\tau(z, z_1) = \exp \left( - \int_{z_1}^z k \rho \, dz' \right)$$
 \begin{figure}[htbp]
 	\centering
@@ -890,6 +926,5 @@ As shown in \ref{fig: fig 2} lots of processes are involved in surface hydrology
 
 Within a land area as large as a horizontal grid cell of a global model, there are generally multiple surface types, including lakes, wetlands, different vegetation types, and different soil types
 Another aspect of land surface processes being improved in many climate models is the simulation of snow coverage. The snow modeling community has developed a variety of models that can be used for climate and hydrology. These models range from the simple to the complex, and several of them are specifically designed for use in general circulation models. The more complex snow models take into account melting processes, grain size, shape, liquid water content, and percolation processes.
-
 
 
