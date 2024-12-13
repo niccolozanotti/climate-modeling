@@ -1,10 +1,13 @@
 \chapter{Numerical methods used in atmospheric models}
-\lastupdated{2024-11-30 18.44}{\chapterThreeNumMeth}
+\lastupdated{2024-12-08}{\chapterThreeNumMeth}
 
-\section{Intro}
+\begin{center}
+	\textit{Major content of this chapter is taken from prof.Navarra's teaching resources, available in his website \url{https://wanderer.cmcc.it/index_GARP.html}}
+\end{center}
+\section{Historical introduction}
 In this chapter, following a short historical introduction on the development and use of numerical methods in atmospheric models, methods available for numerical solution of the differential equations governing the atmosphere will be briefly reviewed. Then, basic elements of the finite difference method for solving these equations will be introduced. Finally, the concept of stability of finite difference equations, and methods for testing the stability of such equations, will be discussed at some length.
 
-It is considered that Wilhelm Bjerknes (1904) was the first to point out that the future state of the atmosphere can in principle be obtained by an integration of differential equations which govern the behavior of the atmosphere, using as initial values fields describing an observed state of the atmosphere. Such an integration performed using numerical methods is called numerical weather prediction. When, however, a numerical integration is performed starting from fictitious initial fields, it is called numerical simulation.
+It is considered that Wilhelm Bjerknes (1904) was the first to point out that the future state of the atmosphere can in principle be obtained by an integration of differential equations which govern the behavior of the atmosphere, using as initial values fields describing an observed state of the atmosphere. Such an integration performed using numerical methods is called \textit{numerical weather prediction}. When, however, a numerical integration is performed starting from fictitious initial fields, it is called \textit{numerical simulation}.
 
 A first practical attempt at a numerical weather prediction was made by Richardson. After very tedious and time-consuming computations, carried out mostly during the First World War, Richardson obtained a totally unacceptable result. Despite this, he described his method and results in a book (Richardson, 1922), and this is today one of the most famous in meteorology.
 
@@ -18,16 +21,16 @@ Numerical models are also very frequently developed for studies of some smaller-
 
 
 
-\section{Methods for the numerical solution of the equation of motion}
-Numerical solution of the equations of motion today in most cases is performed using the grid point method. In this method a set of points is introduced in the region of interest and dependent variables are initially defined and subsequently computed at these points. This set of points is called the grid. The words mesh or lattice are also used. It is necessary to have the grid points at fixed locations in the horizontal. This means that, according to the Eulerian system of equations, space and time coordinates are chosen as independent variables.
+\section{Methods for the numerical solution of the equations of motion}
+Numerical solution of the equations of motion today in most cases is performed using the \textit{grid point method}. In this method a set of points is introduced in the region of interest and dependent variables are initially defined and subsequently computed at these points. This set of points is called the grid. The words mesh or lattice are also used. It is necessary to have the grid points at fixed locations in the horizontal. This means that, according to the Eulerian system of equations, space and time coordinates are chosen as independent variables.
 
-A number of attempts have been made to develop atmospheric models using an approach which is at least partly Lagrangian. Serious difficulties are encountered when a straightforward numerical integration of the Lagrangian system of equations is undertaken. However, it is possible to construct methods with some Lagrangian properties ; for example, to have some or all of the compu­tation points moving with the fluid. In hydrodynamics a number of such methods have proved to be very useful, especially for some problems which are not amenable to treatment by a strictly Eulerian technique (e.g. Harlow and Amsden, 1971). However, in meteorology the per­formance of Lagrangian or semi-Lagrangian models that have so far been developed has not been quite satis­factory. A discussion of one way of constructing a Lagrangian model, and a review of earlier attempts, can be found in a paper by Mesinger (1971).
+A number of attempts have been made to develop atmospheric models using an approach which is at least partly Lagrangian\footnote{The Eulerian approach focuses on observing how a field (like fluid flow) changes at fixed points in space over time, much like watching traffic from a fixed camera. In contrast, the Lagrangian approach tracks individual elements or particles as they move through space and time, similar to following a specific car on its journey. Essentially, Eulerian examines the "big picture" from a stationary perspective, while Lagrangian follows individual components in motion.}. Serious difficulties are encountered when a straightforward numerical integration of the Lagrangian system of equations is undertaken. However, it is possible to construct methods with some Lagrangian properties; for example, to have some or all of the compu­tation points moving with the fluid. In hydrodynamics a number of such methods have proved to be very useful, especially for some problems which are not amenable to treatment by a strictly Eulerian technique (e.g. Harlow and Amsden, 1971). However, in meteorology the per­formance of Lagrangian or semi-Lagrangian models that have so far been developed has not been quite satis­factory. A discussion of one way of constructing a Lagrangian model, and a review of earlier attempts, can be found in a paper by Mesinger (1971).
 
-Another possible approach is to express the spatial dependence of the variables in terms of a series of ortho­gonal functions, and then substitute this into the governing equations. In this way the equations reduce to a set of ordinary differential equations, so that the coefficients of the series can be computed as functions of time. This is the spectral method of solving the governing equations. Until relatively recently it was considered that in effi­ciency the spectral method could not be competitive with the grid point method. But the use of the fast Fourier transform has completely changed the situation and investigation of spectral methods is now the subject of intensive research.
+Another possible approach is to express the spatial dependence of the variables in terms of a series of ortho­gonal functions, and then substitute this into the governing equations. In this way the equations reduce to a set of ordinary differential equations, so that the coefficients of the series can be computed as functions of time. This is the \textit{spectral method} of solving the governing equations. Until relatively recently it was considered that in effi­ciency the spectral method could not be competitive with the grid point method. But the use of the fast Fourier transform has completely changed the situation and investigation of spectral methods is now the subject of intensive research.
 
 In the following we shall consider the technique of using the grid point method, and the problems associated with it, using grid of computation points fixed in space. This is the most direct way of solving the equations of motion numerically. Furthermore, knowledge of this method is necessary for the investigation and understanding of the relative merits of other alternatives mentioned in this section.
-\subsection{Basic elements of the grid point method}
-With the grid point method, the most common way of solving the governing equations is to find approximate expressions for derivatives appearing in the equations. These approximate expressions are defined using only values of the dependent variables at the grid points, and at discrete time intervals. Thus, they are formed using differences of dependent variables over finite space and time intervals; for that reason this approach is called the finite difference method. The approximations for derivatives are then used to construct a system of algebraic equations that approximates the governing partial differential equations. This algebraic system is considered valid at each of the interior grid points of the computation region. For the initial time and at space boundary points, additional constraints or equa­tions are defined that approximate the initial and bound­ary conditions as required by the physics of the problem. The set of algebraic equations obtained in this way is then solved, usually using an electronic computer, by a suitable step-wise procedure.
+\section{Grid point method}
+With the grid point method, the most common way of solving the governing equations is to find approximate expressions for derivatives appearing in the equations. These approximate expressions are defined using only values of the dependent variables at the grid points, and at discrete time intervals. Thus, they are formed using differences of dependent variables over finite space and time intervals; for that reason this approach is called the \textit{finite difference method}. The approximations for derivatives are then used to construct a system of algebraic equations that approximates the governing partial differential equations. This algebraic system is considered valid at each of the interior grid points of the computation region. For the initial time and at space boundary points, additional constraints or equa­tions are defined that approximate the initial and bound­ary conditions as required by the physics of the problem. The set of algebraic equations obtained in this way is then solved, usually using an electronic computer, by a suitable step-wise procedure.
 
 We shall now consider some basic elements of the finite difference method. For simplicity, we start by considering a function of one independent variable $$u=u(x)$$
 The function $u$ is a solution to a differential equation that we are interested in. We want to find an approxima­tion to this solution in a bounded region R of the inde­pendent variable, having a length \textit{L}. The simplest way of introducing a set of grid points is to require that they divide the region R into an integer number of intervals of equal length $\Delta x$. This length $\Delta x$ is called the \textit{grid interval}, or \textit{grid length}. Let us denote the number of grid intervals by \textit{J}. It is convenient to locate the origin of the \textit{x} axis at the left-hand end of the region R. Thus, we are looking for approximations to $u(x)$ at discrete points $x=j\Delta x$, where \textit{j} takes integer values 0,1,2,… \textit{J}. These approximate values we shall denote by $$u_j=u_j(j\Delta x)$$
@@ -39,19 +42,20 @@ $$u(x)=\frac{a_0}{2}+\displaystyle\sum_{n\geq 1}[a_n\cos\big(2\pi n\frac{x}{L}\b
 Now, the available \textit{J} + 1 values $u_j$ do not enable the computation of all of the coefficients $a_nb_n$; rather, they can be used to compute only \textit{J} + 1 different coefficients. A natural choice is to assume that the \textit{J} + 1 values $u_j$ define the near value $a_0$ and as many as possible of the coefficients of the Fourier components at the long wave length end of the series, that is, coefficients for \textit{n} = 1,2,3,…, \textit{J/} 2. Of these components, the one with the shortest wavelength will have $n=J/2$, with the wave length
 $$\frac{L}{n}=\frac{2L}{j}=\frac{2L}{\frac{L}{\Delta x}}=2\Delta x$$
 Having made that choice, we can say that with values $u_j$ at discrete points $x=j\Delta x$ it is not possible to resolve waves with wave length shorter that $2\Delta x$.
-Now let us consider the differences between values $u$ that will be used to construct approximations to derivatives. These differences are called \textit{finite differences}. They can be calculated over one or more of the intervals Ax. Depending on the relation of the points from which the values are taken to the point where the derivative is required, they can be \textit{centered or uncentered}. An un-centered difference is, for example, the \textit{forward} difference
+Now let us consider the differences between values $u$ that will be used to construct approximations to derivatives. These differences are called \textit{finite differences}. They can be calculated over one or more of the intervals $\Delta x$. Depending on the relation of the points from which the values are taken to the point where the derivative is required, they can be \textit{centered or uncentered}. An un-centered difference is, for example, the \textit{forward} difference
+
 \begin{equation}\label{eq: forward difference}
-	\Delta u_i=u_{j+1}-u_j
+	\Delta u_j=u_{j+1}-u_j
 \end{equation}
 more often centered (or central) differences are used, such as
 \begin{equation}
-	\Delta u_{u+1/2}=u_{j+i}-u_j
+	\Delta u_{j+1/2}=u_{j+1}-u_j
 \end{equation}
 In a centered difference the difference is between values symmetrical about the point where the difference is being calculated.
 
-One way to construct an approximation to a differen­tial equation is to simply replace the derivatives by appro­priate \textit{finite difference quotients}. For example, for the first derivative one can use the approximation
+One way to construct an approximation to a differential equation is to simply replace the derivatives by appropriate \textit{finite difference quotients}. For example, for the first derivative one can use the approximation (in a forward difference scheme):
 \begin{equation}\label{eq.finite diff der approx}
-	\left(\frac{du}{dx}\right)_j\rightarrow\frac{u_{j+1}-u_j}{\Delta x}
+	\left(\frac{d u}{dx}\right)_j\rightarrow\frac{u_{j+1}-u_j}{\Delta x}
 \end{equation}
 The finite difference quotient here is, of course, only one of many possible approximations to the first derivative at point j.
 
@@ -71,7 +75,7 @@ is of the first order of accuracy. We can write
 	\epsilon =o(\Delta x)
 \end{equation}
 For an approximation to the derivative to be consistent it must, obviously, be at least first order accurate.
-\section{Finite difference schemes}
+\subsection{Finite difference schemes}
 The algebraic equation obtained when derivatives in a differential equation are replaced by appropriate finite difference approximations is called a finite difference approximation to that differential equation, or a finite difference scheme. In this section we shall introduce the concepts of consistency, truncation error, and accuracy, for a finite difference scheme.
 
 As an example, we shall use the linear advection equation
@@ -80,7 +84,7 @@ As an example, we shall use the linear advection equation
 	u=u(x,t)
 \end{align}
 $c$ is a positive constant.
-It describes advection of the variable u at a constant velocity c in the direction of the x axis. The solution to this simple equation can, of course, also be obtained by an analytic method. It will be useful to obtain the analytic solution first, in order to investigate properties of numerical solutions by comparing them against known properties of the true solution.
+It describes advection of the variable $u$ at a constant velocity $c$ in the direction of the $x$ axis. The solution to this simple equation can, of course, also be obtained by an analytic method. It will be useful to obtain the analytic solution first, in order to investigate properties of numerical solutions by comparing them against known properties of the true solution.
 
 It is convenient to this end to change from variables $x$, $t$ to variables $\xi$ and $t$ with the substitution $\xi=x-ct$.
 
@@ -108,17 +112,22 @@ Thus,
 is the solution of \ref{eq:linear adv eq} satisfying the initial conditions.
 For a physical interpretation, it is often convenient to consider the solution in the $x, t$ plane. In the present case, we see that the solution takes constant values along the straight lines
 $$x-ct= \text{const}$$
-These lines are the \textit{characteristics} of the advection equa­tion. We can say that the solution propagates along the characteristics.
+These lines are the \textit{characteristics} of the advection equa­tion. We can say that the solution propagates along the characteristics.\\
+
+
+
+
 
 Let us now construct a scheme for finding an approxi­mate solution to \ref{eq:linear adv eq} using the grid point method.
 
 We are now looking only for an approximate solution at the discrete points in the $(x,t)$ plane formed by the grid shown in the figure below. The approximate solution at a point $(j\Delta x,n\Delta t)$ is denoted by $u^n_j$.
-\begin{figure}[h]
+\begin{figure}[htpb]
 	\centering
-	\includegraphics[width=9cm]{uploads/image.png}
+	\includegraphics[width=0.35\linewidth]{uploads/Screenshot 2024-12-07 163047.png}
 	\caption{A finite difference grid for finding an approximate solution of \ref{eq:linear adv eq}}
 	\label{fig:grid sol lin adv eq}
 \end{figure}
+
 The behaviour of the true solution, which propagates along characteristics in the $(x,t)$ plane, suggests constructing the approximate equation by replacing the time derivative by a forward difference quotient, and the space derivative by a backward difference quotient. In this way we obtain the scheme
 \begin{equation}\label{eq:forward and upward scheme}
 	\frac{u_j^{n+1}-u_j^n}{\Delta t}+c\frac{u_j^n-u^n_{j-1}}{\Delta x}=0
@@ -130,7 +139,7 @@ Since for small values of $\Delta x, \Delta t$ a finite difference equation appr
 \begin{equation}
 	u_j^n-u(j\Delta x,n\Delta t)
 \end{equation}
-is the error of the numerical solution. For obious reasons, we cannot often expect to know the error of the numerical solution. However, we can always find a measure of the accuracy of the scheme by substituting the true solution $u(j\Delta x, n\Delta t)$ of the equation, into the numerical scheme. Since the true solution will not satisfy the numerical equations exactly, we will have to add an additional term to keep the equation valid. Let us denote this term by $\epsilon$. For example, in the case of scheme \ref{eq:forward and upward scheme} this procedure gives
+is the error of the numerical solution. For obvious reasons, we cannot often expect to know the error of the numerical solution. However, we can always find a measure of the accuracy of the scheme by substituting the true solution $u(j\Delta x, n\Delta t)$ of the equation, into the numerical scheme. Since the true solution will not satisfy the numerical equations exactly, we will have to add an additional term to keep the equation valid. Let us denote this term by $\epsilon$. For example, in the case of scheme \ref{eq:forward and upward scheme} this procedure gives
 \begin{equation}\label{eq:2.4.7}
 	\frac{u(j\Delta x,(n+1)\Delta t)-u(j\Delta x, n\Delta t)}{\Delta t}+c\frac{u(j\Delta x, n\Delta t)-u((j-1\Delta x, \Delta t)}{\Delta x}=\epsilon
 \end{equation}
@@ -138,11 +147,11 @@ The term $\epsilon$ we shall call the truncation error of the finite difference 
 
 We can obtain a more useful form for the expression for the truncation error by performing a Taylor series expansion of the true solution about the central space and time point. Using the original differential equation to eliminate the leading term we obtain the truncation error \ref{eq:2.4.7}:
 \begin{equation}\label{eq: 2.4.8}
-	\epsilon=\frac{1}{2}\frac{\partial^2u}{\partial t^2}\Delta t+\frac{1}{6}\frac{\partial^3u}{\partial t^3}(\Delta t)^3+\dots-c\left(\frac{1}{2}\frac{\partial^2u}{\partial x^2}\Delta x-\frac{1}{6}\frac{\partial^3u}{\partial t^3}(\Delta x)^2+\dots\right)
+	\epsilon=\frac{1}{2}\frac{\partial^2u}{\partial t^2}\Delta t+\frac{1}{6}\frac{\partial^3u}{\partial t^3}(\Delta t)^2+\dots-c\left(\frac{1}{2}\frac{\partial^2u}{\partial x^2}\Delta x-\frac{1}{6}\frac{\partial^3u}{\partial t^3}(\Delta x)^2+\dots\right)
 \end{equation}
 As before, these are the terms that were “truncated off” to make the differential equation reduce to our finite difference scheme.
 
-In the same way as for an approximation to the deri­vative, the order of accuracy of a finite difference scheme is the lowest power of $\Delta x$ and $\Delta t$ that appears in the truncation error. Thus, scheme \ref{eq:forward and upward scheme} is first order accurate. We can write
+In the same way as for an approximation to the derivative, the order of accuracy of a finite difference scheme is the lowest power of $\Delta x$ and $\Delta t$ that appears in the truncation error. Thus, scheme \ref{eq:forward and upward scheme} is first order accurate. We can write
 $$\epsilon=o(\Delta t)+o(\Delta x)=o(\Delta x,\Delta t)$$
 It is useful to make a distinction between orders of accuracy in space and in time, especially when the lowest powers of $\Delta x$ and $\Delta t$ are not the same. As before, a necessary condition for consistency of a scheme is that it be at least of the first order of accuracy.
 \subsection{Convergence}
@@ -154,9 +163,9 @@ Following Richtmyer and Morton (1967) we ask two questions:
 	\item What is the behaviour of the error $u_j^n-u(j\Delta x, n\Delta t)$ when, for fixed values of $\Delta x, \Delta t$, the number of time steps $n$ increases?
 \end{itemize}
 
-The answer to the first of these questions depends on the convergence of the numerical solution : if the error approaches zero as the grid is refined ( as $\Delta x\Delta t\rightarrow 0$ ) the solution is called convergent. If a scheme gives a convergent solution for any initial conditions, then the scheme also is called convergent.
+The answer to the first of these questions depends on the convergence of the numerical solution: if the error approaches zero as the grid is refined (as $\Delta x\Delta t\rightarrow 0$) the solution is called convergent. If a scheme gives a convergent solution for any initial conditions, then the scheme also is called convergent.
 
-Consistency of a scheme does not guarantee conver­gence. We shall illustrate this by a simple example. We still consider the scheme \ref{eq:forward and upward scheme}; its truncation error \ref{eq: 2.4.8} approaches zero as the grid is refined, and, there­fore, this is a consistent scheme. But consider the numerical solution, when the grid lines and character­istics are as shown in the figure below. The characteristic passing through the grid point taken as the origin in this example passes through another grid point, A, denoted by a square. Thus, the true solution at A, is equal to the initial value at the origin. However the numerical solution given by \ref{eq:forward and upward scheme} A is computed using the values at points denoted by circles. The shaded domain, including all of these points, is called the domain of dependence of the numerical scheme. The grid point at the origin is outside that domain, and, thus, cannot affect the numerical solution at $A_0$. Therefore, the error can be arbitrarily great. If the space and time steps were reduced by the same relative amount, say to one half of their values in the figure, the domain of dependence would still remain the same, and this situation would not change. Thus, as long as the ratio of the steps $\Delta x$ and $\Delta t$ remains the same, refinement of the grid cannot bring about a reduction in the error of the numerical solution.
+Consistency of a scheme does not guarantee convergence. We shall illustrate this by a simple example. We still consider the scheme \ref{eq:forward and upward scheme}; its truncation error \ref{eq: 2.4.8} approaches zero as the grid is refined, and, therefore, this is a consistent scheme. But consider the numerical solution, when the grid lines and characteristics are as shown in the figure below. The characteristic passing through the grid point taken as the origin in this example passes through another grid point, A, denoted by a square. Thus, the true solution at A, is equal to the initial value at the origin. However the numerical solution given by \ref{eq:forward and upward scheme} A is computed using the values at points denoted by circles. The shaded domain, including all of these points, is called \textit{the domain of dependence} of the numerical scheme. The grid point at the origin is outside that domain, and, thus, cannot affect the numerical solution at $A_0$. Therefore, the error can be arbitrarily great. If the space and time steps were reduced by the same relative amount, say to one half of their values in the figure, the domain of dependence would still remain the same, and this situation would not change. Thus, as long as the ratio of the steps $\Delta x$ and $\Delta t$ remains the same, refinement of the grid cannot bring about a reduction in the error of the numerical solution.
 $$x-ct=\text{const}$$
 A necessary condition for convergence of a scheme is, obviously, that the characteristic defining the true solution at a grid point is inside the domain of dependence of the numerical solution at that point. In our example, this will happen when the slope of the characteristics is greater than the slope of the dashed line bounding the domain of dependence, that is, when $$c\Delta t\leq \Delta x$$
 thus, this is a necessary condition for convergence of \ref{eq:forward and upward scheme}
@@ -167,11 +176,12 @@ thus, this is a necessary condition for convergence of \ref{eq:forward and upwar
 	\label{fig:grid sol}
 \end{figure}
 \subsection{Stability}
-The answer to the second question raised at the beginning of the section Convergence depends on the stability of the numerical solution. A rigorous definition fo stability employs the concepts of functional analysis, and refers to the boundedness of the numerical solution only (e.g. Richtmyer and Morton, 1967). The difficulties in defining stability are caused by the fact that the true solution, in general, does not have to be bounded. However, when we know that the true solution is bounded, as in the equations we are interested in here, we can use a definition referring to the boundedness of the error $u_j^n-u(j\Delta x, n\Delta t)$. We said that a solution $u_j^n$ is stable if this error remains bounded as $n$ increases, for fixed values of $\Delta x, \Delta t$. As before, we say that a finite difference scheme is stable if it gives a stable solution for any initial condition.
+The answer to the second question raised at the beginning of the section Convergence "What is the behaviour of the error $u_j^n-u(j\Delta x, n\Delta t)$ when, for fixed values of $\Delta x, \Delta t$, the number of time steps $n$ increases?" depends on the stability of the numerical solution. A rigorous definition fo stability employs the concepts of functional analysis, and refers to the boundedness of the numerical solution only (e.g. Richtmyer and Morton, 1967). The difficulties in defining stability are caused by the fact that the true solution, in general, does not have to be bounded. However, when we know that the true solution is bounded, as in the equations we are interested in here, we can use a definition referring to the boundedness of the error $u_j^n-u(j\Delta x, n\Delta t)$. We said that a solution $u_j^n$ is stable if this error remains bounded as $n$ increases, for fixed values of $\Delta x, \Delta t$. As before, we say that \textbf{a finite difference scheme is stable if it gives a stable solution for any initial condition}.
 
-Stability of a scheme is a property of great practical significance. There are consistent schemes, of a high order of accuracy, that still give solutions diverging unacceptably fast from the true solution. Thus, conditions for stability, if any, should be known. There are three methods that can be used to investigate the stability of a scheme, and we shall give an example of each of these methods. We shall do this by considering again the forward and upstream scheme \ref{eq:forward and upward scheme}).
+Stability of a scheme is a property of great practical significance. There are consistent schemes, of a high order of accuracy, that still give solutions diverging unacceptably fast from the true solution. Thus, conditions for stability, if any, should be known. There are three methods that can be used to investigate the stability of a scheme, and we shall give an example of each of these methods. We shall do this by considering again the forward and upstream scheme \ref{eq:forward and upward scheme}.
 
-\textit{Direct method}. Since we know that the true solution is bounded, it suffices to test the boundedness of the numerical solution. The scheme \ref{eq:forward and upward scheme} can be written as
+
+\textcolor{Blue}{\textit{Direct method}} tests mathematically the stability of a scheme. Since we know that the true solution is bounded, it suffices to test the boundedness of the numerical solution. The scheme \ref{eq:forward and upward scheme} can be written as
 \begin{equation}\label{2.6.1}
 	u_j^{n+1}=(1+\mu)u_j^n+\mu u^n_{j-1}
 \end{equation}
@@ -179,17 +189,55 @@ where
 $$\mu=c\frac{\Delta t}{\Delta x}$$
 if $1-\mu\geq 0$, which happens to be also the necessary condition for convergence, we will have:
 \begin{equation}\label{2.6.2}
-	|\mu_j^{n+1}\leq(1-\mu)|u_j^n|+\mu|u^n_{j-1}|
+	|\mu_j^{n+1}|\leq(1-\mu)|u_j^n|+\mu|u^n_{j-1}|
 \end{equation}
 We can apply this at the point where at time level $n+1$, $|u_j^{n+1}|$ is a maximum, $Max_{(j)}|u_j^{n+1}|$. The right side of \ref{2.6.2} can only be increased by replacing $|u_j^n$ and $|u_{j-1}^n|$ by the maximum value at level $n$, $Max_{(j)}|u_j^n|$. The two terms on the right side can be added, and we obtain
 $$Max_{(j)}|u_j^{n+1}|\leq Max_{(j)}|u_j^n|$$
 This proves the boundedness of the numerical solution. Hence, $1-\mu\geq 0$ is seen to be a sufficient condition for stability of \ref{2.6.1}.
 
-This direct testing of the stability is simple. Unfortunately, as might be anticipated from the argument, it is successful only for a rather limited number of schemes.
+This direct testing of the stability is simple. Unfortunately, as might be anticipated from the argument, it is successful only for a rather limited number of schemes.\\
 
-\textit{Energy method}. This method is of a much wider applicability, and can be used even for nonlinear equations. If we know that the true solution is bounded, we test whether
+
+
+\textcolor{Blue}{\textit{Energy method}}. This method is of a much wider applicability, and can be used even for nonlinear equations. If we know that the true solution is bounded, we test whether
 $$\displaystyle\sum_j(u_j^n)^2$$
 is also bounded.
+If it is, then every value \(u_j^n\) must be bounded, and the stability of the scheme has been proved. The method is called the energy method since in physical applications \(u^2\) is often proportional to some form of energy. Of course, there are examples when this is not so.
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.75\linewidth]{uploads/Immagine 2024-12-07 101350.jpg}
+\end{figure}
+\textit{ Von Neumann’s,} or the Fourier series method is the most frequently used method of linear equations that can be expressed in form of a Fourier series, where each harmonic component is also a solution. Thus, we can test the stability of a single harmonic solution ; stability of all admissible harmonics will then be a necessary condition for stability of the scheme.
+%For an illustration of this method, it is useful first to obtain an analytic solution of the advection equation :
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.70\linewidth]{uploads/Immagine 2024-12-07 102403.jpg}
+\end{figure}
+A harmonic  solution of the finite difference advection equation.
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.65\linewidth]{uploads/Immagine 2024-12-07 103148.jpg}
+\end{figure}
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.65\linewidth]{uploads/hhhhh.png}
+\end{figure}
+
+The Von Neumann condition permits exponential growth of the solution, but no faster. This is useful for analyzing cases where the true solution grows exponentially. However, when the true solution does not grow, as in example 2.6.7, it is common to replace the von Neumann condition with a sufficient condition, much less generous than that required by the original definition of stability : \(|\lambda|\leq1\).
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=0.65\linewidth]{uploads/mi.png}
+\end{figure}
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.45\linewidth]{uploads/pp.png}
+\end{figure}
+
+The graphs of the $|\lambda|^2$ curves are shown in the picture above. In general, as the wave length $L$ increases, that is, as $k$ approaches to zero, the amplification factor approaches unity for any value of the parameter $\mu$. The figure shows that within the stable region the scheme is damping for all values $\mu\leq 1$. The damping increases as the wave length decreases. Since the true solution has a constant amplitude, this damping reveals an error due to finite differencing. We can see that this error increases as the wave length decreases. At the shortest resolvable wave length $L=2\Delta x$, the error may be very great unless $\Delta t$ extremely small. It is even possible for this wave to be completely removed after only a single time step.
+
+
+The error's dependence on wavelength can be understood by considering how the finite difference grid represents harmonics of different wavelengths. The shortest resolvable wave, with only two data points per wavelength, is poorly represented. As the wavelength increases, the representation improves and approaches the continuous representation as the wavelength tends to infinity.
+
 
 
 \section{Time differencing schemes}
@@ -197,9 +245,9 @@ In this chapter we consider ordinary differential equations with one dependent a
 
 With that in mind, we shall here first define some of the schemes that will be interesting to analyze. Then we shall investigate the behavior of numerical solutions obtained when these schemes are used for two specific ordinary differential equations: the oscillation (or frequency) equation, and the friction equation. These equations will serve as prototypes for later extension of the results to advection, gravity-inertia wave, and diffusion processes within the atmospheric primitive equations.
 
-Schemes used for the time derivative terms within the primitive equations are relatively simple, usually of the second and sometimes even only of the first order of accuracy. There are several reasons for this. First, it is a’ general experience that schemes constructed so as to have a high order of accuracy are mostly not very successful when solving partial differential equations. This is in contrast to the experience with ordinary differential equations, where very accurate schemes, such as the Runge-Kutta method, are extremely rewarding. There is a basic reason for this difference. With an ordinary differential equation, the equation and a single initial condition is all that is required for an exact solution. Thus, the error of the numerical solution is entirely due to the inadequacy of the scheme. With a partial differential equation, the error of the numerical solution is brought about both by the inadequacy of the scheme and by insufficient information about the initial conditions, since they are known only at discrete space points. Thus, an increase in the accuracy of the scheme improves only one of these two components, and the results are not too impressive.
+Schemes used for the time derivative terms within the primitive equations are relatively simple, usually of the second and sometimes even only of the first order of accuracy. There are several reasons for this. First, it is a general experience that schemes constructed so as to have a high order of accuracy are mostly not very successful when solving partial differential equations. This is in contrast to the experience with ordinary differential equations, where very accurate schemes, such as the Runge-Kutta method, are extremely rewarding. There is a basic reason for this difference. With an ordinary differential equation, the equation and a single initial condition is all that is required for an exact solution. Thus, the error of the numerical solution is entirely due to the inadequacy of the scheme. With a partial differential equation, the error of the numerical solution is brought about both by the inadequacy of the scheme and by insufficient information about the initial conditions, since they are known only at discrete space points. Thus, an increase in the accuracy of the scheme improves only one of these two components, and the results are not too impressive.
 
-Another reason for not requiring a scheme of high accuracy for approximations to the time derivative terms is that, in order to meet a stability requirement of the type discussed in the preceding chapter, it is usually necessary to choose a time step significantly smaller than that required for adequate accuracy. With the time step usually chosen, other errors, for example in the space differencing, are much greater than those due to the time differencing. Thus, computational effort is better spent in reducing these other errors, and not in increasing the accuracy of the time differencing. This, of course, does not mean that it is not necessary to consider carefully the properties of various possible time differencing schemes. Accuracy, is only one important consideration in choosing a scheme.
+Another reason for not requiring a scheme of high accuracy for approximations to the time derivative terms is that, in order to meet a stability requirement of the type discussed in the preceding sections, it is usually necessary to choose a time step significantly smaller than that required for adequate accuracy. With the time step usually chosen, other errors, for example in the space differencing, are much greater than those due to the time differencing. Thus, computational effort is better spent in reducing these other errors, and not in increasing the accuracy of the time differencing. This, of course, does not mean that it is not necessary to consider carefully the properties of various possible time differencing schemes. Accuracy, is only one important consideration in choosing a scheme.
 
 To define some schemes, we consider the equation
 \begin{equation}\label{eq.3.1.3}
@@ -208,7 +256,7 @@ To define some schemes, we consider the equation
 We divide the time axis into segments of equal length $\Delta t$. We shall denote by
 $U^{(n)}$ the approximate value of U at time $n\Delta t$. We assume that we know at least the first of the values $U^{(n)}$, $U^{(n-1)}$, $\dots$ and we want to construct a scheme for computation of an approximate value $U^{(n+1)}$. These are many possibilities.
 \subsubsection{Two-level schemes}
-These are schemes that relate values of the dependent variable at two time levels : n and n + 1. Only a two level scheme can be used to advance an integration over the first time step, when just a single initial condition is available. With such a scheme we want to approximate the exact formula
+These are schemes that relate values of the dependent variable at two time levels: $n$ and $n + 1$. Only a two level scheme can be used to advance an integration over the first time step, when just a single initial condition is available. With such a scheme we want to approximate the exact formula
 \begin{equation}\label{eq. 3.1.4}
 	U^{(n+1)}=U^{(n)}+\int_{n\Delta t}^{(n+1)\Delta t}f(U,t)dt
 \end{equation}
@@ -220,7 +268,7 @@ This is the scheme
 \end{equation}
 where
 $$f^{(n)}=f\left(U^{(n)},n\Delta t\right)$$
-The truncation error of this scheme is $o(\Delta t)$. Thus, this is a first order accurate scheme. For the integrand in \ref{eq. 3.1.4} we have here taken a constant value equal to that at the lower boundary of the time interval. Thus, in this scheme is not centered in time, and the scheme is said to be uncentered. In general, uncentered schemes will be found to be of the first order of accuracy, and simple centered schemes to be of the second order of accuracy.
+The truncation error of this scheme is $o(\Delta t)$. Thus, this is a first order accurate scheme. For the integrand in \ref{eq. 3.1.4} we have here taken a constant value equal to that at the lower boundary of the time interval. Thus, this is an uncentered scheme.
 \paragraph{Backward scheme}
 We can also take a constant value of $f$ equal to that at the upper boundary of the time interval. We then obtain
 \begin{equation}\label{3.1.6}
@@ -235,13 +283,13 @@ If we approximate $f$ in \ref{eq. 3.1.4} by an average of the values at the begi
 \end{equation}
 This is also an implicit scheme. Its truncation error, however, is $o(\Delta t^2)$. To increase the accuracy or for other reasons we can also construct iterative schemes. Two level schemes that we will now define are constructed in the same way except an iterative procedure is used to make them explicit.
 \paragraph{Matsuno (or Euler-backward) scheme}
-With this shcme a step is made first using the Euler scheme; the value of U obtained for time level $n+1$ is then used for an approximation to $f^{n+1}$, and this approximate value $f^{(n+1)}$ is used to make a backward step. Thus,
+With this scheme a step is made first using the Euler scheme; the value of U obtained for time level $n+1$ is then used for an approximation to $f^{n+1}$, and this approximate value $f^{(n+1)}$ is used to make a backward step. Thus,
 \begin{align}\label{3.1.8}
 	U^{*(n+1)}=U^{(n)}+\Delta tf^{(n)} \\
 	U^{n+1}=U^{(n)}+\Delta  tf^{*(n+1)}\notag
 \end{align}
 where
-$$f^{*(n+1}=f\left(U^{*(n+1)}, (n+1)\Delta t\right)$$
+$$f^{*(n+1)}=f\left(U^{*(n+1)}, (n+1)\Delta t\right)$$
 this is an explicit scheme, of the first order of accuracy.
 \paragraph{Heun scheme}
 An approximation of the trapezoidal scheme. Thus,
@@ -272,18 +320,8 @@ This also is a second order accurate scheme.
 There are many other possibilities. For examples, one can approximate the integral \ref{3.1.10} using Simpson's rule, that is, by fitting a parabola to the values $f^{(n-1)}$, $f^{(n)}$ and $f^{(n+1)}$.
 The implicit scheme obtained in this way is called the Milne-Simpson scheme. To illustrate the wealth of possible alternatives we note that in a paper by Young (1968) properties of 13 different schemes have been studied. Furthermore, when we are solving a more complicated partial differential equation, or a system of such equations, time (or space-time) differencing schemes can be constructed which are more complex than those which can be defined using the simple equation \ref{eq.3.1.3}. Such schemes are widely used in atmospheric models, and some of them will be described in later chapters of this publication.
 
-The three non-iterative two level schemes can be described by a single finite difference equation
-\begin{equation}\label{3.2.6}
-	U^{(n+1)}=U^{(n)}+\Delta t\left(\alpha f^n+\beta f^{(n+1)}\right)
-\end{equation}
-with a consistency requirement
-$$\alpha+\beta=1$$
-Obviously, $\alpha=1$, $\beta=1$ for the Euler scheme, $\alpha=0$, $\beta=1$ for the backward scheme, and $\alpha=1/2$, $\beta=1/2$ for the trapezoidal scheme.
-Applied to the oscillation equation \ref{3.2.6}
-\begin{equation}\label{3.2.7}
-	U^{(n+1)}=U^{(n)}+i\omega\Delta t\left(\alpha U^n+\beta U^{(n+1)}\right)
-\end{equation}
-\paragraph{Oscillation equation}
+
+\subsection{Properties of schemes applied to the oscillation equation}
 For applications in atmospheric models it is of particular interest to consider the case where $$f=i\omega U$$
 Model problem:
 \begin{equation}\label{3.2.1}
@@ -321,7 +359,7 @@ with $\theta$ representing the change in argument (or phase change) of the numer
 	\caption{stability scheme}
 	\label{fig:stab scheme}
 \end{figure}
-It will also be instructive to compare the phase change of the numerical solution per time step, $\theta$, with that of the true solution, $\omega\Delta t$. The ratio of these changes, $\frac{\theta}{\omega\Delta t}$, is the relative phase change of the numerical solution. Obviously, we can say that a scheme is
+It will also be instructive to compare the phase change of the numerical solution per time step, $\theta$, with that of the true solution, $\omega\Delta t$. The ratio of these changes, $\frac{\theta}{\omega\Delta t}$, is the relative phase change of the numerical solution.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.50\linewidth]{uploads/Screenshot 2024-11-11 230012.png}
@@ -371,18 +409,18 @@ Therefore
 \begin{equation}\label{3.2.10}
 	\lambda=\frac{1+\alpha p}{1-i\beta p}
 \end{equation}
-\paragraph{Euler.} $\alpha=1 \, \beta=0 \, \lambda=1+ip$
+\paragraph{Euler} $\alpha=1 \, \beta=0 \, \lambda=1+ip$
 so $$|\lambda|=(1+p^2)^{1/2}$$
 Te Euler scheme is always unstable, however for very small time steps $\Delta t$ $p$ is so small that
 $$|\lambda|\approx 1+\frac{1}{2}p^2$$
 The less restrictive von Neumann criterion is satisfied. However, experience shows that an indiscriminate use of the Euler scheme for solution of the atmospheric equations leads to amplification at a quite unacceptable rate.
-\paragraph{Backward.} $\alpha=0 \, \beta=1 \, \lambda=\frac{1}{1+p^2}1+ip$
+\paragraph{Backward} $\alpha=0 \, \beta=1 \, \lambda=\frac{1}{1+p^2}1+ip$
 so $$|\lambda|=(1+p^2)^{-1/2}$$
-Te backward scheme is always unstable (no matter what $\Delta t$), however is also dumping, that is it's reducing the amplitude of the solution. The amount of damping increases as the frequency $\omega$ increases. This is often considered to be a desirable property of a scheme. For instance, we can think of a system in which a number of frequencies are present at the same time ; for example, solving a system of equations of the type \ref{3.2.1}. This situation is similar to that existing in the real atmosphere. It would appear to be necessary to maintain the amplitudes of motions of different frequencies in the correct ratio. However, in numerical integrations, high frequency motions are often excited to unrealistically large amplitudes through errors in the initial data. It may then be desirable to reduce the amplitudes of high frequency motions by a selective damping in the time differencing scheme. In other words, a scheme with frequency dependent damping properties can be used to filter out undesirable high frequency motions.
-\paragraph{Trapezoidal.} $\alpha=1/2 \, \beta=1/2 \, \lambda=\frac{1}{1+1/4p^2}\left(1-1/4p^2+ip\right)$
+Te backward scheme is always stable (no matter what $\Delta t$), however is also dumping, meaning it's reducing the amplitude of the solution. The amount of damping increases as the frequency $\omega$ increases. This is often considered to be a desirable property of a scheme. For instance, we can think of a system in which a number of frequencies are present at the same time; for example, solving a system of equations of the type \ref{3.2.1}. This situation is similar to that existing in the real atmosphere. It would appear to be necessary to maintain the amplitudes of motions of different frequencies in the correct ratio. However, in numerical integrations, high frequency motions are often excited to unrealistically large amplitudes through errors in the initial data. It may then be desirable to reduce the amplitudes of high frequency motions by a selective damping in the time differencing scheme. In other words, a scheme with frequency dependent damping properties can be used to filter out undesirable high frequency motions.
+\paragraph{Trapezoidal} $\alpha=1/2 \quad \beta=1/2 \quad \lambda=\frac{1}{1+1/4p^2}\left(1-1/4p^2+ip\right)$
 $$|\lambda|=1$$
 The trapezoidal scheme is, thus, always neutral. The amplitude of the numerical solution remains constant, just as does that of the true solution. It is useful to note that both the implicit schemes considered here were stable no matter how large a value of $\Delta t$ was chosen.
-\paragraph{Matsuno.}
+\paragraph{Matsuno}
 The iterative two level schemes can also be described by a single equation in the same way as \ref{3.2.6}. Thus, we write
 \begin{align}\label{3.2.18}
 	U^{(n+1)*}=U^{(n)}+\Delta tf^{(n)}\notag \\
@@ -416,10 +454,10 @@ This scheme is conditionally stable: the higher the frequency, the more restrict
 	\label{fig:3.2.1}
 \end{figure}
 Figure \ref{fig:3.2.1} summarizes the results obtained for the five schemes considered so far. For all of these schemes the amplification factors were found to be even functions of $p$, so the amplification factor curves are shown only for $p\geq 1$.
-\paragraph{Leap-Frog scheme (Three level schemes).}
+\paragraph{Leap-Frog scheme (Three level schemes)}
 The more accurate leap-frog scheme is more delicate.
 \begin{equation}\label{3.2.33}
-	U^{(n+1)}=(^{(n-1)}+2i\omega\Delta tU^{(n)}
+	U^{(n+1)}=(U^{(n-1)}+2i\omega\Delta tU^{(n)}
 \end{equation}
 A problem with all three or more level schemes including this is that they require more than one initial condition to start the computation. From a physical standpoint a single initial condition $U^{(0)}$ should have been sufficient. However, in addition to the physical initial condition, three level schemes require a computational initial condition $U^{(1)}$. This value cannot be calculated by a three level scheme, and, therefore, it will usually have to be obtained using one of the two level schemes. According to \ref{3.2.3} we also have
 \begin{equation}\label{3.2.34}
@@ -494,7 +532,7 @@ Consider the equation
 \begin{equation}\label{4.1.1}
 	\frac{\partial u}{\partial t}+c\frac{\partial u}{\partial x}=0
 \end{equation}
-Here $u=u(x,f)$ is a function of two independent variables : the independent variable $x$ will represent a space variable, and, thus, \ref{4.1.1} will be called the one-dimensional linear advection equation. As seen earlier, its general solution is
+here $u=u(x,f)$ is a function of two independent variables: the independent variable $x$ will represent a space variable, and, thus, \ref{4.1.1} will be called the one-dimensional linear advection equation. As seen earlier, its general solution is
 $$u=f(x-ct)$$ where $f$ is an arbitrary function.
 One of the finite difference schemes for \ref{4.1.1} is the forward and upstream scheme. If the space derivative (i.e. discretizing only "$x$") is approximated by a centered finite difference quotient using values at the two nearest points, we obtain for the time derivative:
 \begin{equation}\label{4.1.3}
@@ -516,7 +554,7 @@ going back to the oscillation equation:
 \end{equation}
 denoting
 $$p=-c\frac{\Delta t}{\Delta x}\sin k\Delta x$$
-Now, if we approximate \ref{4.1.6} using one of the time differencing schemes studied in that chapter, the same finite difference equation is obtained as when we apply that scheme to \ref{4.1.3} and then substitute the wave solution \ref{4.1.5}. Hence, properties of finite difference schemes derived from \ref{4.1.3} can be inferred from the results of Section Time differencing schemes, where the frequency to is given by $p=\omega\Delta t$.
+Now, if we approximate \ref{4.1.6} using one of the time differencing schemes, the same finite difference equation is obtained as when we apply that scheme to \ref{4.1.3} and then substitute the wave solution \ref{4.1.5}. Hence, properties of finite difference schemes derived from \ref{4.1.3} can be inferred from the results of Section Time differencing schemes, where the frequency to is given by $p=\omega\Delta t$.
 As an example, if \ref{4.1.6} is approximated using the leap-frog scheme, we obtain:
 \begin{equation}\label{4.1.8}
 	U^{(n+1)}=U^{(n-1)}+2\left(-c\frac{\Delta t}{\Delta x}\sin k\Delta x\right)U^{(n)}
@@ -591,9 +629,9 @@ To gain some insight into what happens in such a situation, consider a wave for 
 	\label{fig:4.6.2}
 \end{figure}
 The waves with wave number $k_u>k_{max}$ will be interpreted as longer waves according to $k^*=2k_{max}-k_u$.
-In a real numerical solution, higher wave numbers will be continuously be created by the non linear interactions and so the amplitude of wave numbers close to $k_{max}$ will continue to increase.
+In a real numerical solution, higher wave numbers will be continuously be created by the non linear interactions and so the amplitude of wave numbers close to $k_{max}$ will continue to increase.\\
+[0.4cm]
 
-\paragraph{Some considerations.}
 Now consider the consequences of aliasing errors in a numerical integration. An atmospheric variable, as a function of space co-ordinates, can be thought of as consisting of a series of harmonic components. It is useful to consider the “energy” of these components, that is, their contribution to the mean square value of the variable considered as a function of wave number.
 
 This is the \textit{spectrum} of the “energy”. For example, if the variables are velocity components, this function is the kinetic \textit{energy spectrum}. This spectrum describes the relative importance of features of different scales in the field of the variable. Now, experience shows that the spectrum of atmospheric variables does not change much with time. On synoptic maps we do not have situations where small scale features are dominant on one day, and absent on the next. Accordingly, spectra of atmospheric variables also do not change much in their general shape. The energy of a particular component can, of course, change, but the characteristic shape of the spectrum as a whole is fairly constant. For example, a zonal spectrum of the eastward velocity component in middle latitudes typically has a maximum for wave numbers 4 to 7, that is, 4 to 7 wave lengths along a latitude circle, with the energy tapering off rather rapidly as the wave number increases beyond about 10. Thus, there is very little energy in wave numbers of the order of the maximum wave numbers that can be resolved by finite difference grids used in atmospheric models.
@@ -603,7 +641,7 @@ In a finite difference integration, in addition to these relatively small physic
 In a later paper Phillips (1959) gave the interpretation of nonlinear instability similar to what has been presented here, but for the nondivergentvorticity equation. For a test of this explanation Phillips again repeated his experiment, but after every two hours of simulated time he performed a harmonic analysis of the vorticity fields, and eliminated all components with $k>\frac{1}{2}k_{max}$. If there are no components with $k>\frac{1}{2}k_{max}$ the advection term cannot produce waves with $k>k_{max}$. We expect that it will be some time before the amplitudes of the eliminated waves are built up again to an appreciable extent. This filtering procedure eliminated the appearance of the spurious increase in energy, thereby confirming this explanation of the instability.
 \section{Energy and numerical methods}\label{sec:en and numerical methods}
 \begin{center}
-	\textit{References for the following section can be found in the book at chapter 4.2: Finite differencing in two dimensions and on the Lecture9}
+	\textit{References for the following section can be found in the book at chapter 4.2: Finite differencing in two dimensions}
 \end{center}
 
 Some issues with nonlinear instability:
@@ -686,14 +724,14 @@ We have seen how find a different thing can be used to solve one-dimensional pro
 The Arakawa Jacobian is central to numerical modeling in geophysical fluid dynamics, particularly for ensuring the conservation and stability of numerical simulations of vorticity and enstrophy (a measure of the vorticity squared). This concept is foundational in finite-difference schemes used to model fluid flows, such as weather patterns or ocean currents.
 
 
-A conceptually elegant approach for dealing with the nonlinear instability problem has been suggested and developed by Arakawa (1966, 1972). His idea is that it is better, if possible, to use schemes for the advection terms that are not only free of the nonlinear computa­tional instability but also free of the spurious inflow of energy to these short waves, instead of artificially suppress­ing their amplitudes. The amplitudes of the shortest waves in atmospheric models are small initially, and they will remain small if a false generation of these short waves is avoided. Arakawa has shown that it is possible to construct such schemes, and that they are obtained when care is taken to conserve in the finite difference form some integral properties of the original differential equa­tions.
+A conceptually elegant approach for dealing with the nonlinear instability problem has been suggested and developed by Arakawa (1966, 1972). His idea is that it is better, if possible, to use schemes for the advection terms that are not only free of the nonlinear computational instability but also free of the spurious inflow of energy to these short waves, instead of artificially suppressing their amplitudes. The amplitudes of the shortest waves in atmospheric models are small initially, and they will remain small if a false generation of these short waves is avoided. Arakawa has shown that it is possible to construct such schemes, and that they are obtained when care is taken to conserve in the finite difference form some integral properties of the original differential equations.
 
-When the Arakawa conservation schemes are used there is no need for an artificial dissipation in the advec­tion process. This enables the statistical properties of the schemes to be maintained under advection, a feature especially useful in general circulation studies.
+When the Arakawa conservation schemes are used there is no need for an artificial dissipation in the advection process. This enables the statistical properties of the schemes to be maintained under advection, a feature especially useful in general circulation studies.
 
-It has sometimes been argued that, because the phase error of the short waves is very large, they should be eliminated before they erroneously affect the longer waves through nonlinear interactions.. This argument does not take account of several factors. If the phase speeds of the short waves are wrong, the situation will not necessar­ily improve if their amplitudes are also made wrong. They may still be performing a useful function of a statistical nature. Also damping or elimination of the shortest waves will also remove some energy from the longer waves that we are interested in. If we wish to dissipate energy, it is obviously better to do so for physical and not for computational reasons.
+It has sometimes been argued that, because the phase error of the short waves is very large, they should be eliminated before they erroneously affect the longer waves through nonlinear interactions.. This argument does not take account of several factors. If the phase speeds of the short waves are wrong, the situation will not necessarily improve if their amplitudes are also made wrong. They may still be performing a useful function of a statistical nature. Also damping or elimination of the shortest waves will also remove some energy from the longer waves that we are interested in. If we wish to dissipate energy, it is obviously better to do so for physical and not for computational reasons.
 Here are the key points and essential concepts regarding the Arakawa Jacobian and its application in two finite-difference schemes. The Arakawa Jacobian is a numerical method used to approximate the Jacobian term in the vorticity equation of fluid dynamics, which is the nonlinear term representing the interaction of velocity fields. This term is crucial in the conservation of key quantities like energy and enstrophy, both of which need to be carefully handled to avoid numerical artifacts and to accurately represent physical processes in models.
 
-In the vorticity-streamfunction formulation, the Jacobian
+
 
 The Arakawa Jacobian discretizes this term in a way that conserves both energy and enstrophy, which are important for accurate long-term simulations.
 
@@ -873,8 +911,8 @@ In some cases the use of finite differences is a simple and direct method to sol
 \begin{equation}\label{eq:oscillation}
 	\frac{\partial^2\Phi}{\partial t^2}=c^2\frac{\partial^2\Phi}{\partial x^2}
 \end{equation}
-where $\Phi$ is the deviation from the rest position, while $\Psi$ is the unknown variable.
-This equation describes the vibration modes of a string of length L fixed at the extremities. That mathematically is expressed by the fact that the boundary conditions at the extremes are zero.
+where $\Phi$ is the deviation from the rest position.
+This equation could also express the vibration modes of a string of length L fixed at the extremities. That mathematically is expressed by the fact that the boundary conditions at the extremes are zero. Defining $\Psi$ the unknown variable:
 \begin{equation}
 	\Phi(x,t)=\Psi(x)e^{i\omega t}
 \end{equation}
@@ -884,14 +922,14 @@ also
 	\frac{\partial^2\Psi}{\partial x^2}+k^2\Psi=0
 \end{equation} with $k=\frac{\omega}{c}$
 The solution is either $$\Psi(x)=A\sin(kx+\delta)$$
-or $$\Psi(x)=A\cos(k\omega+\delta)$$
+or $$\Psi(x)=A\cos(kx+\delta)$$
 The boundary conditions for fixed extremities ($\Psi(0)=\Psi(L)=0$) exclude the cosine solution, so the general solution is
 \begin{equation}\label{psin}
-	\Psi_n(x)=A_n\sin\frac{n\pi x}{L}
+	\Psi_n(x)=A_n\sin{nk x}
 \end{equation}
 this is not the only one function: I'll have an integer number of wavefunctions that satisfy this condition meaning that $k$ cannot be arbitrary, i.e. the boundary conditions are satisfied only for integer values of $k$
 $$k=\frac{\pi}{L}, \frac{2\pi}{L}, \dots, \frac{n\pi}{L}$$
-(only $\sin$ functions that have an integer number of cycles can be a solution.)  We'll get infinite number of solutions that satisfy the boundary conditions. These are known as eigenfunctions (or vectors) $\Psi_n(x)$ of the wave equation for the string, and they are linear transformations acting ona finite vector (they are of the same number as the dimention of the matrix). The most important property of the eigenfunction is the \textbf{orthogonality}:
+(only $\sin$ functions that have an integer number of cycles can be a solution.)  We'll get infinite number of solutions that satisfy the boundary conditions. These are known as eigenfunctions (or vectors) $\Psi_n(x)$ of the wave equation for the string, and they are linear transformations acting on finite vector (they are of the same number as the dimension of the matrix). The most important property of the eigenfunction is the \textbf{orthogonality}:
 \begin{equation}
 	\int_0^L\Psi_n(x)\Psi_m(x)dx=C_n\delta_{nm}
 \end{equation}
@@ -899,7 +937,7 @@ with $$\delta_{mn}=\begin{cases}
 		1 , & \text{if $n=m$}    \\
 		0,  & \text{if $n\ne m$}
 	\end{cases}$$
-The eigenfunctions can always be normalised so that the constants C becomes 1. it is easy to show that in this case the normalised eigenfunctions are:
+The eigenfunctions can always be normalised so that the constants C becomes 1. It is easy to show that in this case the normalised eigenfunctions are:
 \begin{equation}
 	\Psi_n(x)=\sqrt{\frac{2}{L}}\sin\frac{n\pi x}{L}
 \end{equation}
@@ -920,7 +958,7 @@ How can I find the coefficients? Multiply both sides by another
 eigenfunction $\Psi_k(x)$ and integrate:
 $$\int_0^Lf(x)\Psi_k(x)dx=\displaystyle\sum_na_n\int_0^L\Psi_n(x)\Psi_k(x)dx=\displaystyle\sum_na_n\delta_{kn}=a_n$$
 so it seems that every function can be expressed as a sum of countable terms. This sum is over integer index, $f(x)$ is continuous. I should find out its behavior in every point, this can be described by a slighter lower order of infinity.
-\paragraph{Fourier interlude} Every function can be expressed in a set of eigenfunction, expanded over a series of the trigonometric functions.
+\paragraph{Fourier theory} Every function can be expressed in a set of eigenfunction, expanded over a series of the trigonometric functions.
 \begin{equation}
 	f(x)\approx A_0+\displaystyle\sum_{k=1}^nA_k\cos kx+\sum_{k=1}^nB_n\sin kx
 \end{equation}
@@ -940,7 +978,7 @@ with
 	c_k=\frac{1}{2\pi}\int f(\xi)e^{-ik\xi}d\xi
 \end{equation}
 This approximation works fine if everything is smoothed, but if there are jumps it increases amplitude over them, this is known as Gibbs phenomenon.
-The Gibbs phenomenon is a behavior of the Fourier series of a function with a jump discontinuity. As more Fourier series constituents or components are taken, the Fourier series shows the first overshoot in the oscillatory behavior around the jump point approaching  $\approx9\%$ of the (full) jump and this oscillation does not disappear but gets closer to the point so that the integral of the oscillation approaches zero.
+The Gibbs phenomenon happens when we use a Fourier series to represent a function with a sudden jump (discontinuity). Near the jump, the Fourier series creates wavy overshoots and undershoots. As we add more terms to the series, the first overshoot stays at about 9\% of the jump size, and the waves don’t completely go away. Instead, they get squeezed closer to the jump, so their overall effect becomes smaller, and the total area of the waves approaches zero.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-14 170405.png}
@@ -949,21 +987,21 @@ The Gibbs phenomenon is a behavior of the Fourier series of a function with a ju
 \end{figure}
 At the jump point, the Fourier series gives the average of the function's both side limits toward the point.
 
-This new representation of functions has some problems, even though manages to solve problems with higher order, accuracy. The eigenfunction expansion, the Fourier series, allows us to find a new representation of functions. What we have found is an alternative but equivalent representation of a function that has all the same properties of the original function. The question now arise if we can use these alternative form to find a way to drive a numerical solution that is somewhat better or cheaper or easier than I find a different thing that we have develop until now. Into a set of ordinary equations:
-$$ \frac{du_k}{dt}=-c_ku_k(t) $$
-that comes out from the advection equation and
+This new representation of functions has some problems, even though manages to solve problems with higher order: accuracy. The eigenfunction expansion, the Fourier series, allows us to find a new representation of functions. What we have found is an alternative but equivalent representation of a function that has all the same properties of the original function. The question now arise if we can use these alternative form to find a way to drive a numerical solution that is somewhat better or cheaper or easier.. Applying this into a set of ordinary equations, let's for instance take the advection equation:
+$$ \frac{\partial u}{\partial t}=-c\frac{\partial u}{\partial x} $$
+and let's use a Fourier representation using the first $N$ components:
 \begin{equation}\label{eq.u(x)}
 	u(x)=\displaystyle\sum_{k=1}^Nu_k(t)e^{ikx}
 \end{equation} with the initial condition:
 \begin{equation}\label{eq.u(x,0)}
 	u(x,0)=\displaystyle\sum_{k=1}^Nu_k(0)e^{ikx}
 \end{equation}
-now substituing, multiplying by $e^{jkx}$ and integrating  over $x$, with $$\int e^{ikx}e^{ijx}dx=\delta_{ij}$$
-So, in the linear case
+now substituting, multiplying by $e^{jkx}$ and integrating  over $x$, with $$\int e^{ikx}e^{ijx}dx=\delta_{ij}$$
+We get back exactly, in the linear case
 \begin{equation}
 	\frac{du_k}{dt}=-cku_k(t)
 \end{equation}
-\paragraph{Properties of spectral methods.}
+\paragraph{Properties of spectral methods}
 \begin{itemize}
 	\item Derivative becomes multiplication, i.e. algebraic operations.
 	\item Within the limits of the truncation the numerical derivative is exact.
@@ -975,7 +1013,17 @@ Consider now the nonlinear advection equation:
 \begin{equation}
 	\frac{\partial u}{\partial t}=-u\frac{\partial u}{\partial x}
 \end{equation}
-Let's try a spectral solution substituting eq.\ref{eq.u(x)} and eq.\ref{eq.u(x,0)}, projecting on another eigenfunction and integrating, the integrals yield:
+Let's try a spectral solution substituting eq.\ref{eq.u(x)} and eq.\ref{eq.u(x,0)},
+\[
+	\sum_k \frac{d}{dt} u_k(t) e^{ikx} = -\sum_j u_j(t) e^{ijx}
+	\sum_k \frac{d}{dx} u_k(t) e^{ikx} = -\sum_{k,j} ik u_j(t) u_k(t) e^{ijx} e^{ikx}
+\]
+projecting on another eigenfunction and integrating:
+\[
+	\int \sum_k \frac{du_k}{dt} e^{ikx} e^{inx} \, dx =
+	- \int \sum_{k,j} ik \, u_j(t) u_k(t) e^{ijx} e^{ikx} e^{inx} \, dx
+\]
+the integrals yield:
 \begin{align*}
 	\int e^{ikx}e^{inx}dx=\delta_{kn} \\
 	\int e^{ikx}e^{ikx}e^{inx}dx=c_{ikn}
@@ -999,32 +1047,31 @@ Furthermore, every particular non linear term will generate its own set of
 interaction coefficients, so there will be many set of c’s to compute and store.
 These days a typical climate model will have truncation of the order of $100$, so
 for each term $10^6$ coefficient will have to be computed.
-\\
-[5 cm]
-\\
-\section{verify}
-Horizontal motions are much stronger than vertical, therefore advection is much greater in the horizontal than in the vertical. In the two-dimensional model (the simplest) you treat the advection by using combinations on numerical schemes. The Arakawa Jacobian for instance, presents 3 different ways to modelize advection, you could sum them and weight them. If you have more variables you have more choices on how to distribute them in different places. Notice that staggered grid still garantees accuracy (the derivatives are in the right order). The problem is though with rotation, for instance the (E) grid tries to adjust $(u,v)$, in (B) $(u,v)$ are in the same place and $f_v$, $\frac{\partial u}{\partial t}$ is presented without errors. Waves are limited solutions of the equation, they occur in perturbation, (B) grid: $k$ is close to $1/d$. If $k$ moves at a certain speed for a certain $\lambda$ it will be distorted in the grid. A $\Phi$ field can be expressed with eigenfunctions, any perturbation of the string $f(x)$ can be written with a serie if $a_n$ exists. The Fourier serie for periodic function, for continuity you need to expand to Fourier transports. Spectral method idea: instead of solving a complex system we use a larger number of simpler problems. In the spectral world:
-$$u\rightarrow\sum u_k(t)e^{ikx}$$
-$$\frac{\partial}{\partial x}\rightarrow\text{multiplication}$$
-\section{Models on the sphere}\label{Sec:models on the sphere} \textit{Lecture10}
+
+\section{Models on the sphere/Spherical frame}\label{Sec:models on the sphere}
+\begin{center}
+	\textit{The following section refers to the slides of prof.Navarra and his discussion, in the book this topic is faced differently.}
+\end{center}
 We will use the shallow water equation, but in order to have a realistic case, we need to put it on the sphere. We start from the usual equation of the homogeneous flow, also known as shallow water equation on the sphere. For convenience we introduce the geopotential $\Phi= gH$, representing the gravitational potential energy per unit mass related to height in the atmosphere.
 \begin{align}
 	\frac{\partial u}{\partial t}=-u\frac{\partial u}{\partial x}-v\frac{\partial u}{\partial y}+fv-\frac{\partial\Phi}{\partial x} \\
 	\frac{\partial v}{\partial t}=-u\frac{\partial v}{\partial x}-v\frac{\partial v}{\partial y}-fu-\frac{\partial\Phi}{\partial y} \\
 	\frac{\partial\Phi}{\partial t}=-\frac{\partial}{\partial x}u\Phi-\frac{\partial}{\partial y}v\Phi
 \end{align}
-It is convenient to introduce velocities $U=u\cos\phi$ and $V=v\cos\phi$ in terms of the latitude $\phi$, so we can write the system in vector form using $\vec{V}=iU+jV$ ($i$ is the longitude component east-west, while $j$ is the latitudinal north-south).
+Let's now consider the momentum equation and equation of continuity in vector form. Using a spherical rather than a $(x,y)$ grid, $u$ and $v$ become longitudinal and latitudinal components of wind. It is convenient to use the representation of scalar fields on the globe, so  write velocities $U=u\cos\phi$ and $V=v\cos\phi$ in terms of the latitude $\phi$, so we can write the system in vector form using the horizontal wind $\vec{V}=iU+jV$ ($i$ is the longitude component east-west, while $j$ is the latitudinal north-south):
 \begin{align}\label{eq.partialV}
 	\frac{\partial\vec{V}}{\partial t}+(\vec{V}\cdot\nabla)\vec{V}=-f\vec{k}\times\vec{V}-\nabla\Phi \\
 	\frac{\partial\Phi}{\partial t}+(\vec{V}\cdot\nabla)\Phi=-\Phi\nabla\cdot\vec{V}\notag
 \end{align}
-$\vec{k}$ is the vertical component. In the geopotential equation, $(\vec{V}\cdot\nabla)\Phi$ is the advection term at the geopotential, while the right side of the equation represents the divergence
+$\vec{k}$ is the vertical component. In the geopotential equation, $(\vec{V}\cdot\nabla)\Phi$ is the advection term at the geopotential, while the right side of the equation represents the divergence.
 Using the identity
 $$(\vec{V}\cdot\nabla)\vec{V}=\nabla\left(\frac{\vec{V}\cdot\vec{V}}{2}\right)+\zeta\vec{k}\times\vec{V}$$
-that allows us to modify non-linerarity of the advection $(\vec{V}\cdot\nabla)\vec{V}$ , we can re-write the first equation of \ref{eq.partialV} as
+that allows us to modify non-linearity of the advection $(\vec{V}\cdot\nabla)\vec{V}$ , we can re-write the first equation of \ref{eq.partialV} as
 \begin{equation}\label{eq.V}
 	\frac{\partial\vec{V}}{\partial t}=-(\zeta+f)\vec{k}\times\vec{V}-\nabla\left(\Phi+\frac{\vec{V}\cdot\vec{V}}{2}\right)
 \end{equation}
+
+
 On the left we have the tendency (rate of change of velocities); on the right:
 \begin{enumerate}
 	\item the changes in advection in zonal components is actually driven by vorticity and $f$ (Coriolis) coupled with meridional motion.
@@ -1033,20 +1080,20 @@ On the left we have the tendency (rate of change of velocities); on the right:
 
 
 Using the definitions of vorticity (curl of the velocity field) and divergence (divergence of the velocity field). Vorticity $\zeta$ represents the rotational or swirling motion of the fluid, while the divergence $D$ represents the expansion or contraction of the fluid, i.e. the rate at which the fluid is spreading out or converging.
-\begin{align}
+\begin{align}\label{eq.defsvortdiv}
 	\zeta=\vec{k}\cdot(\nabla\times \vec{V}) \\
 	D=\nabla\cdot\vec{V}
 \end{align}
-we can then find the expressions for vorticity and divergence:
-\begin{equation}\label{eq.for vorticity and divergence}
+We can then find the expressions for the time rate change of vorticity and divergence:
+\begin{equation}\label{eq.for vorticity time change}
 	\frac{\partial\zeta}{\partial t}=-\nabla\cdot(\zeta +f)\vec{V}
 \end{equation}
 because, from the definition and the eq.\ref{eq.V}, the geopotential and kinetic term goes to zero as the curl of the gradient is zero. In this equation $\zeta$ is the relative vorticity, while $f$ is the planetary vorticity. And for the divergence we find:
-\begin{equation}
+\begin{equation}\label{eq.for divergence time change}
 	\frac{\partial D}{\partial t}=\vec{k}\cdot\nabla\times(\zeta+f)\vec{V}-\nabla^2\left(\Phi+\frac{\vec{V}\cdot\vec{V}}{2}\right)
 \end{equation}
-It is also useful to divide the geopotential from its global constant mean, $\bar{\Phi}$, $\Phi=\bar{\Phi}-\Phi'$:
-$$\frac{\partial\Phi'}{\partial t}=-(\vec{V}\cdot\nabla)(\bar{\Phi}+\Phi')-(\bar{\phi}-\Phi')D=-[\vec{V}\cdot\nabla\Phi'+\Phi'D]-\bar{\Phi}D=-\nabla\cdot\Phi'\vec{V}-\bar{\Phi}D$$
+It is also useful to divide the geopotential from its global constant mean, $\bar{\Phi}$, $\Phi=\bar{\Phi}-\Phi'$, the continuity equation becomes:
+$$\frac{\partial\Phi'}{\partial t}=\frac{\partial\Phi}{\partial t}=-(\vec{V}\cdot\nabla)(\bar{\Phi}+\Phi')-(\bar{\Phi}-\Phi')D=-[\vec{V}\cdot\nabla\Phi'+\Phi'D]-\bar{\Phi}D=-\nabla\cdot\Phi'\vec{V}-\bar{\Phi}D$$
 The advection will kill the mean, so we'll have only its action on the deviation.
 
 \paragraph{Why decompose using vorticity and divergence?}
@@ -1059,10 +1106,10 @@ Any vector field (like $\vec{V}$) also can be decomposed into two components usi
 	\item Irrotational (divergence-driven) derived from a scalar potential $\chi$
 	\item Solenoidal (vorticity-driven) derived from a streamfunction $\psi$
 \end{itemize}
-The idea is starting from the velocity field $\vec{V}$, getting the vorticity and divergence equations, solve for the streamfunction $\psi$ and the velocity potential $\chi$ using $\zeta$ and $D$ (see below), and reconstruct the velocity field using Helmholtz theorem.
+The idea is starting from the velocity field $\vec{V}$, getting the vorticity and divergence equations, solve for the streamfunction $\psi$ and the scalar velocity potential $\chi$ using $\zeta$ and $D$ (see below), and reconstruct the velocity field using Helmholtz theorem.
 \subsection{The Helmholtz theorem}
 Helmholtz showed that any vector field tangent to the surface of a sphere can be
-split in terms of two scalar functions in the following way:
+split in terms of two scalar functions, one rotational (velocity) and another nonrotational (divergence), in the following way:
 \begin{equation}\label{eq.helmholtz}
 	\vec{V}=\vec{k}\times\nabla\psi+\nabla\chi
 \end{equation}
@@ -1071,14 +1118,14 @@ where $\vec{k}$ is the vector normal to the surface of the sphere.
 	\item The \textbf{streamfunction} is a scalar function used to describe two-dimensional (or axisymmetric three-dimensional) incompressible flow. It simplifies the analysis of fluid motion by providing a way to represent the velocity field such that the incompressibility condition is automatically satisfied. It describes the rotational part of the flow.
 \end{itemize}
 
-For the components we get:
-\begin{align}\label{eq.components helmholtz}
-	U=-\frac{\cos\phi}{a}\frac{\partial\psi}{\partial\phi}+\frac{1}{a}\frac{\partial\chi}{\partial\lambda} \\
-	V=\frac{\cos\phi}{a}\frac{\partial\chi}{\partial\phi}+\frac{1}{a}\frac{\partial\psi}{\partial\lambda}
-\end{align}
-It is convenient to introduce velocities $U=u\cos\phi$, $V=v\cos\phi$, so we can write the system in vector form, using $\vec{V}=iU+jV$.
-
-In spherical coordinates we get
+By the definitions \ref{eq.defsvortdiv}, we can write through the Helmholtz theorem:
+\begin{equation}\label{eq. vorticity}
+	\zeta=\nabla^2\psi
+\end{equation}
+\begin{equation}\label{eq.divergence}
+	D=\nabla^2\chi
+\end{equation}
+We could also derive these definitions from the description of $D$ and $\zeta$ in spherical coordinates:
 \begin{align*}
 	D=\frac{1}{a\cos\phi}\left(\frac{\partial u}{\partial\lambda}+\frac{\partial v\cos\phi}{\partial\phi}\right)=\frac{1}{a\cos^2\phi}\left(\frac{\partial U}{\partial\lambda}+\cos\phi\frac{\partial V}{\partial\phi}\right) \\
 	\zeta= \frac{1}{a\cos\phi}\left(\frac{\partial v}{\partial\lambda}-\frac{\partial u\cos\phi}{\partial\phi}\right)=\frac{1}{a\cos^2\phi}\left(\frac{\partial V}{\partial\lambda}-\cos\phi\frac{\partial V}{\partial\phi}\right)
@@ -1095,9 +1142,27 @@ and
 \begin{equation}\label{eq.divergence}
 	D=\nabla^2\chi
 \end{equation}
-the equations of motion could be re-written as functions of $\Psi$, $\chi$ and $\phi'$.
 
-%fino a qui 
+Because of Helmholtz theorem we can write the components in terms of $\psi$ and $\chi$ as:
+\begin{align}\label{eq.components helmholtz}
+	U=-\frac{\cos\phi}{a}\frac{\partial\psi}{\partial\phi}+\frac{1}{a}\frac{\partial\chi}{\partial\lambda} \\
+	V=\frac{\cos\phi}{a}\frac{\partial\chi}{\partial\phi}+\frac{1}{a}\frac{\partial\psi}{\partial\lambda}
+\end{align}
+And we can find equations for vorticity and divergence rates depending on these new scalar fields, from \ref{eq.for vorticity time change} and \ref{eq.for divergence time change}:
+\begin{align}
+	\frac{\partial}{\partial t}(\nabla^2\psi)=-\frac{1}{a\cos^2\phi}\left[\frac{\partial}{\partial\lambda}(U\nabla^2\psi)+\cos\phi\frac{\partial}{\partial\phi}(V\nabla^2\psi)\right]-2\Omega\left(\sin\phi\nabla^2\chi+\frac{V}{a}\right) \\
+	\frac{\partial}{\partial t}(\nabla^2\chi)=+\frac{1}{a\cos^2\phi}\left[\frac{\partial}{\partial\lambda}(V\nabla^2\psi)-\cos\phi\frac{\partial}{\partial\phi}(U\nabla^2\psi)\right]+2\Omega\left(\sin\phi\nabla^2\psi-\frac{U}{a}\right)-\nabla^2\left(\frac{U^2+V^2}{2\cos^2\phi}+\Phi'\right)
+\end{align}
+together with:
+\begin{equation}
+	\frac{\partial\Phi'}{\partial t}=-\frac{1}{a\cos^2\phi}\left[\frac{\partial}{\partial\lambda}(U\Phi')+\cos\phi\frac{\partial}{\partial\phi}(V\Phi')\right]-\overline{\Phi}D
+\end{equation}
+make the system complete and the three equations above are three prediction equations for the three unknown variables $\psi$, $\chi$ and $\Phi'$. The systems of equations is more complex than the straightforward use of $u$, $v$ and $h$, but $\psi$ and $\chi$ fields are scalar functions that can be expressed easily as spherical harmonics.
+The transform technique allows for relatively simple means of solving the equations. The essence of this technique is to transform from spectral space quantities to gripoint space quantities, then perform nonlinear products at each gridpoint, and to reverse quantities from gridpoint quantities back to spectral quantities.
+
+In order to do this, the fields of $\psi$, $\chi$ and $\Phi'$ have to be represented as truncated series of spherical harmonics, as described in the next section.
+
+
 
 \subsection{Spherical Harmonics}
 The Laplacian in spherical coordinates gives rise to Laplace equation: eq.\ref{eq.finitedivergence}=0, setting it up as a search for the eigenfunctions/eigenvalues requires to solve a Poisson equation with periodic boundary conditions in longitude and zero at the poles.
@@ -1309,9 +1374,9 @@ Spherical harmonics are mathematical functions defined on the surface of a spher
 
 \subsubsection{5. Advantages and Challenges of Spectral Models}
 
-\paragraph{\textbf{Advantages}:}
+\paragraph{Advantages:}
 Accuracy with fewer points: Spectral methods can represent large-scale features of the climate system (such as planetary waves, jet streams, etc.) very accurately with relatively few degrees of freedom (i.e., fewer spectral coefficients) compared to grid-based models $\rightarrow$ accuracy with fewer points. Also, for certain types of problems, spectral methods can be more efficient than finite difference methods because they avoid the need for fine grids over the entire domain $\rightarrow$ efficient computation.
-\paragraph{\textbf{Challenges}:}
+\paragraph{Challenges:}
 
 \begin{itemize}
 	\item \textbf{Nonlinearity}: Spectral models can become more challenging when dealing with highly nonlinear phenomena (e.g., turbulence or convection). The nonlinear terms in the equations can introduce additional complexity, requiring special treatment like non-linear spectral operators.

@@ -1,6 +1,5 @@
 \chapter{Fundamental Equations and processes}
-
-\lastupdated{2024-12-06}{\chapterTwoEqsProcOverleaf}
+\lastupdated{2024-12-13}{\chapterTwoEqsProcOverleaf}
 
 \section{Fundamental Equations}
 \subsection{Introduction\label{introduction}}
@@ -234,7 +233,7 @@ $$p(z)=p_0 e^{\frac{-RT}{g}z}$$
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 195919.png}
 	\caption{Geostrophic balance}
-	\label{fig:enter-label}
+
 \end{figure}
 The pressure gradient force (PGF) pushes air or water from high pressure to low pressure. The Coriolis force deflects the motion to the right in the Northern Hemisphere and to the left in the Southern Hemisphere. In geostrophic balance, these forces are equal in magnitude and opposite in direction. The geostrophic balance assumes the flow is steady and does not accelerate, so it neglects the effects of inertia. This balance is most accurate for large-scale motions (e.g., planetary or synoptic scales) where friction and other forces are negligible. Vertical motions are typically much smaller than horizontal motions and are neglected in geostrophic balance.
 
@@ -292,8 +291,6 @@ where we have used the divergence in spherical coordinates.
 These equations are still not closed because we will need to express the heating/cooling term \(Q\) and the friction terms \(F\) as a function of the state variables. This will require a theory of the processes that drive them. Where \(R=287.052874 J \quad \text{kg}^{-1} \text{K}^{-1}\) is the gas constant for dry air and \(c_p = 1.005\) is the specific heat at constant pressure, \(c_v = 0.718\) is the specific heat at constant volume, \(\kappa = \frac{R}{c_p}\) and \(\gamma=c_p/c_v\) is their ratio.
 
 \subsection{Simplified equations-}\label{summary-of-fundamental-equations}
-
-\textit{*domanda: Cri perchè abbiamo le eq. semplificate e poi riprendiamo quelle intere per parlare delle Nav.Sto.?*}
 
 For theoretical and idealized studies the set of equation projected on the \(\beta\)-plane is also used. The $\beta$-plane approximation is a simplified model used in geophysical fluid dynamics to account the variation of the Coriolis parameter $f$ with latitude, in this approximation $f$ is linearized around a reference latitude such that $f\approx f_0+\beta y$ with $y=a(\phi-\phi_0)$ is the northward displacement from the reference latitude. With the $\beta$-plane approximation, no rotation, no sphericity, neglecting the meridional coordinates , the equations become:
 
@@ -541,6 +538,7 @@ depth of the fluid \(H=H_0+\eta -h\):
 		\frac{\partial v}{\partial t} & = -u \frac{\partial v}{\partial x} -v \frac{\partial v}{\partial y} - f u -g\frac{\partial H}{\partial y} \\
 		\frac{\partial H}{\partial t} & = - \frac{\partial (u H)}{\partial x} - \frac{\partial (v H)}{\partial y}                                 \\
 	\end{aligned}\]
+These equations are written in the approximation of no friction, molecular or turbulent; $w<<u$, from a scale analysis of $$\frac{\partial u}{\partial x}+\frac{\partial v}{\partial y}=-\frac{\partial w}{\partial z}$$
 Linearizing around a state of rest, constant rotation:
 \begin{align*}
 	\frac{\partial u}{\partial t}-fv=-g\frac{\partial\eta}{\partial x} \\
@@ -657,7 +655,7 @@ the dispertion relation is $$\omega=Uk-\frac{k\beta}{(k^2+l^2)}$$
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-21 162828.png}
 	\caption{Rossby waves}
-	\label{fig:enter-label}
+	\label{fig:ross waves}
 \end{figure}
 
 \section{Fundamental processes}
@@ -689,7 +687,7 @@ For the Earth, the approximate global mean surface temperature is 293 K, which y
 	\centering
 	\includegraphics[width=0.4\linewidth]{uploads/image11.png}
 	\caption{Black body curves for the solar radiation and the terrestrial radiation for the entire atmosphere and the first 11 km of the atmosphere}
-	\label{fig:enter-label}
+
 \end{figure}
 Much of the fundamental physics governing radiation transfer is embodied in the following two laws:
 \begin{itemize}
@@ -746,7 +744,7 @@ So the fractional absorption in a layer ($z$,$z_1$) is $$\tau(z, z_1) = \exp \le
 	\centering
 	\includegraphics[width=0.35\linewidth]{uploads/16image.png}\quad\includegraphics[width=0.35\linewidth]{uploads/17image.png}
 	\caption{Non avevamo voglia di scriverli}
-	\label{fig:enter-label}
+
 \end{figure}
 
 
@@ -755,8 +753,6 @@ So the fractional absorption in a layer ($z$,$z_1$) is $$\tau(z, z_1) = \exp \le
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/18image.png}
-	\caption{Enter Caption}
-	\label{fig:enter-label}
 \end{figure}
 
 \paragraph{Solar radiation} The solar radiation is a function of the zenith angle
@@ -840,8 +836,7 @@ If a parcel of air near the Earth's surface (at an atmospheric pressure of appro
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[width=0.4\linewidth]{uploads/image14.png}
-	\caption{Enter Caption}
-	\label{fig:enter-label}
+
 \end{figure}
 If the parcel does not rise high enough to reach an LCL, then a cloud should not form. From the LCL upward, the parcel will cool less rapidly as it rises since the latent heat of condensation or fusion releases heat. This lessened rate of temperature decrease with height is the moist adiabatic lapse rate.
 

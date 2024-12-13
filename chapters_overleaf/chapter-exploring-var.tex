@@ -1,7 +1,7 @@
-\chapter{Exploring Variability}
-\lastupdated{2024-12-05}{\chapterFiveExploringSSTOverleaf}
+\chapter{Exploring Variability within Models}
+\lastupdated{2024-12-13}{\chapterFiveExploringSSTOverleaf}
 
-Horel and Wallace, 1981: their article was the first moment where people started looking at time series of monthly average values. People started to put together El Nino and southern oscillations: the role of the ocean was emerging. The EOF became the perfect instrument to do that: with the EOF you can decompose all the dataset on how they project (EOF gives the complete decomposition of the data), check \ref{app} for more details:
+Horel and Wallace, 1981\cite{Horel1981}: their article was the first moment where people started looking at time series of monthly average values. People started to put together El Nino and southern oscillations: the role of the ocean was emerging. The EOF became the perfect instrument to do that: with the EOF you can decompose all the dataset on how they project (EOF gives the complete decomposition of the data), check \ref{ch:appendixA} for more details:
 $$X=U\Sigma V^T$$
 where $U$ is the matrix of the patterns, $V$, the matrix of the coefficients. When you plot the time coefficient of the first EOF, correlating the time series with the pressure all over the hemisphere, remote connections start to appear. The connections have different signs, like a wave was emerging from the pacific and propagating in the northen hemisphere.
 \begin{figure}[htp!]
@@ -46,7 +46,7 @@ The idea came forward that at least a part of this teleconnection must be connec
 
 
 
-The right figure of \ref{fig:SST VAR} represents a modern analysis of SST variability from 1880 to last year. Once the notion that the SST was important, became clear, people started to try to record the SST. However, there could have been a problem due to the difference in heat loss between different stations. In the figure, $n=0$ is the first EOF, here you can see huge oscillations (describes ENSO) and the negative phases of ENSO that are oscillating down. From now on started to come out with the idea that there is some periodic behavior.
+The right figure of \ref{fig:SST VAR} represents a modern analysis of SST variability from 1880 to last year. Once the notion that the SST was important became clear, people started to try to record the SST. However, there could have been a problem due to the difference in heat loss between different stations. In the figure, $n=0$ is the first EOF, here you can see huge oscillations (describes ENSO) and the negative phases of ENSO that are oscillating down. From now on started to come out with the idea that there is some periodic behavior.
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[width=0.35\linewidth]{uploads/Screenshot 2024-11-18 164916.png}
@@ -76,11 +76,11 @@ So they built a strategy to do that: you start with a basic model and you add a 
 	\centering
 	\includegraphics[width=0.35\linewidth]{uploads/Screenshot 2024-11-20 212353.png}
 	\caption{the fourth from the top is the paper}
-	\label{fig:enter-label}
+
 \end{figure}
 They did two perturbations and looked at the difference: the model would create a series of anomalies propagating. You create anticyclones in the north and the south of the anomaly. This fact provides an intense investigation of how the monthly scale can predict monthly anomalies. We are taking the difference between two strongly nonlinear simulations, so we are stretching the fact that we can still see the difference.
 
-This means that the relation of the two simulations is quite linear so that the effect of perturbations can be identified. In detail, consider the geopotential at 300 mbar (high atmosphere), it is the streamfunction of the flow.
+This means that the relation of the two simulations is quite linear so that the effect of perturbations can be identified. In detail, consider the geopotential at 300 mbar (high atmosphere) \ref{fig:figure 1.7}, it is the streamfunction of the flow.
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[width=0.4\linewidth]{uploads/Screenshot 2024-11-20 212453.png}
@@ -103,7 +103,7 @@ They aren't using idealizing perturbation of the SST but the observed SST month 
 	\centering
 	\includegraphics[width=0.45\linewidth]{uploads/Screenshot 2024-11-20 212548.png}\quad \includegraphics[width=0.45\linewidth]{uploads/Screenshot 2024-11-20 204551.png}
 	\caption{a)AMIP results for mean sea level pressure. b)AMIP result for precipitations.}
-	\label{fig:enter-label}
+
 \end{figure}
 As for the mean sea level pressure measured in winter between 1979 and 1988, despite the fact the ensemble means and the observed mean seem to be similar, there is an error of 14 mbar (good or bad depends on what you have to do).
 It was clear that there was a systematic problem: models seem to underestimate sea level pressure. If the error had a systematic structure, it could be possible that numerics weren't represented well.
@@ -120,7 +120,7 @@ In general, it's much more difficult than the dynamical field, because precipita
 
 \begin{figure}[htp!]
 	\centering
-	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 210633.png}
+	\includegraphics[width=0.6\linewidth]{uploads/Screenshot 2024-11-20 210633.png}
 	\caption{all the models participating in the comparison and the observations are the black line}
 	\label{fig:9}
 \end{figure}
@@ -134,14 +134,14 @@ In the figure \ref{fig:9} the panel (b) is a disaster: clouds. That shows clouds
 This kind of result grew in people's determination to insert clouds in models because do not consider them to represent the issue of credibility.
 
 
-\section{General circulation model }
+\section{General Circulation Models }
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[width=0.4\linewidth]{uploads/image8.png}
 	\caption{Climatological global heat transport and fresh-water transport: the different curves are different ocean re-analysis and black lines are observations}
-	\label{fig:enter-label}
+
 \end{figure}
-In the models, there are some variables called prognostic (so they are expressed under time derivative, so they are in the left part of the equation), for atmospheric models, these are temperature, winds and water vapor; while for the ocean models, these are currents, temperature and salinity. Radiation instead, is computed from these variables so it is called a diagnostic variable.
+In the models, there are some variables called prognostic (expressed under time derivative, so they are in the left part of the equation), for atmospheric models, these are temperature, winds and water vapor; while for the ocean models, these are currents, temperature and salinity. Radiation instead, is computed from these variables so it is called a diagnostic variable.
 The only way to change temperature and salinity in the ocean is by the interaction between the atmosphere and the ocean.
 
 Independently from which numerical methods, finite differencing or spectral, we use, we need grids.
@@ -149,14 +149,15 @@ Independently from which numerical methods, finite differencing or spectral, we 
 	\centering
 	\includegraphics[width=0.4\linewidth]{uploads/Screenshot 2024-11-20 213227.png}
 	\caption{Evolution of different models}
-	\label{fig:enter-label}
+	\label{fig:grids evolution}
+
 \end{figure}
-As we can see from the picture above, FAR had a resolution of 500 km for finite differencing and T21 for the spectral method. Now instead we are able to reach a resolution of 30km x 30km and doing that made us capable of starting to detail the oceans.
+As we can see from the picture above \ref{fig:grids evolution}, FAR had a resolution of 500 km for finite differencing and T21 for the spectral method. Now instead we are able to reach a resolution of 30km x 30km and doing that made us capable of starting to detail the oceans.
 
 It takes 5-6 years to collect all the info to have valid results to insert in the Assessment Report, a document that analyzes the state of the art of the science, collecting all the knowledge gained so far.
 If you want to do forecasting you want your model to follow exactly the observations. To do that, your initial conditions are important because for the atmospheric models they last 2-3 weeks, while for the oceans they last 12-50 weeks.
 
-Some problems are derived from the observations since they do not cover all over the world uniformly and especially they are concentrated in the continents (which is the best density of station for the observations is still endless discussion, since they are expensive; probably the best thing you can do is to have maximum information whit the minimum station distribution).
+Some problems are derived from the observations since they do not cover all over the world uniformly and especially they are concentrated in the continents (which is the best density of station for the observations is still endless discussion, since they are expensive; probably the best thing you can do is to have maximum information with the minimum station distribution).
 
 Really interesting is the ocean observing system which was possible to build thanks to the development in the knowledge of ENSO.
 \begin{itemize}
@@ -171,12 +172,12 @@ Finally, with all this data collected, you have to fill them in both space and t
 One important thing to take into consideration is that you have to take into account the ocean transport. It plays an important role in the climate system since it restores the imbalance of heat between tropics and polar regions. In particular, there is an excess of radiation energy in the equatorial region and a deficit in the polar region.
 \begin{figure}[htpb]
 	\centering
-	\includegraphics[width=0.34\linewidth]{uploads/image9.png}
+	\includegraphics[width=0.5\linewidth]{uploads/image9.png}
 	\caption{Time mean meridional heat transports for the Atlantic Ocean with different models}
 	\label{fig:12}
 \end{figure}
 In the picture below \ref{fig:12} the observations are the point and all the lines are model simulations. All the models are underestimating transports.
-This graph shows us the main important thing in data assimilation: you have to reduce as better as possible, the distance between observations and models.
+This graph shows us the main important thing in data assimilation: you have to reduce as better as possible the distance between observations and models. \\
 
 
 
@@ -189,23 +190,23 @@ If you stop the production of dense water, for example by freshening the North A
 
 \begin{figure}[htpb]
 	\centering
-	\includegraphics[width=0.5\linewidth]{uploads/image3.png}
+	\includegraphics[width=0.6\linewidth]{uploads/image3.png}
 	\caption{NCAR doesn't really stress this phenomenon described above, despite the fact it follows observations quite well}
-	\label{fig:enter-label}
+
 \end{figure}
 
-In recent years, scientists have developed new modes of investigation concerning simulations, experiments, and theories together. Also, they improved forecasting skills, helping them to improve the quality of simulations, specifically in the number of days in which the forecast stopped being useful.
+In recent years, scientists have developed new modes of investigation concerning simulations, experiments, and theories together. Also, improvement of forecasting skills helped them to improve the quality of simulations, specifically in the number of days in which the forecast stopped being useful.
 \begin{figure}[htpb]
 	\centering
-	\includegraphics[width=0.35\linewidth]{uploads/image5.png}
+	\includegraphics[width=0.5\linewidth]{uploads/image5.png}
 	\caption{Improvement in forecasting skills}
-	\label{fig:enter-label}
+
 \end{figure}
 
-Last but not least, different models have similar patterns of errors. This is a problem because even if the mean of a variable is correct, I had to consider realistic variability from it. If I improve the initial conditions, I'll improve the short timescale forecast; while if I improve the model, I'll improve the medium timescale forecast.
+Last but not least, different models have similar patterns of errors. This is a problem because, even if the mean of a variable is correct, I had to consider realistic variability from it. If I improve the initial conditions, I'll improve the short timescale forecast; while if I improve the model, I'll improve the medium timescale forecast.
 \begin{figure}[htpb]
 	\centering
-	\includegraphics[width=0.4\linewidth]{uploads/image7.png}
+	\includegraphics[width=0.7\linewidth]{uploads/image7.png}
 	\caption{Example of mean errors in comparison different models}
-	\label{fig:enter-label}
+
 \end{figure}

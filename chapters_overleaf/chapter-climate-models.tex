@@ -1,7 +1,5 @@
-
 \chapter{Climate Models}
-\lastupdated{2024-12-10}{\chapterFourClimModOverleaf}
-
+\lastupdated{2024-12-13}{\chapterFourClimModOverleaf}
 We will use the shallow water equation, but to have a realistic case, we need to put it on the sphere. We start from the usual equation, for convenience we introduce the geopotential $\Phi=gH$:
 \begin{align}
 	\frac{\partial u}{\partial t}=-u\frac{\partial u}{\partial x}-v\frac{\partial u}{\partial y}+fv-\frac{\partial \Phi}{\partial x} \\
@@ -46,7 +44,7 @@ The planetary albedo $a$ is about $0.3$, and the solar constant conventional val
 	\centering
 	\includegraphics[width=0.35\linewidth]{uploads/Screenshot 2024-11-19 154224.png}
 	\caption{Solar Irradiance at the Planets}
-	\label{fig:enter-label}
+
 \end{figure}
 then
 \begin{align*}\label{eq1}
@@ -77,7 +75,7 @@ so the observed surface temperature can be explained only assuming that not all 
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-12-01 132204.png}
 	\caption{Earth-atmosphere system energy balance}
-	\label{fig:enter-label}
+
 \end{figure}
 The two- and three-layer atmosphere models are simplified frameworks to study Earth's radiation balance and the greenhouse effect. They explain how energy flows between the surface, the atmosphere, and space.
 
@@ -194,14 +192,14 @@ Radiative forcing initiates changes in Earth's climate system, which are then am
 What about if we consider atmosphere composed by many more layers?
 In Figure \ref{fig:fig2} is shown a radiative equilibrium for 26 levels, with a realistic radiation calculation and observed components gases, with transmissivity and absorption coefficients ($T$ profile with vertical coordinate $p$).
 
-
+\section{Radiative-Convective Model}
 \subsection{Radiative convective equilibrium}\label{subsec:convection adjustments}
 \paragraph{Convection}
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[width=0.28\linewidth]{uploads/Screenshot 2024-11-20 130640.png}\quad \includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 130727.png}
 	\caption{Schematic representation of convection}
-	\label{fig:enter-label}
+
 \end{figure}
 Convection is about low layer mixing until they are gravitationally stable.
 
@@ -235,7 +233,7 @@ In the Radiative-Convective Equilibrium framework, convection and radiation inte
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-20 131319.png}
 	\caption{Radiative Convective equilibrium}
-	\label{fig:enter-label}
+
 \end{figure}
 \section{Radiative forcing}
 Radiative forcing measures the change in energy balance in the Earth's climate system due to external factors (forcings). It quantifies the difference between the incoming solar radiation absorbed by the Earth and the outgoing infrared radiation emitted back to space.
@@ -287,9 +285,9 @@ So the total is $2.58$ W/m$^2$, so a small increase in absorption will decrease 
 
 \begin{figure}[htpb]
 	\centering
-	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-24 201309.png}
+	\includegraphics[width=0.4\linewidth]{uploads/Screenshot 2024-11-24 201309.png}
 	\caption{Use a radiative-convective model, but keep the troposphere at the unperturbed equilibrium values.}
-	\label{fig:enter-label}
+
 \end{figure}
 
 
@@ -297,7 +295,7 @@ So the total is $2.58$ W/m$^2$, so a small increase in absorption will decrease 
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-24 202614.png}
 	\caption{Climate change}
-	\label{fig:enter-label}
+
 \end{figure}
 \subsection{Greenhouse feedback}
 It refers to processes in the climate system that amplify or dampen the warming caused by the greenhouse effect.  The greenhouse effect is a natural process that warms the Earth’s surface by trapping heat from the Sun. Solar radiation reaches the Earth, and the surface absorbs and emits heat as infrared radiation. Greenhouse gases in the atmosphere, such as carbon dioxide (CO$_2$), methane (CH$_4$), water vapor (H$_2$O), and others, absorb and re-radiate this infrared radiation, warming the Earth's surface and lower atmosphere. Without this effect, the Earth's average temperature would be much colder, making it uninhabitable.
@@ -314,7 +312,7 @@ The change is essentially constant, but we have not taken into consideration the
 	\centering
 	\includegraphics[width=0.25\linewidth]{uploads/Screenshot 2024-11-24 203149.png}
 	\caption{Greenhouse feedback from Manabe 1981}
-	\label{fig:enter-label}
+
 \end{figure}
 \subsection{Water vapor feedback} Water vapor feedback is one of the most significant and well-understood feedback mechanisms in the Earth's climate system. It is a positive feedback that amplifies the warming caused by increased greenhouse gas concentrations.
 An initial radiative forcing (for instance an increase in $CO_2$) generates a response in the surface temperature
@@ -332,7 +330,7 @@ This initial warming causes the surface temperature of the Earth to rise, leadin
 	\centering
 	\includegraphics[width=0.38\linewidth]{uploads/13676.png}
 	\caption{Feedback Loop, where $G$ amd $H$ are machines that determine $V_2$ that way.}
-	\label{fig:enter-label}
+
 \end{figure}
 The strength of water vapor feedback varies by region. It is most pronounced in the tropics, where the warm temperatures lead to significant evaporation and large increases in atmospheric water vapor. In contrast, in colder polar regions, the feedback is weaker because lower temperatures limit evaporation. This geographic variability means that water vapor feedback not only amplifies global warming but also contributes to differences in how warming manifests across the planet.\\
 [0.25 cm]
@@ -343,7 +341,7 @@ In nature, as in a complex GCM, water vapor tends to increase as the air tempera
 	\centering
 	\includegraphics[width=0.28\linewidth]{uploads/image112.png}
 	\caption{Relative water vapor in radiative-convective model.}
-	\label{fig:enter-label}
+
 \end{figure}
 
 
@@ -354,7 +352,7 @@ NB. Relative humidity is overall constant, specific humidity drops quickly with 
 	\centering
 	\includegraphics[width=0.4\linewidth]{uploads/23.png}
 	\caption{Model with water-vapor feedback: relative humidity fixed.}
-	\label{fig:enter-label}
+
 \end{figure}
 
 
@@ -363,16 +361,17 @@ Equilibrium Climate Sensitivity: the temperature at the
 ground increases due to an increase of $CO_2$. $T$ of the new experiment is $2.98$ K, compare to the no-feedback experiment value of $1.31$ K. The gain
 $$g=\frac{ECS}{ECS_{nofeedback}}>2$$
 Water vapor feedback doubles the warming of the ground, this was the major result by Manabe and
-Wetherald.
-\section{Radiative-Convective Model}
-In his 1964 paper, Manabe\cite{Man64} focused on the interaction between radiation and convection in the atmosphere. The primary goal of the study was to understand how the atmosphere reaches a thermal equilibrium, considering both radiative and convective processes. Manabe developed a one-dimensional model that combined the radiative properties of the atmosphere with the effects of convective heat transfer. The model introduced the concept of \textit{convective adjustment}, a process where the atmosphere quickly adjusts to restore equilibrium when it is disturbed. Convective processes work to redistribute heat vertically, ensuring that the atmosphere can maintain thermal stability despite variations in surface temperatures and solar radiation. \\
+Wetherald.\\
+[0.4 cm]
+
+In his 1964 paper, Manabe\cite{Manabe1964} focused on the interaction between radiation and convection in the atmosphere. The primary goal of the study was to understand how the atmosphere reaches a thermal equilibrium, considering both radiative and convective processes. Manabe developed a one-dimensional model that combined the radiative properties of the atmosphere with the effects of convective heat transfer. The model introduced the concept of \textit{convective adjustment}, a process where the atmosphere quickly adjusts to restore equilibrium when it is disturbed. Convective processes work to redistribute heat vertically, ensuring that the atmosphere can maintain thermal stability despite variations in surface temperatures and solar radiation. \\
 
 Manabe demonstrated that the Earth's atmospheric temperature profile is governed by the balance between radiative cooling at higher altitudes and convective heating from the Earth's surface. The interaction between these two processes determines the temperature structure of the atmosphere, with convective adjustment helping to smooth out temperature gradients and reach a stable profile. Manabe also examined how changes in the concentration of greenhouse gases affect the temperature profile of the atmosphere. He showed that increased CO$_2$ leads to a warming of the lower atmosphere, as it enhances the greenhouse effect and reduces radiative cooling. One of the major conclusions of the study was that the atmosphere tends to reach a thermal equilibrium where the rates of incoming solar radiation and outgoing infrared radiation balance each other.
 
 
 
 
-In his 1967 paper "Thermal Equilibrium of the Atmosphere with a Given Distribution of Relative Humidity", Manabe extended his previous work on the thermal equilibrium of the atmosphere by incorporating the effects of relative humidity into his climate model. Assuming a specific distribution of relative humidity (the amount of moisture in the air relative to its capacity at a given temperature) allowed him to examine how water vapor, as a greenhouse gas, influences the thermal structure of the atmosphere and contributes to the energy balance. One of the most important results was the identification of the water vapor feedback mechanism. Manabe showed that as the temperature of the atmosphere increases, the amount of water vapor also increases, since warmer air can hold more moisture. This additional water vapor enhances the greenhouse effect, leading to further warming, which in turn increases the water vapor content. This feedback loop amplifies the initial warming caused by other factors such as increased CO$_2$. The model demonstrated that the distribution of relative humidity significantly affects the vertical temperature profile of the atmosphere. Higher humidity in the lower atmosphere causes more water vapor to be present near the surface, which contributes to stronger greenhouse warming near the Earth's surface and a cooler stratosphere. The study showed how humidity influences both the radiative cooling and convective processes, ultimately shaping the thermal equilibrium of the atmosphere.\\
+In his 1967 paper "Thermal Equilibrium of the Atmosphere with a Given Distribution of Relative Humidity"\cite{Manabe1967}, Manabe extended his previous work on the thermal equilibrium of the atmosphere by incorporating the effects of relative humidity into his climate model. Assuming a specific distribution of relative humidity (the amount of moisture in the air relative to its capacity at a given temperature) allowed him to examine how water vapor, as a greenhouse gas, influences the thermal structure of the atmosphere and contributes to the energy balance. One of the most important results was the identification of the water vapor feedback mechanism. Manabe showed that as the temperature of the atmosphere increases, the amount of water vapor also increases, since warmer air can hold more moisture. This additional water vapor enhances the greenhouse effect, leading to further warming, which in turn increases the water vapor content. This feedback loop amplifies the initial warming caused by other factors such as increased CO$_2$. The model demonstrated that the distribution of relative humidity significantly affects the vertical temperature profile of the atmosphere. Higher humidity in the lower atmosphere causes more water vapor to be present near the surface, which contributes to stronger greenhouse warming near the Earth's surface and a cooler stratosphere. The study showed how humidity influences both the radiative cooling and convective processes, ultimately shaping the thermal equilibrium of the atmosphere.\\
 
 Building on his previous work, Manabe incorporated the concept of convective adjustment to account for the redistribution of heat and moisture in the atmosphere. The model showed that the presence of moisture, combined with the vertical heat transport due to convection, would lead to a different equilibrium state than in a dry atmosphere. This adjustment process, in turn, affects the thermal structure and stability of the atmosphere. Manabe also suggested that changes in the distribution of relative humidity, especially in response to global warming, could lead to nonlinear changes in the Earth’s climate. For example, increased moisture in the atmosphere as a result of warming could accelerate the warming process, as water vapor is a powerful greenhouse gas.
 Initially general equations model for rain was produced when in a convective adjustment process, the specific humidity would be higher than the saturation of water vapor pressure, so the excess of humidity was considered rain. This was the first attempt to calculate in a physically consistent way the amount of rain. Rain is one of the major driving force for the atmosphere ( for the entire circulation).

@@ -1,4 +1,4 @@
-\chapter{Numerical methods used in atmospheric models}
+\chapter{Numerical methods used in atmospheric models}\label{ch:chapter3}
 \lastupdated{2024-12-08}{\chapterThreeNumMethOverleaf}
 
 \begin{center}
@@ -321,16 +321,8 @@ There are many other possibilities. For examples, one can approximate the integr
 The implicit scheme obtained in this way is called the Milne-Simpson scheme. To illustrate the wealth of possible alternatives we note that in a paper by Young (1968) properties of 13 different schemes have been studied. Furthermore, when we are solving a more complicated partial differential equation, or a system of such equations, time (or space-time) differencing schemes can be constructed which are more complex than those which can be defined using the simple equation \ref{eq.3.1.3}. Such schemes are widely used in atmospheric models, and some of them will be described in later chapters of this publication.
 
 
-\subsection{Properties of schemes applied to the oscillation equation}
-For applications in atmospheric models it is of particular interest to consider the case where $$f=i\omega U$$
-Model problem:
-\begin{equation}\label{3.2.1}
-	\frac{dU}{dt}=i\omega U
-\end{equation}
-$$U^{(n)}\rightarrow U(n\Delta t)$$
-The equation \ref{3.2.1} is known as the oscillation equation or frequency equation. Allowing U to be complex, \ref{3.2.1} can be thought of a representing a system of two equations. The parameter $\omega$ is real, and called the frequency.
-
-The advective equation $$\frac{\partial u}{\partial t}+c\frac{\partial u}{\partial x}=0$$
+\subsection{Properties of schemes applied to particular equations}
+\paragraph{The advective equation} $$\frac{\partial u}{\partial t}+c\frac{\partial u}{\partial x}=0$$
 has a wave solution $u(x,t)=Re[U(t)e^{ikx}]$ provided that
 $$\frac{dU}{dt}+ikc=0$$
 this ordinary differential equation reduces to \ref{3.2.1} if we substitute $\omega=-kc$.
@@ -366,7 +358,8 @@ It will also be instructive to compare the phase change of the numerical solutio
 	\caption{phase change}
 	\label{fig:phase change}
 \end{figure}
-For accuracy, therefore, it is desirable to have both the amplification factor and the relative phase speed close to unity. Exceptions to this are so-called “computational modes”, which, as we shall see later, can appear as false solutions superposed on the physical solution. These are solutions that do not approach the true solution as the space and time steps approach zero. If such solutions exist they will each have their own value of the amplification factor. Since they are not an approximation to the true solution, it is desirable to have their amplitudes as small as possible, that is, to have their amplification factors less than unity.
+For accuracy, therefore, it is desirable to have both the amplification factor and the relative phase speed close to unity. Exceptions to this are so-called “computational modes”, which, as we shall see later, can appear as false solutions superposed on the physical solution. These are solutions that do not approach the true solution as the space and time steps approach zero. If such solutions exist they will each have their own value of the amplification factor. Since they are not an approximation to the true solution, it is desirable to have their amplitudes as small as possible, that is, to have their amplification factors less than unity.\\
+
 
 Stability will require, where B is a constant
 \begin{equation}
@@ -384,7 +377,7 @@ This means that if $\lambda=\+\delta$ the deviation must be such that $\delta\le
 	|\lambda|\leq 1+o(\Delta t)
 \end{equation}
 this condition will allow for exponential growth, but not faster.
-
+\paragraph{Generale formula}
 The three non-iterative two level schemes can be describes by a single finite difference equation:
 \begin{equation}\label{3.2.6}
 	U^{(n+1)}=U^{(n)}+\Delta t\left(\alpha f^n+\beta f^{(n+1)}\right)
@@ -397,7 +390,15 @@ Notice:
 	\item $\alpha=0$, $\beta=1$ for the backward scheme
 	\item $\alpha=1/2$, $\beta=1/2$ for the trapezoidal scheme
 \end{itemize}
-Applied to the oscillation equation gives
+\paragraph{Oscillation equation}
+For applications in atmospheric models it is of particular interest to consider the case where $$f=i\omega U$$
+Model problem:
+\begin{equation}\label{3.2.1}
+	\frac{dU}{dt}=i\omega U
+\end{equation}
+$$U^{(n)}\rightarrow U(n\Delta t)$$
+The equation \ref{3.2.1} is known as the oscillation equation or frequency equation. Allowing U to be complex, \ref{3.2.1} can be thought of a representing a system of two equations. The parameter $\omega$ is real, and called the frequency.
+Applying \ref{3.2.3} to the oscillation equation gives
 \begin{equation}
 	U^{(n+1)}=U^{(n)}+i\omega\Delta t\left(\alpha U^n+\beta U^{(n+1)}\right)
 \end{equation}
@@ -710,7 +711,7 @@ The energy will be the sum over the grid point values.
 \begin{equation}
 	\int\frac{\partial}{\partial t}u^2=\int u\frac{\partial}{\partial t}u\approx\displaystyle\sum_{j=1}^{N-1}\frac{u^2_{j+1}-u^2_{j-1}}{4\Delta x}u_j
 \end{equation}
-If we expand the sum we notice that terms do not compensate each other so the scheme does not conserve energy. The problem arise from the terms indicated by the arrows that are mixed in a way that does not compensate. However, in the original equation there are compensations, so maybe we can find ways of writing the equations in a equivalent way.
+If we expand the sum we notice that terms do not compensate each other so the scheme does not conserve energy. The problem arise from the terms that are mixed in a way that does not compensate. However, in the original equation there are compensations, so maybe we can find ways of writing the equations in a equivalent way.
 $$
 	\frac{\partial u}{\partial t}=-\frac{1}{3}\left[u\frac{\partial u}{\partial x}+\frac{\partial}{\partial x}u^2\right]
 $$
@@ -719,7 +720,7 @@ $$\frac{\partial u}{\partial t}\approx -\frac{1}{3}\left[u_j\frac{u_{j+1}-u_{j-1
 $$
 will result in a scheme that conserves energy. So, by using alternative but equivalent formulations schemes with desirable conservation properties can be found.
 
-We have seen how find a different thing can be used to solve one-dimensional problems. But the real world is of course three dimensional and we have to understand how to deal with that in order to attack realistic cases.Therefore it is important that we understand how we can apply these methods to more dimensions. The first case that we will treat is a simple case of the vorticity non divergent equation that we have seen before.
+We have seen how find a different thing can be used to solve one-dimensional problems. But the real world is of course three dimensional and we have to understand how to deal with that in order to attack realistic cases. Therefore it is important that we understand how we can apply these methods to more dimensions. To address the problem in more dimensions, let's first introduce a key feature of numerical modeling.
 \subsection{The Arakawa Jacobian}
 The Arakawa Jacobian is central to numerical modeling in geophysical fluid dynamics, particularly for ensuring the conservation and stability of numerical simulations of vorticity and enstrophy (a measure of the vorticity squared). This concept is foundational in finite-difference schemes used to model fluid flows, such as weather patterns or ocean currents.
 
@@ -728,48 +729,46 @@ A conceptually elegant approach for dealing with the nonlinear instability probl
 
 When the Arakawa conservation schemes are used there is no need for an artificial dissipation in the advection process. This enables the statistical properties of the schemes to be maintained under advection, a feature especially useful in general circulation studies.
 
-It has sometimes been argued that, because the phase error of the short waves is very large, they should be eliminated before they erroneously affect the longer waves through nonlinear interactions.. This argument does not take account of several factors. If the phase speeds of the short waves are wrong, the situation will not necessarily improve if their amplitudes are also made wrong. They may still be performing a useful function of a statistical nature. Also damping or elimination of the shortest waves will also remove some energy from the longer waves that we are interested in. If we wish to dissipate energy, it is obviously better to do so for physical and not for computational reasons.
 Here are the key points and essential concepts regarding the Arakawa Jacobian and its application in two finite-difference schemes. The Arakawa Jacobian is a numerical method used to approximate the Jacobian term in the vorticity equation of fluid dynamics, which is the nonlinear term representing the interaction of velocity fields. This term is crucial in the conservation of key quantities like energy and enstrophy, both of which need to be carefully handled to avoid numerical artifacts and to accurately represent physical processes in models.
 
 
 
-The Arakawa Jacobian discretizes this term in a way that conserves both energy and enstrophy, which are important for accurate long-term simulations.
+A major advantage of the Arakawa scheme is its ability to eliminate nonlinear instability, which arises due to the accumulation of energy at small scales caused by aliasing. By carefully constructing the Jacobian, the scheme conserves both energy and enstrophy, preventing the unphysical growth of energy in smaller scales.
 
-There are many ways of constructing finite difference approximations to the Jacobian. We can use any of the three equivalent analytic expressions. We shall consider only approximations of the second order of accuracy. With the simplest centered space differencing, we require values of $p$, $q$ from a box of nine adjacent grid points to evaluate the jacobian.
+There are many ways of constructing finite difference approximations to the Jacobian. We can use any of the three equivalent analytic expressions. We shall consider only approximations of the second order of accuracy. With the simplest centered space differencing, we require values of $p$, $q$ from a box of nine adjacent grid points to evaluate the Jacobian.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.25\linewidth]{uploads/Screenshot 2024-11-13 174915.png}
 	\caption{Stencil used to define approximations to Jacobian}
 	\label{fig:4.7.2}
 \end{figure}
-The possibility of modifying the equations to obtain schemes that were conserving energy was exploited to eliminate the nonlinear instability. An energy conserving scheme would prevent the overall endless growth of the energy at the smaller scales that were caused by aliasing and the accumulation of amplitude and energy of special scale very close to the gridpoint scale.
+
+The construction of the Arakawa Jacobian involves combining multiple second-order approximations, denoted as $J^{++},J^{x+},J^{+x}$, with specific weights chosen to conserve energy, enstrophy, and vorticity.
 The superscripts $+$ and $x$ denote the positions of the points from which values of $p$ and $q$, respectively, are used to form the approximation. Each of the approximations $J^{++}$, $J^{+x}$ and $J^{x+}$ is consistent and of the second order of accuracy. A more general approximation can now be formed as a linear combination of these three, that is
+$$J(p,q)=\alpha J^{++}+\beta J^{x+}+\gamma J^{+x}$$ with $\alpha+\beta+\gamma=1$.
 To illustrate that let's use the vorticity equation in the non-divergent form:
-\begin{equation}
+\begin{equation}\label{nondivvor}
 	\frac{\partial}{\partial t}\nabla^2\psi+J(\psi, \nabla^2\psi+f_0+\beta y)=0
 \end{equation}
-The nonlinear instability was generated by the nonlinear advection terms that are represented here by the Jacobian operator $J(\psi, \nabla^2\psi)$. So the term that we have to treat carefully is the Jacobian. Arakawa in 1966 developed a scheme that allowed to generate a numerical approximation to the Jacobian that was conserving not only the energy but also another quadratic quantity, enstropy $\zeta^2$, that is the square of vorticity $\zeta$.
-The basic idea is to use alternative and equivalent formulation of the Jacobian using an extended stencil of points, defining three formulations $J^{++}(p,q)$, $J^{x+}(p,q)$ and $J^{+x}(p,q)$. Then we can form the linear combinations $$J(p,q)=\alpha J^{++}+\beta J^{x+}+\gamma J^{+x}$$ with $\alpha+\beta+\gamma=1$. In particular, there is a combination of weights that is capable to conserve energy, enstrophy and vorticity. This choice is known as the Arakawa Jacobian and it has been used by essentially every climate model using finite differences.
+The nonlinear instability was generated by the nonlinear advection terms that are represented here by the Jacobian operator $J(\psi, \nabla^2\psi)$. So the term that we have to treat carefully is the Jacobian. The Arakawa Jacobian, that has been used by essentially every climate model using finite differences, is
 $$J_A=\frac{1}{3}\left(J^{++}+J^{x+}+ J^{+x}\right)$$
-In this way the nonlinear instability can be controlled. Similar schemes have been developed also for spherical geometry and they've been shown to work also in that case. However, it must be remarked that the fact that the nonlinear instability can be controlled and energy can be limited that does not give any insurance about the accuracy of the solution. The solution can still be inaccurate even if every conservation property is observed.
+By eliminating the need for artificial dissipation, the scheme preserves the statistical properties of advection, making it particularly valuable for general circulation and climate studies. The Arakawa scheme also controls the computational energy cascade by conserving the average wave number in the advection terms of the nondivergent flow, addressing nonlinear instability more effectively than simpler energy-conserving approximations.
+
+Interestingly, the Arakawa Jacobian has been demonstrated to be a special case of the finite element method, where a variational formulation minimizes errors through interpolation. However, while the scheme ensures conservation of energy and enstrophy, these properties alone do not guarantee the accuracy of the solution. Thus, the Arakawa Jacobian remains a powerful tool for controlling numerical instability, even though solution accuracy must be verified through additional means.
 
 
-It has recently been demonstrated (Jespersen, 1974) that the Arakawa Jacobian can be derived as a special case of the so called “finite element method”, a relatively new and promising development in the field of the numerical solution of partial differential equations. Instead of approximating the space derivatives by finite differences, the finite element method consists of using an interpolation procedure to convert a set of values given at grid points into a field given everywhere. This is done using a variational formulation, minimizing the error of the approximation (e.g. Cullen, 1974).
 
-In conclusion, we stress that the essence of the Arakawa method is to control the computational energy cascade, by conservation of the average wave number within the advection terms due to the nondivergent part of the flow.
-
-Thus, it is not only a conservation of energy, as has sometimes incorrectly been implied. For example, an approximation can easily be constructed for the non­linear term of the one-dimensional advection equation 4.6.5 which would conserve the kinetic energy. Using such an approximation, however, would not prevent nonlinears instability in the way that the Arakawa scheme does. The Arakawa procedure does not have a one-dimensional analogue, as the nondivergentvorticity equation 4.7.3 is not nonlinear when applied to a one-dimensional problem.
+Thus, it is not only a conservation of energy, as has sometimes incorrectly been implied. For example, an approximation can easily be constructed for the non­linear term of the one-dimensional advection equation \ref{4.6.5} which would conserve the kinetic energy. Using such an approximation, however, would not prevent nonlinears instability in the way that the Arakawa scheme does. The Arakawa procedure does not have a one-dimensional analogue, as the non-divergent vorticity equation \ref{nondivvor} is not nonlinear when applied to a one-dimensional problem.
 
 
 \subsection{Gravity waves}
 In this chapter we consider the equations describing the horizontal propagation of gravity and gravity-inertia waves. Mathematically, this means that we will be dealing with a system of two or three partial differential equations of the first order. Thus, we will now have two or three dependent variables. The system of equations will always be equivalent to a single differential equation of a higher order. This equation can be obtained from the system by elimination of dependent variables.
 
-We first put this problem in perspective. Arakawa, (Arakawa, 1970), has stated that there are two main problems in finite difference integrations of the atmospheric governing equations. One is a proper simulation of the geostrophic adjustment process. Through this process the atmosphere establishes a characteristic quasi-non divergent state, mostly as a result of the dispersion of the gravity-inertia waves. The associated computational considerations will be discussed in this chapter. The second problem is the prediction or simulation of the large-scale quasi-non divergent flow after it has been established. Here the horizontal advection is the dominating mechanism. The associated computational considerations were discussed in the preceding chapter.
+We first put this problem in perspective. Arakawa, (Arakawa, 1970), has stated that there are two main problems in finite difference integrations of the atmospheric governing equations. One is a proper simulation of the geostrophic adjustment process. Through this process the atmosphere establishes a characteristic quasi-non divergent state, mostly as a result of the dispersion of the gravity-inertia waves. The associated computational considerations will be discussed in this chapter. The second problem is the prediction or simulation of the large-scale quasi-non divergent flow after it has been established. Here the horizontal advection is the dominating mechanism.
 
 Extensive study of the problems in integrations of the gravity-inertia wave equations began in atmospheric modeling much later than studies of the advection problem. After Richardson’s (1922) first unsuccessful numerical integration of the complete primitive equations, the successful result of Charney, Fjortoft and von Neumann (1950) was largely due to the exclusion of gravity-inertia waves from their equations by using the geostrophic approximation in the vorticity equation. The governing equations with the gravity-inertia waves excluded, are customarily called the filtered equations. They bypass the geostrophic adjustment problem. The filtered equations were used almost exclusively in the first decade of numerical forecasting research.
 
 Efforts to improve the performance of numerical models led to a desire to include the non-geostrophic effects. This is very difficult to do within the modified system of equations. Thus, starting with the first successful experiments by Hinkelmann (1959), modelers came back to using the primitive equations. Except for special purposes, the primitive equations are used almost
-
 exclusively in atmospheric models today. They are generally considered superior for both research and operational applications (e.g. Sawyer, 1972). The speed of propagation of the gravity and gravity-inertia waves, and their sensitivity to various numerical errors mean that their treatment requires especially careful consideration.
 
 The more general case of one dimension the gravity waves:
@@ -785,8 +784,7 @@ will generate the differencing:
 with \begin{equation}\label{5.1.10}
 	c^*=\pm\sqrt{gH_0}\frac{\sin k\Delta x}{k\Delta x}
 \end{equation}
-This phase speed is a function of wave number, and, thus, we see that the space differencing again results in computational dispersion. The formula \ref{5.1.10} is the same as the one obtained in the preceding chapter when considering the advection equation. Therefore, both the phase speed and the group velocity depend on the wave number. The phase speed decreases as the wave length decreases, and the wave with wave length
-$2\Delta x$ is stationary.
+This phase speed is a function of wave number, and, thus, we see that the space differencing again results in computational dispersion. The formula \ref{5.1.10} is the same as the one obtained in the preceding chapter when considering the advection equation. Therefore, both the phase speed and the group velocity depend on the wave number. The phase speed decreases as the wave length decreases, and the wave with wave length $2\Delta x$ is stationary.
 
 There is, however, an important difference between this problem and the advection problem because we now have two dependent variables. We have assumed that they are both carried at every grid point.\begin{figure}[h]
 	\centering
@@ -794,7 +792,7 @@ There is, however, an important difference between this problem and the advectio
 	\caption{A grid with two dependent variables that are both carried at every grid points.}
 	\label{fig:5.1.3}
 \end{figure}
-As far as the system \ref{5.1.6} is concerned, however, the underlined variables in the figure depend only on other underlined variables. The same statement holds for the variables that are not underlined. Thus, the grid in the figure contains two elementary “subgrids”, with the solution on one of these subgrids being completely decoupled from the other. Thus, it would be better to calculate only one of these solutions, that is, to use a grid as shown below in \ref{fig:5.1.4} Such a grid, with variables carried at alternate points in space, is called a staggered grid.
+As far as the system \ref{5.1.6} is concerned, however, the underlined variables in the figure depend only on other underlined variables. The same statement holds for the variables that are not underlined. Thus, the grid in the figure contains two elementary “sub-grids”, with the solution on one of these sub-grids being completely decoupled from the other. Thus, it would be better to calculate only one of these solutions, that is, to use a grid as shown below in \ref{fig:5.1.4} Such a grid, with variables carried at alternate points in space, is called a staggered grid.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-13 180824.png}
@@ -810,55 +808,42 @@ The computation time needed to solve \ref{5.1.6} on the grid is reduced by a fac
 \end{figure}
 
 
-Notice: for the exact advection equation \ref{eq:linear adv eq} both individual waves and wave packets, that is, places where superposition of waves results in a maximum amplitude of a group of neighbouring wave numbers, propagate at the same constant velocity $c=c_g$. Introduction of the centered space finite difference quotient both makes the phase speed and the group velocity decrease as the wave number increases. The error is particularly great for the shortest resolvable wave lengths; waves with wave lengths less. Than $4\Delta x$ even have a negative group velocity. This means that wave packets made up of these waves propagate in the direction opposite to the advection velocity and opposite to the direction of propagation of individual waves.
+Notice: for the exact advection equation \ref{eq:linear adv eq} both individual waves and wave packets, that is, places where superposition of waves results in a maximum amplitude of a group of neighboring wave numbers, propagate at the same constant velocity $c=c_g$. Introduction of the centered space finite difference quotient both makes the phase speed and the group velocity decrease as the wave number increases. The error is particularly great for the shortest resolvable wave lengths; waves with wave lengths less. Than $4\Delta x$ even have a negative group velocity. This means that wave packets made up of these waves propagate in the direction opposite to the advection velocity and opposite to the direction of propagation of individual waves.
 Thus, when using such a staggered grid, the phase speed and group velocity diagram shown in \ref{fig:4.2.2} is reduced to its left half, covering waves with wave lengths of up to $4\Delta x$ only. This is a tremendous improvement. If we wish to have waves with wave lengths between $4\Delta x$ and $2\Delta x$ in our calculation we can reduce the grid length by a factor of two and perform a much more accurate integration, using the same amount of computation time than with a grid that is not staggered.
 \subsection{Two dimension}
-Consider now the two-dimensional problem, we consider the system of linearized equations:
+The system of equations for two-dimensional gravity waves is given by:
 \begin{align}\label{5.2.5}
 	\frac{\partial u}{\partial t}=-g\frac{\partial H}{\partial x}        \\
 	\frac{\partial v}{\partial t}=-g\frac{\partial H}{\partial y} \notag \\
 	\frac{\partial H}{\partial t}=-H_0\left(\frac{\partial u}{\partial x}+\frac{\partial v}{\partial y}\right)\notag
 \end{align}
-with $\omega^2=gH_0(k^2+l^2)$. Because of the results obtained in the preceding section, we first consider the spatial distribution of the variables. With two dimensions and three dependent variables, a large number of spatial arrangements of the variables are possible. For the present we consider the three rectangular arrangements shown below. The identifying letters (A), (E) and (C) are chosen so as to conform with the symbols used by Winninghoff and Arakawa (Arakawa, 1972).
-\begin{figure}[h]
+with $\omega^2=gH_0(k^2+l^2)$ the wave frequency.
+With two dimensions and three dependent variables, a large number of spatial arrangements of the variables are possible. For the present we consider the three rectangular arrangements shown below. The identifying letters (A), (E) and (C) are chosen so as to conform with the symbols used by Winninghoff and Arakawa (Arakawa, 1972).
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-14 114112.png}
 	\caption{Three types of lattice considered for the finite difference solution of \ref{5.2.5}}
 	\label{fig:5.2.1}
 \end{figure}
-We shall denote the shortest distance between the grid points by $d^*$. With the same value of $d^*$ the lattice (E) will have twice, and the lattice (C) four times less variables per unit area than the lattice (A), as in \ref{fig:5.2.1}. The lattice (E) can be obtained by a superposition of two (C) lattices, and the lattice (A) by a superposition of two (E) lattices, or of four (C) lattices.
-The admissible regions of wave numbers in the wave number plane can be found by considering the shortest resolvable wave lengths. Note that with lattice (E) the lines joining the nearest points with the same variable make an angle of $\frac{\pi}{4}$ with the grid lines while with the other two lattices these lines are along the grid lines. A halving of the number of variables is associated with a halving of the area of the admissible region of the wave number plane.
+Grid arrangements significantly influence the accuracy and efficiency of finite difference solutions. Among the considered grids (A, E, and C), grid (C) offers the most accurate phase speed for gravity waves due to its spatial configuration, but it complicates calculations of Coriolis forces because velocity components are not collocated.
+The admissible regions of wave numbers in the wave number plane can be found by considering the shortest resolvable wave lengths. Note that with lattice (E) the lines joining the nearest points with the same variable make an angle of $\frac{\pi}{4}$ with the grid lines while with the other two lattices these lines are along the grid lines.
+Grid (E), with its staggered arrangement, provides computational advantages over grid (A), reducing dispersion errors and requiring less computation time while achieving comparable results. However, it is prone to issues with two-grid-interval waves arising from decoupling of subgrids, which can lead to spurious stationary solutions.
 
-Clearly lattice (C) gives a more accurate phase speed for gravity waves than the other lattices considered here. Unfortunately, because it does not carry the two velocity components at the same points, there is some difficulty with the Coriolis force term. Of the other lattices, the staggered lattice (E) is much superior to the non-staggered lattice (A). A result with the same truncation error can be achieved in about half of the computation time, (exactly half if the equations are linear), and a sizable fraction of wave numbers that are associated with large phase speed errors and computational dispersion are eliminated. The additional time needed for a calculation on an (A) lattice is spent on waves that can hardly be expected to improve the integration.
+Two-grid-interval waves are caused by the decoupling of solutions on (C) subgrids in the (E) lattice. These manifest as spurious stationary waves or low-frequency inertia oscillations. They are triggered by artificial boundary conditions, latent heat release, or orographic forcing. This issue highlights the importance of addressing subgrid interactions in numerical models.
 
-As we can see from the phase speed diagram, lattice (E) is not free of computational problems.
-
-As with the non-staggered one-dimensional grid discussed in the preceding section, the solutions of \ref{5.2.5} on each of the two type (C) subgrids forming the (E) lattice are independent and can diverge from each other. This can be a source of serious problems. For example, if the values of the dependent variables on one of these (C) lattices are constant, they will be a stationary solution on that lattice, no matter what the values of the variables on the other (C) lattice are. Two stationary solutions, with different constant values on each of these complementary lattices, will give a stationary wave with a zero phase speed. This wave is usually referred to as the two-grid-interval wave. In the same way, the (A) lattice admits four independent stationary solutions, with different constant values on each of its four type (C) subgrids.
-
-The two-grid-interval wave can easily be generated when boundary conditions are artificially described, and, with more complete equations, in cases when gravity waves are generated inside the computational region. These can be caused by heating, for example through the release of latent heat, and by the influence of mountains. When gravity waves are excited involving variables of one of the (C) subgrids only, for example by forcing at individual grid points or lines of points, the gravity wave will propagate through the variables of this subgrid only. The variables of the other (C) subgrid will be influenced only through the Coriolis and advection terms on a much larger time-scale. Thus physical effects which may excite relatively long waves in the atmosphere may excite spurious waves with wave lengths of approximately two grid intervals in a computation. When these reach an excessive amplitude, some remedial measures have to be taken. These will be discussed in a later section.
-\paragraph{Gravity-inertia waves and space distribution of variables}
-In this section we shall discuss the effect of centered space differencing on gravity-inertia waves. Thus, we consider the system of linearized equations:
+When Coriolis terms are included in the equations:
 \begin{align}\label{5.3.4}
 	\frac{\partial u}{\partial t}=-g\frac{\partial H}{\partial x}+fv        \\
 	\frac{\partial v}{\partial t}=-g\frac{\partial H}{\partial y}-fu \notag \\
 	\frac{\partial H}{\partial t}=-H_0\left(\frac{\partial u}{\partial x}+\frac{\partial v}{\partial y}\right)\notag
 \end{align}
-Introduction of the Coriolis term complicates the deployment of the numerical variables on the grid. The Coriolis terms contain no derivatives. However, they are difficult to calculate on the (C) lattice, which was ideal for pure gravity waves.
-Thus, we reconsider the problem of the distribution of the variables.
+their inclusion complicates grid selection. Grid (C), ideal for pure gravity waves, struggles with Coriolis terms. Grids (B) and (E) perform similarly but exhibit dispersion issues for the shortest waves. The geostrophic adjustment process, governed by these equations, disperses high-frequency waves until the motion approaches geostrophic balance. Accurate simulation of this process requires careful selection of grid arrangements and numerical methods.
 
 It is not obvious how we should analyse various arrangements of variables. Our primary concern here is to consider \ref{5.3.4} as part of the complete system of primitive equations. We are interested in large-scale motions, otherwise we would not be including the Coriolis terms.
 
 On the large scale, the primitive equations admit two district types of motion : low-frequency, quasi-geostrophic and quasi-nondivergent flow and high-frequency gravity-inertia waves. Gravity-inertia waves are continually excited in the atmosphere. However, as they are dispersive, a local accumulation of wave energy disperses with time. This process is known as geostrophic adjustment; the remaining motion is in approximate geostrophic balance and changes only slowly in time. In this chapter we are concerned with the correct simulation of this process, which is essentially governed by the gravity-inertia wave equations \ref{5.3.4}.
 
-We are interested both in waves caused by physical effects, and in those caused by inadequacies of the initial data and of the numerical procedures.
-
-However, the details of the adjustment process do not matter as much as the correctness of the resulting quasi-geostrophic flow.
-
-We shall therefore investigate the effect of the space distribution of dependent variables on the dispersive properties of the gravity-inertia waves. This will be done using the simplest centered approximations for the space derivatives, leaving the time derivatives in their differential form.
-
-The discussion is based on that by Winninghoff and Arakawa, as presented by Arakawa (Arakawa, 1972; Arakawa et al. 1974).
-
-We consider five ways of distributing the dependent variables in space, shown in \ref{fig:5.1.3}. We denote by d the shortest distance between neighbouring points carrying the same dependent variable. In the figure d is the same for each of the five lattices; thus, all the lattices have the same number of dependent variables per unit area. The computation time needed for an integration on each of the lattices will be about the same; the properties of the solution obtained, though, will differ because of the effect of the space arrangement of variables.
+We consider five ways of distributing the dependent variables in space, shown in \ref{fig:5.1.3}. We denote by $d$ the shortest distance between neighbouring points carrying the same dependent variable. In the figure $d$ is the same for each of the five lattices; thus, all the lattices have the same number of dependent variables per unit area. The computation time needed for an integration on each of the lattices will be about the same; the properties of the solution obtained, though, will differ because of the effect of the space arrangement of variables.
 
 Using the subscripts shown in the figure, we define the centered space differencing operator by
 \begin{equation}
@@ -870,24 +855,31 @@ this rotation is applicable to all the lattices. Here $d'$ is the distance betwe
 	\caption{Five types of lattice considered for the finite difference solution of \ref{5.3.4}}
 	\label{fig:5.3.1}
 \end{figure}
+
+The phase speed function,
 \begin{equation}\label{5.3.11}
 	\left(\frac{\omega}{f}\right)^2=1+\frac{gH}{f^2}k^2
 \end{equation}
-thus, as the radius of deformation $$\lambda=\sqrt{\frac{gH}{f}}$$ is never equal to zero, the frequency of the gravity-inertia waves is a monotonically increasing function of $k$. Therefore, the group velocity $\frac{\partial v}{\partial k}$ is never equal to zero. This is very important for the geostrophic adjustment process, as it precludes a local accumulation of wave energy.
+shows that frequency increases monotonically with wave number, ensuring the group velocity  $\frac{\partial v}{\partial k}$ is never zero. This prevents local wave energy accumulation during geostrophic adjustment. The non-dimensional frequency $\frac{\omega}{f}$ depends on  $kd$ and $\frac{\lambda}{d}$, where the radius of deformation is $$\lambda=\sqrt{\frac{gH}{f}}$$ never equal to zero.
 
-The non-dimensional frequency $\frac{\omega}{f}$ is now seen to depend on two parameters, $kd$ and $\frac{\lambda}{d}$.
-We shall analyze the dispersion properties revealed by these expressions for each of the five lattices. The wavelength of the shortest resolvable wave along the $x$ axis is $sd$ for lattices (A) through (D), and $\sqrt{2d}$ for the lattice (E). Thus, we have to consider the range $0<kd\leq\pi$ for lattices (A) through (D), and the range $0<kd\leq\sqrt{2\pi}$ for the lattice (E).
-\begin{figure}[h]
+
+Dissipative numerical schemes can be useful in filtering high-frequency unphysical waves during the geostrophic adjustment process. These schemes prevent excessive wave amplitudes caused by artificial boundary conditions or abrupt grid changes. However, dissipation must be applied selectively to avoid distorting physical processes. For gravity-inertia wave terms, dissipation can accelerate the adjustment process by damping unphysical high-frequency waves. This approach is acceptable when only the final geostrophic state is of interest, but it should be avoided if the high-frequency waves themselves are the focus of study.
+
+
+Grid (C) provides the closest approximation to the exact solution, avoiding false group velocities, while grids (B) and (E) exhibit issues with false low frequencies and stationary solutions. Grids (D) and (A) have poor dispersion properties and are unsuitable for accurate simulations.
+
+In conclusion, grid (C) is the best choice for simulating geostrophic adjustment due to its superior dispersion properties and minimal spurious wave generation. Staggered grids (B) and (E) are viable alternatives but require methods to address spurious low-frequency waves. Proper dissipation, applied selectively, can enhance numerical stability without compromising physical accuracy.
+
+\begin{figure}[htpb]
 	\centering
 	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-14 124014.png}
-	\caption{The function $\frac{\omega}{f}$ given by \ref{5.3.11}}
+	\caption{The function $\frac{\omega}{f}$ given by \ref{5.3.11}. The wavelength of the shortest resolvable wave along the $x$ axis is $sd$ for lattices (A) through (D), and $\sqrt{2d}$ for the lattice (E). Thus, we have to consider the range $0<kd\leq\pi$ for lattices (A) through (D), and the range $0<kd\leq\sqrt{2\pi}$ for the lattice (E).}
 	\label{fig:5.3.2}
 \end{figure}
-The figure vividly illustrates the inadequacy of the lattices (D) and (A). The phase speed and dispersion properties of the remaining three lattices are much better: however, zero group velocities occur with every lattice. Thus, with any lattice there will be difficulties in the geostrophic adjustment process.
-The difference between the results for lattices (B) and (E) is interesting because these two lattices can be obtained from one another by a rotation through an angle of
+
 
 If we consider the one-dimensional case in which the dependent variables are constant along the lines
-, we obtain results for these two lattices that are exactly opposite to those in:numref:figg:432. In general, we define the coordinate system x’, y’ by rotating the x,y in the positive direction through an angle of $\pi/4$, and then, using some velocity transformations we change from variables $u,v$ to new dependent variables $u',v'$. We find that this transforms the system 5.3.6 into 5.3.9, and, conversely, 5.3.9 into 5.3.6. Thus, the dispersion properties of the lattices (B) and (E) can be considered equivalent. A gravity-inertia wave in one of these lattices has phase speed and dispersion properties identical to those of the same wave with its front rotated through an angle of $\pi/4$ in the other lattice.
+, we obtain results for these two lattices. In general, we define the coordinate system x’, y’ by rotating the x,y in the positive direction through an angle of $\pi/4$, and then, using some velocity transformations we change from variables $u,v$ to new dependent variables $u',v'$. We find that the dispersion properties of the lattices (B) and (E) can be considered equivalent. A gravity-inertia wave in one of these lattices has phase speed and dispersion properties identical to those of the same wave with its front rotated through an angle of $\pi/4$ in the other lattice.
 
 Considering the two dimensional case, the values of $\frac{\omega}{f}$ that are obtained in the two-dimensional case for the true solution and those using lattices (B) and (C) are shown in \ref{fig:5.3.3}. The diagram for lattice (E) can be obtained by a counterclockwise rotation of the (B) lattice diagram.
 \begin{figure}[h]
@@ -896,18 +888,25 @@ Considering the two dimensional case, the values of $\frac{\omega}{f}$ that are 
 	\caption{The function $\omega/f$ for the true solution}
 	\label{fig:5.3.3}
 \end{figure}
-The diagram for lattice (C) in the two-dimensional case is seen to be a much better approximation to the exact solution than the (B) or (E) lattice diagram. In the (B) lattice diagram the dot-dashed line shows the maximum $\frac{\omega}{f}$ for a given ratio $\frac{l}{k}$; note that there is no such line in the (C) lattice diagram and the exact solution. Such a maximum occurs at only two corner points of the (C) lattice diagram. Thus, with the (C) lattice, no waves have a group velocity with the wrong sign. The situation, though, does depend on the parameter $\frac{\lambda}{d}$. With a stratified atmosphere the radius of deformation $\lambda$. depends on the stability ; if the stability is so weak as to make $\frac{\lambda}{d}$ of the order of 1 or less, the (C) lattice loses the advantages shown in 5.3.3. However, for typical grid sizes used in atmospheric models this is not the case and therefore Arakawa (Arakawa and Lamb, 1976) concludes that the lattice (C) is the best lattice to simulate the geostrophic adjustment process.
+In the two-dimensional case, lattice (C) provides a significantly better approximation to the exact solution compared to lattices (B) or (E). In the (B) lattice diagram, a dot-dashed line indicates a maximum value of $\omega / f$ for a given ratio $l/f$, but such a feature is absent in both the (C) lattice diagram and the exact solution. This absence highlights the advantage of lattice (C), as it avoids waves with group velocities of the wrong sign. However, the effectiveness of lattice (C) depends on the parameter $\lambda /d$, where $\lambda$ is the radius of deformation. If $\lambda /d$ approaches 1 or less, as might occur in conditions of weak stability, the advantages of lattice (C) diminish. Fortunately, for typical grid sizes in atmospheric models, this is not an issue, leading Arakawa and Lamb (1976) to conclude that lattice (C) is the best choice for simulating geostrophic adjustment processes.
 
-The (B) or (E) lattices have a problem with false low frequencies of the shortest waves. The two-grid-interval wave, that was stationary as a pure gravity wave, now behaves like a pure inertia oscillation. The difficulty arises from decoupling of the gravity wave solutions on the two complementary (C) type subgrids. Methods of dealing with this will be discussed later.
-
-In concluding this chapter we add, following Arakawa (1970), a few remarks regarding the role of dissipation that may be inherent in numerical schemes. The discussion of the preceding chapter shows that the use of dissipative schemes for the advection process should be avoided — provided care is taken to avoid a false cascade of energy to short waves. However, such short waves can still be generated as a result of false reflections at boundaries on the down-stream side of the region (Matsuno, 1966c), or false reflections at sudden jumps in the grid size, or at places where coefficients change rapidly. The use of dissipative advection schemes at those places, and only at those places, is justified.
-
-The situation is different when we are now considering the gravity-inertia wave terms, governing the geostrophic adjustment process. This process is a result of the dispersion of high frequency waves. Use of a frequency-selective dissipative scheme will make these high frequency waves damp out at a faster rate, and thus accelerate the adjustment process, although the actual physical process is dispersive rather than dissipative. This gives an effect much the same as that of time filtering. Therefore, if we are only interested in the final result of the geostrophic adjustment process, dissipation in the gravity-inertia wave terms may be helpful, especially when the high frequency waves are predominantly unphysical. If we are interested in the high frequency waves themselves, the use of a dissipative scheme must, of course, be avoided.
+Lattices (B) and (E), on the other hand, struggle with false low frequencies in the shortest waves. Specifically, the two-grid-interval wave, which was stationary as a pure gravity wave, now behaves like a pure inertia oscillation. This issue arises from the decoupling of gravity wave solutions on the two complementary (C)-type subgrids that make up these lattices. Strategies to address these problems are discussed in later sections.
 
 
+Dissipation in numerical schemes should only be used selectively. For advection, dissipative schemes are generally unnecessary and can lead to energy cascading falsely into short waves. However, short waves may still appear due to boundary reflections, sudden grid changes, or rapidly changing coefficients. In such cases, limited dissipation can help mitigate these effects.
+
+For gravity-inertia waves, dissipation can be helpful in damping high-frequency unphysical waves, speeding up the geostrophic adjustment process. This adjustment relies on wave dispersion, not dissipation, but selective dissipation can approximate the result. If only the final balanced state is important, dissipation is acceptable. However, if high-frequency waves are the focus, dissipation should be avoided to preserve accuracy.
 \section{Spectral Methods}\label{sec:spectral method}
 Spectral methods are an approach to discretization, the main idea is to express my basic variables in terms of other functions.
-In some cases the use of finite differences is a simple and direct method to solve differential equations. However this is not the only method. There are other ways in which one can solve differential equations numerically using a special approach that is based on special functions. The main example of this approach is the usage of trigonometric functions within the context of the more general theory of Fourier analysis. Consider the Oscillation equation:
+In some cases the use of finite differences is a simple and direct method to solve differential equations. However this is not the only method. There are other ways in which one can solve differential equations numerically using a special approach that is based on special functions.
+\paragraph{Properties of spectral methods}
+\begin{itemize}
+	\item Derivative becomes multiplication, i.e. algebraic operations.
+	\item Within the limits of the truncation the numerical derivative is exact.
+	\item There is no aliasing.
+	\item The smallest wavelength in the truncation corresponds to the minimum scale that can be resolved.
+\end{itemize}
+The main example of this approach is the usage of trigonometric functions within the context of the more general theory of Fourier analysis. Consider the Oscillation equation:
 \begin{equation}\label{eq:oscillation}
 	\frac{\partial^2\Phi}{\partial t^2}=c^2\frac{\partial^2\Phi}{\partial x^2}
 \end{equation}
@@ -1001,13 +1000,7 @@ We get back exactly, in the linear case
 \begin{equation}
 	\frac{du_k}{dt}=-cku_k(t)
 \end{equation}
-\paragraph{Properties of spectral methods}
-\begin{itemize}
-	\item Derivative becomes multiplication, i.e. algebraic operations.
-	\item Within the limits of the truncation the numerical derivative is exact.
-	\item There is no aliasing.
-	\item The smallest wavelength in the truncation corresponds to the minimum scale that can be resolved.
-\end{itemize}
+
 \subsection{Numerical spectral solution (nonlinear)}
 Consider now the nonlinear advection equation:
 \begin{equation}
@@ -1048,7 +1041,7 @@ interaction coefficients, so there will be many set of c’s to compute and stor
 These days a typical climate model will have truncation of the order of $100$, so
 for each term $10^6$ coefficient will have to be computed.
 
-\section{Models on the sphere/Spherical frame}\label{Sec:models on the sphere}
+\section{Spherical frame}\label{Sec:models on the sphere}
 \begin{center}
 	\textit{The following section refers to the slides of prof.Navarra and his discussion, in the book this topic is faced differently.}
 \end{center}
@@ -1427,34 +1420,30 @@ In an Eulerian advection scheme an observer watches the world evolve around her 
 Considering:
 $$\frac{dq}{dt}=\frac{\partial q}{\partial t}+U\frac{\partial q}{\partial x}=S(x,t)$$
 with $\frac{dx}{dt}=U(x,t)$
-
-Integrating along the trajectory A'C:
+Integrating along the trajectory $A'C$:
 $$q(x_m,t_n+\Delta t)=q(x_m-2\alpha_m,t_n-\Delta t)+2\Delta tS(x-\alpha_m,t_n)$$
-Assuming it is started at $-2\alpha m$ , and because it was transported by $(t_n - \Delta t)$ , the $S$ (source or sink term for q, where q will change along a trajectory only as a function of $S$) is computed at $t_n$ so at $\alpha_m$ .
-
-the displacement can be found solving:
+Assuming it is started at $-2\alpha m$ , and because it was transported by $(t_n - \Delta t)$, the $S$ (source or sink term for $q$, where $q$ will change along a trajectory only as a function of $S$) is computed at $t_n$ so at $\alpha_m$ the displacement can be found solving:
 $$\alpha_m=\Delta tU(x-\alpha_m,t_n)$$
-and cosidering :
-$$q(x-2\alpha_m,t-\Delta t)$$ this quantity may not be at the grid point, I have to interpolate. This is preserving the trace and allow me to look at a long time step. This transported quantities are used in a passive way because it doesn't reflect immediately in the rest of the dynamic.
-
+and considering:
+$$q(x-2\alpha_m,t-\Delta t)$$ this quantity may not be at the grid point, I have to interpolate. This is preserving the trace and allowing me to look at a long time step. This transported quantities are used in a passive way because it doesn't reflect immediately in the rest of the dynamic.
+\begin{wrapfigure}{r}{0.58\textwidth}
+	\begin{center}
+		\includegraphics[width=0.45\linewidth]{uploads/Screenshot 2024-11-19 143432.png}
+	\end{center}
+	\caption{Pressure coordinates vs sigma coordinates}
+	\label{fig:sigmababy}
+\end{wrapfigure}
 \section{Vertical coordinates}
 The original vertical coordinate was the Z coordinate that is simply the
 geometric height. However, as the atmosphere is in hydrostatic balance, one could use the pressure as a vertical coordinate.
 $$(\lambda, \phi, z)\rightarrow(u,v,w) $$
 $$(\lambda, \phi, p)\rightarrow (u,v,\dot{p}=\omega)$$
 as $$\vec{\nabla}\cdot\vec{v}+\frac{\partial\omega}{\partial p}=0$$
-This implies to consider more layers in the vertical, each of these with different coefficients, then discretizing in the surface (in the making of models). However, spectral models require to have integrals over spheres: what happens if there are mountains? There will be boundary conditions.
-This choice hence as the
-problem that the surface pressure intersects the surface especially over
-mountains creating problems numerically in the definition of the boundary
-condition.
-Phillips (1957) proposed to use a normalised pressure coordinate, $\sigma=\frac{p}{p_s}$. The vertical velocity is now $\dot{\sigma}$. The spectral expansion might lead to bumps that propagate all the way up, they will create errors in the pressure gradient force. To have smoother bumps: another coordinate is introduced as in the figure \ref{fig:sigmababy}. As the grid is staggered also in the vertical, in this way we'll get half layers: NB gound level is always an half-level.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.5\linewidth]{uploads/Screenshot 2024-11-19 143432.png}
-	\caption{Pressure coordinates vs sigma coordinates: $\sigma=\frac{p-p_T}{p_s-p_T}$}
-	\label{fig:sigmababy}
-\end{figure}
+This implies to consider more layers in the vertical, each of these with different coefficients, then discretizing in the surface (in the making of models).
+However, spectral models require to have integrals over spheres: what happens if there are mountains? There will be boundary conditions.
+This choice hence as the problem that the surface pressure intersects the surface especially over mountains creating problems numerically in the definition of the boundary condition.
+
+Phillips (1957) proposed to use a normalised pressure coordinate, $$\sigma=\frac{p}{p_s}$$ The vertical velocity is now $\dot{\sigma}$. The spectral expansion might lead to bumps that propagate all the way up, they will create errors in the pressure gradient force. To have smoother bumps: another coordinate is introduced as in the figure \ref{fig:sigmababy}. As the grid is staggered also in the vertical, in this way we'll get half layers: NB gound level is always an half-level.
 \paragraph{Hybrid coordinates}
 It is a sigma coordinates close to the ground, but smoothly transform into a
-pressure coordinate far from the ground
+pressure coordinate far from the ground $$\sigma=\frac{p-p_T}{p_S-p_T}$$
